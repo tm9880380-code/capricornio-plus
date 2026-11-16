@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capricornio - Iniciar sesión</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Trebuchet MS', Arial, sans-serif; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; color: #2b1608; }
+a { text-decoration: none; color: inherit; }
+.izquierda { background: radial-gradient(ellipse at center, #f6ecd6 0%, #e6d3a8 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
+.izquierda img { width: 230px; height: auto; mix-blend-mode: multiply; }
+.izquierda h2 { font-family: Georgia, 'Palatino Linotype', serif; font-size: 30px; font-weight: normal; color: #2b1608; margin-top: 24px; max-width: 340px; line-height: 1.3; }
+.derecha { background: #fffaf0; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+.caja { width: 100%; max-width: 380px; }
+.caja h1 { font-family: Georgia, 'Palatino Linotype', serif; font-size: 38px; font-weight: normal; color: #3b2314; text-align: center; margin-bottom: 30px; }
+.caja input { width: 100%; padding: 15px 14px; border: 2px solid #5a3a1e; border-radius: 8px; background: #fffaf0; font-size: 16px; color: #2b1608; margin-bottom: 14px; }
+.caja input::placeholder { color: #8a735c; }
+.boton { display: block; width: 100%; text-align: center; padding: 15px; border: 2px solid #3b2314; border-radius: 8px; font-size: 17px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+.boton.principal { background: #3b2314; color: #f3e6c8; }
+.boton.principal:hover { background: #7a4a1c; border-color: #7a4a1c; }
+.boton.secundario { background: #fffaf0; color: #3b2314; }
+.boton.secundario:hover { background: #3b2314; color: #f3e6c8; }
+#mensaje { color: #9b2525; text-align: center; margin: 12px 0; min-height: 20px; }
+@media (max-width: 760px) {
+  body { grid-template-columns: 1fr; }
+  .izquierda { padding: 28px 24px; }
+  .izquierda img { width: 130px; }
+  .izquierda h2 { font-size: 22px; margin-top: 14px; }
+}
+</style>
+</head>
+<body>
+
+<section class="izquierda">
+  <img src="img/logo_grande.webp" alt="Logo de Capricornio">
+  <h2>Capricornio: Trabajar, persistir y avanzar</h2>
+</section>
+
+<section class="derecha">
+  <div class="caja">
+    <h1>Iniciar sesión</h1>
+
+    <form id="login-form">
+      <input type="email" name="email" placeholder="Correo electrónico" autocomplete="email" required>
+      <input type="password" name="password" placeholder="Contraseña" autocomplete="current-password" required>
+      <p id="mensaje" role="alert" aria-live="polite"></p>
+      <button class="boton principal" id="ingresar" type="submit">Iniciar sesión</button>
+    </form>
+
+    <a class="boton secundario" href="registro.html">Crear cuenta</a>
+  </div>
+</section>
+
+<script>
+const formulario = document.getElementById("login-form");
+const mensaje = document.getElementById("mensaje");
+const boton = document.getElementById("ingresar");
+
+formulario.addEventListener("submit", async (evento) => {
+  evento.preventDefault();
+  mensaje.textContent = "";
+  boton.disabled = true;
+  boton.textContent = "Verificando...";
+
+  const campos = new FormData(formulario);
+
+  try {
+    const respuesta = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        email: campos.get("email").trim(),
+        password: campos.get("password")
+      })
+    });
+
+    const resultado = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(resultado.detail || "Correo o contraseña incorrectos.");
+    }
+
+    const estado = await fetch("/api/diagnostic/latest", {
+      method: "GET",
+      credentials: "same-origin"
+    });
+
+    if (!estado.ok) {
+      const detalle = await estado.json().catch(() => ({}));
+      throw new Error(
+        `Error consultando progreso (${estado.status}): ${detalle.detail || "Respuesta del servidor no válida."}`
+      );
+    }
+
+    const datos = await estado.json();
+
+    window.location.href = datos.diagnostic
+      ? "plan.html"
+      : "diagnostico.html";
+
+  } catch (error) {
+    mensaje.textContent = error.message || "No se pudo conectar con el servidor.";
+    boton.disabled = false;
+    boton.textContent = "Iniciar sesión";
+  }
+});
+</script>
+
+</body>
+</html>

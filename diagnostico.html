@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capricornio - Diagnóstico</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="diagnostico.html">Diagnóstico</a>
+    <a href="plan.html">Mi plan</a>
+    <a href="suscripciones.html">Suscripciones</a>
+    <a href="login.html">Ingresar</a>
+  </nav>
+</header>
+
+<main class="contenedor">
+  <h1>Diagnóstico inicial</h1>
+
+  <section class="escena">
+    <div class="gato"><img src="img/gato.webp" alt="Nana, guía de Capricornio"></div>
+    <div class="globo" id="mensaje-nana" aria-live="polite">
+      ¡Hola! Soy Nana. Vamos a descubrir qué sabes y qué necesitas aprender. Puedes responder con tranquilidad.
+    </div>
+  </section>
+
+  <div id="diagnostico">
+    <p id="contador"><strong>Preparando tu diagnóstico...</strong></p>
+    <div class="progreso"><div id="barra-progreso" style="width:0%;"></div></div>
+
+    <section class="tarjeta" id="tarjeta-pregunta" hidden>
+      <h2 id="pregunta"></h2>
+      <div id="opciones"></div>
+    </section>
+
+    <p id="estado" role="status" aria-live="polite"></p>
+    <p id="navegacion" style="margin-top:18px;" hidden>
+      <button class="boton claro" id="anterior" type="button">Anterior</button>
+      <button class="boton" id="siguiente" type="button" disabled>Siguiente</button>
+    </p>
+  </div>
+</main>
+
+<footer class="pie-pagina">Trabajar. Persistir. · Capricornio · Plataforma adaptativa de aprendizaje</footer>
+
+<script>
+(() => {
+  const mensajeNana = document.getElementById("mensaje-nana");
+  const contador = document.getElementById("contador");
+  const barra = document.getElementById("barra-progreso");
+  const tarjeta = document.getElementById("tarjeta-pregunta");
+  const pregunta = document.getElementById("pregunta");
+  const opciones = document.getElementById("opciones");
+  const estado = document.getElementById("estado");
+  const navegacion = document.getElementById("navegacion");
+  const anterior = document.getElementById("anterior");
+  const siguiente = document.getElementById("siguiente");
+
+  let etapa = null;
+  let indice = 0;
+  let respuestas = {};
+  let historial = [];
+
+  async function solicitar(url, opciones = {}) {
+    const respuesta = await fetch(url, {
+      credentials: "same-origin",
+      ...opciones,
+      headers: {
+        "Content-Type": "application/json",
+        ...(opciones.headers || {})
+      }
+    });
+
+    const datos = await respuesta.json().catch(() => ({}));
+
+    if (!respuesta.ok) {
+      if (respuesta.status === 401) {
+        throw new Error("Tu sesión no está iniciada. Ingresa a tu cuenta para comenzar.");
+      }
+      throw new Error(datos.detail || "No fue posible comunicarse con Capricornio.");
+    }
+
+    return datos;
+  }
+
+  async function cargarEtapa(area = "") {
+    const url = area
+      ? `/api/diagnostic/questions?area=${encodeURIComponent(area)}`
+      : "/api/diagnostic/questions";
+
+    etapa = await solicitar(url);
+    indice = 0;
+    respuestas = {};
+    historial = [];
+    mostrarPregunta();
+  }
+
+  function mostrarPregunta() {
+    const actual = etapa.questions[indice];
+
+    if (!actual) return;
+
+    contador.innerHTML = `<strong>Pregunta ${indice + 1} de ${etapa.questions.length}</strong>`;
+    barra.style.width = `${((indice + 1) / etapa.questions.length) * 100}%`;
+    pregunta.textContent = actual.prompt;
+    opciones.replaceChildren();
+
+    actual.options.forEach(opcion => {
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.className = "opcion";
+      boton.textContent = opcion.label;
+      boton.setAttribute("aria-pressed", respuestas[actual.id] === opcion.value ? "true" : "false");
+
+      boton.addEventListener("click", () => {
+        respuestas[actual.id] = opcion.value;
+        opciones.querySelectorAll("button").forEach(item => {
+          item.setAttribute("aria-pressed", "false");
+        });
+        boton.setAttribute("aria-pressed", "true");
+        siguiente.disabled = false;
+        mensajeNana.textContent = "¡Gracias! Cada respuesta me ayuda a conocerte mejor.";
+      });
+
+      opciones.appendChild(boton);
+    });
+
+    anterior.hidden = indice === 0;
+    siguiente.disabled = !Object.hasOwn(respuestas, actual.id);
+    siguiente.textContent = indice === etapa.questions.length - 1
+      ? "Finalizar etapa"
+      : "Siguiente";
+
+    navegacion.hidden = false;
+    tarjeta.hidden = false;
+    estado.textContent = "";
+  }
+
+  async function finalizarEtapa() {
+    siguiente.disabled = true;
+    anterior.disabled = true;
+    mensajeNana.textContent = "Estoy revisando tus respuestas. Dame un momento...";
+    estado.textContent = "Guardando tus respuestas...";
+
+    try {
+      const resultado = await solicitar("/api/diagnostic/submit", {
+        method: "POST",
+        body: JSON.stringify({
+          area: etapa.area,
+          answers: respuestas
+        })
+      });
+
+      if (etapa.mode === "orientation") {
+        mensajeNana.textContent =
+          `¡Ya tengo una orientación inicial! Vamos a explorar ${resultado.recommended_area}. Ahora conoceré tus conocimientos en esa área.`;
+        estado.textContent = "Orientación completada. Comenzando evaluación de conocimientos...";
+        await cargarEtapa(resultado.recommended_area);
+        return;
+      }
+
+      barra.style.width = "100%";
+      contador.innerHTML = "<strong>Diagnóstico completado</strong>";
+      tarjeta.hidden = true;
+      navegacion.hidden = true;
+      estado.textContent =
+        `Área: ${resultado.area}. Nivel inicial estimado: ${resultado.detected_level}. Resultado: ${resultado.score}%.`;
+
+      mensajeNana.textContent =
+        `¡Terminamos esta primera evaluación! Tu punto de partida es ${resultado.detected_level}. Ahora podremos preparar tu ruta de aprendizaje.`;
+
+      const botonPlan = document.createElement("a");
+      botonPlan.href = "plan.html";
+      botonPlan.className = "boton";
+      botonPlan.textContent = "Ir a mi plan de estudio";
+      estado.appendChild(document.createElement("br"));
+      estado.appendChild(botonPlan);
+
+    } catch (error) {
+      estado.textContent = error.message;
+      mensajeNana.textContent = "Algo salió mal. Tus respuestas siguen en esta pantalla; podemos intentarlo de nuevo.";
+      siguiente.disabled = false;
+      anterior.disabled = false;
+    }
+  }
+
+  siguiente.addEventListener("click", async () => {
+    const actual = etapa.questions[indice];
+    if (!Object.hasOwn(respuestas, actual.id)) return;
+
+    if (indice < etapa.questions.length - 1) {
+      historial.push(indice);
+      indice++;
+      mostrarPregunta();
+    } else {
+      await finalizarEtapa();
+    }
+  });
+
+  anterior.addEventListener("click", () => {
+    if (indice > 0) {
+      indice--;
+      mostrarPregunta();
+    }
+  });
+
+  cargarEtapa().catch(error => {
+    contador.textContent = "No se pudo iniciar el diagnóstico.";
+    estado.textContent = error.message;
+    mensajeNana.textContent = "Para comenzar, inicia sesión en Capricornio.";
+  });
+})();
+</script>
+
+</body>
+</html>

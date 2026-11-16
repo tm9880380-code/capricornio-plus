@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capricornio - Registro</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="diagnostico.html">Diagnóstico</a>
+    <a href="plan.html">Mi plan</a>
+    <a href="suscripciones.html">Suscripciones</a>
+    <a href="login.html">Ingresar</a>
+  </nav>
+</header>
+
+<main class="contenedor">
+
+  <h1 style="text-align:center;">Crea tu cuenta</h1>
+  <p style="text-align:center;">Regístrate para hacer tu diagnóstico y recibir tu plan de estudio.</p>
+
+  <section class="formulario">
+    <form id="registro-form">
+      <label for="nombre">Nombre completo</label>
+      <input id="nombre" name="name" type="text" placeholder="Tu nombre" autocomplete="name" required>
+
+      <label for="correo">Correo electrónico</label>
+      <input id="correo" name="email" type="email" placeholder="correo@ejemplo.com" autocomplete="email" required>
+
+      <label for="contrasena">Contraseña</label>
+      <input id="contrasena" name="password" type="password" placeholder="Mínimo 8 caracteres" minlength="8" autocomplete="new-password" required>
+
+      <label for="objetivo">¿Qué quieres aprender?</label>
+      <select id="objetivo" name="learning_goal" required>
+        <option value="" disabled selected>Selecciona qué quieres aprender</option>
+        <option value="Ciberseguridad">Ciberseguridad</option>
+        <option value="Desarrollo de software y programación">Desarrollo de software y programación</option>
+        <option value="Desarrollo web">Desarrollo web</option>
+        <option value="Análisis de datos">Análisis de datos</option>
+        <option value="Bases de datos">Bases de datos</option>
+        <option value="Inteligencia artificial">Inteligencia artificial</option>
+        <option value="Redes y sistemas">Redes y sistemas</option>
+        <option value="Fundamentos de programación">Fundamentos de programación</option>
+        <option value="Programación orientada a objetos">Programación orientada a objetos</option>
+        <option value="Aún no lo sé; necesito orientación">Aún no lo sé; quiero que Capricornio me oriente</option>
+      </select>
+
+      <p id="registro-mensaje" role="status" aria-live="polite"></p>
+
+      <button class="boton" id="registro-boton" type="submit">Crear cuenta</button>
+    </form>
+
+    <p class="pie">¿Ya tienes cuenta? <a href="login.html"><strong>Ingresa aquí</strong></a></p>
+  </section>
+
+</main>
+
+<footer class="pie-pagina">Capricornio · Plataforma adaptativa de aprendizaje de programación</footer>
+
+<script>
+const formulario = document.getElementById("registro-form");
+const mensaje = document.getElementById("registro-mensaje");
+const boton = document.getElementById("registro-boton");
+
+formulario.addEventListener("submit", async (evento) => {
+  evento.preventDefault();
+  mensaje.textContent = "";
+  boton.disabled = true;
+  boton.textContent = "Creando cuenta...";
+
+  const campos = new FormData(formulario);
+  const datos = {
+    name: campos.get("name").trim(),
+    email: campos.get("email").trim(),
+    password: campos.get("password"),
+    learning_goal: campos.get("learning_goal")
+  };
+
+  try {
+    const respuesta = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify(datos)
+    });
+
+    const resultado = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(resultado.detail || "No se pudo crear la cuenta.");
+    }
+
+    mensaje.textContent = "Cuenta creada correctamente. Abriendo diagnóstico...";
+    window.location.href = "diagnostico.html";
+
+  } catch (error) {
+    mensaje.textContent = error.message || "No se pudo conectar con el servidor.";
+    boton.disabled = false;
+    boton.textContent = "Crear cuenta";
+  }
+});
+</script>
+
+</body>
+</html>
