@@ -17,4 +17,4 @@ function render(){const term=$("buscar").value.trim().toLocaleLowerCase();const 
 $("area").addEventListener("change",()=>load().catch(e=>$("estado").textContent=e.message));$("tipo").addEventListener("change",render);$("buscar").addEventListener("input",render);await load();
 }catch(e){$("estado").textContent=e.message;}})();
 $("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
-</script></body></html>
+</script><script src="js/app-shell.js" defer></script></body></html>
