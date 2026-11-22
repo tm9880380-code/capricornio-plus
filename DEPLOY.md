@@ -41,6 +41,12 @@ En un proveedor que defina PORT:
 
 No expongas SQLite, archivos .env, copias ni el puerto interno de la aplicación directamente a internet.
 
+## Persistencia (importante en Render)
+
+La base está en `data/capricornio.db`. En el plan gratuito de Render el sistema de archivos es efímero: cada despliegue o reinicio puede borrar todas las cuentas y el progreso. Para conservarlos hace falta un disco persistente (plan de pago) y apuntar la base a él con la variable `CAPRICORNIO_DATA_DIR` (por ejemplo `/var/data`). En `render.yaml` hay un bloque comentado listo para activar. Sin eso, usa la instancia solo para pruebas y no prometas conservar datos de estudiantes.
+
+Si hay un proxy delante, ejecuta uvicorn con `--proxy-headers` para que los límites de intentos usen la IP real del visitante.
+
 ## Persistencia y escalabilidad
 
 SQLite es adecuado para desarrollo, demostración y una instancia pequeña. No compartas el mismo archivo SQLite entre varias instancias de aplicación ni lo ubiques en un sistema de archivos de red sin comprobar sus garantías de bloqueo.

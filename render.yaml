@@ -4,9 +4,19 @@ services:
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips="*"
     healthCheckPath: /api/health
     autoDeploy: true
     envVars:
       - key: CAPRICORNIO_HTTPS
         value: "1"
+    # Plan gratuito: el disco es efímero y los datos se pierden en cada despliegue.
+    # Para conservar cuentas y progreso, cambia a un plan de pago, descomenta lo siguiente
+    # y define CAPRICORNIO_DATA_DIR igual a la ruta de montaje:
+    #
+    # disk:
+    #   name: capricornio-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # (y en envVars) - key: CAPRICORNIO_DATA_DIR
+    #                  value: /var/data

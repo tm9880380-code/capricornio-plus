@@ -24,17 +24,43 @@ from backend.adaptive.adaptive_engine import (
 from backend.adaptive.bkt import BKTParameters, update_mastery
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
-DATA_DIR.mkdir(exist_ok=True)
+DATA_DIR = Path(os.getenv("CAPRICORNIO_DATA_DIR") or BASE_DIR / "data")
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 DB_PATH = DATA_DIR / "capricornio.db"
 
 SESSION_DAYS = 30
 COOKIE_NAME = "capricornio_session"
 password_hash = PasswordHash.recommended()
+# Hash de relleno: se verifica cuando el correo no existe para que login tarde igual.
+DUMMY_PASSWORD_HASH = password_hash.hash("capricornio-relleno-de-tiempo")
+
+LOGIN_WINDOW_SECONDS = 15 * 60
+MAX_LOGIN_FAILURES_PER_EMAIL = 5
+MAX_LOGIN_FAILURES_PER_IP = 30
+REGISTER_WINDOW_SECONDS = 60 * 60
+MAX_REGISTRATIONS_PER_IP = 10
+
+# Campos que nunca salen a los estudiantes: la corrección se hace en el servidor.
+SECRET_LESSON_FIELDS = {"answer", "feedback", "expected_output"}
+
+# Política de contenido. El Worker de Python necesita 'unsafe-eval' (Pyodide); por eso
+# su política es distinta y solo se aplica a ese archivo. Si algo se rompe en el
+# navegador, CAPRICORNIO_DISABLE_CSP=1 la desactiva sin tocar el código.
+CSP_PAGE = (
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; "
+    "style-src 'self' 'unsafe-inline'; img-src 'self' data:; "
+    "connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; "
+    "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+)
+CSP_WORKER = (
+    "default-src 'self'; script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; "
+    "connect-src 'self' https://cdn.jsdelivr.net; object-src 'none'; base-uri 'self'"
+)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     initialize_database()
+    purge_expired_data()
     yield
 
 
@@ -53,14 +79,30 @@ async def security_headers_and_origin_check(request: Request, call_next):
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    if os.getenv("CAPRICORNIO_DISABLE_CSP") != "1":
+        is_worker = request.url.path == "/js/python-runner.js"
+        response.headers["Content-Security-Policy"] = CSP_WORKER if is_worker else CSP_PAGE
+    if os.getenv("CAPRICORNIO_HTTPS") == "1":
+        response.headers["Strict-Transport-Security"] = "max-age=31536000"
+    if request.url.path.startswith("/api/"):
+        response.headers["Cache-Control"] = "no-store"
     return response
 
 
 def connect():
-    db = sqlite3.connect(DB_PATH)
+    db = sqlite3.connect(DB_PATH, timeout=10)
     db.row_factory = sqlite3.Row
     db.execute("PRAGMA foreign_keys = ON")
+    db.execute("PRAGMA journal_mode = WAL")
     return db
+
+
+def purge_expired_data():
+    """Borra sesiones vencidas e intentos de acceso antiguos."""
+    with closing(connect()) as db:
+        db.execute("DELETE FROM sessions WHERE expires_at < ?", (time.time(),))
+        db.execute("DELETE FROM auth_attempts WHERE ts < ?", (time.time() - 24 * 3600,))
+        db.commit()
 
 
 def initialize_database():
@@ -160,6 +202,16 @@ def initialize_database():
                 FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
             );
 
+            CREATE TABLE IF NOT EXISTS auth_attempts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                kind TEXT NOT NULL,
+                key TEXT NOT NULL,
+                ts REAL NOT NULL
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_auth_attempts_key
+            ON auth_attempts(kind, key, ts);
+
             CREATE INDEX IF NOT EXISTS idx_learning_events_user
             ON learning_events(user_id, created_at);
 
@@ -194,6 +246,7 @@ def create_session(db, user_id, response: FastAPIResponse):
     token_hash = hashlib.sha256(token.encode()).hexdigest()
     expires = time.time() + SESSION_DAYS * 86400
 
+    db.execute("DELETE FROM sessions WHERE expires_at < ?", (time.time(),))
     db.execute(
         "INSERT INTO sessions (user_id, token_hash, expires_at) VALUES (?, ?, ?)",
         (user_id, token_hash, expires)
@@ -755,6 +808,33 @@ def latest_diagnostic(user=Depends(current_user)):
     return {"diagnostic": dict(row) if row else None}
 
 
+def public_lesson(lesson):
+    """Lección sin respuesta, retroalimentación ni salida esperada."""
+    return {key: value for key, value in lesson.items() if key not in SECRET_LESSON_FIELDS}
+
+
+def public_area(area, include_resources=True):
+    result = {}
+    for key, value in area.items():
+        if key == "resources" and not include_resources:
+            continue
+        if key == "modules":
+            value = [
+                {**module, "lessons": [public_lesson(lesson) for lesson in module["lessons"]]}
+                for module in value
+            ]
+        result[key] = value
+    return result
+
+
+def lesson_question_id(lesson_id):
+    return "cur_" + lesson_id.replace("-", "_")
+
+
+def normalize_output(text):
+    return str(text or "").replace("\r", "").strip()
+
+
 LESSON_CATALOG = {
     lesson["id"]: {
         "title": lesson["title"],
@@ -811,7 +891,7 @@ def get_lesson(lesson_id: str, user=Depends(current_user)):
         for module in area["modules"]:
             for lesson in module["lessons"]:
                 if lesson["id"] == lesson_id:
-                    return {"area": area["name"], "area_id": area["id"], "module": module["title"], "lesson": lesson}
+                    return {"area": area["name"], "area_id": area["id"], "module": module["title"], "lesson": public_lesson(lesson)}
     raise HTTPException(status_code=404, detail="Lección no encontrada.")
 
 
@@ -824,6 +904,13 @@ def complete_lesson(data: LessonCompletionData, user=Depends(current_user)):
     if data.lesson_id not in LESSON_CATALOG:
         raise HTTPException(status_code=404, detail="La lección no existe.")
     with closing(connect()) as db:
+        solved = db.execute(
+            "SELECT 1 FROM learning_events WHERE user_id = ? AND source = 'practice' "
+            "AND item_id = ? AND is_correct = 1 LIMIT 1",
+            (user["id"], lesson_question_id(data.lesson_id)),
+        ).fetchone()
+        if solved is None:
+            raise HTTPException(status_code=403, detail="Resuelve primero la actividad de esta lección.")
         db.execute(
             "INSERT OR IGNORE INTO lesson_completions (user_id, lesson_id) VALUES (?, ?)",
             (user["id"], data.lesson_id),
@@ -859,6 +946,9 @@ class LearningAnswerData(BaseModel):
     area: str
     item_id: str
     answer: str
+    # "lesson": se puede reintentar, así que no se revela la respuesta.
+    # "practice": el ejercicio se consume, así que se explica la respuesta correcta.
+    mode: str = Field(default="practice", pattern="^(lesson|practice)$")
 
 
 def learning_item_bank(area):
@@ -938,12 +1028,18 @@ def answer_learning_item(data: LearningAnswerData, user=Depends(current_user)):
         db.commit()
     lesson = CURRICULUM_LESSON_BY_QUESTION.get(data.item_id, {})
     explanation = lesson.get("feedback") or "Revisa el concepto y compara tu razonamiento con la respuesta esperada."
-    feedback = ("¡Respuesta correcta! " if correct else "Todavía no es correcto. La respuesta es: " + str(lesson.get("answer", "consulta la explicación")) + ". ") + explanation
+    reveal = correct or data.mode == "practice"
+    if correct:
+        feedback = "¡Respuesta correcta! " + explanation
+    elif reveal:
+        feedback = "Todavía no es correcto. La respuesta es: " + str(lesson.get("answer", "consulta la explicación")) + ". " + explanation
+    else:
+        feedback = "Todavía no es correcto. Vuelve a leer la explicación y el ejemplo, piensa en el error común de la lección e inténtalo de nuevo."
     return {
         "correct": correct,
         "feedback": feedback,
-        "correct_answer": lesson.get("answer"),
-        "explanation": explanation,
+        "correct_answer": lesson.get("answer") if reveal else None,
+        "explanation": explanation if reveal else None,
         "reinforcement": lesson.get("reinforcement"),
         "competency_update": update,
     }
@@ -954,10 +1050,7 @@ def get_curriculum():
     return {
         "version": CURRICULUM["version"],
         "levels": CURRICULUM["levels"],
-        "areas": [
-            {key: value for key, value in area.items() if key != "resources"}
-            for area in CURRICULUM["areas"]
-        ],
+        "areas": [public_area(area, include_resources=False) for area in CURRICULUM["areas"]],
     }
 
 
@@ -966,7 +1059,7 @@ def get_curriculum_area(area_id: str):
     area = CURRICULUM_AREA_BY_ID.get(area_id)
     if area is None:
         raise HTTPException(status_code=404, detail="Ruta de aprendizaje no encontrada.")
-    return area
+    return public_area(area)
 
 
 @app.get("/api/resources/{area_id}")
@@ -979,7 +1072,9 @@ def get_area_resources(area_id: str):
 
 class LessonAttemptData(BaseModel):
     lesson_id: str = Field(min_length=1, max_length=100)
-    correct: bool
+    # Salida que produjo el programa del estudiante; el servidor decide si es correcta.
+    output: str | None = Field(default=None, max_length=10000)
+    error: bool = False
 
 
 @app.post("/api/lessons/attempt")
@@ -1001,9 +1096,14 @@ def record_lesson_attempt(data: LessonAttemptData, user=Depends(current_user)):
         raise HTTPException(status_code=404, detail="Lección no encontrada.")
     if lesson.get("type") != "code":
         raise HTTPException(status_code=422, detail="Esta ruta de evaluación es solo para ejercicios de código.")
-    question_id = "cur_" + data.lesson_id.replace("-", "_")
+    question_id = lesson_question_id(data.lesson_id)
     if question_id not in SKILL_BY_QUESTION:
         raise HTTPException(status_code=422, detail="Esta lección no tiene una competencia evaluable.")
+    correct = (
+        not data.error
+        and data.output is not None
+        and normalize_output(data.output) == normalize_output(lesson.get("expected_output"))
+    )
     with closing(connect()) as db:
         update = record_learning_response(
             db=db,
@@ -1012,10 +1112,10 @@ def record_lesson_attempt(data: LessonAttemptData, user=Depends(current_user)):
             item_id=question_id,
             skill_id=SKILL_BY_QUESTION[question_id],
             learning_area=bank_area,
-            correct=data.correct,
+            correct=correct,
         )
         db.commit()
-    return {"correct": data.correct, "competency_update": update}
+    return {"correct": correct, "competency_update": update}
 
 
 @app.get("/api/health")
@@ -1023,8 +1123,27 @@ def health():
     return {"status": "ok", "service": "Capricornio API"}
 
 
+def client_ip(request: Request):
+    return request.client.host if request.client else "desconocida"
+
+
+def count_attempts(db, kind, key, window):
+    return db.execute(
+        "SELECT COUNT(*) AS total FROM auth_attempts WHERE kind = ? AND key = ? AND ts > ?",
+        (kind, key, time.time() - window),
+    ).fetchone()["total"]
+
+
+def record_attempt(db, kind, key):
+    db.execute("INSERT INTO auth_attempts (kind, key, ts) VALUES (?, ?, ?)", (kind, key, time.time()))
+
+
+def too_many_attempts():
+    return HTTPException(status_code=429, detail="Demasiados intentos. Espera unos minutos e inténtalo de nuevo.")
+
+
 @app.post("/api/register", status_code=201)
-def register(data: RegisterData, response: FastAPIResponse):
+def register(data: RegisterData, response: FastAPIResponse, request: Request):
     name = data.name.strip()
     if len(name) < 2:
         raise HTTPException(status_code=422, detail="Escribe tu nombre completo.")
@@ -1033,8 +1152,13 @@ def register(data: RegisterData, response: FastAPIResponse):
         raise HTTPException(status_code=422, detail="Selecciona una ruta de aprendizaje válida.")
     email = normalize_email(data.email)
     hashed_password = password_hash.hash(data.password)
+    ip = client_ip(request)
 
     with closing(connect()) as db:
+        if count_attempts(db, "register_ip", ip, REGISTER_WINDOW_SECONDS) >= MAX_REGISTRATIONS_PER_IP:
+            raise too_many_attempts()
+        record_attempt(db, "register_ip", ip)
+        db.commit()
         try:
             cursor = db.execute("""
                 INSERT INTO users (name, email, password_hash, learning_goal)
@@ -1066,8 +1190,9 @@ def register(data: RegisterData, response: FastAPIResponse):
 
 
 @app.post("/api/login")
-def login(data: LoginData, response: FastAPIResponse):
+def login(data: LoginData, response: FastAPIResponse, request: Request):
     email = normalize_email(data.email)
+    ip = client_ip(request)
 
     with closing(connect()) as db:
         user = db.execute(
@@ -1078,12 +1203,22 @@ def login(data: LoginData, response: FastAPIResponse):
             status_code=401,
             detail="Correo electrónico o contraseña incorrectos."
         )
-        if user is None:
+        if (
+            count_attempts(db, "login_email", email, LOGIN_WINDOW_SECONDS) >= MAX_LOGIN_FAILURES_PER_EMAIL
+            or count_attempts(db, "login_ip", ip, LOGIN_WINDOW_SECONDS) >= MAX_LOGIN_FAILURES_PER_IP
+        ):
+            raise too_many_attempts()
+
+        # Se verifica siempre una contraseña para que el tiempo no revele si el correo existe.
+        stored_hash = user["password_hash"] if user else DUMMY_PASSWORD_HASH
+        valid = password_hash.verify(data.password, stored_hash)
+        if user is None or not valid:
+            record_attempt(db, "login_email", email)
+            record_attempt(db, "login_ip", ip)
+            db.commit()
             raise invalid_credentials
 
-        if not password_hash.verify(data.password, user["password_hash"]):
-            raise invalid_credentials
-
+        db.execute("DELETE FROM auth_attempts WHERE kind = 'login_email' AND key = ?", (email,))
         create_session(db, user["id"], response)
         db.commit()
 
@@ -1127,6 +1262,23 @@ def logout(
         samesite="lax"
     )
     return {"message": "Sesión cerrada."}
+
+class DeleteAccountData(BaseModel):
+    password: str = Field(min_length=1, max_length=128)
+
+
+@app.post("/api/account/delete")
+def delete_account(data: DeleteAccountData, response: FastAPIResponse, request: Request, user=Depends(current_user)):
+    """Elimina la cuenta y todos sus datos (progreso, diagnósticos, sesiones)."""
+    with closing(connect()) as db:
+        row = db.execute("SELECT password_hash FROM users WHERE id = ?", (user["id"],)).fetchone()
+        if row is None or not password_hash.verify(data.password, row["password_hash"]):
+            raise HTTPException(status_code=401, detail="La contraseña no es correcta.")
+        db.execute("DELETE FROM users WHERE id = ?", (user["id"],))
+        db.commit()
+    response.delete_cookie(COOKIE_NAME, path="/", httponly=True, samesite="lax")
+    return {"message": "Tu cuenta y tus datos fueron eliminados."}
+
 
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles

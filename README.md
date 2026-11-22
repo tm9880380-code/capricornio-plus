@@ -32,8 +32,6 @@ El estudiante puede elegir una de estas áreas, seleccionar un lenguaje (Python,
 - Explicaciones, ejemplos, objetivos de aprendizaje y guías de lectura por lección.
 - Recorrido de una fuente por vez, español primero, aviso explícito si el recurso está en inglés, instrucciones para localizar conceptos y retorno guiado antes de practicar.
 - Explicación contextual de refuerzo basada en la lección; no es todavía un tutor de IA ni califica automáticamente respuestas abiertas.
-- Recorrido de una fuente por vez, español primero, aviso explícito si el recurso está en inglés, instrucciones para localizar conceptos y retorno guiado antes de practicar.
-- Explicación contextual de refuerzo basada en la lección; no es todavía un tutor de IA ni califica automáticamente respuestas abiertas.
 - Cuatro ejercicios iniciales de Python que se ejecutan en un Web Worker del navegador mediante Pyodide. El código no se envía al backend.
 - Seguimiento de lecciones y estimaciones experimentales de competencias.
 - Biblioteca filtrable de documentación, cursos, repositorios GitHub y canales educativos de YouTube.
@@ -48,8 +46,8 @@ Esta versión es un prototipo funcional para revisión y pruebas, no una platafo
 - La gestión de progreso se realiza por cuenta y ruta; faltan funciones institucionales como panel docente, cohortes, roles, SSO, exportación académica y multi-tenancy.
 - El catálogo de recursos se mantiene manualmente. Los enlaces y condiciones de terceros pueden cambiar; las páginas profundas y sus anclas deben verificarse periódicamente.
 - La guía de lectura ayuda a localizar conceptos, pero no garantiza que cada proveedor mantenga la misma estructura o traducción.
-- La guía de lectura ayuda a localizar conceptos, pero no garantiza que cada proveedor mantenga la misma estructura o traducción.
-- La plataforma no incorpora todavía un proceso completo de recuperación/eliminación de cuenta, limitación de intentos de acceso ni auditoría de seguridad independiente.
+- Hay límite de intentos de acceso y eliminación de cuenta, pero todavía no hay recuperación de contraseña ni auditoría de seguridad independiente.
+- Los ejercicios de Python se califican en el servidor con la salida que reporta el navegador; es una mitigación contra el engaño trivial, no una prueba segura de autoría.
 - Para uso con menores se requiere revisión jurídica, de privacidad, seguridad y protección institucional antes de cualquier piloto real.
 
 ## Instalación local

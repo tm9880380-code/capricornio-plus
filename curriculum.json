@@ -46,8 +46,8 @@
               "question": "¿Qué propiedad evita modificaciones no autorizadas?",
               "options": [
                 "Confidencialidad",
-                "Integridad",
                 "Disponibilidad",
+                "Integridad",
                 "Usabilidad"
               ],
               "answer": "Integridad",
@@ -83,8 +83,8 @@
               "task": "Un servicio expuesto con software antiguo requiere priorizar actualizaciones y controles.",
               "question": "Un servidor tiene software desactualizado. ¿Qué describe esa condición?",
               "options": [
-                "Amenaza",
                 "Vulnerabilidad",
+                "Amenaza",
                 "Impacto",
                 "Activo"
               ],
@@ -122,8 +122,8 @@
               "question": "¿Qué medida reduce el impacto de una filtración en otro sitio?",
               "options": [
                 "Reutilizar la clave",
-                "Usar la misma en todo",
                 "Una contraseña única por servicio",
+                "Usar la misma en todo",
                 "Compartirla con el equipo"
               ],
               "answer": "Una contraseña única por servicio",
@@ -159,9 +159,9 @@
               "task": "Un correo que exige pagar en diez minutos y usa un dominio extraño tiene señales de phishing.",
               "question": "¿Qué haces ante un enlace inesperado que solicita tu contraseña?",
               "options": [
+                "Verificar por un canal oficial independiente",
                 "Abrirlo",
                 "Introducir una clave falsa",
-                "Verificar por un canal oficial independiente",
                 "Reenviarlo"
               ],
               "answer": "Verificar por un canal oficial independiente",
@@ -241,8 +241,8 @@
               "question": "¿Dónde debe verificarse el permiso para acceder a un recurso?",
               "options": [
                 "Solo en CSS",
-                "Solo en JavaScript del navegador",
                 "En el servidor",
+                "Solo en JavaScript del navegador",
                 "En el nombre del botón"
               ],
               "answer": "En el servidor",
@@ -279,8 +279,8 @@
               "question": "¿Dónde es apropiado practicar técnicas de explotación?",
               "options": [
                 "En cualquier sitio público",
-                "En un laboratorio propio o autorizado",
                 "En la red del vecino",
+                "En un laboratorio propio o autorizado",
                 "En sistemas al azar"
               ],
               "answer": "En un laboratorio propio o autorizado",
@@ -421,9 +421,9 @@
               "task": "Un documento HTML incluye doctype, html, head y body.",
               "question": "¿Qué elemento contiene el contenido principal único de una página?",
               "options": [
-                "main",
                 "footer",
                 "aside",
+                "main",
                 "style"
               ],
               "answer": "main",
@@ -459,8 +459,8 @@
               "task": "Una tarjeta con padding tiene espacio interior alrededor de su contenido.",
               "question": "¿Qué tecnología define principalmente la presentación visual?",
               "options": [
-                "HTML",
                 "CSS",
+                "HTML",
                 "SQL",
                 "HTTP"
               ],
@@ -497,8 +497,8 @@
               "task": "Una cuadrícula con auto-fit y minmax puede ajustar columnas automáticamente.",
               "question": "¿Qué recurso CSS aplica estilos según el ancho de pantalla?",
               "options": [
-                "Media queries",
                 "JOIN",
+                "Media queries",
                 "DNS",
                 "Funciones SQL"
               ],
@@ -540,9 +540,9 @@
               "task": "Un botón puede escuchar click y actualizar un mensaje.",
               "question": "¿Qué método registra un evento de clic?",
               "options": [
-                "addEventListener",
                 "querySelectorAllText",
                 "fetchHTML",
+                "addEventListener",
                 "styleClick"
               ],
               "answer": "addEventListener",
@@ -578,8 +578,8 @@
               "task": "Una imagen informativa necesita texto alternativo que comunique su propósito.",
               "question": "¿Qué atributo ofrece texto alternativo a una imagen?",
               "options": [
-                "title",
                 "alt",
+                "title",
                 "name",
                 "role"
               ],
@@ -759,8 +759,8 @@
               "task": "No uses GET para operaciones que cambian estado.",
               "question": "¿Qué método HTTP se utiliza normalmente para recuperar un recurso?",
               "options": [
-                "GET",
                 "POST",
+                "GET",
                 "PATCH",
                 "DELETE"
               ],
@@ -797,9 +797,9 @@
               "task": "GET /api/users/42 consulta un recurso con identificador 42.",
               "question": "¿Qué describe un endpoint?",
               "options": [
-                "Una ruta y método para interactuar con un recurso",
                 "Un color",
                 "Una contraseña",
+                "Una ruta y método para interactuar con un recurso",
                 "Una imagen"
               ],
               "answer": "Una ruta y método para interactuar con un recurso",
@@ -836,9 +836,9 @@
               "question": "¿Dónde debe aplicarse la validación que protege la lógica de negocio?",
               "options": [
                 "Solo en el navegador",
-                "En el servidor",
                 "En CSS",
-                "En el nombre del formulario"
+                "En el nombre del formulario",
+                "En el servidor"
               ],
               "answer": "En el servidor",
               "feedback": "El servidor debe validar incluso si el cliente manipula la solicitud.",
@@ -917,9 +917,9 @@
               "question": "¿Qué proceso decide si una persona puede borrar un recurso?",
               "options": [
                 "Autenticación",
-                "Autorización",
                 "Compresión",
-                "Serialización"
+                "Serialización",
+                "Autorización"
               ],
               "answer": "Autorización",
               "feedback": "La autorización determina las acciones permitidas.",
@@ -955,9 +955,9 @@
               "question": "¿Qué prueba verifica que varios componentes funcionen juntos?",
               "options": [
                 "Unitaria",
-                "Integración",
                 "Visual",
-                "De color"
+                "De color",
+                "Integración"
               ],
               "answer": "Integración",
               "feedback": "Las pruebas de integración comprueban la colaboración entre componentes.",
@@ -1098,8 +1098,8 @@
               "question": "¿Qué conviene definir antes de iniciar un análisis?",
               "options": [
                 "El color del gráfico",
-                "La pregunta que se quiere responder",
                 "La conclusión final",
+                "La pregunta que se quiere responder",
                 "El software más costoso"
               ],
               "answer": "La pregunta que se quiere responder",
@@ -1135,8 +1135,8 @@
               "task": "Si una columna mezcla formatos de fecha, primero aclara cuál se está usando.",
               "question": "¿Qué significa normalmente un valor nulo?",
               "options": [
-                "Siempre cero",
                 "Dato ausente o no disponible",
+                "Siempre cero",
                 "Siempre error",
                 "Falso"
               ],
@@ -1255,10 +1255,10 @@
               "task": "Para ventas mensuales a lo largo del año, una línea suele mostrar bien la tendencia.",
               "question": "¿Qué gráfico suele servir para una serie mensual?",
               "options": [
-                "Líneas",
                 "Sectores con 40 categorías",
                 "Mapa sin etiquetas",
-                "Nube de palabras"
+                "Nube de palabras",
+                "Líneas"
               ],
               "answer": "Líneas",
               "feedback": "Las líneas ayudan a ver cambios en el tiempo.",
@@ -1436,8 +1436,8 @@
               "task": "Un filtro de spam puede aprender patrones a partir de mensajes etiquetados.",
               "question": "¿Qué caracteriza al aprendizaje automático?",
               "options": [
-                "Aprender patrones desde datos",
                 "Tener conciencia humana",
+                "Aprender patrones desde datos",
                 "No necesitar evaluación",
                 "Garantizar verdad"
               ],
@@ -1512,9 +1512,9 @@
               "task": "En detección médica, los falsos negativos pueden tener un coste alto.",
               "question": "¿Qué métrica mide qué proporción de positivos reales fue detectada?",
               "options": [
-                "Recall",
                 "Precision",
                 "Tiempo de carga",
+                "Recall",
                 "Tamaño"
               ],
               "answer": "Recall",
@@ -1593,8 +1593,8 @@
               "task": "Un prompt claro no elimina errores del modelo.",
               "question": "¿Qué mejora la evaluación de un prompt?",
               "options": [
-                "Probar un solo caso",
                 "Evaluar casos variados y revisar errores",
+                "Probar un solo caso",
                 "Asumir que siempre acierta",
                 "Incluir credenciales"
               ],
@@ -1774,10 +1774,10 @@
               "task": "En estudiantes, id_estudiante puede identificar cada registro.",
               "question": "¿Qué función cumple una clave primaria?",
               "options": [
-                "Identificar de forma única cada fila",
                 "Guardar imágenes",
                 "Cifrar el servidor",
-                "Ordenar por color"
+                "Ordenar por color",
+                "Identificar de forma única cada fila"
               ],
               "answer": "Identificar de forma única cada fila",
               "feedback": "La clave primaria identifica un registro.",
@@ -1812,10 +1812,10 @@
               "task": "SELECT nombre FROM estudiantes WHERE activo = TRUE;",
               "question": "¿Qué cláusula filtra filas?",
               "options": [
-                "WHERE",
                 "ORDER BY",
                 "LIMIT",
-                "CREATE"
+                "CREATE",
+                "WHERE"
               ],
               "answer": "WHERE",
               "feedback": "WHERE aplica condiciones a filas.",
@@ -1852,8 +1852,8 @@
               "question": "¿Qué JOIN conserva todas las filas de la tabla izquierda?",
               "options": [
                 "INNER JOIN",
-                "LEFT JOIN",
                 "CROSS JOIN",
+                "LEFT JOIN",
                 "DELETE"
               ],
               "answer": "LEFT JOIN",
@@ -1895,10 +1895,10 @@
               "task": "Separar clientes y pedidos representa que un cliente puede tener muchos pedidos.",
               "question": "¿Qué problema busca reducir la normalización?",
               "options": [
-                "Redundancia y anomalías",
                 "Número de usuarios",
                 "Velocidad de internet",
-                "Resolución"
+                "Resolución",
+                "Redundancia y anomalías"
               ],
               "answer": "Redundancia y anomalías",
               "feedback": "La normalización organiza datos y reduce duplicaciones.",
@@ -1933,10 +1933,10 @@
               "task": "Una transferencia no debe descontar dinero y fallar antes de acreditarlo.",
               "question": "¿Qué propiedad significa que la operación ocurre completa o no ocurre?",
               "options": [
-                "Atomicidad",
                 "Aislamiento",
                 "Durabilidad",
-                "Consistencia"
+                "Consistencia",
+                "Atomicidad"
               ],
               "answer": "Atomicidad",
               "feedback": "Atomicidad evita operaciones parcialmente aplicadas.",
@@ -1972,9 +1972,9 @@
               "question": "¿Qué demuestra que un respaldo es útil?",
               "options": [
                 "Que el archivo existe",
-                "Que se probó su restauración",
                 "Que tiene nombre largo",
-                "Que está en el mismo disco"
+                "Que está en el mismo disco",
+                "Que se probó su restauración"
               ],
               "answer": "Que se probó su restauración",
               "feedback": "La restauración verificada demuestra que los datos se pueden recuperar.",
@@ -2114,9 +2114,9 @@
               "task": "El sistema operativo programa procesos y controla acceso a archivos.",
               "question": "¿Cuál es una función central del sistema operativo?",
               "options": [
-                "Administrar recursos del equipo",
                 "Crear webs automáticamente",
                 "Garantizar internet",
+                "Administrar recursos del equipo",
                 "Reemplazar aplicaciones"
               ],
               "answer": "Administrar recursos del equipo",
@@ -2152,8 +2152,8 @@
               "task": "pwd muestra dónde estás ubicado.",
               "question": "¿Qué comando muestra el directorio actual?",
               "options": [
-                "pwd",
                 "ls",
+                "pwd",
                 "cd",
                 "mkdir"
               ],
@@ -2191,8 +2191,8 @@
               "question": "¿Qué permiso permite ejecutar un archivo?",
               "options": [
                 "r",
-                "w",
                 "x",
+                "w",
                 "-"
               ],
               "answer": "x",
@@ -2234,8 +2234,8 @@
               "question": "¿Cuántos bits tiene una dirección IPv4?",
               "options": [
                 "16",
-                "32",
                 "64",
+                "32",
                 "128"
               ],
               "answer": "32",
@@ -2271,10 +2271,10 @@
               "task": "dig y nslookup permiten consultar DNS.",
               "question": "¿Qué registro asocia un nombre con una dirección IPv4?",
               "options": [
-                "A",
                 "MX",
                 "TXT",
-                "PTR"
+                "PTR",
+                "A"
               ],
               "answer": "A",
               "feedback": "El registro A contiene una dirección IPv4.",
@@ -2309,9 +2309,9 @@
               "task": "Compara acceso por IP y por nombre para detectar problemas DNS.",
               "question": "Si una web responde por IP pero no por nombre, ¿qué revisarías primero?",
               "options": [
-                "DNS",
                 "Teclado",
                 "RAM del cliente",
+                "DNS",
                 "CSS"
               ],
               "answer": "DNS",
@@ -2453,10 +2453,10 @@
               "task": "Crea una variable edad con el valor 24 y muestra su contenido.",
               "question": "¿Qué operador asigna un valor a una variable?",
               "options": [
-                "=",
                 "==",
                 ">=",
-                "!="
+                "!=",
+                "="
               ],
               "answer": "=",
               "feedback": "El signo igual simple realiza asignación.",
@@ -2495,9 +2495,9 @@
               "task": "Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado.",
               "question": "¿Qué palabra inicia una condición en Python?",
               "options": [
-                "if",
                 "for",
                 "def",
+                "if",
                 "import"
               ],
               "answer": "if",
@@ -2623,10 +2623,10 @@
               "task": "def doble(numero): return numero * 2",
               "question": "¿Qué palabra devuelve un valor desde una función?",
               "options": [
-                "return",
                 "print",
                 "input",
-                "while"
+                "while",
+                "return"
               ],
               "answer": "return",
               "feedback": "return devuelve un resultado al punto de llamada.",

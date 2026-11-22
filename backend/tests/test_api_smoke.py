@@ -68,16 +68,17 @@ def test_register_login_and_lesson_progress(client):
     assert submitted.json()["correct_answer"] == lesson["answer"]
     assert submitted.json()["explanation"] == lesson["feedback"]
     assert submitted.json()["reinforcement"]
+    solved_lesson_id = lesson["id"]
     next_exercise = client.get("/api/learning/next", params={"area": "Fundamentos de programación"})
     assert next_exercise.status_code == 200
     assert next_exercise.json()["item_id"] != exercise["item_id"]
 
-    first = client.post("/api/lessons/complete", json={"lesson_id": "estructuras-for"})
+    first = client.post("/api/lessons/complete", json={"lesson_id": solved_lesson_id})
     assert first.status_code == 200
     assert first.json()["completed_lessons"] == 1
 
     # Repeating the same completion is idempotent.
-    second = client.post("/api/lessons/complete", json={"lesson_id": "estructuras-for"})
+    second = client.post("/api/lessons/complete", json={"lesson_id": solved_lesson_id})
     assert second.status_code == 200
     assert second.json()["completed_lessons"] == 1
 
@@ -255,7 +256,7 @@ def test_inline_javascript_and_python_worker_have_valid_syntax(tmp_path):
             assert result.returncode == 0, f"{page.name} script {index}: {result.stderr}"
 
 
-def test_python_code_attempt_updates_competency_and_saves_lesson(client):
+def test_python_code_attempt_is_graded_by_the_server(client):
     registered = client.post("/api/register", json={
         "name": "Estudiante Python",
         "email": "python@example.com",
@@ -263,20 +264,144 @@ def test_python_code_attempt_updates_competency_and_saves_lesson(client):
         "learning_goal": "Python",
     })
     assert registered.status_code == 201
+    expected = main.CURRICULUM_LESSON_BY_QUESTION["cur_fundamentos_variables"]["expected_output"]
 
-    attempt = client.post("/api/lessons/attempt", json={
-        "lesson_id": "fundamentos-variables",
-        "correct": False,
-    })
-    assert attempt.status_code == 200
-    assert attempt.json()["correct"] is False
-    assert attempt.json()["competency_update"]["observations"] == 1
+    failed = client.post("/api/lessons/attempt", json={"lesson_id": "fundamentos-variables", "error": True})
+    assert failed.status_code == 200
+    assert failed.json()["correct"] is False
+    assert failed.json()["competency_update"]["observations"] == 1
 
-    completed = client.post("/api/lessons/complete", json={
-        "lesson_id": "fundamentos-variables",
-    })
+    wrong = client.post("/api/lessons/attempt", json={"lesson_id": "fundamentos-variables", "output": "nada"})
+    assert wrong.json()["correct"] is False
+    assert client.post("/api/lessons/complete", json={"lesson_id": "fundamentos-variables"}).status_code == 403
+
+    right = client.post("/api/lessons/attempt", json={"lesson_id": "fundamentos-variables", "output": expected + "\n"})
+    assert right.json()["correct"] is True
+    completed = client.post("/api/lessons/complete", json={"lesson_id": "fundamentos-variables"})
     assert completed.status_code == 200
     assert completed.json()["progress_percent"] > 0
+
+
+def register_user(client, email="seguro@example.com", goal="Python"):
+    response = client.post("/api/register", json={
+        "name": "Estudiante Seguro", "email": email,
+        "password": "ClaveSegura123", "learning_goal": goal,
+    })
+    assert response.status_code == 201
+    return response
+
+
+def test_client_cannot_forge_a_correct_attempt(client):
+    register_user(client)
+    forged = client.post("/api/lessons/attempt", json={"lesson_id": "fundamentos-variables", "correct": True})
+    assert forged.status_code == 200
+    assert forged.json()["correct"] is False
+
+
+def test_lesson_cannot_be_completed_without_solving_it(client):
+    register_user(client)
+    response = client.post("/api/lessons/complete", json={"lesson_id": "estructuras-for"})
+    assert response.status_code == 403
+    assert client.get("/api/progress").json()["completed_count"] == 0
+
+
+def test_public_endpoints_do_not_expose_answer_keys(client):
+    secret_keys = ("answer", "feedback", "expected_output")
+    public = client.get("/api/curriculum")
+    assert public.status_code == 200
+    for area_id in ("ciberseguridad", "programacion"):
+        area = client.get(f"/api/curriculum/{area_id}")
+        assert area.status_code == 200
+        for text in (public.text, area.text):
+            for key in secret_keys:
+                assert f'"{key}"' not in text
+    register_user(client)
+    lesson = client.get("/api/lessons/fundamentos-variables")
+    assert lesson.status_code == 200
+    for key in secret_keys:
+        assert key not in lesson.json()["lesson"]
+
+
+def test_lesson_mode_hides_answer_but_practice_mode_explains_it(client):
+    register_user(client, goal="Ciberseguridad")
+    lesson = main.CURRICULUM_LESSON_BY_QUESTION["cur_cyber_fundamentos"]
+    wrong_index = next(i for i, option in enumerate(lesson["options"]) if option != lesson["answer"])
+    payload = {"area": "Ciberseguridad", "item_id": "cur_cyber_fundamentos", "answer": chr(97 + wrong_index)}
+    in_lesson = client.post("/api/learning/answer", json={**payload, "mode": "lesson"}).json()
+    assert in_lesson["correct"] is False
+    assert in_lesson["correct_answer"] is None and in_lesson["explanation"] is None
+    assert lesson["answer"] not in in_lesson["feedback"]
+    in_practice = client.post("/api/learning/answer", json={**payload, "mode": "practice"}).json()
+    assert in_practice["correct_answer"] == lesson["answer"]
+
+
+def test_correct_answers_are_spread_across_positions():
+    positions = [
+        lesson["options"].index(lesson["answer"])
+        for area in main.CURRICULUM["areas"]
+        for module in area["modules"]
+        for lesson in module["lessons"]
+    ]
+    assert len(positions) == 50
+    for position in range(4):
+        assert positions.count(position) >= 8
+
+
+def test_login_is_rate_limited_per_email(client):
+    register_user(client, email="limite@example.com")
+    client.post("/api/logout")
+    for _ in range(main.MAX_LOGIN_FAILURES_PER_EMAIL):
+        failed = client.post("/api/login", json={"email": "limite@example.com", "password": "incorrecta123"})
+        assert failed.status_code == 401
+    blocked = client.post("/api/login", json={"email": "limite@example.com", "password": "ClaveSegura123"})
+    assert blocked.status_code == 429
+
+
+def test_successful_login_clears_earlier_failures(client):
+    register_user(client, email="reinicio@example.com")
+    client.post("/api/logout")
+    for _ in range(main.MAX_LOGIN_FAILURES_PER_EMAIL - 1):
+        client.post("/api/login", json={"email": "reinicio@example.com", "password": "incorrecta123"})
+    assert client.post("/api/login", json={"email": "reinicio@example.com", "password": "ClaveSegura123"}).status_code == 200
+    client.post("/api/logout")
+    assert client.post("/api/login", json={"email": "reinicio@example.com", "password": "incorrecta123"}).status_code == 401
+
+
+def test_registration_is_rate_limited_per_ip(client):
+    for index in range(main.MAX_REGISTRATIONS_PER_IP):
+        assert client.post("/api/register", json={
+            "name": "Usuario Masivo", "email": f"masivo{index}@example.com",
+            "password": "ClaveSegura123", "learning_goal": "Python",
+        }).status_code == 201
+    extra = client.post("/api/register", json={
+        "name": "Usuario Masivo", "email": "masivo-extra@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Python",
+    })
+    assert extra.status_code == 429
+
+
+def test_account_can_be_deleted_with_password(client):
+    register_user(client, email="borrar@example.com")
+    wrong = client.post("/api/account/delete", json={"password": "incorrecta123"})
+    assert wrong.status_code == 401
+    assert client.get("/api/me").status_code == 200
+    deleted = client.post("/api/account/delete", json={"password": "ClaveSegura123"})
+    assert deleted.status_code == 200
+    assert client.get("/api/me").status_code == 401
+    relogin = client.post("/api/login", json={"email": "borrar@example.com", "password": "ClaveSegura123"})
+    assert relogin.status_code == 401
+    with main.closing(main.connect()) as db:
+        assert db.execute("SELECT COUNT(*) FROM users WHERE email = ?", ("borrar@example.com",)).fetchone()[0] == 0
+
+
+def test_security_headers_include_csp_and_no_store_for_api(client):
+    page = client.get("/")
+    csp = page.headers["content-security-policy"]
+    assert "frame-ancestors 'none'" in csp and "'unsafe-eval'" not in csp
+    worker = client.get("/js/python-runner.js")
+    assert "'unsafe-eval'" in worker.headers["content-security-policy"]
+    assert client.get("/api/health").headers["cache-control"] == "no-store"
+
 
 def test_mutating_requests_reject_foreign_origins(client):
     response = client.post("/api/logout", headers={"Origin": "https://malicious.example"})
