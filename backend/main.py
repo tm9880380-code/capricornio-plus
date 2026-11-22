@@ -383,6 +383,14 @@ for alias in ("Desarrollo frontend",):
     CURRICULUM_BANK_KEY[alias] = "curriculum:frontend"
 for alias in ("Desarrollo backend",):
     CURRICULUM_BANK_KEY[alias] = "curriculum:backend"
+for alias, curriculum_id in {
+    "Desarrollo web": "frontend",
+    "Desarrollo de software y programación": "programacion",
+    "Fundamentos de programación": "programacion",
+    "Programación orientada a objetos": "programacion",
+    "Inteligencia artificial": "ia",
+}.items():
+    CURRICULUM_BANK_KEY[alias] = "curriculum:" + curriculum_id
 
 for curriculum_area in CURRICULUM["areas"]:
     bank_key = "curriculum:" + curriculum_area["id"]
@@ -629,7 +637,7 @@ def submit_diagnostic(data: DiagnosticSubmitData, user=Depends(current_user)):
     if data.area not in VALID_LEARNING_AREAS:
         raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
 
-    bank_area = AREA_BANK_KEY.get(data.area, data.area)
+    bank_area = CURRICULUM_BANK_KEY.get(data.area, AREA_BANK_KEY.get(data.area, data.area))
     questions = QUESTION_BANK[bank_area]
     expected = {q[0]: q[3] for q in questions}
 
@@ -775,7 +783,7 @@ def get_progress(user=Depends(current_user)):
             (user["id"],),
         ).fetchall()
     selected_area = diagnostic["learning_area"] if diagnostic else user["learning_goal"]
-    selected_bank = AREA_BANK_KEY.get(selected_area, selected_area)
+    selected_bank = CURRICULUM_BANK_KEY.get(selected_area, AREA_BANK_KEY.get(selected_area, selected_area))
     selected_area_id = selected_bank.split(":", 1)[1] if selected_bank.startswith("curriculum:") else None
     route_lessons = {
         lesson_id: item for lesson_id, item in LESSON_CATALOG.items()
@@ -833,7 +841,7 @@ def complete_lesson(data: LessonCompletionData, user=Depends(current_user)):
             (user["id"], ORIENTATION_ID),
         ).fetchone()
         selected_area = latest["learning_area"] if latest else user["learning_goal"]
-        selected_bank = AREA_BANK_KEY.get(selected_area, selected_area)
+        selected_bank = CURRICULUM_BANK_KEY.get(selected_area, AREA_BANK_KEY.get(selected_area, selected_area))
         selected_area_id = selected_bank.split(":", 1)[1] if selected_bank.startswith("curriculum:") else None
         route_ids = [key for key, value in LESSON_CATALOG.items() if value["area_id"] == selected_area_id] if selected_area_id else list(LESSON_CATALOG)
         route_count = len(route_ids) or len(LESSON_CATALOG)
@@ -869,7 +877,7 @@ def learning_item_bank(area):
 def next_learning_item(area: str, user=Depends(current_user)):
     if area not in VALID_LEARNING_AREAS:
         raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
-    bank_area = AREA_BANK_KEY.get(area, area)
+    bank_area = CURRICULUM_BANK_KEY.get(area, AREA_BANK_KEY.get(area, area))
     with closing(connect()) as db:
         row = db.execute(
             "SELECT state_json FROM student_irt_state WHERE user_id = ? AND learning_area = ?",
