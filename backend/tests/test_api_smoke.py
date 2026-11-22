@@ -303,3 +303,10 @@ def test_curriculum_resources_competencies_and_projects_are_consistent():
             for lesson in module["lessons"]:
                 assert set(lesson.get("resource_ids", [])) <= resource_titles
                 assert lesson.get("reinforcement")
+
+
+def test_learning_environment_page_is_served(client):
+    response = client.get("/entorno.html")
+    assert response.status_code == 200
+    assert "Mi entorno de aprendizaje" in response.text
+    assert "JavaScript" in response.text
