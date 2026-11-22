@@ -149,7 +149,7 @@ def test_orientation_recommends_new_area_and_starts_its_diagnostic(client):
     assessment = client.get("/api/diagnostic/questions").json()
     assert assessment["mode"] == "assessment"
     assert assessment["area"] == "Desarrollo frontend"
-    assert len(assessment["questions"]) == 3
+    assert len(assessment["questions"]) == 6
 
 def test_curriculum_contains_eight_areas_and_real_lesson_content(client):
     response = client.get("/api/curriculum")
