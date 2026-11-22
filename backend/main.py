@@ -552,7 +552,8 @@ def submit_diagnostic(data: DiagnosticSubmitData, user=Depends(current_user)):
         counts = {}
         for answer in data.answers.values():
             counts[answer] = counts.get(answer, 0) + 1
-        recommended = sorted(counts, key=lambda area: (-counts[area], AREAS.index(area)))[0]
+        area_order = [option["value"] for option in ORIENTATION_QUESTIONS[0]["options"]]
+        recommended = sorted(counts, key=lambda area: (-counts[area], area_order.index(area)))[0]
 
         with closing(connect()) as db:
             cursor = db.execute(
