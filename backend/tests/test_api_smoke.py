@@ -2,6 +2,9 @@
 import os
 import tempfile
 import sys
+import shutil
+import subprocess
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -197,4 +200,74 @@ def test_curriculum_diagnostic_records_area_specific_competencies(client):
     assert submitted.json()["total_questions"] == 6
     progress = client.get("/api/progress").json()
     assert progress["total_lessons"] == 6
+
+class InlineScriptParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.in_script = False
+        self.external = False
+        self.current = []
+        self.scripts = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "script":
+            self.in_script = True
+            self.external = any(key == "src" for key, _ in attrs)
+            self.current = []
+
+    def handle_data(self, data):
+        if self.in_script and not self.external:
+            self.current.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "script" and self.in_script:
+            if not self.external:
+                source = "".join(self.current).strip()
+                if source:
+                    self.scripts.append(source)
+            self.in_script = False
+            self.external = False
+
+
+def test_inline_javascript_and_python_worker_have_valid_syntax(tmp_path):
+    node = shutil.which("node")
+    if not node:
+        pytest.skip("Node.js is not installed in this test environment.")
+    script_files = list((ROOT / "js").glob("*.js"))
+    for index, path in enumerate(script_files):
+        result = subprocess.run([node, "--check", str(path)], capture_output=True, text=True)
+        assert result.returncode == 0, f"{path}: {result.stderr}"
+
+    for page in ROOT.glob("*.html"):
+        parser = InlineScriptParser()
+        parser.feed(page.read_text(encoding="utf-8"))
+        for index, source in enumerate(parser.scripts):
+            temp = tmp_path / f"{page.stem}-{index}.js"
+            temp.write_text(source, encoding="utf-8")
+            result = subprocess.run([node, "--check", str(temp)], capture_output=True, text=True)
+            assert result.returncode == 0, f"{page.name} script {index}: {result.stderr}"
+
+
+def test_python_code_attempt_updates_competency_and_saves_lesson(client):
+    registered = client.post("/api/register", json={
+        "name": "Estudiante Python",
+        "email": "python@example.com",
+        "password": "ClaveSegura123",
+        "learning_goal": "Python",
+    })
+    assert registered.status_code == 201
+
+    attempt = client.post("/api/lessons/attempt", json={
+        "lesson_id": "fundamentos-variables",
+        "correct": False,
+    })
+    assert attempt.status_code == 200
+    assert attempt.json()["correct"] is False
+    assert attempt.json()["competency_update"]["observations"] == 1
+
+    completed = client.post("/api/lessons/complete", json={
+        "lesson_id": "fundamentos-variables",
+    })
+    assert completed.status_code == 200
+    assert completed.json()["progress_percent"] > 0
 
