@@ -944,6 +944,45 @@ def get_area_resources(area_id: str):
     return {"area_id": area_id, "resources": area["resources"]}
 
 
+class LessonAttemptData(BaseModel):
+    lesson_id: str = Field(min_length=1, max_length=100)
+    correct: bool
+
+
+@app.post("/api/lessons/attempt")
+def record_lesson_attempt(data: LessonAttemptData, user=Depends(current_user)):
+    lesson = None
+    bank_area = None
+    for area in CURRICULUM["areas"]:
+        for module in area["modules"]:
+            for item in module["lessons"]:
+                if item["id"] == data.lesson_id:
+                    lesson = item
+                    bank_area = "curriculum:" + area["id"]
+                    break
+            if lesson:
+                break
+        if lesson:
+            break
+    if lesson is None:
+        raise HTTPException(status_code=404, detail="Lección no encontrada.")
+    question_id = "cur_" + data.lesson_id.replace("-", "_")
+    if question_id not in SKILL_BY_QUESTION:
+        raise HTTPException(status_code=422, detail="Esta lección no tiene una competencia evaluable.")
+    with closing(connect()) as db:
+        update = record_learning_response(
+            db=db,
+            user_id=user["id"],
+            source="practice",
+            item_id=question_id,
+            skill_id=SKILL_BY_QUESTION[question_id],
+            learning_area=bank_area,
+            correct=data.correct,
+        )
+        db.commit()
+    return {"correct": data.correct, "competency_update": update}
+
+
 @app.get("/api/health")
 def health():
     return {"status": "ok", "service": "Capricornio API"}
