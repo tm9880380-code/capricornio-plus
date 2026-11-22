@@ -1697,7 +1697,8 @@
               ],
               "feedback": "=",
               "type": "El signo igual simple realiza asignación.",
-              "expected_output": "24"
+              "expected_output": "24",
+              "hint": "Revisa el nombre de la variable, el valor asignado y que uses print(edad) para mostrarlo."
             },
             {
               "id": "fundamentos-condiciones",
@@ -1716,7 +1717,8 @@
               ],
               "feedback": "if",
               "type": "if inicia una estructura condicional.",
-              "expected_output": "Aprobado"
+              "expected_output": "Aprobado",
+              "hint": "Comprueba la condición nota >= 3, los dos puntos y que print('Aprobado') esté dentro del bloque if."
             },
             {
               "id": "estructuras-for",
@@ -1735,7 +1737,8 @@
               ],
               "feedback": "1, 2, 3",
               "type": "El límite final de range no se incluye.",
-              "expected_output": "1\n2\n3\n4\n5"
+              "expected_output": "1\n2\n3\n4\n5",
+              "hint": "Revisa el rango: range(1, 6) incluye 1 y excluye 6. Asegúrate de imprimir el valor en cada vuelta."
             },
             {
               "id": "estructuras-while",
@@ -1754,7 +1757,8 @@
               ],
               "feedback": "Cuando la condición es falsa",
               "type": "while deja de repetir cuando la condición ya no es verdadera.",
-              "expected_output": "1\n2\n3"
+              "expected_output": "1\n2\n3",
+              "hint": "Inicializa contador en 1, repite mientras sea <= 3 y aumenta contador en cada vuelta para que el ciclo termine."
             }
           ]
         },
