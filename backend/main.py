@@ -5,7 +5,7 @@ import sqlite3
 import hashlib
 import secrets
 import time
-from contextlib import closing
+from contextlib import closing, asynccontextmanager
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -31,7 +31,13 @@ SESSION_DAYS = 30
 COOKIE_NAME = "capricornio_session"
 password_hash = PasswordHash.recommended()
 
-app = FastAPI(title="Capricornio API", version="1.0.0")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    initialize_database()
+    yield
+
+
+app = FastAPI(title="Capricornio API", version="1.0.0", lifespan=lifespan)
 
 
 @app.middleware("http")
@@ -161,11 +167,6 @@ def initialize_database():
         """)
 
         db.commit()
-
-
-@app.on_event("startup")
-def startup():
-    initialize_database()
 
 
 class RegisterData(BaseModel):
