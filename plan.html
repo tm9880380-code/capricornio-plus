@@ -1,94 +1,123 @@
-<!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Capricornio · Mi espacio</title><link rel="stylesheet" href="css/estilos.css"><style>
-/* Paneles del espacio personal */
-.panel{background:rgba(255,250,240,.88);border:1px solid #d5c19d;border-radius:18px;padding:clamp(20px,3vw,30px);margin:22px 0;box-shadow:0 10px 30px rgba(43,22,8,.055)}
-.panel h2{font-family:"Trebuchet MS",Arial,sans-serif;font-size:clamp(21px,2vw,26px);font-weight:750;letter-spacing:-.035em;color:#3b2314;margin-bottom:9px}
-.panel>p{color:#70583f;line-height:1.7}
-.barra-progreso{height:10px;background:#eadfc8;border-radius:20px;overflow:hidden;margin:14px 0}
-.barra-progreso span{display:block;height:100%;background:linear-gradient(90deg,#8f6b3e,#b69a70);border-radius:20px;transition:width .45s ease}
-.acciones{display:flex;gap:11px;flex-wrap:wrap}
-#explorador-areas{background:linear-gradient(145deg,#fffaf0,#f8f0df)}
-#explorador-areas>p{max-width:680px}
-.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:16px;margin-top:23px}
-.area{
- position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:218px;
- padding:21px;border:1px solid #d7c29e;border-radius:15px;background:#fffdf8;
- color:#2b1608;text-decoration:none;overflow:hidden;
- box-shadow:0 4px 13px rgba(43,22,8,.045);
- transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease;
-}
-.area::after{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,#8f6b3e,#e6d3a8);opacity:.72}
-.area:hover{transform:translateY(-5px);border-color:#a98a5e;background:#fffaf0;box-shadow:0 14px 28px rgba(43,22,8,.11)}
-.area:focus-visible{outline:3px solid #8f6b3e;outline-offset:3px}
-.area-icon{display:grid;place-items:center;width:43px;height:43px;margin-bottom:17px;border:1px solid #e1d0b1;border-radius:13px;background:#f6ecd6;color:#5a3a1e;font-size:12px;font-weight:800;letter-spacing:.04em}
-.area h3{margin:0 0 8px;color:#3b2314;font-family:"Trebuchet MS",Arial,sans-serif;font-size:16px;font-weight:750;line-height:1.35;letter-spacing:-.02em}
-.area p{margin:0 0 19px;color:#806b55;font-size:13px;line-height:1.6}
-.area-action{display:flex;align-items:center;gap:8px;margin-top:auto;color:#69451f;font-size:13px;font-weight:750}
-.area-arrow{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#f3e6c8;transition:transform .2s ease,background .2s ease}
-.area:hover .area-arrow{transform:translateX(4px);background:#e6d3a8}
-#estado{color:#8a3c2b}
-@media(max-width:600px){.panel{padding:19px;border-radius:15px}.area-grid{grid-template-columns:1fr;gap:12px}.area{min-height:190px;padding:19px}}
-@media(prefers-reduced-motion:reduce){.area,.area-arrow,.barra-progreso span{transition:none}}
-</style></head><body>
-<header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi inicio</a><a href="recursos.html">Explorar recursos</a><a href="practica.html">Practicar</a><a href="login.html" id="salir">Cerrar sesión</a></nav></header>
-<main class="contenedor"><p>Tu espacio de aprendizaje</p><h1 id="saludo">¡Hola!</h1><p>Tu espacio de estudio: continúa tu ruta, consulta recursos y revisa lo que ya puedes demostrar.</p>
-<section class="panel" id="avance"><h2>Tu ruta actual</h2><p id="ruta">Cargando tu ruta...</p><p id="nivel"></p><div class="barra-progreso"><span id="barra" style="width:0%"></span></div><strong id="resumen-avance">Consultando tu avance...</strong><p id="ultima"></p><div class="acciones" style="margin-top:14px"><a class="boton" id="siguiente-leccion" href="modulo.html">Continuar mi ruta</a><a class="boton claro" href="recursos.html">Buscar recursos</a><a class="boton claro" href="practica.html">Practicar ahora</a></div></section>
-<section class="panel" id="explorador-areas"><h2>Explorar otras áreas</h2><p>Explora las ocho áreas. Puedes cambiar de ruta cuando lo necesites.</p><div class="area-grid" id="areas"></div></section>
-<section class="panel"><h2>¿Todavía no sabes por dónde empezar?</h2><p>Responde unas preguntas sobre lo que te interesa y Capricornio te propone una ruta inicial.</p><a class="boton" href="diagnostico.html">Descubrir mi camino</a></section>
-<p id="estado" role="status" aria-live="polite"></p></main><footer class="pie-pagina">Capricornio · Conectar para aprender</footer>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tu panel personal de aprendizaje en Capricornio Plus.">
+<title>Capricornio · Mi espacio</title><link rel="stylesheet" href="css/estilos.css">
+<style>
+:root{--ink:#2b1608;--muted:#806b55;--line:#e7d8bd;--paper:#fffdf8;--navy:#14232a;--gold:#b69a70}
+.cp-main{background:radial-gradient(ellipse at 85% 0%,#f0e4ca 0,transparent 34%),#faf6ed}
+.dash{max-width:1240px!important;padding:34px clamp(18px,3vw,42px) 60px!important}
+.dash-kicker{color:#8a673c;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.dash-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:12px 0 25px}
+.dash-heading h1{font-family:Inter,system-ui,sans-serif;font-size:clamp(30px,4vw,43px);line-height:1.08;letter-spacing:-.055em;font-weight:850;margin:7px 0 9px}
+.dash-heading p{color:var(--muted);font-size:14px;margin:0}
+.dash-date{padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:#6c563d;font-size:11px;font-weight:750}
+.dash-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);gap:24px;align-items:center;padding:clamp(24px,4vw,38px);border-radius:22px;background:linear-gradient(115deg,#14232a,#20343a 72%,#35443e);color:#fff8e9;box-shadow:0 18px 42px #14232a24}
+.dash-hero:after{content:"";position:absolute;width:300px;height:300px;border:1px solid #ffffff17;border-radius:50%;right:-85px;top:-150px;box-shadow:0 0 0 28px #ffffff08,0 0 0 58px #ffffff05}
+.dash-hero-copy,.dash-ring-card{position:relative;z-index:1}
+.dash-hero .kicker{color:#d7c39c;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.dash-hero h2{max-width:650px;margin:10px 0 12px;color:#fff8e9;font:800 clamp(25px,3.2vw,36px)/1.12 Inter,system-ui,sans-serif;letter-spacing:-.045em}
+.dash-hero p{max-width:590px;color:#e3d9c8;font-size:13px;line-height:1.75;margin:0 0 20px}
+.dash-actions{display:flex;flex-wrap:wrap;gap:10px}
+.dash-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:43px;padding:0 16px;border:1px solid #e5d5b5;border-radius:10px;background:#e8d3a4;color:#2b1608;font-size:12px;font-weight:850;text-decoration:none;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s}
+.dash-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px #0003;background:#f4e4c1}
+.dash-btn.ghost{background:#ffffff12;color:#fff8e9;border-color:#ffffff42}.dash-btn.ghost:hover{background:#ffffff22}
+.dash-ring-card{justify-self:end;width:min(100%,250px);padding:20px;border:1px solid #ffffff2b;border-radius:16px;background:#ffffff0c}
+.dash-ring{width:104px;height:104px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#e6d3a4 var(--ring,0%),#ffffff25 0);position:relative}
+.dash-ring:before{content:"";position:absolute;inset:8px;border-radius:50%;background:#20343a}
+.dash-ring strong{position:relative;color:#fff8e9;font-size:25px;letter-spacing:-.04em}
+.dash-ring-card p{text-align:center;color:#e3d9c8;font-size:11px;margin:0}
+.dash-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:18px 0 28px}
+.dash-stat{padding:18px 19px;border:1px solid var(--line);border-radius:15px;background:var(--paper);box-shadow:0 5px 18px #2b16080a}
+.dash-stat small{display:block;color:#88745d;font-size:10px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+.dash-stat strong{display:block;margin:8px 0 3px;color:var(--ink);font-size:25px;line-height:1;letter-spacing:-.05em}
+.dash-stat span{color:var(--muted);font-size:11px}
+.dash-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:30px 0 15px}
+.dash-section-head h2{margin:0;color:var(--ink);font:800 21px/1.2 Inter,system-ui,sans-serif;letter-spacing:-.035em}
+.dash-section-head p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.dash-text-link{color:#79542d;font-size:12px;font-weight:850;text-decoration:none}.dash-text-link:hover{text-decoration:underline;text-underline-offset:4px}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:15px}
+.course-card{position:relative;overflow:hidden;padding:21px;border:1px solid var(--line);border-radius:17px;background:var(--paper);box-shadow:0 8px 24px #2b16080a;transition:transform .2s,box-shadow .2s,border-color .2s}
+.course-card:hover{transform:translateY(-4px);border-color:#c2a77c;box-shadow:0 15px 30px #2b160814}
+.course-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}
+.course-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:#f3e8d2;color:#654727;font-size:12px;font-weight:900}
+.course-tag{padding:5px 9px;border-radius:30px;background:#edf2ed;color:#48634e;font-size:10px;font-weight:850}
+.course-card h3{margin:0 0 7px;color:#342315;font:800 16px/1.3 Inter,system-ui,sans-serif;letter-spacing:-.02em}
+.course-card p{min-height:34px;margin:0 0 14px;color:var(--muted);font-size:11px;line-height:1.6}
+.course-progress-label{display:flex;justify-content:space-between;gap:10px;color:#6c563d;font-size:10px;font-weight:800}
+.course-progress{height:8px;margin:8px 0 15px;border-radius:30px;background:#eee5d5;overflow:hidden}
+.course-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#8f6b3e,#c5a879);border-radius:inherit;transition:width .6s ease}
+.course-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:13px;border-top:1px solid #eee4d3}
+.course-footer small{color:#8a765e;font-size:10px}.course-footer a{color:#6d4b27;font-size:11px;font-weight:850;text-decoration:none}
+.course-footer a:hover{text-decoration:underline}
+.dash-empty{padding:24px;border:1px dashed #cbb995;border-radius:15px;background:var(--paper);color:var(--muted);font-size:13px;line-height:1.7}
+.dash-explore{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.explore-card{display:flex;align-items:center;gap:13px;padding:15px;border:1px solid var(--line);border-radius:13px;background:var(--paper);text-decoration:none;transition:transform .18s,border-color .18s}
+.explore-card:hover{transform:translateY(-3px);border-color:#b69a70}
+.explore-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:11px;background:#f3e8d2;color:#654727;font-size:11px;font-weight:900}
+.explore-card strong{display:block;color:#3b2314;font-size:12px}.explore-card small{display:block;margin-top:3px;color:var(--muted);font-size:10px}
+.dash-status{min-height:20px;margin:14px 0 0;color:#805729;font-size:11px}
+@media(max-width:900px){.dash-hero{grid-template-columns:1fr}.dash-ring-card{justify-self:start;width:100%;display:flex;align-items:center;gap:15px}.dash-ring{width:75px;height:75px;flex:0 0 75px;margin:0}.dash-ring strong{font-size:19px}.dash-ring-card p{text-align:left}}
+@media(max-width:650px){.dash-heading{align-items:flex-start;flex-direction:column}.dash-date{display:none}.dash-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.dash-stat{padding:14px}.dash-stat strong{font-size:22px}.dash-hero{padding:23px}.dash-section-head{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.course-card,.explore-card,.dash-btn,.course-progress span{transition:none}}
+</style></head>
+<body>
+<header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi inicio</a><a href="recursos.html">Biblioteca</a><a href="practica.html">Practicar</a><a href="login.html" id="salir">Cerrar sesión</a></nav></header>
+<main class="contenedor dash">
+<div class="dash-heading"><div><span class="dash-kicker">TU ESPACIO PERSONAL</span><h1 id="saludo">Hola, bienvenida</h1><p>Tu aprendizaje, tus cursos y cada avance en un solo lugar.</p></div><div class="dash-date" id="fecha">CAPRICORNIO PLUS · MI ESPACIO</div></div>
+<section class="dash-hero" aria-labelledby="hero-title">
+<div class="dash-hero-copy"><span class="kicker">TU SIGUIENTE PASO EMPIEZA AQUÍ</span><h2 id="hero-title">Cada avance construye tu camino.</h2><p id="hero-copy">Retoma una lección, practica una habilidad o explora una nueva especialidad. Tu progreso se actualiza con las actividades que completas.</p><div class="dash-actions"><a class="dash-btn" id="continuar" href="modulo.html">Continuar mi ruta →</a><a class="dash-btn ghost" href="practica.html">Practicar ahora</a></div></div>
+<div class="dash-ring-card"><div class="dash-ring" id="ring" role="img" aria-label="Progreso general"><strong id="ring-value">0%</strong></div><p id="ring-caption">Tu avance en el curso principal</p></div>
+</section>
+<section class="dash-stats" aria-label="Resumen de aprendizaje">
+<div class="dash-stat"><small>Cursos activos</small><strong id="stat-courses">—</strong><span>Rutas en tu espacio</span></div>
+<div class="dash-stat"><small>Lecciones listas</small><strong id="stat-completed">—</strong><span>Actividades completadas</span></div>
+<div class="dash-stat"><small>Por avanzar</small><strong id="stat-pending">—</strong><span>Lecciones en tus rutas</span></div>
+<div class="dash-stat"><small>Competencias</small><strong id="stat-skills">—</strong><span>Con práctica registrada</span></div>
+</section>
+<div class="dash-section-head"><div><h2>Mis cursos</h2><p>Consulta el avance de cada ruta que tienes activa.</p></div><a class="dash-text-link" href="modulo.html">Ver mi ruta completa →</a></div>
+<section id="courses" class="course-grid" aria-live="polite"><div class="dash-empty">Cargando tus cursos y progreso…</div></section>
+<div class="dash-section-head"><div><h2>Explora nuevas áreas</h2><p>Amplía tus conocimientos cuando quieras.</p></div><a class="dash-text-link" href="diagnostico.html">Encontrar mi siguiente ruta →</a></div>
+<section class="dash-explore" id="explore"></section><p class="dash-status" id="estado" role="status" aria-live="polite"></p>
+</main>
+<footer class="pie-pagina">Capricornio Plus · Aprender con dirección, avanzar con propósito.</footer>
 <script>
-const areas=[
-["CY","Ciberseguridad","Aprende a proteger sistemas, aplicaciones, redes y datos."],
-["FE","Desarrollo frontend","Diseña interfaces web accesibles, atractivas y fáciles de usar."],
-["BE","Desarrollo backend","Construye APIs, servicios y la lógica que impulsa aplicaciones."],
-["DA","Análisis de datos","Transforma información en consultas, hallazgos y decisiones."],
-["IA","Inteligencia artificial y modelos de lenguaje","Explora modelos, automatización y soluciones inteligentes."],
-["BD","Bases de datos","Organiza, consulta y administra información de forma segura."],
-["RS","Redes y sistemas","Domina Linux, redes, servidores y sistemas operativos."],
-["PG","Programación y lenguajes","Desarrolla pensamiento lógico con Python, JavaScript, Go y más."]
-];
-const grid=document.getElementById("areas");
-for(const [code,name,desc] of areas){
- const card=document.createElement("a");
- card.className="area";
- card.href="diagnostico.html?area="+encodeURIComponent(name);
- card.setAttribute("aria-label","Explorar el área de "+name);
- const icon=document.createElement("span");icon.className="area-icon";icon.setAttribute("aria-hidden","true");icon.textContent=code;
- const h=document.createElement("h3");h.textContent=name;
- const p=document.createElement("p");p.textContent=desc;
- const action=document.createElement("span");action.className="area-action";
- const label=document.createElement("span");label.textContent="Explorar área";
- const arrow=document.createElement("span");arrow.className="area-arrow";arrow.setAttribute("aria-hidden","true");arrow.textContent="→";
- action.append(label,arrow);card.append(icon,h,p,action);grid.append(card);
+const areas=[["CY","Ciberseguridad","Protección de sistemas y datos"],["FE","Desarrollo frontend","Interfaces y experiencias web"],["BE","Desarrollo backend","APIs, servicios y lógica"],["DA","Análisis de datos","Información y decisiones"],["IA","Inteligencia artificial","Modelos y automatización"],["BD","Bases de datos","Datos organizados y seguros"],["RS","Redes y sistemas","Linux, redes y servidores"],["PG","Programación","Lógica y lenguajes"]];
+const explore=document.getElementById("explore");
+for(const [code,name,desc] of areas){const a=document.createElement("a");a.className="explore-card";a.href="diagnostico.html?area="+encodeURIComponent(name==="Programación"?"Programación y lenguajes":name);const icon=document.createElement("span");icon.className="explore-icon";icon.textContent=code;const copy=document.createElement("span");const strong=document.createElement("strong");strong.textContent=name;const small=document.createElement("small");small.textContent=desc;copy.append(strong,small);a.append(icon,copy);explore.append(a)}
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+function renderCourse(course){
+ const card=el("article","course-card"),top=el("div","course-top"),icon=el("span","course-icon",(course.learning_area||"").slice(0,2).toUpperCase()),tag=el("span","course-tag",course.progress_percent>=100?"Completado":"En curso");
+ top.append(icon,tag);const title=el("h3","",course.learning_area);const desc=el("p","",course.level||"Tu ruta está lista para continuar. Completa el diagnóstico para conocer tu nivel inicial.");
+ const label=el("div","course-progress-label"),left=el("span","",course.completed_count+" de "+course.total_lessons+" lecciones"),right=el("strong","",course.progress_percent+"%");label.append(left,right);
+ const bar=el("div","course-progress"),fill=el("span","");fill.style.width=Math.max(0,Math.min(100,course.progress_percent))+"%";bar.append(fill);
+ const footer=el("div","course-footer"),note=el("small","",course.next_lesson_title?"Siguiente: "+course.next_lesson_title:"Ruta completada"),link=el("a","",course.progress_percent>=100?"Repasar ruta →":"Continuar →");
+ link.href=course.next_lesson_id?"leccion.html?id="+encodeURIComponent(course.next_lesson_id):"modulo.html";footer.append(note,link);card.append(top,title,desc,label,bar,footer);return card;
 }
 (async()=>{
-const status=document.getElementById("estado");
-try{
- const [meR,progressR]=await Promise.all([fetch("/api/me",{credentials:"same-origin"}),fetch("/api/progress",{credentials:"same-origin"})]);
- if(!meR.ok||!progressR.ok)throw new Error("Tu sesión terminó. Inicia sesión para recuperar tu avance.");
- const me=await meR.json(),d=await progressR.json();
- document.getElementById("saludo").textContent="¡Hola, "+me.user.name+"!";
- const routeName=d.diagnostic?.learning_area||me.user.learning_goal;
- document.getElementById("ruta").textContent="Estás aprendiendo: "+routeName;
- const explorer=document.getElementById("explorador-areas");
- if(me.user.learning_goal && me.user.learning_goal!=="Aún no lo sé; necesito orientación"){
-  const title=explorer.querySelector("h2");title.textContent="Mi entorno de aprendizaje";
-  const intro=explorer.querySelector("p");intro.textContent="Tu ruta activa está seleccionada. Desde aquí puedes explorar otras disciplinas o cambiar de especialidad cuando lo decidas.";
- }
- document.getElementById("barra").style.width=d.progress_percent+"%";
- document.getElementById("resumen-avance").textContent=d.progress_percent+"% del itinerario de lecciones de muestra completado · "+d.completed_count+" de "+d.total_lessons;
- if(d.diagnostic)document.getElementById("nivel").textContent="Diagnóstico inicial: "+d.diagnostic.detected_level+" · "+d.diagnostic.score+"% · "+d.diagnostic.learning_area;
- else document.getElementById("nivel").textContent="Todavía no has realizado tu diagnóstico de conocimientos.";
- document.getElementById("ultima").textContent=d.completed_count?"Tus lecciones completadas se guardan en esta cuenta.":"Cuando completes una actividad, tu avance aparecerá aquí.";
- const next=Object.entries(d.catalog||{}).find(([id])=>!d.completed_lessons.includes(id));
- const mastery=document.createElement("p");mastery.id="competency-summary";
- const values=(d.mastery||[]).filter(x=>x.observations>0);
- mastery.textContent=values.length?"Competencias con práctica registrada: "+values.length+". El dominio es una estimación experimental, no una certificación.":"Todavía no hay suficientes intentos para mostrar señales de dominio.";
- document.getElementById("avance").append(mastery);
- const nextLink=document.getElementById("siguiente-leccion");
- if(next){nextLink.href="leccion.html?id="+encodeURIComponent(next[0]);nextLink.textContent="Continuar: "+next[1].title;}
- else{nextLink.href="modulo.html";nextLink.textContent="Explorar o repasar mi ruta";}
-}catch(e){status.textContent=e.message;const a=document.createElement("a");a.href="login.html";a.textContent=" Iniciar sesión";status.append(a);}
+ const status=document.getElementById("estado"),coursesEl=document.getElementById("courses");
+ try{
+  const [meR,progressR]=await Promise.all([fetch("/api/me",{credentials:"same-origin",cache:"no-store"}),fetch("/api/progress",{credentials:"same-origin",cache:"no-store"})]);
+  if(meR.status===401||progressR.status===401){location.replace("login.html?motivo=sesion");return}
+  if(!meR.ok||!progressR.ok)throw new Error("No pudimos cargar tu espacio. Actualiza la página e inténtalo de nuevo.");
+  const me=await meR.json(),d=await progressR.json(),user=me.user;
+  document.getElementById("saludo").textContent="Hola, "+(user.name||"bienvenida");
+  const courses=Array.isArray(d.courses)?d.courses:[],active=courses.length?courses:[{learning_area:user.learning_goal||"Tu ruta",completed_count:d.completed_count,total_lessons:d.total_lessons,progress_percent:d.progress_percent,level:d.diagnostic?.detected_level,next_lesson_id:null,next_lesson_title:null}];
+  const done=active.reduce((n,c)=>n+(c.completed_count||0),0),total=active.reduce((n,c)=>n+(c.total_lessons||0),0),avg=total?Math.round(done/total*100):0;
+  document.getElementById("stat-courses").textContent=String(active.length);
+  document.getElementById("stat-completed").textContent=String(done);
+  document.getElementById("stat-pending").textContent=String(Math.max(0,total-done));
+  document.getElementById("stat-skills").textContent=String((d.mastery||[]).filter(x=>x.observations>0).length);
+  document.getElementById("ring-value").textContent=avg+"%";document.getElementById("ring").style.setProperty("--ring",avg+"%");
+  document.getElementById("ring-caption").textContent=active.length>1?"Promedio de tus cursos activos":"Tu avance en el curso principal";
+  coursesEl.replaceChildren(...active.map(renderCourse));
+  const next=active.find(c=>c.next_lesson_id),button=document.getElementById("continuar");
+  if(next){button.href="leccion.html?id="+encodeURIComponent(next.next_lesson_id);button.textContent="Continuar: "+(next.next_lesson_title||"siguiente lección")+" →"}
+  else if(d.diagnostic){button.href="modulo.html";button.textContent="Repasar mi ruta →"}
+  else{button.href="diagnostico.html";button.textContent="Comenzar diagnóstico →"}
+  document.getElementById("fecha").textContent="TU ESPACIO · "+new Intl.DateTimeFormat("es-CO",{day:"2-digit",month:"long",year:"numeric"}).format(new Date()).toUpperCase();
+ }catch(error){coursesEl.replaceChildren(el("div","dash-empty",error.message||"No fue posible cargar el progreso."));status.textContent="Si el problema continúa, vuelve a iniciar sesión."}
 })();
-document.getElementById("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
+document.getElementById("salir").addEventListener("click",async e=>{e.preventDefault();try{await fetch("/api/logout",{method:"POST",credentials:"same-origin"})}finally{location.href="login.html"}});
 </script><script src="js/app-shell.js" defer></script></body></html>
