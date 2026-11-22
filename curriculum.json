@@ -210,11 +210,11 @@
           "language": "es"
         },
         {
-          "title": "INCIBE · Guía de ciberseguridad para todos",
+          "title": "INCIBE · Guía de ciberataques",
           "type": "Guía PDF",
-          "description": "Material práctico en español sobre protección de dispositivos, cuentas, contraseñas, doble factor y navegación segura. Puede descargarse para estudiar sin conexión.",
-          "url": "https://www.incibe.es/sites/default/files/docs/senior/guia_ciberseguridad_para_todos.pdf",
-          "topic": "Dispositivos, contraseñas y autenticación",
+          "description": "Guía en español que explica ataques a contraseñas y medidas de protección, incluyendo contraseñas robustas, autenticación multifactor y gestores.",
+          "url": "https://www.incibe.es/sites/default/files/docs/guia-ciberataques/osi-guia-ciberataques.pdf",
+          "topic": "Contraseñas, phishing y amenazas",
           "level": "Principiante",
           "source": "INCIBE",
           "language": "es"
@@ -930,7 +930,7 @@
           "title": "datos.gob.es · Guía de análisis exploratorio de datos con Python",
           "type": "Guía y notebook",
           "description": "Guía práctica en español para explorar datos, detectar valores atípicos y comprender la calidad antes de analizar. Incluye materiales descargables y código reproducible.",
-          "url": "https://datos.gob.es/es/conocimiento/guia-practica-de-introduccion-al-analisis-exploratorio-de-datos-en-python",
+          "url": "https://datos.gob.es/es/guias-e-informes/guia-practica-de-introduccion-al-analisis-exploratorio-de-datos-en-python",
           "topic": "Exploración y limpieza de datos",
           "level": "Principiante",
           "source": "Gobierno de España · datos.gob.es",
