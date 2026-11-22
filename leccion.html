@@ -70,7 +70,7 @@ async function answerQuiz(value,button){
  try{
   const d=await api("/api/learning/answer",{method:"POST",body:JSON.stringify({area:lessonData.area,item_id:itemId,answer:value})});
   if(d.correct){$("estado").textContent=lessonData.lesson.feedback||"¡Respuesta correcta!";$("estado").className="respuesta ok";await complete();}
-  else{$("estado").textContent="Aún no es correcto. La respuesta correcta es: "+lessonData.lesson.answer+". "+(lessonData.lesson.feedback||"Revisa la explicación y vuelve a intentarlo.");$("estado").className="respuesta error";document.querySelectorAll(".opcion-leccion").forEach(b=>b.disabled=false);button.focus();}
+  else{$("estado").textContent="Aún no es correcto. La respuesta correcta es: "+lessonData.lesson.answer+". "+(lessonData.lesson.feedback||"Revisa la explicación y vuelve a intentarlo.")+" "+(lessonData.lesson.reinforcement||"Vuelve al ejemplo e intenta explicarlo con tus palabras.");$("estado").className="respuesta error";document.querySelectorAll(".opcion-leccion").forEach(b=>b.disabled=false);button.focus();}
  }catch(e){$("estado").textContent=e.message;document.querySelectorAll(".opcion-leccion").forEach(b=>b.disabled=false);}
 }
 try{
@@ -80,10 +80,14 @@ try{
  if(l.type==="code"){$("zona-codigo").hidden=false;$("codigo").value="";$("ejecutar").addEventListener("click",runPython);}
  else{$("zona-pregunta").hidden=false;$("pregunta").textContent=l.question;for(let i=0;i<l.options.length;i++){const b=document.createElement("button");b.type="button";b.className="opcion-leccion";b.textContent=l.options[i];b.addEventListener("click",()=>answerQuiz(String.fromCharCode(97+i),b));$("opciones").append(b);}}
  const resourceData=await api("/api/resources/"+lessonData.area_id);
- $("guia-recurso").textContent="Mientras consultas la fuente, identifica cómo define este concepto: "+(l.concept||l.title)+". Después vuelve a Capricornio y aplica la idea en la práctica.";
+ $("guia-recurso").textContent="Mientras consultas la fuente, identifica cómo define este concepto: "+(l.concept||l.title)+". Después vuelve a Capricornio y aplica la idea en la práctica. Si el recurso está en inglés, empieza por el título y los términos destacados; no necesitas comprender cada palabra todavía.";
  $("recursos-leccion").replaceChildren();
  const topicWords=(l.title+" "+(l.concept||"")).toLocaleLowerCase().split(/[^a-záéíóúñü]+/).filter(w=>w.length>3);
- const ranked=resourceData.resources.map((r,i)=>({r,i,score:topicWords.reduce((n,w)=>n+((r.title+" "+r.topic+" "+r.description).toLocaleLowerCase().includes(w)?1:0),0)})).sort((a,b)=>b.score-a.score||a.i-b.i).slice(0,3);
+ const ranked=lessonData.lesson.resource_ids?.length
+  ? lessonData.lesson.resource_ids.map((name,i)=>({r:resourceData.resources.find(x=>x.title===name),i,score:10-i})).filter(x=>x.r)
+  : resourceData.resources.map((r,i)=>({r,i,score:topicWords.reduce((n,w)=>n+((r.title+" "+r.topic+" "+r.description).toLocaleLowerCase().includes(w)?1:0),0)})).sort((a,b)=>b.score-a.score||a.i-b.i);
+ ranked.sort((a,b)=>(a.r.language==="es"?0:1)-(b.r.language==="es"?0:1)||b.score-a.score);
+ ranked.splice(2);
  for(const {r} of ranked){
   const card=document.createElement("article");card.className="recurso-link";
   const title=document.createElement("strong");title.textContent=r.title;
