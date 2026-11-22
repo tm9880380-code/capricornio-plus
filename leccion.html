@@ -1,62 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capricornio - Lección</title>
-<link rel="stylesheet" href="css/estilos.css">
-</head>
-<body>
-
-<header class="barra">
-  <div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="diagnostico.html">Diagnóstico</a>
-    <a href="plan.html">Mi plan</a>
-    <a href="suscripciones.html">Suscripciones</a>
-    <a href="login.html">Ingresar</a>
-  </nav>
-</header>
-
-<main class="contenedor">
-
-  <p><a href="modulo.html"><strong>&larr; Volver al módulo</strong></a></p>
-
-  <h1>Lección 3: Ciclo for</h1>
-  <p>Módulo 2: Estructuras de control</p>
-
-  <section class="dos-columnas">
-
-    <div class="tarjeta">
-      <h2>Explicación</h2>
-      <p>El ciclo for permite repetir una acción un número definido de veces, sin escribir el mismo código muchas veces.</p>
-      <p>Ejemplo: imprimir los números del 1 al 3.</p>
-      <div class="codigo">for i in range(1, 4):
-    print(i)</div>
-      <p>Resultado: 1, 2 y 3, cada uno en una línea.</p>
-    </div>
-
-    <div class="tarjeta">
-      <h2>Ejercicio</h2>
-      <p>Escribe un programa que imprima los números del 1 al 5 usando un ciclo for.</p>
-      <div class="formulario" style="border:2px solid #111; padding:16px; max-width:none;">
-        <label>Tu código</label>
-        <textarea style="width:100%; height:110px; padding:10px; border:2px solid #111; font-family:monospace; font-size:14px;" placeholder="Escribe aquí tu código"></textarea>
-        <a class="boton" href="leccion.html">Enviar respuesta</a>
-      </div>
-    </div>
-
-  </section>
-
-  <p style="margin-top:18px;">
-    <a class="boton claro" href="modulo.html">Volver al módulo</a>
-    <a class="boton" href="evaluacion.html">Ir a la evaluación</a>
-  </p>
-
-</main>
-
-<footer class="pie-pagina">Capricornio · Plataforma adaptativa de aprendizaje de programación</footer>
-
-</body>
-</html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Capricornio - Lección</title><link rel="stylesheet" href="css/estilos.css"><style>.contenido{white-space:pre-wrap;line-height:1.75}.respuesta{display:block;width:100%;text-align:left;margin:8px 0;padding:13px;border:2px solid #5a3a1e;border-radius:8px;background:#fbf4e2;cursor:pointer}.respuesta[aria-pressed=true]{background:#3b2314;color:#f3e6c8}.respuesta:focus{outline:3px solid #a77a40}.resultado{padding:14px;border-radius:8px;margin-top:14px}</style></head>
+<body><header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi plan</a><a href="diagnostico.html">Diagnóstico</a></nav></header>
+<main class="contenedor"><p><a href="plan.html"><strong>← Volver a mi plan</strong></a></p><p id="area" class="muted"></p><h1 id="titulo">Cargando lección...</h1><p id="objetivo"></p><section class="tarjeta"><h2>Aprende</h2><div id="contenido" class="contenido"></div><h3 style="margin-top:20px">Ejemplo</h3><pre id="ejemplo" class="codigo"></pre></section><section class="tarjeta" style="margin-top:18px"><h2>Comprueba lo aprendido</h2><p id="pregunta"></p><div id="opciones"></div><button id="enviar" class="boton" disabled>Comprobar respuesta</button><p id="resultado" class="resultado" role="status" aria-live="polite"></p><a id="volver" class="boton claro" href="plan.html" hidden>Volver a mi plan</a></section></main><footer class="pie-pagina">Capricornio · Aprende paso a paso</footer>
+<script>
+(async()=>{
+ const $=id=>document.getElementById(id);const id=new URLSearchParams(location.search).get("id");let selected=null,lesson=null;
+ async function api(url,opts={}){const r=await fetch(url,{credentials:"same-origin",...opts,headers:{"Content-Type":"application/json",...(opts.headers||{})}});const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.detail||"No se pudo cargar la lección.");return d}
+ try{
+  if(!id)throw Error("No se indicó una lección.");
+  lesson=await api("/api/learning/lesson/"+encodeURIComponent(id));
+  $("area").textContent=lesson.area+" · "+lesson.module+" · "+lesson.level;
+  $("titulo").textContent=lesson.title;$("objetivo").textContent="Objetivo: "+lesson.objective;
+  $("contenido").textContent=lesson.content;$("ejemplo").textContent=lesson.example;
+  $("pregunta").textContent=lesson.question;
+  lesson.options.forEach(o=>{const b=document.createElement("button");b.type="button";b.className="respuesta";b.textContent=o.label;b.setAttribute("aria-pressed","false");b.onclick=()=>{selected=o.value;document.querySelectorAll(".respuesta").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");$("enviar").disabled=false};$("opciones").append(b)});
+  if(lesson.completed){$("resultado").textContent="Ya completaste esta lección. Puedes volver a practicar cuando quieras.";$("volver").hidden=false}
+ }catch(e){$("resultado").textContent=e.message}
+ $("enviar").onclick=async()=>{
+  if(!selected)return;$("enviar").disabled=true;$("resultado").textContent="Revisando...";
+  try{const r=await api("/api/learning/lesson/"+encodeURIComponent(id)+"/answer",{method:"POST",body:JSON.stringify({answer:selected})});
+   $("resultado").textContent=r.feedback+(r.correct?" Tu progreso de esta competencia se ha actualizado.":"");$("resultado").style.background=r.correct?"#e4f0df":"#f7e8d8";
+   if(r.correct){$("volver").hidden=false;$("enviar").textContent="Respuesta registrada"}
+   else $("enviar").disabled=false;
+  }catch(e){$("resultado").textContent=e.message;$("enviar").disabled=false}
+ };
+})();
+</script></body></html>
