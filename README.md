@@ -24,7 +24,7 @@
 El estudiante puede elegir una de estas áreas, seleccionar un lenguaje (Python, JavaScript, Go, Java o C++) o solicitar orientación. Las rutas de lenguajes conducen al itinerario general de programación en esta versión.
 
 ## Qué incluye el prototipo actual
-- Registro, inicio de sesión y sesiones con cookies HttpOnly.
+- Registro, inicio de sesión y sesiones con cookies HttpOnly. El registro exige autorización explícita de tratamiento de datos y aceptación de términos; guarda versión y fecha del consentimiento.
 - Orientación inicial para quien no sabe qué área elegir.
 - Diagnóstico específico por ruta: seis o siete preguntas por ruta.
 - Niveles internos provisionales A1–C2, sin valor de certificación.
@@ -35,7 +35,7 @@ El estudiante puede elegir una de estas áreas, seleccionar un lenguaje (Python,
 - Cuatro ejercicios iniciales de Python que se ejecutan en un Web Worker del navegador mediante Pyodide. El código no se envía al backend.
 - Seguimiento de lecciones y estimaciones experimentales de competencias.
 - Biblioteca filtrable de documentación, cursos, repositorios GitHub y canales educativos de YouTube.
-- Pruebas automatizadas de API y comprobación sintáctica de JavaScript.
+- Editor demostrativo de Python ejecutado en el navegador mediante el Web Worker existente.\n- Centro público de confianza: aviso y política de privacidad, términos, cookies, accesibilidad, uso responsable, seguridad, créditos y mapa del sitio.\n- Pruebas automatizadas de API y comprobación sintáctica de JavaScript.
 
 ## Alcance y límites conocidos
 Esta versión es un prototipo funcional para revisión y pruebas, no una plataforma certificada ni lista para desplegar a gran escala en colegios.
@@ -67,7 +67,7 @@ Para pruebas:
     pytest -q
 
 ## Datos y despliegue
-SQLite se crea en data/capricornio.db. Conserva la carpeta data/ en un volumen persistente. Consulta DEPLOY.md, PRIVACY.md y docs/SECURITY.md.
+SQLite se crea en data/capricornio.db. Conserva la carpeta data/ en un volumen persistente. Consulta DEPLOY.md, PRIVACY.md, `privacidad.html`, `aviso-privacidad.html`, `terminos.html`, `cookies.html` y `docs/SECURITY.md`. Antes de recopilar datos reales, el operador debe completar los campos de identificación y contacto del responsable en los documentos legales y revisar su adecuación jurídica.
 
 No se garantiza que un proveedor externo mantenga un plan gratuito permanente. Para una instalación sin pagos de hosting, se puede ejecutar en un equipo o servidor propio; el equipo debe permanecer disponible y administrado.
 
