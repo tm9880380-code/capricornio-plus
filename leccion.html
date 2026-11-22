@@ -96,11 +96,16 @@ try{
   const card=document.createElement("article");card.className="recurso-link";
   const title=document.createElement("strong");title.textContent=selected.title;
   const desc=document.createElement("p");desc.textContent=selected.description||"Fuente complementaria para esta competencia.";
-  const objective=document.createElement("p");objective.textContent="Objetivo: "+(l.learning_objective||("Comprender "+l.title+"."));\n  const why=document.createElement("p");why.textContent=l.why_it_matters||"Esta idea conecta con las competencias de la ruta.";\n  const topic=document.createElement("p");topic.textContent="Tema que debes localizar: "+(selected.topic||l.title)+".";
+  const objective=document.createElement("p");objective.textContent="Objetivo: "+(l.learning_objective||("Comprender "+l.title+"."));
+  const why=document.createElement("p");why.textContent=l.why_it_matters||"Esta idea conecta con las competencias de la ruta.";
+  const topic=document.createElement("p");topic.textContent="Tema que debes localizar: "+(selected.topic||l.title)+".";
   const meta=document.createElement("small");meta.textContent=[selected.type,selected.level,selected.language==="es"?"Español":selected.language==="en"?"Inglés — te prepararé antes de abrirlo":"Idioma no verificado"].filter(Boolean).join(" · ");
   const guide=document.createElement("p");
   guide.textContent=selected.language==="en"?"Antes de abrir: esta fuente está en inglés. No necesitas traducirla completa. Busca el término indicado, lee su definición y observa el ejemplo. Si te bloqueas, vuelve y te lo explico en español.":"Antes de abrir: no leas toda la página. Localiza el apartado que define «"+(l.title||l.concept)+"», lee la definición y revisa el primer ejemplo relacionado.";
-  const terms=document.createElement("div");\n  const termsTitle=document.createElement("strong");termsTitle.textContent="Sigue estos pasos de lectura:";terms.append(termsTitle);\n  const steps=document.createElement("ol");for(const step of (l.reading_guide||[])){const item=document.createElement("li");item.textContent=step;steps.append(item);}terms.append(steps);\n  const searchTip=document.createElement("p");searchTip.textContent="Consejo: usa Ctrl+F en computador o «Buscar en la página» en el celular para encontrar el concepto. El enlace abre la fuente original; no inventamos un capítulo o ancla no verificado.";terms.append(searchTip);
+  const terms=document.createElement("div");
+  const termsTitle=document.createElement("strong");termsTitle.textContent="Sigue estos pasos de lectura:";terms.append(termsTitle);
+  const steps=document.createElement("ol");for(const step of (l.reading_guide||[])){const item=document.createElement("li");item.textContent=step;steps.append(item);}terms.append(steps);
+  const searchTip=document.createElement("p");searchTip.textContent="Consejo: usa Ctrl+F en computador o «Buscar en la página» en el celular para encontrar el concepto. El enlace abre la fuente original; no inventamos un capítulo o ancla no verificado.";terms.append(searchTip);
   const a=document.createElement("a");a.href=selected.url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Abrir esta lectura ↗";
   a.addEventListener("click",()=>{$("regreso-recurso").hidden=false;$("instruccion-regreso").textContent="Localiza la definición de «"+(l.title||l.concept)+"» y un ejemplo. Vuelve a esta pestaña y explícalo con tus palabras. Si estaba en inglés, anota qué término te confundió.";});
   card.append(title,desc,objective,why,topic,meta,guide,terms,a);$("recursos-leccion").append(card);
