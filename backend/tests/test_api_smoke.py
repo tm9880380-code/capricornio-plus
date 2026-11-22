@@ -320,3 +320,19 @@ def test_lesson_page_has_guided_resource_and_return_flow(client):
     assert "No lo entendí; explícame de otra forma" in page.text
     assert "Ya entendí · Ir a la práctica" in page.text
     assert 'id="practica" hidden' in page.text
+
+ 
+def test_curriculum_lessons_include_learning_and_reading_guides(client):
+    response = client.get("/api/curriculum")
+    assert response.status_code == 200
+    lessons = [
+        lesson
+        for area in response.json()["areas"]
+        for module in area["modules"]
+        for lesson in module["lessons"]
+    ]
+    assert len(lessons) == 50
+    assert all(lesson.get("learning_objective") for lesson in lessons)
+    assert all(lesson.get("why_it_matters") for lesson in lessons)
+    assert all(len(lesson.get("reading_guide", [])) >= 4 for lesson in lessons)
+    assert all(lesson.get("reflection_prompt") for lesson in lessons)
