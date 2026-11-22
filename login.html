@@ -5,229 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Capricornio - Iniciar sesión</title>
 <style>
-:root {
-  color-scheme: light;
-  --cafe-profundo: #2b1608;
-  --cafe: #3b2314;
-  --cafe-medio: #5a3a1e;
-  --cafe-hover: #7a4a1c;
-  --crema: #fffaf0;
-  --crema-calida: #f6ecd6;
-  --dorado-suave: #e6d3a8;
-  --dorado: #b69a70;
-  --texto-secundario: #806b55;
-  --marfil: #f3e6c8;
-}
-* { box-sizing: border-box; }
-html { min-height: 100%; background: var(--crema); }
-body {
-  min-height: 100vh; min-height: 100svh; margin: 0;
-  display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(440px, .92fr);
-  color: var(--cafe-profundo); background: var(--crema);
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-}
-a { color: inherit; text-decoration: none; }
-.izquierda {
-  position: relative; isolation: isolate; overflow: hidden;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  min-height: 100vh; min-height: 100svh; padding: 72px 48px;
-  text-align: center;
-  background:
-    radial-gradient(ellipse at 50% 44%, rgba(255,250,240,.72) 0%, rgba(246,236,214,.38) 43%, transparent 72%),
-    linear-gradient(145deg, #f8efdD 0%, #ead9b7 100%);
-}
-.izquierda::before, .izquierda::after {
-  position: absolute; z-index: -1; content: ""; pointer-events: none;
-  border: 1px solid rgba(90,58,30,.13); border-radius: 50%;
-}
-.izquierda::before { width: min(78vw, 760px); aspect-ratio: 1; }
-.izquierda::after { width: min(64vw, 610px); aspect-ratio: 1; }
-.izquierda img {
-  display: block; width: min(270px, 48vw); height: auto;
-  mix-blend-mode: multiply;
-  filter: drop-shadow(0 18px 24px rgba(43,22,8,.12));
-}
-.izquierda h2 {
-  max-width: 440px; margin: 38px 0 0; color: var(--cafe-profundo);
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: clamp(28px, 3vw, 40px); font-weight: 650;
-  line-height: 1.25; letter-spacing: -.045em;
-}
-.izquierda h2::after {
-  display: block; width: 66px; height: 2px; margin: 29px auto 0;
-  background: var(--cafe-hover); content: ""; opacity: .78;
-}
-.derecha {
-  display: flex; align-items: center; justify-content: center;
-  min-height: 100vh; min-height: 100svh;
-  padding: clamp(36px, 6vw, 88px);
-  background:
-    radial-gradient(ellipse at 100% 0%, rgba(230,211,168,.18), transparent 46%),
-    var(--crema);
-}
-.caja {
-  width: 100%; max-width: 470px; padding: clamp(34px, 4.2vw, 58px);
-  border: 1px solid rgba(182,154,112,.42); border-radius: 18px;
-  background: rgba(255,253,248,.88);
-  box-shadow: 0 24px 70px rgba(43,22,8,.09), 0 3px 10px rgba(43,22,8,.035);
-}
-.caja h1 {
-  margin: 0 0 12px; color: var(--cafe);
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: clamp(35px, 3.2vw, 44px); font-weight: 700;
-  line-height: 1.12; letter-spacing: -.045em; text-align: left;
-}
-.caja h1::after {
-  display: block; width: 42px; height: 2px; margin-top: 22px;
-  background: var(--dorado); content: "";
-}
-#login-form { display: flex; flex-direction: column; margin-top: 32px; }
-.campo { display: flex; flex-direction: column; gap: 10px; margin-bottom: 21px; }
-.campo > label { color: var(--cafe); font-size: 13px; font-weight: 700; letter-spacing: .035em; }
-.caja input {
-  width: 100%; min-height: 58px; margin: 0; padding: 17px 18px;
-  border: 1px solid #d8c5a5; border-radius: 9px; outline: none;
-  background: #fffdf8; color: var(--cafe-profundo);
-  font: inherit; font-size: 15px;
-  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
-}
-.caja input::placeholder { color: #9a8770; opacity: 1; }
-.caja input:hover { border-color: var(--cafe-medio); }
-.caja input:focus {
-  border-color: var(--cafe-hover); background: #fff;
-  box-shadow: 0 0 0 4px rgba(122,74,28,.12);
-}
-.password-wrap { position: relative; }
-.password-wrap input { padding-right: 92px; }
-.toggle-password {
-  position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
-  min-height: 36px; padding: 7px 10px; border: 1px solid transparent;
-  border-radius: 7px; background: transparent; color: var(--cafe-medio);
-  font: inherit; font-size: 12px; font-weight: 700; cursor: pointer;
-}
-.toggle-password:hover { border-color: var(--dorado); background: var(--crema-calida); }
-.toggle-password:focus-visible { outline: 3px solid rgba(122,74,28,.3); outline-offset: 2px; }
-.caja input:focus-visible { outline: none; }
-.caja input[aria-invalid="true"] { border-color: #9b2525; }
-#mensaje { min-height: 22px; margin: -2px 0 5px; color: #9b2525; font-size: 13px; line-height: 1.5; text-align: left; }
-#mensaje:empty { min-height: 5px; }
-.boton {
-  display: flex; align-items: center; justify-content: center;
-  width: 100%; min-height: 56px; padding: 16px 20px;
-  border: 1px solid var(--cafe); border-radius: 9px;
-  font-family: inherit; font-size: 14px; font-weight: 700;
-  letter-spacing: .025em; text-align: center; cursor: pointer;
-  transition: background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
-}
-.boton:focus-visible { outline: 3px solid rgba(122,74,28,.3); outline-offset: 3px; }
-.boton:active { transform: translateY(1px); }
-.boton.principal {
-  margin-top: 12px; background: var(--cafe); color: var(--marfil);
-  box-shadow: 0 8px 18px rgba(43,22,8,.15);
-}
-.boton.principal:hover:not(:disabled) {
-  border-color: var(--cafe-hover); background: var(--cafe-hover);
-  box-shadow: 0 10px 22px rgba(43,22,8,.2); transform: translateY(-1px);
-}
-.boton.principal:disabled { cursor: wait; opacity: .72; }
-.boton.secundario {
-  margin-top: 13px; border-color: #cbb38c; background: transparent; color: var(--cafe);
-}
-.boton.secundario:hover { border-color: var(--cafe); background: var(--crema-calida); }
-.form-note { margin: 24px 0 0; color: var(--texto-secundario); font-size: 12px; line-height: 1.7; text-align: center; }
-.boton:focus-visible, .boton.secundario:focus-visible { outline: 3px solid rgba(122,74,28,.35); outline-offset: 3px; }
-@media (min-width: 761px) and (max-height: 700px) {
-  .izquierda, .derecha { min-height: 700px; }
-  .derecha { padding-block: 30px; }
-  .caja { padding: 34px 40px; }
-}
-@media (max-width: 900px) and (min-width: 761px) {
-  body { grid-template-columns: minmax(0, 1fr) minmax(390px, 1fr); }
-  .derecha { padding: 30px; }
-  .caja { padding: 34px 30px; }
-  .izquierda { padding-inline: 28px; }
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Trebuchet MS', Arial, sans-serif; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: minmax(100vh, auto) auto; color: #2b1608; }
+a { text-decoration: none; color: inherit; }
+.izquierda { background: radial-gradient(ellipse at center, #f6ecd6 0%, #e6d3a8 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
+.izquierda img { width: 230px; height: auto; mix-blend-mode: multiply; }
+.izquierda h2 { font-family: Georgia, 'Palatino Linotype', serif; font-size: 30px; font-weight: normal; color: #2b1608; margin-top: 24px; max-width: 340px; line-height: 1.3; }
+.derecha { background: #fffaf0; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+.caja { width: 100%; max-width: 380px; }
+.caja h1 { font-family: Georgia, 'Palatino Linotype', serif; font-size: 38px; font-weight: normal; color: #3b2314; text-align: center; margin-bottom: 30px; }
+.caja input { width: 100%; padding: 15px 14px; border: 2px solid #5a3a1e; border-radius: 8px; background: #fffaf0; font-size: 16px; color: #2b1608; margin-bottom: 14px; }
+.caja input::placeholder { color: #8a735c; }
+.boton { display: block; width: 100%; text-align: center; padding: 15px; border: 2px solid #3b2314; border-radius: 8px; font-size: 17px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+.boton.principal { background: #3b2314; color: #f3e6c8; }
+.boton.principal:hover { background: #7a4a1c; border-color: #7a4a1c; }
+.boton.secundario { background: #fffaf0; color: #3b2314; }
+.boton.secundario:hover { background: #3b2314; color: #f3e6c8; }
+#mensaje { color: #9b2525; text-align: center; margin: 12px 0; min-height: 20px; }
 @media (max-width: 760px) {
   body { grid-template-columns: 1fr; }
-  .izquierda { min-height: auto; padding: 44px 24px 35px; }
-  .izquierda::before { width: min(90vw, 430px); }
-  .izquierda::after { width: min(74vw, 350px); }
-  .izquierda img { width: 142px; }
-  .izquierda h2 { max-width: 340px; margin-top: 19px; font-size: 25px; }
-  .izquierda h2::after { margin-top: 19px; }
-  .derecha { min-height: auto; padding: 34px 20px 56px; }
-  .caja { max-width: 480px; padding: 34px clamp(24px, 7vw, 42px); }
-  .caja h1 { font-size: 36px; }
-  #login-form { margin-top: 27px; }
-  .campo { margin-bottom: 18px; }
-  .form-note { margin-top: 20px; }
-}
-@media (max-width: 380px) {
-  .izquierda { padding-inline: 18px; }
-  .derecha { padding-inline: 14px; }
-  .caja { padding-inline: 22px; }
-}
-@media (forced-colors: active) {
-  .boton, .toggle-password, .caja input { border: 1px solid ButtonText; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  .izquierda { padding: 28px 24px; }
+  .izquierda img { width: 130px; }
+  .izquierda h2 { font-size: 22px; margin-top: 14px; }
 }
 
-/* Mascota interactiva: conserva la imagen original del gato */
-#gato-guia {
-  --gato-ancho: 104px;
-  position: fixed; z-index: 60; left: 0; bottom: 16px;
-  display: grid; place-items: center;
-  width: var(--gato-ancho); height: var(--gato-ancho);
-  padding: 4px; border: 0; border-radius: 50%;
-  background: transparent; cursor: pointer;
-  filter: drop-shadow(0 8px 12px rgba(43,22,8,.18));
-  animation: gato-recorrido 26s ease-in-out infinite alternate;
-  -webkit-tap-highlight-color: transparent;
-}
-#gato-guia img {
-  display: block; width: 100%; height: 100%; object-fit: contain;
-  user-select: none; pointer-events: none;
-}
-#gato-guia:hover { animation-play-state: paused; transform: scale(1.08); }
-#gato-guia:focus-visible { outline: 3px solid var(--cafe-hover); outline-offset: 3px; }
-@keyframes gato-recorrido {
-  from { transform: translateX(8px); }
-  to { transform: translateX(calc(100vw - var(--gato-ancho) - 16px)); }
-}
-#gato-mensaje {
-  position: fixed; z-index: 61; bottom: 126px;
-  display: none; width: min(250px, calc(100vw - 24px));
-  padding: 13px 16px; border: 1px solid var(--dorado);
-  border-radius: 14px; background: #fffdf8; color: var(--cafe);
-  box-shadow: 0 12px 32px rgba(43,22,8,.16);
-  font-size: 13px; font-weight: 700; line-height: 1.5;
-}
-#gato-mensaje.visible { display: block; }
-#gato-mensaje::after {
-  position: absolute; bottom: -7px; left: 50%;
-  width: 12px; height: 12px; content: "";
-  background: #fffdf8; border-right: 1px solid var(--dorado);
-  border-bottom: 1px solid var(--dorado); transform: translateX(-50%) rotate(45deg);
-}
-a.boton.secundario.gato-destacado {
-  outline: 3px solid rgba(182,154,112,.55); outline-offset: 4px;
-  box-shadow: 0 0 0 8px rgba(230,211,168,.28);
-  animation: gato-llamada 1.15s ease-in-out 3;
-}
-@keyframes gato-llamada {
-  50% { transform: translateY(-3px); box-shadow: 0 0 0 12px rgba(230,211,168,.18); }
-}
-@media (max-width: 760px) {
-  #gato-guia { --gato-ancho: 82px; bottom: 10px; }
-  #gato-mensaje { bottom: 100px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  #gato-guia { animation: none; left: 12px; }
-  a.boton.secundario.gato-destacado { animation: none; }
-}
+.presentacion{grid-column:1/-1;background:#f6ecd6;color:#2b1608;padding:64px clamp(20px,7vw,100px);border-top:1px solid #b69a70}
+.presentacion .contenido{max-width:1120px;margin:0 auto}
+.presentacion h2,.presentacion h3{font-family:Georgia,'Palatino Linotype',serif;color:#3b2314;line-height:1.25}
+.presentacion h2{text-align:center;font-size:clamp(1.8rem,3vw,2.5rem);margin-bottom:14px}
+.presentacion .intro{max-width:800px;text-align:center;margin:0 auto 34px;color:#4a3322;line-height:1.7}
+.presentacion .pasos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.presentacion .paso{background:#fffaf0;border:1px solid #b69a70;border-radius:10px;padding:22px;box-shadow:0 3px 8px #2b16081c}
+.presentacion .paso h3{font-size:20px;margin-bottom:9px}
+.presentacion .paso p{color:#4a3322;line-height:1.65}
+.presentacion .numero{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#8f6b3e;color:#fff6e0;font-weight:bold;margin-bottom:13px}
+.presentacion .areas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}
+.presentacion .area{background:#f3e6c8;border:1px solid #b69a70;border-radius:8px;padding:15px;text-align:center;font-weight:bold;color:#3b2314}
+.presentacion .nota{margin:34px auto 0;max-width:900px;text-align:center;background:#e6d3a8;border:1px solid #b69a70;border-radius:10px;padding:24px}
+.presentacion .nota h3{font-size:21px;margin-bottom:8px}
+.presentacion .nota p{color:#4a3322;line-height:1.65}
+@media(max-width:760px){.presentacion{padding:44px 20px}.presentacion .pasos{grid-template-columns:1fr}.presentacion .areas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* Asistente pequeño: conserva intacta la ilustración y composición originales */
+#gato-asistente{position:fixed;right:20px;bottom:18px;z-index:1000;width:66px;height:66px;padding:3px;border:1px solid rgba(166,126,75,.35);border-radius:50%;background:#fffaf1;box-shadow:0 5px 18px rgba(43,22,8,.18);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+#gato-asistente:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 9px 22px rgba(43,22,8,.22)}
+#gato-asistente img{width:100%;height:100%;object-fit:contain;display:block}
+#gato-ayuda{position:fixed;right:96px;bottom:28px;z-index:1000;width:min(250px,calc(100vw - 125px));padding:12px 15px;border:1px solid #c9a66b;border-radius:13px;background:#fffaf1;color:#2b1608;box-shadow:0 6px 20px rgba(43,22,8,.14);font:14px/1.45 'Trebuchet MS',Arial,sans-serif;display:none}
+#gato-ayuda.visible{display:block}
+#gato-crear-cuenta{outline:3px solid rgba(201,166,107,.65);outline-offset:4px}
+@media(max-width:600px){#gato-asistente{width:56px;height:56px;right:12px;bottom:12px}#gato-ayuda{right:78px;bottom:19px}}
+@media(prefers-reduced-motion:reduce){#gato-asistente{transition:none}}
 
 </style>
 </head>
@@ -242,72 +70,47 @@ a.boton.secundario.gato-destacado {
   <div class="caja">
     <h1>Iniciar sesión</h1>
 
-    <form id="login-form" novalidate>
-      <div class="campo">
-        <label for="email">Correo electrónico</label>
-        <input id="email" type="email" name="email" inputmode="email" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="nombre@correo.com" aria-describedby="mensaje" required>
-      </div>
-      <div class="campo">
-        <label for="password">Contraseña</label>
-        <div class="password-wrap">
-          <input id="password" type="password" name="password" autocomplete="current-password" placeholder="Ingresa tu contraseña" aria-describedby="mensaje" required>
-          <button class="toggle-password" id="toggle-password" type="button" aria-controls="password" aria-pressed="false">Mostrar</button>
-        </div>
-      </div>
-      <p id="mensaje" role="alert" aria-live="assertive" aria-atomic="true"></p>
+    <form id="login-form">
+      <input type="email" name="email" placeholder="Correo electrónico" autocomplete="email" required>
+      <input type="password" name="password" placeholder="Contraseña" autocomplete="current-password" required>
+      <p id="mensaje" role="alert" aria-live="polite"></p>
       <button class="boton principal" id="ingresar" type="submit">Iniciar sesión</button>
     </form>
 
     <a class="boton secundario" href="registro.html">Crear cuenta</a>
-    <p class="form-note">Tu espacio de aprendizaje comienza aquí.</p>
   </div>
+</section>
+
+
+<section class="presentacion" aria-labelledby="que-es-capricornio">
+ <div class="contenido">
+  <h2 id="que-es-capricornio">¿Qué es Capricornio?</h2>
+  <p class="intro">Capricornio es un espacio de aprendizaje tecnológico que organiza tu recorrido y te acompaña a estudiar con recursos educativos gratuitos que ya existen en Internet. No reemplaza a sus autores ni guarda copias de sus cursos: te orienta para aprender directamente de las fuentes originales y convertir ese estudio en práctica.</p>
+  <h2>¿Cómo funciona?</h2>
+  <div class="pasos">
+   <article class="paso"><span class="numero">1</span><h3>Descubre tu punto de partida</h3><p>Respondes un diagnóstico y eliges el área que te interesa. Con esa información se propone una ruta inicial que puedes ajustar.</p></article>
+   <article class="paso"><span class="numero">2</span><h3>Estudia con una guía</h3><p>Cada lección te explica qué aprender y te dirige a documentación, tutoriales, cursos o proyectos gratuitos en sus sitios originales.</p></article>
+   <article class="paso"><span class="numero">3</span><h3>Regresa y practica</h3><p>Después de estudiar, vuelves para resolver actividades, revisar tus respuestas y reforzar los conceptos que necesitan más trabajo.</p></article>
+  </div>
+  <h2 style="margin-top:48px">Áreas de aprendizaje</h2>
+  <p class="intro">Puedes comenzar por una especialidad y ampliar tus conocimientos a otras disciplinas.</p>
+  <div class="areas">
+   <div class="area">Ciberseguridad</div><div class="area">Desarrollo frontend</div><div class="area">Desarrollo backend</div><div class="area">Análisis de datos</div>
+   <div class="area">Inteligencia artificial</div><div class="area">Bases de datos</div><div class="area">Redes y sistemas</div><div class="area">Programación y lenguajes</div>
+  </div>
+  <div class="nota"><h3>Tu aprendizaje, en tu propio espacio</h3><p>Capricornio está pensado para que cada estudiante pueda alojar su instalación en su propio computador. El progreso permanece en ese entorno; los materiales educativos continúan en las páginas de sus creadores. No necesitas pagar por una biblioteca central de contenidos.</p></div>
+ </div>
 </section>
 
 <script>
 const formulario = document.getElementById("login-form");
 const mensaje = document.getElementById("mensaje");
 const boton = document.getElementById("ingresar");
-const campoEmail = document.getElementById("email");
-const campoPassword = document.getElementById("password");
-const togglePassword = document.getElementById("toggle-password");
-
-togglePassword.addEventListener("click", () => {
-  const mostrar = campoPassword.type === "password";
-  campoPassword.type = mostrar ? "text" : "password";
-  togglePassword.textContent = mostrar ? "Ocultar" : "Mostrar";
-  togglePassword.setAttribute("aria-pressed", String(mostrar));
-  campoPassword.focus();
-});
-
-function mostrarError(texto, campo = null) {
-  mensaje.textContent = texto;
-  campoEmail.removeAttribute("aria-invalid");
-  campoPassword.removeAttribute("aria-invalid");
-  if (campo) {
-    campo.setAttribute("aria-invalid", "true");
-    campo.focus();
-  }
-}
 
 formulario.addEventListener("submit", async (evento) => {
   evento.preventDefault();
   mensaje.textContent = "";
-  campoEmail.removeAttribute("aria-invalid");
-  campoPassword.removeAttribute("aria-invalid");
-  const email = campoEmail.value.trim();
-  const password = campoPassword.value;
-
-  if (!email || !campoEmail.validity.valid) {
-    mostrarError("Escribe un correo electrónico válido.", campoEmail);
-    return;
-  }
-  if (!password) {
-    mostrarError("Escribe tu contraseña para continuar.", campoPassword);
-    return;
-  }
-
   boton.disabled = true;
-  boton.setAttribute("aria-busy", "true");
   boton.textContent = "Verificando...";
 
   const campos = new FormData(formulario);
@@ -318,12 +121,12 @@ formulario.addEventListener("submit", async (evento) => {
       headers: { "Content-Type": "application/json" },
       credentials: "same-origin",
       body: JSON.stringify({
-        email,
-        password
+        email: campos.get("email").trim(),
+        password: campos.get("password")
       })
     });
 
-    const resultado = await respuesta.json().catch(() => ({}));
+    const resultado = await respuesta.json();
 
     if (!respuesta.ok) {
       throw new Error(resultado.detail || "Correo o contraseña incorrectos.");
@@ -350,40 +153,23 @@ formulario.addEventListener("submit", async (evento) => {
   } catch (error) {
     mensaje.textContent = error.message || "No se pudo conectar con el servidor.";
     boton.disabled = false;
-    boton.removeAttribute("aria-busy");
     boton.textContent = "Iniciar sesión";
   }
 });
 </script>
 
 
-<button id="gato-guia" type="button" aria-label="Toca al gato para que te guíe a crear tu cuenta" aria-controls="gato-mensaje">
-  <img src="img/gato.webp" alt="" draggable="false">
-</button>
-<div id="gato-mensaje" role="status" aria-live="polite"></div>
+<button id="gato-asistente" type="button" aria-label="Pedir ayuda al gato guía" aria-controls="gato-ayuda" aria-expanded="false"><img src="img/gato.webp" alt=""></button>
+<div id="gato-ayuda" role="status" aria-live="polite">¡Hola! 🐾 ¿Creamos tu cuenta? Te muestro dónde comenzar.</div>
 <script>
 (() => {
-  const gato = document.getElementById("gato-guia");
-  const mensajeGato = document.getElementById("gato-mensaje");
-  const crearCuenta = document.querySelector('a.boton.secundario[href="registro.html"]');
-
-  if (!gato || !mensajeGato || !crearCuenta) return;
-
-  gato.addEventListener("click", () => {
-    mensajeGato.textContent = "¡Vamos! Toca «Crear cuenta» y empezamos juntos. 🐾";
-    mensajeGato.classList.add("visible");
-    gato.setAttribute("aria-expanded", "true");
-
-    const ancho = Math.min(250, window.innerWidth - 24);
-    const centro = gato.getBoundingClientRect().left + gato.offsetWidth / 2;
-    const izquierda = Math.max(12, Math.min(window.innerWidth - ancho - 12, centro - ancho / 2));
-    mensajeGato.style.left = izquierda + "px";
-
-    crearCuenta.classList.remove("gato-destacado");
-    void crearCuenta.offsetWidth;
-    crearCuenta.classList.add("gato-destacado");
-    crearCuenta.scrollIntoView({ behavior: "smooth", block: "center" });
-  });
+ const gato=document.getElementById("gato-asistente"), ayuda=document.getElementById("gato-ayuda");
+ const crear=document.querySelector('a.boton.secundario[href="registro.html"]');
+ if(!gato||!ayuda||!crear)return;
+ gato.addEventListener("click",()=>{
+  const abierto=ayuda.classList.toggle("visible"); gato.setAttribute("aria-expanded",String(abierto));
+  if(abierto){crear.id="gato-crear-cuenta";crear.scrollIntoView({behavior:"smooth",block:"center"});window.setTimeout(()=>crear.removeAttribute("id"),5000)}
+ });
 })();
 </script>
 
