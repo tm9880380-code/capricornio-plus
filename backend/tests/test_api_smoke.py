@@ -310,3 +310,13 @@ def test_learning_environment_page_is_served(client):
     assert response.status_code == 200
     assert "Mi entorno de aprendizaje" in response.text
     assert "JavaScript" in response.text
+
+ 
+def test_lesson_page_has_guided_resource_and_return_flow(client):
+    page = client.get("/leccion.html")
+    assert page.status_code == 200
+    assert "Prepárate para aprender en la fuente" in page.text
+    assert "Vuelve y comprobemos qué encontraste" in page.text
+    assert "No lo entendí; explícame de otra forma" in page.text
+    assert "Ya entendí · Ir a la práctica" in page.text
+    assert 'id="practica" hidden' in page.text

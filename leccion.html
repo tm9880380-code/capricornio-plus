@@ -5,8 +5,8 @@
 <header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi inicio</a><a href="modulo.html">Mi ruta</a><a href="recursos.html">Recursos</a><a href="login.html" id="salir">Salir</a></nav></header>
 <main class="contenedor"><p><a href="modulo.html">← Volver a mi ruta</a></p><h1 id="titulo">Cargando lección…</h1><p id="resumen"></p><div class="leccion-meta"><span class="etiqueta" id="area"></span><span class="etiqueta" id="modulo"></span></div>
 <section class="bloque"><h2>Aprende</h2><p id="explicacion"></p><h3>Ejemplo</h3><pre class="codigo" id="ejemplo"></pre><p id="recordatorio"></p></section>
-<section class="bloque recurso-guiado" aria-labelledby="titulo-recurso"><h2 id="titulo-recurso">Antes de practicar: consulta una fuente</h2><p id="guia-recurso">Esta lectura complementa la explicación. No necesitas leer todo el sitio: sigue la indicación y concéntrate en el concepto de esta lección.</p><div id="recursos-leccion" aria-live="polite">Buscando el apartado más útil…</div><p class="nota">Capricornio te guía hacia la fuente original. El contenido y sus condiciones pertenecen a sus autores.</p></section>
-<section class="bloque" id="practica"><h2>Ahora te toca a ti</h2><p id="consigna"></p><div id="zona-codigo" hidden><label for="codigo">Escribe tu código Python</label><textarea id="codigo" class="editor" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="# Escribe tu solución aquí"></textarea><p class="nota">El código se ejecuta en tu navegador dentro de un Web Worker. No se envía al servidor de Capricornio. Se requiere conexión para cargar el motor Python la primera vez.</p><button class="boton" id="ejecutar" type="button">Ejecutar y evaluar</button><div id="linea-error" class="nota" aria-live="polite"></div><pre id="salida" class="respuesta" hidden></pre></div><div id="zona-pregunta" hidden><p id="pregunta"></p><div id="opciones"></div></div><p id="estado" role="status" aria-live="polite"></p><div class="acciones"><a class="boton claro" href="recursos.html">Consultar recursos</a><a class="boton" href="modulo.html" id="continuar" hidden>Volver a la ruta</a></div></section>
+<section class="bloque recurso-guiado" aria-labelledby="titulo-recurso"><h2 id="titulo-recurso">1. Prepárate para aprender en la fuente</h2><p id="guia-recurso">Estamos seleccionando una lectura concreta para este objetivo.</p><div id="recursos-leccion" aria-live="polite">Buscando el recurso más adecuado…</div><div id="regreso-recurso" hidden><h3>2. Vuelve y comprobemos qué encontraste</h3><p id="instruccion-regreso"></p><label for="respuesta-lectura">Cuéntame con tus palabras qué entendiste (también puedes escribir tu duda).</label><textarea id="respuesta-lectura" rows="4" style="width:100%;padding:12px;border-radius:8px" placeholder="Lo que entendí fue…"></textarea><div class="acciones"><button class="boton" id="revisar-lectura" type="button">Revisar mi comprensión</button><button class="boton claro" id="necesito-ayuda" type="button">No lo entendí; explícame de otra forma</button></div><p id="tutor-respuesta" class="respuesta" role="status" aria-live="polite"></p><button class="boton" id="seguir-practica" type="button" hidden>Ya entendí · Ir a la práctica</button></div><p class="nota">El material pertenece a sus autores. Capricornio te prepara para leerlo y te acompaña al regresar.</p></section>
+<section class="bloque" id="practica" hidden><h2>Ahora te toca a ti</h2><p id="consigna"></p><div id="zona-codigo" hidden><label for="codigo">Escribe tu código Python</label><textarea id="codigo" class="editor" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="# Escribe tu solución aquí"></textarea><p class="nota">El código se ejecuta en tu navegador dentro de un Web Worker. No se envía al servidor de Capricornio. Se requiere conexión para cargar el motor Python la primera vez.</p><button class="boton" id="ejecutar" type="button">Ejecutar y evaluar</button><div id="linea-error" class="nota" aria-live="polite"></div><pre id="salida" class="respuesta" hidden></pre></div><div id="zona-pregunta" hidden><p id="pregunta"></p><div id="opciones"></div></div><p id="estado" role="status" aria-live="polite"></p><div class="acciones"><a class="boton claro" href="recursos.html">Consultar recursos</a><a class="boton" href="modulo.html" id="continuar" hidden>Volver a la ruta</a></div></section>
 </main><footer class="pie-pagina">Capricornio · Aprender, practicar y avanzar</footer>
 <script>
 (async()=>{
@@ -79,23 +79,43 @@ try{
  const l=lessonData.lesson;$("titulo").textContent=l.title;$("resumen").textContent=l.concept||"";$("area").textContent=lessonData.area;$("modulo").textContent=lessonData.module;$("explicacion").textContent=l.explanation||l.concept||"";$("ejemplo").textContent=l.example||"Consulta los recursos recomendados para ver ejemplos."; $("recordatorio").textContent=l.remember||"";$("consigna").textContent=l.task||"Responde la pregunta para comprobar lo aprendido.";
  if(l.type==="code"){$("zona-codigo").hidden=false;$("codigo").value="";$("ejecutar").addEventListener("click",runPython);}
  else{$("zona-pregunta").hidden=false;$("pregunta").textContent=l.question;for(let i=0;i<l.options.length;i++){const b=document.createElement("button");b.type="button";b.className="opcion-leccion";b.textContent=l.options[i];b.addEventListener("click",()=>answerQuiz(String.fromCharCode(97+i),b));$("opciones").append(b);}}
+
  const resourceData=await api("/api/resources/"+lessonData.area_id);
- $("guia-recurso").textContent="Mientras consultas la fuente, identifica cómo define este concepto: "+(l.concept||l.title)+". Después vuelve a Capricornio y aplica la idea en la práctica. Si el recurso está en inglés, empieza por el título y los términos destacados; no necesitas comprender cada palabra todavía.";
+ const resources=resourceData.resources||[];
+ const preferred=lessonData.lesson.resource_ids||[];
+ const ranked=preferred.map((name,i)=>({r:resources.find(x=>x.title===name),i})).filter(x=>x.r);
+ const ordered=(ranked.length?ranked:resources.map((r,i)=>({r,i}))).sort((a,b)=>(a.r.language==="es"?0:1)-(b.r.language==="es"?0:1)||a.i-b.i);
+ const selected=ordered[0]?.r;
  $("recursos-leccion").replaceChildren();
- const topicWords=(l.title+" "+(l.concept||"")).toLocaleLowerCase().split(/[^a-záéíóúñü]+/).filter(w=>w.length>3);
- const ranked=lessonData.lesson.resource_ids?.length
-  ? lessonData.lesson.resource_ids.map((name,i)=>({r:resourceData.resources.find(x=>x.title===name),i,score:10-i})).filter(x=>x.r)
-  : resourceData.resources.map((r,i)=>({r,i,score:topicWords.reduce((n,w)=>n+((r.title+" "+r.topic+" "+r.description).toLocaleLowerCase().includes(w)?1:0),0)})).sort((a,b)=>b.score-a.score||a.i-b.i);
- ranked.sort((a,b)=>(a.r.language==="es"?0:1)-(b.r.language==="es"?0:1)||b.score-a.score);
- ranked.splice(2);
- for(const {r} of ranked){
+ $("regreso-recurso").hidden=true;
+ if(!selected){
+  $("guia-recurso").textContent="Esta lección aún no tiene una fuente curada. Estudia la explicación y usa el acompañamiento contextual antes de practicar.";
+  $("regreso-recurso").hidden=false;
+  $("instruccion-regreso").textContent="No hay lectura externa asignada. Resume la idea principal de la explicación.";
+ }else{
   const card=document.createElement("article");card.className="recurso-link";
-  const title=document.createElement("strong");title.textContent=r.title;
-  const desc=document.createElement("p");desc.textContent=r.description;
-  const meta=document.createElement("small");meta.textContent=[r.type,r.level,r.language==="es"?"Español":r.language==="en"?"Inglés":"Idioma por confirmar"].filter(Boolean).join(" · ");
-  const a=document.createElement("a");a.href=r.url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Abrir fuente original ↗";
-  card.append(title,desc,meta,a);$("recursos-leccion").append(card);
+  const title=document.createElement("strong");title.textContent=selected.title;
+  const desc=document.createElement("p");desc.textContent=selected.description||"Fuente complementaria para esta competencia.";
+  const topic=document.createElement("p");topic.textContent="Tema que debes localizar: "+(selected.topic||l.title)+".";
+  const meta=document.createElement("small");meta.textContent=[selected.type,selected.level,selected.language==="es"?"Español":selected.language==="en"?"Inglés — te prepararé antes de abrirlo":"Idioma no verificado"].filter(Boolean).join(" · ");
+  const guide=document.createElement("p");
+  guide.textContent=selected.language==="en"?"Antes de abrir: esta fuente está en inglés. No necesitas traducirla completa. Busca el término indicado, lee su definición y observa el ejemplo. Si te bloqueas, vuelve y te lo explico en español.":"Antes de abrir: no leas toda la página. Localiza el apartado que define «"+(l.title||l.concept)+"», lee la definición y revisa el primer ejemplo relacionado.";
+  const terms=document.createElement("p");terms.textContent="Qué buscar: «"+(selected.topic||l.title)+"», «"+(l.title||"concepto")+"» y la definición del concepto. Usa Ctrl+F en computador o «Buscar en la página» en el celular. El enlace abre la fuente original; no inventamos un capítulo o ancla no verificado.";
+  const a=document.createElement("a");a.href=selected.url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Abrir esta lectura ↗";
+  a.addEventListener("click",()=>{$("regreso-recurso").hidden=false;$("instruccion-regreso").textContent="Localiza la definición de «"+(l.title||l.concept)+"» y un ejemplo. Vuelve a esta pestaña y explícalo con tus palabras. Si estaba en inglés, anota qué término te confundió.";});
+  card.append(title,desc,topic,meta,guide,terms,a);$("recursos-leccion").append(card);
+  $("guia-recurso").textContent="Vamos con una sola fuente para no saturarte. Primero te digo qué buscar y por qué; después vuelves aquí y revisamos juntos la idea.";
  }
+ function contextualHelp(){
+  const prompt=$("respuesta-lectura").value.trim();
+  $("tutor-respuesta").className="respuesta";
+  $("tutor-respuesta").textContent=(prompt?"Gracias por escribirlo. ":"")+"Vamos por partes: "+(l.explanation||l.concept||"")+". Ejemplo aplicado: "+(l.example||"")+". "+(l.reinforcement||l.remember||"")+" Esta guía usa el contenido de la lección; no es una IA general ni evalúa automáticamente tu texto. Si algo sigue sin encajar, señala la palabra o paso que te confundió.";
+  $("seguir-practica").hidden=false;
+ }
+ $("revisar-lectura").addEventListener("click",()=>{if(!$("respuesta-lectura").value.trim()){$("tutor-respuesta").textContent="Escribe una idea, aunque no estés segura, o pulsa «No lo entendí» para repasar.";return;}contextualHelp();});
+ $("necesito-ayuda").addEventListener("click",contextualHelp);
+ $("seguir-practica").addEventListener("click",()=>{$("practica").hidden=false;$("practica").scrollIntoView({behavior:"smooth",block:"start"});});
+
 }catch(e){$("titulo").textContent="No se pudo cargar la lección";$("estado").textContent=e.message;}
 $("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
 window.addEventListener("beforeunload",()=>{if(worker)worker.terminate();});
