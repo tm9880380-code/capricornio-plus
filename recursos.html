@@ -8,7 +8,12 @@ try{
 const [meR,diagR,currR]=await Promise.all([fetch("/api/me",{credentials:"same-origin"}),fetch("/api/diagnostic/latest",{credentials:"same-origin"}),fetch("/api/curriculum")]);
 if(!meR.ok||!currR.ok)throw new Error("Inicia sesión para consultar recursos.");
 const me=(await meR.json()).user,diag=diagR.ok?(await diagR.json()).diagnostic:null,curr=await currR.json();
-const aliases={"Desarrollo frontend":"frontend","Desarrollo backend":"backend","Python":"programacion","JavaScript":"programacion","Go":"programacion","Java":"programacion","C++":"programacion","Programación y lenguajes":"programacion"};
+const aliases={
+        "Desarrollo web":"frontend",
+        "Desarrollo de software y programación":"programacion",
+        "Fundamentos de programación":"programacion",
+        "Programación orientada a objetos":"programacion",
+        "Inteligencia artificial":"ia","Desarrollo frontend":"frontend","Desarrollo backend":"backend","Python":"programacion","JavaScript":"programacion","Go":"programacion","Java":"programacion","C++":"programacion","Programación y lenguajes":"programacion"};
 const chosen=diag?.learning_area||me.learning_goal;const current=curr.areas.find(a=>a.name===chosen)||curr.areas.find(a=>a.id===aliases[chosen]);
 for(const a of curr.areas){const op=document.createElement("option");op.value=a.id;op.textContent=a.name;$("area").append(op);}
 if(current)$("area").value=current.id;
