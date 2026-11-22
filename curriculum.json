@@ -172,73 +172,53 @@
       ],
       "resources": [
         {
-          "title": "OWASP Top 10",
+          "title": "OWASP Developer Guide · Fundamentos de seguridad",
           "type": "Documentación",
-          "description": "Riesgos de seguridad frecuentes en aplicaciones web.",
-          "url": "https://owasp.org/www-project-top-ten/",
-          "topic": "Seguridad web",
+          "description": "Explica confidencialidad, integridad, disponibilidad, autenticación, autorización y vulnerabilidades. Es una lectura directa para las primeras lecciones.",
+          "url": "https://devguide.owasp.org/es/02-foundations/01-security-fundamentals/",
+          "topic": "Fundamentos, tríada CIA y riesgos",
           "level": "Principiante",
           "source": "OWASP",
-          "language": "en"
+          "language": "es"
+        },
+        {
+          "title": "INCIBE · Guía de ciberseguridad para todos",
+          "type": "Guía PDF",
+          "description": "Material práctico en español sobre protección de dispositivos, cuentas, contraseñas, doble factor y navegación segura. Puede descargarse para estudiar sin conexión.",
+          "url": "https://www.incibe.es/sites/default/files/docs/senior/guia_ciberseguridad_para_todos.pdf",
+          "topic": "Dispositivos, contraseñas y autenticación",
+          "level": "Principiante",
+          "source": "INCIBE",
+          "language": "es"
+        },
+        {
+          "title": "Mapa abierto de ciberseguridad en español",
+          "type": "Mapa de aprendizaje",
+          "description": "Mapa comunitario de conceptos y rutas en español. Úsalo para explorar temas después de dominar los fundamentos; no sustituye una referencia técnica primaria.",
+          "url": "https://cbsdev.lat/",
+          "topic": "Rutas y vocabulario de ciberseguridad",
+          "level": "Principiante",
+          "source": "Comunidad CBSDev",
+          "language": "es"
+        },
+        {
+          "title": "OWASP Developer Guide · Desarrollo seguro",
+          "type": "Guía técnica",
+          "description": "Amplía los fundamentos hacia diseño, implementación y verificación de software seguro. Conviene después de conocer HTTP, aplicaciones y vulnerabilidades básicas.",
+          "url": "https://devguide.owasp.org/es/02-foundations/02-secure-development/",
+          "topic": "Desarrollo seguro y seguridad web",
+          "level": "Intermedio",
+          "source": "OWASP",
+          "language": "es"
         },
         {
           "title": "PortSwigger Web Security Academy",
-          "type": "Laboratorios",
-          "description": "Laboratorios gratuitos para aprender seguridad web de forma autorizada.",
-          "url": "https://portswigger.net/web-security",
-          "topic": "Seguridad web",
-          "level": "Principiante",
-          "source": "PortSwigger",
-          "language": "en"
-        },
-        {
-          "title": "OWASP WebGoat",
-          "type": "GitHub",
-          "description": "Aplicación deliberadamente vulnerable para prácticas en laboratorio local.",
-          "url": "https://github.com/WebGoat/WebGoat",
-          "topic": "Seguridad web",
-          "level": "Intermedio",
-          "source": "OWASP",
-          "language": "en"
-        },
-        {
-          "title": "OWASP Juice Shop",
-          "type": "GitHub",
-          "description": "Aplicación vulnerable para aprender seguridad web y APIs en un entorno controlado.",
-          "url": "https://github.com/juice-shop/juice-shop",
-          "topic": "Seguridad web",
-          "level": "Intermedio",
-          "source": "OWASP",
-          "language": "en"
-        },
-        {
-          "title": "OWASP Web Security Testing Guide",
-          "type": "Guía",
-          "description": "Metodología abierta para pruebas de seguridad de aplicaciones web.",
-          "url": "https://owasp.org/www-project-web-security-testing-guide/",
-          "topic": "Seguridad web",
-          "level": "Intermedio",
-          "source": "OWASP",
-          "language": "en"
-        },
-        {
-          "title": "PortSwigger TV",
-          "type": "YouTube",
-          "description": "Charlas y demostraciones de seguridad web.",
-          "url": "https://www.youtube.com/@PortSwiggerTV",
-          "topic": "Seguridad web",
+          "type": "Laboratorios gratuitos",
+          "description": "Laboratorios interactivos para practicar seguridad web en entornos preparados. La plataforma está principalmente en inglés; se recomienda después de aprender HTTP y conceptos web.",
+          "url": "https://portswigger.net/web-security/learning-path",
+          "topic": "Seguridad de aplicaciones web",
           "level": "Intermedio",
           "source": "PortSwigger",
-          "language": "en"
-        },
-        {
-          "title": "picoCTF",
-          "type": "Laboratorios",
-          "description": "Retos educativos de ciberseguridad y CTF para aprender en entornos controlados.",
-          "url": "https://picoctf.org/",
-          "topic": "CTF",
-          "level": "Principiante",
-          "source": "Carnegie Mellon University",
           "language": "en"
         }
       ]
@@ -370,74 +350,54 @@
       ],
       "resources": [
         {
-          "title": "MDN: aprender desarrollo web",
-          "type": "Documentación",
-          "description": "Ruta de aprendizaje de HTML, CSS y JavaScript.",
+          "title": "MDN · Aprende desarrollo web",
+          "type": "Ruta guiada",
+          "description": "Ruta en español creada para principiantes. Empieza por Cómo empezar con la web y avanza por HTML, CSS y JavaScript en orden.",
           "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
-          "topic": "Frontend",
+          "topic": "Fundamentos web y ruta completa",
           "level": "Principiante",
           "source": "MDN",
           "language": "es"
         },
         {
-          "title": "MDN HTML",
-          "type": "Documentación",
-          "description": "Referencia y ejemplos de HTML.",
-          "url": "https://developer.mozilla.org/es/docs/Web/HTML",
-          "topic": "HTML",
+          "title": "MDN · Estructurando la web con HTML",
+          "type": "Documentación guiada",
+          "description": "Aprende a organizar contenido con elementos semánticos, enlaces, listas, imágenes y formularios. No exige experiencia previa en HTML.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content",
+          "topic": "HTML semántico",
           "level": "Principiante",
           "source": "MDN",
           "language": "es"
         },
         {
-          "title": "MDN CSS",
-          "type": "Documentación",
-          "description": "Guía de estilos, layout y diseño adaptable.",
-          "url": "https://developer.mozilla.org/es/docs/Web/CSS",
-          "topic": "CSS",
+          "title": "MDN · Primeros pasos con CSS",
+          "type": "Tutorial práctico",
+          "description": "Aplica estilos a un documento HTML y aprende selectores y reglas básicas mediante un ejemplo práctico.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development/Core/Styling_basics/Getting_started",
+          "topic": "CSS y modelo de caja",
           "level": "Principiante",
           "source": "MDN",
           "language": "es"
         },
         {
-          "title": "MDN JavaScript",
-          "type": "Documentación",
-          "description": "Guía del lenguaje JavaScript y sus conceptos principales.",
-          "url": "https://developer.mozilla.org/es/docs/Web/JavaScript/Guide",
-          "topic": "JavaScript",
+          "title": "MDN · Primeros pasos con JavaScript",
+          "type": "Tutorial guiado",
+          "description": "Introduce qué hace JavaScript y practica variables, cadenas, números y arreglos. Sigue después con condicionales, bucles y funciones.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development/Core/Scripting",
+          "topic": "JavaScript y DOM",
           "level": "Principiante",
           "source": "MDN",
           "language": "es"
         },
         {
-          "title": "The Odin Project",
-          "type": "Currículo",
-          "description": "Currículo abierto y basado en proyectos para desarrollo web.",
-          "url": "https://www.theodinproject.com/",
-          "topic": "Frontend",
-          "level": "Principiante",
-          "source": "The Odin Project",
-          "language": "en"
-        },
-        {
-          "title": "MDN Learning Area",
-          "type": "GitHub",
-          "description": "Ejemplos de código que acompañan los módulos de MDN.",
-          "url": "https://github.com/mdn/learning-area",
-          "topic": "HTML, CSS y JavaScript",
-          "level": "Principiante",
+          "title": "MDN · Accesibilidad",
+          "type": "Guía técnica",
+          "description": "Explica cómo diseñar interfaces que puedan usar personas con distintas capacidades y tecnologías de asistencia.",
+          "url": "https://developer.mozilla.org/es/docs/Web/Accessibility",
+          "topic": "Accesibilidad web",
+          "level": "Intermedio",
           "source": "MDN",
-          "language": "en"
-        },
-        {
-          "title": "Kevin Powell",
-          "type": "YouTube",
-          "description": "Tutoriales de CSS, layouts y diseño adaptable.",
-          "url": "https://www.youtube.com/@KevinPowell",
-          "topic": "CSS",
-          "level": "Principiante",
-          "source": "Kevin Powell",
-          "language": "en"
+          "language": "es"
         }
       ]
     },
@@ -568,74 +528,54 @@
       ],
       "resources": [
         {
-          "title": "FastAPI Tutorial",
-          "type": "Documentación",
-          "description": "Construye APIs con Python paso a paso.",
+          "title": "FastAPI · Primeros pasos",
+          "type": "Documentación oficial",
+          "description": "Crea tu primera API y observa cómo se generan las rutas y la documentación interactiva. Requiere fundamentos básicos de Python.",
+          "url": "https://fastapi.tiangolo.com/es/tutorial/first-steps/",
+          "topic": "HTTP, rutas y APIs",
+          "level": "Principiante",
+          "source": "FastAPI",
+          "language": "es"
+        },
+        {
+          "title": "Django · Tutorial oficial, parte 1",
+          "type": "Tutorial oficial",
+          "description": "Construye una aplicación paso a paso y comprende cómo se conectan solicitudes, respuestas, modelos y vistas.",
+          "url": "https://docs.djangoproject.com/es/5.2/intro/tutorial01/",
+          "topic": "Backend, solicitudes y respuestas",
+          "level": "Principiante",
+          "source": "Django",
+          "language": "es"
+        },
+        {
+          "title": "MDN · Introducción a HTTP",
+          "type": "Documentación web",
+          "description": "Comprende el protocolo que permite que clientes y servidores intercambien solicitudes y respuestas. Es una base para cualquier API.",
+          "url": "https://developer.mozilla.org/es/docs/Web/HTTP/Overview",
+          "topic": "HTTP y APIs",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "MDN · Introducción al desarrollo del lado del servidor",
+          "type": "Tutorial guiado",
+          "description": "Explica qué hace el backend, cómo trabaja un servidor y qué papel tienen las bases de datos y los frameworks.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development/Extensions/Server-side/First_steps",
+          "topic": "Fundamentos backend",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "FastAPI · Tutorial completo",
+          "type": "Documentación oficial",
+          "description": "Referencia principal para validación, dependencias, seguridad, bases de datos y pruebas. La documentación puede alternar secciones traducidas y originales.",
           "url": "https://fastapi.tiangolo.com/tutorial/",
-          "topic": "Python",
-          "level": "Principiante",
-          "source": "FastAPI",
-          "language": "en"
-        },
-        {
-          "title": "Django Tutorial",
-          "type": "Documentación",
-          "description": "Primeros pasos con aplicaciones web Django.",
-          "url": "https://docs.djangoproject.com/en/stable/intro/tutorial01/",
-          "topic": "Python",
-          "level": "Principiante",
-          "source": "Django",
-          "language": "en"
-        },
-        {
-          "title": "Node.js Learn",
-          "type": "Documentación",
-          "description": "Conceptos y guías para desarrollo backend con Node.js.",
-          "url": "https://nodejs.org/en/learn",
-          "topic": "JavaScript",
-          "level": "Principiante",
-          "source": "OpenJS",
-          "language": "en"
-        },
-        {
-          "title": "FastAPI GitHub",
-          "type": "GitHub",
-          "description": "Código fuente del framework FastAPI.",
-          "url": "https://github.com/fastapi/fastapi",
-          "topic": "Python",
+          "topic": "APIs, validación y pruebas",
           "level": "Intermedio",
           "source": "FastAPI",
-          "language": "en"
-        },
-        {
-          "title": "Postman Learning Center",
-          "type": "Documentación",
-          "description": "Aprende HTTP, APIs y pruebas de servicios.",
-          "url": "https://learning.postman.com/docs/",
-          "topic": "APIs",
-          "level": "Principiante",
-          "source": "Postman",
-          "language": "en"
-        },
-        {
-          "title": "freeCodeCamp",
-          "type": "YouTube",
-          "description": "Cursos extensos sobre APIs, Node.js y backend.",
-          "url": "https://www.youtube.com/@freecodecamp",
-          "topic": "Backend",
-          "level": "Principiante",
-          "source": "freeCodeCamp",
-          "language": "en"
-        },
-        {
-          "title": "Django GitHub",
-          "type": "GitHub",
-          "description": "Código fuente y ejemplos del framework Django.",
-          "url": "https://github.com/django/django",
-          "topic": "Python",
-          "level": "Intermedio",
-          "source": "Django",
-          "language": "en"
+          "language": "es"
         }
       ]
     },
@@ -766,71 +706,51 @@
       ],
       "resources": [
         {
-          "title": "Pandas Getting Started",
-          "type": "Documentación",
-          "description": "Primeros pasos para leer, limpiar y analizar datos tabulares.",
-          "url": "https://pandas.pydata.org/docs/getting_started/",
-          "topic": "Python y pandas",
+          "title": "datos.gob.es · Guía de análisis exploratorio de datos con Python",
+          "type": "Guía y notebook",
+          "description": "Guía práctica en español para explorar datos, detectar valores atípicos y comprender la calidad antes de analizar. Incluye materiales descargables y código reproducible.",
+          "url": "https://datos.gob.es/es/conocimiento/guia-practica-de-introduccion-al-analisis-exploratorio-de-datos-en-python",
+          "topic": "Exploración y limpieza de datos",
           "level": "Principiante",
-          "source": "pandas",
-          "language": "en"
+          "source": "Gobierno de España · datos.gob.es",
+          "language": "es"
         },
         {
-          "title": "Kaggle Learn",
-          "type": "Cursos gratuitos",
-          "description": "Microcursos de Python, pandas, visualización y análisis de datos.",
-          "url": "https://www.kaggle.com/learn",
-          "topic": "Datos",
+          "title": "UNAM · Python para análisis de datos",
+          "type": "Programa académico",
+          "description": "Temario universitario que recorre pandas, lectura de archivos, exploración, filtrado y transformaciones. Úsalo como guía de temas y ejercicios.",
+          "url": "https://educacioncontinua.ifc.unam.mx/ediciones/4/programa/",
+          "topic": "Python, pandas y análisis",
           "level": "Principiante",
-          "source": "Kaggle",
-          "language": "en"
+          "source": "Universidad Nacional Autónoma de México",
+          "language": "es"
         },
         {
-          "title": "pandas GitHub",
-          "type": "GitHub",
-          "description": "Código fuente y ejemplos de la biblioteca pandas.",
-          "url": "https://github.com/pandas-dev/pandas",
-          "topic": "Python",
+          "title": "pandas · Getting started",
+          "type": "Documentación oficial",
+          "description": "Tutoriales oficiales para leer tablas, seleccionar datos, crear columnas y resumir información. La documentación está en inglés; úsala después de comprender los conceptos en español.",
+          "url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html",
+          "topic": "Pandas y manipulación de datos",
           "level": "Intermedio",
           "source": "pandas",
           "language": "en"
         },
         {
-          "title": "NumPy Learn",
-          "type": "Documentación",
-          "description": "Fundamentos de arreglos numéricos en Python.",
-          "url": "https://numpy.org/learn/",
-          "topic": "Python",
+          "title": "Kaggle Learn · Microcursos",
+          "type": "Práctica guiada",
+          "description": "Ejercicios cortos y gratuitos para practicar Python, pandas, visualización y análisis con datos reales. Interfaz y materiales principalmente en inglés.",
+          "url": "https://www.kaggle.com/learn",
+          "topic": "Práctica de análisis de datos",
           "level": "Principiante",
-          "source": "NumPy",
+          "source": "Kaggle",
           "language": "en"
         },
         {
-          "title": "Alex The Analyst",
-          "type": "YouTube",
-          "description": "Tutoriales de SQL, análisis y proyectos de datos.",
-          "url": "https://www.youtube.com/@AlexTheAnalyst",
-          "topic": "SQL y análisis",
-          "level": "Principiante",
-          "source": "Alex The Analyst",
-          "language": "en"
-        },
-        {
-          "title": "Rob Mulla",
-          "type": "YouTube",
-          "description": "Tutoriales prácticos de pandas y análisis de datos.",
-          "url": "https://www.youtube.com/@RobMulla",
-          "topic": "Python y pandas",
-          "level": "Principiante",
-          "source": "Rob Mulla",
-          "language": "en"
-        },
-        {
-          "title": "SQLBolt",
-          "type": "Práctica",
-          "description": "Lecciones interactivas de SQL para consultar datos.",
+          "title": "SQLBolt · Lecciones interactivas de SQL",
+          "type": "Práctica interactiva",
+          "description": "Aprende consultas SQL en pequeños ejercicios dentro del navegador. El material está en inglés; úsalo gradualmente como lectura técnica.",
           "url": "https://sqlbolt.com/",
-          "topic": "SQL",
+          "topic": "Consultas SQL",
           "level": "Principiante",
           "source": "SQLBolt",
           "language": "en"
@@ -964,73 +884,53 @@
       ],
       "resources": [
         {
-          "title": "Hugging Face Learn",
-          "type": "Cursos gratuitos",
-          "description": "Rutas de NLP, modelos y herramientas de IA.",
+          "title": "Google · Curso intensivo de aprendizaje automático",
+          "type": "Curso interactivo",
+          "description": "Curso gratuito en español con visualizaciones y ejercicios. Recorre modelos, datos, métricas y sistemas de aprendizaje automático; respeta los requisitos previos indicados en cada módulo.",
+          "url": "https://developers.google.com/machine-learning/crash-course?hl=es-419",
+          "topic": "Fundamentos de ML y evaluación",
+          "level": "Principiante",
+          "source": "Google for Developers",
+          "language": "es"
+        },
+        {
+          "title": "Google · Introducción a los modelos de lenguaje grandes",
+          "type": "Lección guiada",
+          "description": "Módulo del curso de Google para entender tokens, Transformers y la predicción de texto antes de estudiar modelos más complejos.",
+          "url": "https://developers.google.com/machine-learning/crash-course/llm?hl=es-419",
+          "topic": "Modelos de lenguaje",
+          "level": "Intermedio",
+          "source": "Google for Developers",
+          "language": "es"
+        },
+        {
+          "title": "Microsoft · IA para principiantes",
+          "type": "Currículo abierto",
+          "description": "Currículo gratuito con lecciones y laboratorios para conocer conceptos de IA. Parte del material está en inglés; consulta las traducciones disponibles y avanza con fundamentos de programación.",
+          "url": "https://github.com/microsoft/AI-For-Beginners",
+          "topic": "Fundamentos de inteligencia artificial",
+          "level": "Principiante",
+          "source": "Microsoft",
+          "language": "en"
+        },
+        {
+          "title": "Hugging Face · Learn",
+          "type": "Cursos y documentación",
+          "description": "Rutas sobre modelos, NLP y herramientas de IA generativa. El material técnico está principalmente en inglés y conviene abordarlo después de los fundamentos.",
           "url": "https://huggingface.co/learn",
-          "topic": "IA y NLP",
-          "level": "Intermedio",
-          "source": "Hugging Face",
-          "language": "en"
-        },
-        {
-          "title": "PyTorch Tutorials",
-          "type": "Documentación",
-          "description": "Tutoriales oficiales de aprendizaje profundo.",
-          "url": "https://pytorch.org/tutorials/",
-          "topic": "Python",
-          "level": "Intermedio",
-          "source": "PyTorch",
-          "language": "en"
-        },
-        {
-          "title": "scikit-learn User Guide",
-          "type": "Documentación",
-          "description": "Aprendizaje supervisado, no supervisado, métricas y evaluación.",
-          "url": "https://scikit-learn.org/stable/user_guide.html",
-          "topic": "Machine learning",
-          "level": "Intermedio",
-          "source": "scikit-learn",
-          "language": "en"
-        },
-        {
-          "title": "Transformers GitHub",
-          "type": "GitHub",
-          "description": "Biblioteca abierta para trabajar con modelos de lenguaje.",
-          "url": "https://github.com/huggingface/transformers",
-          "topic": "Python",
-          "level": "Avanzado",
-          "source": "Hugging Face",
-          "language": "en"
-        },
-        {
-          "title": "Hugging Face",
-          "type": "YouTube",
-          "description": "Charlas y tutoriales sobre modelos y herramientas de IA.",
-          "url": "https://www.youtube.com/@HuggingFace",
-          "topic": "IA y NLP",
+          "topic": "NLP, Transformers y LLM",
           "level": "Intermedio",
           "source": "Hugging Face",
           "language": "en"
         },
         {
           "title": "StatQuest",
-          "type": "YouTube",
-          "description": "Explicaciones visuales de estadística y machine learning.",
+          "type": "Vídeos educativos",
+          "description": "Explicaciones visuales de estadística y aprendizaje automático. El canal está en inglés; puede servir como segunda explicación cuando ya se conozcan los términos básicos.",
           "url": "https://www.youtube.com/@statquest",
           "topic": "Estadística y ML",
           "level": "Principiante",
           "source": "StatQuest",
-          "language": "en"
-        },
-        {
-          "title": "fast.ai",
-          "type": "Curso gratuito",
-          "description": "Curso práctico de deep learning con materiales abiertos.",
-          "url": "https://course.fast.ai/",
-          "topic": "Deep learning",
-          "level": "Intermedio",
-          "source": "fast.ai",
           "language": "en"
         }
       ]
@@ -1162,73 +1062,53 @@
       ],
       "resources": [
         {
-          "title": "PostgreSQL Tutorial",
-          "type": "Documentación",
-          "description": "Tutorial oficial de bases de datos relacionales.",
-          "url": "https://www.postgresql.org/docs/current/tutorial.html",
-          "topic": "SQL",
+          "title": "PostgreSQL Wiki · Material en español",
+          "type": "Documentación comunitaria",
+          "description": "Índice de guías, manuales y artículos de PostgreSQL en español. Úsalo para estudiar el modelo relacional y luego consulta el manual oficial de la versión utilizada.",
+          "url": "https://wiki.postgresql.org/wiki/Main_Page/es",
+          "topic": "Bases relacionales y PostgreSQL",
           "level": "Principiante",
-          "source": "PostgreSQL",
-          "language": "en"
+          "source": "Comunidad PostgreSQL",
+          "language": "es"
         },
         {
-          "title": "SQLBolt",
-          "type": "Práctica",
-          "description": "Lecciones interactivas de SQL.",
+          "title": "MongoDB · Comenzando con la base de datos",
+          "type": "Tutorial oficial",
+          "description": "Primer contacto práctico con bases de datos documentales. Incluye un laboratorio interactivo breve para insertar, consultar y borrar documentos.",
+          "url": "https://www.mongodb.com/es/docs/manual/tutorial/getting-started/",
+          "topic": "Bases de datos NoSQL y CRUD",
+          "level": "Principiante",
+          "source": "MongoDB",
+          "language": "es"
+        },
+        {
+          "title": "MongoDB · Desarrollo y operaciones CRUD",
+          "type": "Documentación oficial",
+          "description": "Explica cómo conectarse, crear, leer, actualizar y eliminar documentos, y cómo modelar datos para una aplicación.",
+          "url": "https://www.mongodb.com/es/docs/development/",
+          "topic": "Modelado y operaciones CRUD",
+          "level": "Principiante",
+          "source": "MongoDB",
+          "language": "es"
+        },
+        {
+          "title": "SQLBolt · Aprende SQL con ejercicios",
+          "type": "Práctica interactiva",
+          "description": "Ejercicios progresivos de SELECT, filtros y relaciones. Está en inglés; úsalo como práctica de lectura técnica después de estudiar SQL en español.",
           "url": "https://sqlbolt.com/",
-          "topic": "SQL",
+          "topic": "SQL, SELECT y JOIN",
           "level": "Principiante",
           "source": "SQLBolt",
           "language": "en"
         },
         {
-          "title": "SQLite Documentation",
-          "type": "Documentación",
-          "description": "Guía oficial de SQLite, SQL y administración.",
-          "url": "https://www.sqlite.org/docs.html",
-          "topic": "SQL",
-          "level": "Principiante",
-          "source": "SQLite",
-          "language": "en"
-        },
-        {
-          "title": "PostgreSQL GitHub",
-          "type": "GitHub",
-          "description": "Código fuente del motor PostgreSQL.",
-          "url": "https://github.com/postgres/postgres",
-          "topic": "C",
-          "level": "Avanzado",
+          "title": "PostgreSQL · Tutorial oficial",
+          "type": "Documentación oficial",
+          "description": "Tutorial práctico del sistema relacional PostgreSQL. El manual consultado está en inglés y sirve para contrastar conceptos y aprender vocabulario técnico.",
+          "url": "https://www.postgresql.org/docs/current/tutorial.html",
+          "topic": "SQL y bases relacionales",
+          "level": "Intermedio",
           "source": "PostgreSQL",
-          "language": "en"
-        },
-        {
-          "title": "SQLBolt GitHub",
-          "type": "GitHub",
-          "description": "Código fuente de las lecciones interactivas de SQL.",
-          "url": "https://github.com/joewalnes/sql-bolt",
-          "topic": "SQL",
-          "level": "Principiante",
-          "source": "SQLBolt",
-          "language": "en"
-        },
-        {
-          "title": "freeCodeCamp",
-          "type": "YouTube",
-          "description": "Tutoriales de SQL y fundamentos de bases de datos.",
-          "url": "https://www.youtube.com/@freecodecamp",
-          "topic": "SQL",
-          "level": "Principiante",
-          "source": "freeCodeCamp",
-          "language": "en"
-        },
-        {
-          "title": "PostgreSQL Exercises",
-          "type": "Práctica",
-          "description": "Ejercicios prácticos para aprender SQL con PostgreSQL.",
-          "url": "https://pgexercises.com/",
-          "topic": "SQL",
-          "level": "Principiante",
-          "source": "PostgreSQL Exercises",
           "language": "en"
         }
       ]
@@ -1360,73 +1240,53 @@
       ],
       "resources": [
         {
-          "title": "Ubuntu: línea de comandos",
-          "type": "Tutorial",
-          "description": "Introducción a la terminal y comandos básicos.",
-          "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
-          "topic": "Linux",
+          "title": "Cisco Skills for All · Curso de redes",
+          "type": "Curso gratuito",
+          "description": "Curso introductorio en español sobre cómo funcionan las redes, comunicación entre computadores y conceptos esenciales. Requiere conocimientos elementales.",
+          "url": "https://skillsforall.examscisco.com/courses/curso-de-redes/",
+          "topic": "Fundamentos de redes",
           "level": "Principiante",
-          "source": "Ubuntu",
-          "language": "en"
+          "source": "Cisco Skills for All",
+          "language": "es"
+        },
+        {
+          "title": "Cisco Skills for All · Dispositivos de red y configuración inicial",
+          "type": "Curso gratuito",
+          "description": "Practica conceptos de dispositivos, direccionamiento IP, configuración básica y diagnóstico de conectividad. Incluye español y es gratuito.",
+          "url": "https://skillsforall.examscisco.com/producto/dispositivos-de-red-y-configuracion-inicial/",
+          "topic": "Dispositivos, IP y conectividad",
+          "level": "Principiante",
+          "source": "Cisco Skills for All",
+          "language": "es"
+        },
+        {
+          "title": "Red Hat · Introducción a Linux",
+          "type": "Documentación guiada",
+          "description": "Material de inicio en español para conocer el entorno Linux y sus herramientas. Comprueba la versión de la documentación según tu sistema.",
+          "url": "https://docs.redhat.com/es/documentation/red_hat_enterprise_linux/9/html/getting_started_with_linux/index",
+          "topic": "Linux y sistemas operativos",
+          "level": "Principiante",
+          "source": "Red Hat",
+          "language": "es"
         },
         {
           "title": "Linux Journey",
-          "type": "Tutorial",
-          "description": "Recorrido gratuito por fundamentos de Linux.",
+          "type": "Tutorial interactivo",
+          "description": "Recorrido por línea de comandos, sistema de archivos, permisos, procesos y redes. El contenido principal está en inglés; introdúcelo de forma gradual.",
           "url": "https://linuxjourney.com/",
-          "topic": "Linux",
+          "topic": "Linux y administración de sistemas",
           "level": "Principiante",
           "source": "Linux Journey",
           "language": "en"
         },
         {
-          "title": "Cisco Skills for All",
-          "type": "Cursos gratuitos",
-          "description": "Cursos introductorios de redes y ciberseguridad.",
-          "url": "https://skillsforall.com/",
-          "topic": "Redes",
-          "level": "Principiante",
-          "source": "Cisco",
-          "language": "en"
-        },
-        {
-          "title": "Linux Journey GitHub",
-          "type": "GitHub",
-          "description": "Proyecto abierto de materiales para aprender Linux.",
-          "url": "https://github.com/cindyqiu/linuxjourney",
-          "topic": "Linux",
-          "level": "Principiante",
-          "source": "Linux Journey",
-          "language": "en"
-        },
-        {
-          "title": "Wireshark User Guide",
-          "type": "Documentación",
-          "description": "Guía para comprender y analizar tráfico de red.",
+          "title": "Wireshark · User Guide",
+          "type": "Manual técnico",
+          "description": "Referencia para capturar y analizar tráfico de red. Está en inglés y es de nivel intermedio: úsala después de estudiar protocolos y direccionamiento.",
           "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
-          "topic": "Redes",
+          "topic": "Análisis de tráfico de red",
           "level": "Intermedio",
           "source": "Wireshark",
-          "language": "en"
-        },
-        {
-          "title": "NetworkChuck",
-          "type": "YouTube",
-          "description": "Introducciones a redes, Linux y fundamentos de seguridad.",
-          "url": "https://www.youtube.com/@NetworkChuck",
-          "topic": "Redes y Linux",
-          "level": "Principiante",
-          "source": "NetworkChuck",
-          "language": "en"
-        },
-        {
-          "title": "Cisco Networking Academy",
-          "type": "Cursos",
-          "description": "Material educativo y rutas de formación en redes.",
-          "url": "https://www.netacad.com/",
-          "topic": "Redes",
-          "level": "Principiante",
-          "source": "Cisco",
           "language": "en"
         }
       ]
@@ -1588,83 +1448,53 @@
       ],
       "resources": [
         {
-          "title": "Tutorial oficial de Python",
-          "type": "Documentación",
-          "description": "Tutorial oficial del lenguaje Python en español.",
+          "title": "Python España · Aprende Python",
+          "type": "Guía de orientación",
+          "description": "Reúne recursos para quienes empiezan a programar, incluidos tutoriales en español y material para aprender lógica antes de profundizar en un lenguaje.",
+          "url": "https://es.python.org/aprende-python/",
+          "topic": "Lógica y primeros pasos",
+          "level": "Principiante absoluto",
+          "source": "Python España",
+          "language": "es"
+        },
+        {
+          "title": "PSeInt · Pseudocódigo y algoritmos",
+          "type": "Herramienta educativa",
+          "description": "Permite practicar algoritmos y lógica con pseudocódigo en español antes de preocuparse por la sintaxis de un lenguaje real.",
+          "url": "https://pseint.sourceforge.net/",
+          "topic": "Algoritmos, variables y condiciones",
+          "level": "Principiante absoluto",
+          "source": "PSeInt",
+          "language": "es"
+        },
+        {
+          "title": "Python · Tutorial oficial en español",
+          "type": "Documentación oficial",
+          "description": "Referencia guiada para aprender sintaxis, estructuras de datos, funciones y módulos. Advierte que está pensado para quien ya conoce algo de programación.",
           "url": "https://docs.python.org/es/3/tutorial/",
-          "topic": "Python",
-          "level": "Principiante",
+          "topic": "Python y fundamentos del lenguaje",
+          "level": "Principiante con bases",
           "source": "Python Software Foundation",
           "language": "es"
         },
         {
-          "title": "The Go Tour",
-          "type": "Práctica",
-          "description": "Introducción interactiva al lenguaje Go.",
-          "url": "https://go.dev/tour/",
-          "topic": "Go",
+          "title": "freeCodeCamp Español",
+          "type": "Vídeos y cursos gratuitos",
+          "description": "Cursos extensos en español para reforzar lógica, Python, JavaScript y desarrollo web. Selecciona el curso según los prerrequisitos de la lección.",
+          "url": "https://www.youtube.com/@freecodecampespanol",
+          "topic": "Programación y proyectos",
           "level": "Principiante",
-          "source": "Go",
-          "language": "en"
+          "source": "freeCodeCamp Español",
+          "language": "es"
         },
         {
-          "title": "Dev.java Learn",
-          "type": "Documentación",
-          "description": "Rutas oficiales para aprender Java.",
-          "url": "https://dev.java/learn/",
-          "topic": "Java",
-          "level": "Principiante",
-          "source": "OpenJDK",
-          "language": "en"
-        },
-        {
-          "title": "C++ Learn",
-          "type": "Documentación",
-          "description": "Material de aprendizaje y referencia de C++.",
-          "url": "https://learn.microsoft.com/en-us/cpp/?view=msvc-170",
-          "topic": "C++",
-          "level": "Principiante",
-          "source": "Microsoft",
-          "language": "en"
-        },
-        {
-          "title": "CS50",
-          "type": "Curso gratuito",
-          "description": "Introducción universitaria a ciencias de la computación.",
+          "title": "CS50x · Harvard",
+          "type": "Curso universitario abierto",
+          "description": "Introducción rigurosa a ciencias de la computación, algoritmos y resolución de problemas. El curso está principalmente en inglés; subtítulos y materiales de apoyo pueden variar por edición.",
           "url": "https://cs50.harvard.edu/x/",
-          "topic": "Fundamentos",
-          "level": "Principiante",
-          "source": "Harvard",
-          "language": "en"
-        },
-        {
-          "title": "The Algorithms",
-          "type": "GitHub",
-          "description": "Implementaciones educativas de algoritmos en distintos lenguajes.",
-          "url": "https://github.com/TheAlgorithms",
-          "topic": "Algoritmos",
+          "topic": "Fundamentos de ciencias de computación",
           "level": "Intermedio",
-          "source": "The Algorithms",
-          "language": "en"
-        },
-        {
-          "title": "Corey Schafer",
-          "type": "YouTube",
-          "description": "Tutoriales de Python con ejemplos prácticos.",
-          "url": "https://www.youtube.com/@coreyms",
-          "topic": "Python",
-          "level": "Principiante",
-          "source": "Corey Schafer",
-          "language": "en"
-        },
-        {
-          "title": "freeCodeCamp",
-          "type": "YouTube",
-          "description": "Cursos gratuitos de programación y fundamentos.",
-          "url": "https://www.youtube.com/@freecodecamp",
-          "topic": "Varios lenguajes",
-          "level": "Principiante",
-          "source": "freeCodeCamp",
+          "source": "Harvard University",
           "language": "en"
         }
       ]
