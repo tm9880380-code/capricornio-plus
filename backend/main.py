@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from fastapi import FastAPI, HTTPException, Response as FastAPIResponse, Cookie, Depends, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel, Field
 from pwdlib import PasswordHash
 
@@ -1289,7 +1289,7 @@ def home():
 
 
 @app.get("/{page}.html", include_in_schema=False)
-def serve_page(page: str):
+def serve_page(page: str, capricornio_session: str | None = Cookie(default=None)):
     allowed = {
         "index", "registro", "login", "diagnostico",
         "plan", "modulo", "leccion", "practica", "suscripciones", "recursos",
@@ -1297,6 +1297,15 @@ def serve_page(page: str):
     }
     if page not in allowed:
         raise HTTPException(status_code=404, detail="Página no encontrada.")
+
+    # Solo la bienvenida, el registro y el formulario de acceso son públicos.
+    # Las páginas de estudio no deben entregar HTML privado a una sesión anónima.
+    if page not in {"index", "registro", "login"}:
+        try:
+            current_user(capricornio_session)
+        except HTTPException:
+            return RedirectResponse(url="/login.html?motivo=sesion", status_code=303)
+
     return FileResponse(BASE_DIR / ("login.html" if page == "index" else f"{page}.html"))
 
 
