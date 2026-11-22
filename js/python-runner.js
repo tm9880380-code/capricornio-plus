@@ -3,6 +3,9 @@ async function start(){
   if(runtime)return runtime;
   importScripts("https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js");
   runtime=await loadPyodide({indexURL:"https://cdn.jsdelivr.net/pyodide/v0.27.7/full/"});
+  self.fetch=()=>Promise.reject(new Error("El acceso a internet está desactivado durante los ejercicios."));
+  self.importScripts=()=>{throw new Error("No se permite cargar scripts externos desde los ejercicios.");};
+  self.XMLHttpRequest=undefined;
   return runtime;
 }
 self.onmessage=async event=>{
@@ -13,7 +16,7 @@ self.onmessage=async event=>{
     await py.runPythonAsync(code);
     const stdout=py.runPython("_cap_out.getvalue()");
     const stderr=py.runPython("_cap_err.getvalue()");
-    self.postMessage({id,ok:true,stdout:String(stdout),stderr:String(stderr)});
+    self.postMessage({id,ok:true,stdout:String(stdout).slice(0,10000),stderr:String(stderr).slice(0,4000)});
   }catch(error){
     self.postMessage({id,ok:false,error:String(error)});
   }
