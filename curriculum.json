@@ -1683,82 +1683,86 @@
             {
               "id": "fundamentos-variables",
               "title": "Variables y tipos de datos",
-              "concept": "Módulo 1 · Fundamentos",
-              "explanation": "Una variable es un nombre que usamos para guardar un dato y reutilizarlo. En Python los tipos básicos incluyen int, float, str y bool.",
-              "example": "El signo = asigna un valor; no significa igualdad matemática.",
-              "task": "edad = 24\nprint(edad)",
-              "question": "Crea una variable edad con valor 24 y muestra su contenido.",
-              "options": "¿Qué operador asigna un valor a una variable?",
-              "answer": [
+              "concept": "Una variable es un nombre que permite guardar y reutilizar un dato. Python incluye tipos como int, float, str y bool.",
+              "explanation": "Asigna valores con =. Usa nombres claros y muestra resultados con print(). El tipo de dato determina qué operaciones tienen sentido.",
+              "example": "nombre = 'Ana'\nedad = 24\nprint(edad)",
+              "task": "Crea una variable edad con el valor 24 y muestra su contenido.",
+              "question": "¿Qué operador asigna un valor a una variable?",
+              "options": [
                 "=",
                 "==",
                 ">=",
                 "!="
               ],
-              "feedback": "=",
-              "type": "El signo igual simple realiza asignación.",
+              "answer": "=",
+              "feedback": "El signo igual simple realiza asignación.",
+              "type": "code",
               "expected_output": "24",
-              "hint": "Revisa el nombre de la variable, el valor asignado y que uses print(edad) para mostrarlo."
+              "hint": "Revisa el nombre de la variable, el valor asignado y que uses print(edad) para mostrarlo.",
+              "remember": "El signo = asigna un valor; no significa igualdad matemática."
             },
             {
               "id": "fundamentos-condiciones",
               "title": "Condiciones if y else",
-              "concept": "Módulo 1 · Fundamentos",
+              "concept": "Una condición permite ejecutar instrucciones diferentes según se cumpla o no una expresión lógica.",
               "explanation": "if ejecuta un bloque cuando una expresión es verdadera; else ofrece una alternativa. Los dos puntos y la indentación son obligatorios.",
-              "example": "La indentación define qué instrucciones pertenecen a cada bloque.",
-              "task": "nota = 4\nif nota >= 3:\n    print('Aprobado')\nelse:\n    print('Revisar')",
-              "question": "Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado.",
-              "options": "¿Qué palabra inicia una condición en Python?",
-              "answer": [
+              "example": "nota = 4\nif nota >= 3:\n    print('Aprobado')\nelse:\n    print('Revisar')",
+              "task": "Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado.",
+              "question": "¿Qué palabra inicia una condición en Python?",
+              "options": [
                 "if",
                 "for",
                 "def",
                 "import"
               ],
-              "feedback": "if",
-              "type": "if inicia una estructura condicional.",
+              "answer": "if",
+              "feedback": "if inicia una estructura condicional.",
+              "type": "code",
               "expected_output": "Aprobado",
-              "hint": "Comprueba la condición nota >= 3, los dos puntos y que print('Aprobado') esté dentro del bloque if."
+              "hint": "Comprueba la condición nota >= 3, los dos puntos y que print('Aprobado') esté dentro del bloque if.",
+              "remember": "La indentación define qué instrucciones pertenecen a cada bloque."
             },
             {
               "id": "estructuras-for",
               "title": "Ciclo for",
-              "concept": "Módulo 2 · Estructuras de control",
-              "explanation": "for recorre elementos de una secuencia. range(1, 6) produce 1, 2, 3, 4 y 5; el límite final no se incluye.",
-              "example": "El límite superior de range no se incluye.",
-              "task": "for numero in range(1, 6):\n    print(numero)",
-              "question": "Imprime los números del 1 al 5 usando for y range.",
-              "options": "¿Qué produce range(1, 4)?",
-              "answer": [
+              "concept": "El ciclo for recorre los elementos de una secuencia. range(1, 6) genera los números 1, 2, 3, 4 y 5.",
+              "explanation": "for ejecuta un bloque por cada elemento de una secuencia. range genera números y no incluye el límite final.",
+              "example": "for numero in range(1, 6):\n    print(numero)",
+              "task": "Imprime los números del 1 al 5 usando for y range.",
+              "question": "¿Qué produce range(1, 4)?",
+              "options": [
                 "1, 2, 3",
                 "1, 2, 3, 4",
                 "0, 1, 2, 3",
                 "2, 3, 4"
               ],
-              "feedback": "1, 2, 3",
-              "type": "El límite final de range no se incluye.",
+              "answer": "1, 2, 3",
+              "feedback": "El límite final de range no se incluye.",
+              "type": "code",
               "expected_output": "1\n2\n3\n4\n5",
-              "hint": "Revisa el rango: range(1, 6) incluye 1 y excluye 6. Asegúrate de imprimir el valor en cada vuelta."
+              "hint": "Revisa el rango: range(1, 6) incluye 1 y excluye 6. Asegúrate de imprimir el valor en cada vuelta.",
+              "remember": "El límite superior de range no se incluye."
             },
             {
               "id": "estructuras-while",
               "title": "Ciclo while",
-              "concept": "Módulo 2 · Estructuras de control",
-              "explanation": "while repite un bloque mientras una condición sea verdadera. Actualiza la variable de control para evitar ciclos infinitos.",
-              "example": "Comprueba que la condición pueda volverse falsa.",
-              "task": "contador = 1\nwhile contador <= 3:\n    print(contador)\n    contador += 1",
-              "question": "Usa while para imprimir 1, 2 y 3 e incrementa el contador.",
-              "options": "¿Cuándo termina un ciclo while?",
-              "answer": [
+              "concept": "El ciclo while repite un bloque mientras una condición sea verdadera.",
+              "explanation": "while comprueba la condición antes de cada iteración. Actualiza la variable de control para que el ciclo pueda terminar.",
+              "example": "contador = 1\nwhile contador <= 3:\n    print(contador)\n    contador += 1",
+              "task": "Usa while para imprimir 1, 2 y 3 e incrementa el contador.",
+              "question": "¿Cuándo termina un ciclo while?",
+              "options": [
                 "Cuando la condición es falsa",
                 "Después de una vuelta siempre",
                 "Cuando se cierra el editor",
                 "Nunca"
               ],
-              "feedback": "Cuando la condición es falsa",
-              "type": "while deja de repetir cuando la condición ya no es verdadera.",
+              "answer": "Cuando la condición es falsa",
+              "feedback": "while deja de repetir cuando la condición ya no es verdadera.",
+              "type": "code",
               "expected_output": "1\n2\n3",
-              "hint": "Inicializa contador en 1, repite mientras sea <= 3 y aumenta contador en cada vuelta para que el ciclo termine."
+              "hint": "Inicializa contador en 1, repite mientras sea <= 3 y aumenta contador en cada vuelta para que el ciclo termine.",
+              "remember": "Comprueba que la condición pueda volverse falsa."
             }
           ]
         },
