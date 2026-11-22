@@ -15,7 +15,13 @@ let lessonData,worker,timeout;
 async function api(url,options={}){const r=await fetch(url,{credentials:"same-origin",...options,headers:{"Content-Type":"application/json",...(options.headers||{})}});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||"No se pudo completar la solicitud.");return d;}
 function normalize(s){return String(s??"").replace(/\r/g,"").trim();}
 async function complete(){await api("/api/lessons/complete",{method:"POST",body:JSON.stringify({lesson_id:lessonId})});$("estado").textContent="¡Excelente! Tu respuesta es correcta y la lección quedó guardada en tu progreso.";$("estado").className="respuesta ok";$("continuar").hidden=false;}
-function showPythonError(message){const match=String(message).match(/line (\d+)/i);$("linea-error").textContent=match?"Revisa la línea "+match[1]+".":"Revisa el mensaje del intérprete y la sintaxis."; $("linea-error").className="error-linea";}
+function showPythonError(message){
+ const match=String(message).match(/line (\\d+)/i);
+ const line=match?Number(match[1]):0;
+ const source=line>0?($("codigo").value.split("\\n")[line-1]||"").trim():"";
+ $("linea-error").textContent=line?"Error en línea "+line+(source?": "+source:"")+".":"Revisa el mensaje del intérprete y la sintaxis.";
+ $("linea-error").className="error-linea";
+}
 async function runPython(){
  const code=$("codigo").value;if(!code.trim()){$("estado").textContent="Escribe una solución antes de ejecutar.";return;}
  $("ejecutar").disabled=true;$("estado").textContent="Preparando Python en tu navegador…";$("salida").hidden=true;$("linea-error").textContent="";
