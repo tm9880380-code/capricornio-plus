@@ -29,7 +29,7 @@ def test_health_and_root(client):
     assert client.get("/api/health").json()["status"] == "ok"
     response = client.get("/")
     assert response.status_code == 200
-    assert "Iniciar sesión" in response.text
+    assert "Encuentra tu camino para aprender tecnología" in response.text
 
 
 def test_register_login_and_lesson_progress(client):
