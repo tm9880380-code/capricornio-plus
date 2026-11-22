@@ -473,3 +473,29 @@ def test_all_curriculum_lessons_have_explanations_examples_and_practice_steps(cl
     assert all(len(lesson.get("example", "").split()) >= 20 for lesson in lessons)
     assert all(lesson.get("common_mistake") for lesson in lessons)
     assert all(len(lesson.get("guided_steps", [])) >= 4 for lesson in lessons)
+
+def test_login_rejects_oversized_credentials(client):
+    response = client.post("/api/login", json={
+        "email": "student@example.com",
+        "password": "x" * 129,
+    })
+    assert response.status_code == 422
+
+
+def test_adaptive_practice_passes_current_time_to_spaced_review_engine(client, monkeypatch):
+    register_user(client, email="repaso@example.com", goal="Programación y lenguajes")
+    observed = {}
+
+    class ReviewEngineProbe:
+        def __init__(self, bank, seed=None):
+            self.bank = bank
+
+        def next_item(self, state, now=None):
+            observed["now"] = now
+            return main.Item(id=self.bank.ids[0], difficulty=0.0)
+
+    monkeypatch.setattr(main, "AdaptiveEngine", ReviewEngineProbe)
+    response = client.get("/api/learning/next", params={"area": "Programación y lenguajes"})
+    assert response.status_code == 200
+    assert observed["now"] is not None
+    assert observed["now"] > 0
