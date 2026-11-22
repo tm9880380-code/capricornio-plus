@@ -1,0 +1,1821 @@
+{
+  "version": 1,
+  "levels": [
+    {
+      "id": "A1",
+      "name": "Principiante absoluto"
+    },
+    {
+      "id": "A2",
+      "name": "Principiante con fundamentos"
+    },
+    {
+      "id": "B1",
+      "name": "Básico funcional"
+    },
+    {
+      "id": "B2",
+      "name": "Intermedio"
+    },
+    {
+      "id": "C1",
+      "name": "Avanzado"
+    },
+    {
+      "id": "C2",
+      "name": "Especialización"
+    }
+  ],
+  "areas": [
+    {
+      "id": "ciberseguridad",
+      "name": "Ciberseguridad",
+      "description": "Protege cuentas, equipos, redes y aplicaciones mediante prácticas responsables y laboratorios autorizados.",
+      "objective": "Reconocer riesgos y aplicar controles básicos de seguridad.",
+      "modules": [
+        {
+          "title": "Fundamentos de seguridad",
+          "lessons": [
+            {
+              "id": "cyber-fundamentos",
+              "title": "La tríada de seguridad",
+              "concept": "La ciberseguridad protege la confidencialidad, integridad y disponibilidad de información y servicios.",
+              "explanation": "La ciberseguridad protege la confidencialidad, integridad y disponibilidad de información y servicios.",
+              "example": "Confidencialidad: solo accede quien debe. Integridad: los datos no se alteran indebidamente. Disponibilidad: el servicio está accesible cuando se necesita.",
+              "task": "Una clínica evita que extraños lean historias médicas, que alguien las modifique y que el sistema quede fuera de servicio.",
+              "question": "¿Qué propiedad evita modificaciones no autorizadas?",
+              "options": [
+                "Confidencialidad",
+                "Integridad",
+                "Disponibilidad",
+                "Usabilidad"
+              ],
+              "answer": "Integridad",
+              "feedback": "La integridad busca que los datos permanezcan exactos y completos.",
+              "type": "quiz"
+            },
+            {
+              "id": "cyber-risk",
+              "title": "Amenazas, vulnerabilidades y riesgos",
+              "concept": "Una amenaza puede causar daño; una vulnerabilidad es una debilidad; el riesgo combina probabilidad e impacto.",
+              "explanation": "Una amenaza puede causar daño; una vulnerabilidad es una debilidad; el riesgo combina probabilidad e impacto.",
+              "example": "Un servidor sin parches puede tener una vulnerabilidad. Un atacante que intenta explotarla representa una amenaza. El riesgo depende también de la probabilidad y el impacto.",
+              "task": "Un servicio expuesto con software antiguo requiere priorizar actualizaciones y controles.",
+              "question": "Un servidor tiene software desactualizado. ¿Qué describe esa condición?",
+              "options": [
+                "Amenaza",
+                "Vulnerabilidad",
+                "Impacto",
+                "Activo"
+              ],
+              "answer": "Vulnerabilidad",
+              "feedback": "El software desactualizado puede contener una debilidad explotable.",
+              "type": "quiz"
+            },
+            {
+              "id": "cyber-passwords",
+              "title": "Contraseñas y autenticación",
+              "concept": "Usa contraseñas largas, únicas y autenticación multifactor.",
+              "explanation": "Usa contraseñas largas, únicas y autenticación multifactor.",
+              "example": "Un gestor ayuda a crear y guardar contraseñas distintas. MFA añade una segunda prueba de identidad. Nunca compartas códigos de un solo uso.",
+              "task": "Una contraseña única limita el daño si otro servicio sufre una filtración.",
+              "question": "¿Qué medida reduce el impacto de una filtración en otro sitio?",
+              "options": [
+                "Reutilizar la clave",
+                "Usar la misma en todo",
+                "Una contraseña única por servicio",
+                "Compartirla con el equipo"
+              ],
+              "answer": "Una contraseña única por servicio",
+              "feedback": "Las claves únicas evitan que una filtración abra otras cuentas.",
+              "type": "quiz"
+            },
+            {
+              "id": "cyber-phishing",
+              "title": "Phishing e ingeniería social",
+              "concept": "El phishing suplanta entidades confiables para inducir clics, pagos o entrega de credenciales.",
+              "explanation": "El phishing suplanta entidades confiables para inducir clics, pagos o entrega de credenciales.",
+              "example": "Revisa el dominio, el contexto y la urgencia. Verifica solicitudes por un canal independiente. No uses el enlace sospechoso para comprobar si es real.",
+              "task": "Un correo que exige pagar en diez minutos y usa un dominio extraño tiene señales de phishing.",
+              "question": "¿Qué haces ante un enlace inesperado que solicita tu contraseña?",
+              "options": [
+                "Abrirlo",
+                "Introducir una clave falsa",
+                "Verificar por un canal oficial independiente",
+                "Reenviarlo"
+              ],
+              "answer": "Verificar por un canal oficial independiente",
+              "feedback": "La verificación independiente evita confiar en un canal posiblemente comprometido.",
+              "type": "quiz"
+            }
+          ]
+        },
+        {
+          "title": "Redes y aplicaciones",
+          "lessons": [
+            {
+              "id": "cyber-firewall",
+              "title": "Firewall y mínimo privilegio",
+              "concept": "Un firewall aplica reglas al tráfico. El mínimo privilegio permite solo lo necesario.",
+              "explanation": "Un firewall aplica reglas al tráfico. El mínimo privilegio permite solo lo necesario.",
+              "example": "Los puertos identifican servicios de comunicación. La segmentación separa sistemas y reduce movimientos laterales. Las reglas deben ser específicas y revisadas.",
+              "task": "Una base de datos interna no necesita aceptar conexiones desde todo internet.",
+              "question": "¿Qué principio sigue una regla que permite únicamente tráfico necesario?",
+              "options": [
+                "Máxima exposición",
+                "Mínimo privilegio",
+                "Acceso universal",
+                "Anonimato"
+              ],
+              "answer": "Mínimo privilegio",
+              "feedback": "El acceso se limita a lo imprescindible.",
+              "type": "quiz"
+            },
+            {
+              "id": "cyber-web",
+              "title": "Seguridad de aplicaciones web",
+              "concept": "OWASP publica guías para reconocer riesgos frecuentes en aplicaciones.",
+              "explanation": "OWASP publica guías para reconocer riesgos frecuentes en aplicaciones.",
+              "example": "Los controles incluyen autorización del lado servidor, validación de entradas, consultas parametrizadas y configuración segura. Ocultar un botón en el navegador no protege una API.",
+              "task": "El servidor debe comprobar permisos incluso si la interfaz oculta una acción.",
+              "question": "¿Dónde debe verificarse el permiso para acceder a un recurso?",
+              "options": [
+                "Solo en CSS",
+                "Solo en JavaScript del navegador",
+                "En el servidor",
+                "En el nombre del botón"
+              ],
+              "answer": "En el servidor",
+              "feedback": "La autorización debe aplicarse en el servidor.",
+              "type": "quiz"
+            },
+            {
+              "id": "cyber-lab",
+              "title": "Práctica responsable y laboratorios",
+              "concept": "Aprende seguridad únicamente en sistemas propios o con autorización explícita.",
+              "explanation": "Aprende seguridad únicamente en sistemas propios o con autorización explícita.",
+              "example": "Define alcance, permiso y reglas antes de probar. Usa laboratorios deliberadamente vulnerables, máquinas virtuales y entornos educativos. Nunca escanees o ataques sistemas ajenos sin autorización.",
+              "task": "Un laboratorio local permite experimentar sin afectar servicios de terceros.",
+              "question": "¿Dónde es apropiado practicar técnicas de explotación?",
+              "options": [
+                "En cualquier sitio público",
+                "En un laboratorio propio o autorizado",
+                "En la red del vecino",
+                "En sistemas al azar"
+              ],
+              "answer": "En un laboratorio propio o autorizado",
+              "feedback": "La autorización y el alcance definido son requisitos esenciales.",
+              "type": "quiz"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Documentación oficial de Python",
+          "type": "Documentación",
+          "description": "Tutorial oficial del lenguaje Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python Software Foundation",
+          "language": "es"
+        },
+        {
+          "title": "MDN: aprender desarrollo web",
+          "type": "Documentación",
+          "description": "Fundamentos de HTML, CSS y JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
+          "topic": "Web",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "freeCodeCamp",
+          "type": "Práctica",
+          "description": "Lecciones y proyectos gratuitos de programación.",
+          "url": "https://www.freecodecamp.org/learn/",
+          "topic": "Varios",
+          "level": "Principiante",
+          "source": "freeCodeCamp",
+          "language": "es"
+        },
+        {
+          "title": "GitHub Skills",
+          "type": "Práctica",
+          "description": "Cursos prácticos para aprender GitHub.",
+          "url": "https://skills.github.com/",
+          "topic": "GitHub",
+          "level": "Principiante",
+          "source": "GitHub",
+          "language": "es"
+        },
+        {
+          "title": "CS50",
+          "type": "Curso",
+          "description": "Introducción a ciencias de computación.",
+          "url": "https://cs50.harvard.edu/x/",
+          "topic": "Fundamentos",
+          "level": "Principiante",
+          "source": "Harvard",
+          "language": "es"
+        },
+        {
+          "title": "Corey Schafer",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de Python.",
+          "url": "https://www.youtube.com/@coreyms",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Corey Schafer",
+          "language": "es"
+        },
+        {
+          "title": "OWASP Top 10",
+          "type": "Documentación",
+          "description": "Riesgos de seguridad en aplicaciones web.",
+          "url": "https://owasp.org/www-project-top-ten/",
+          "topic": "Seguridad web",
+          "level": "Principiante",
+          "source": "OWASP",
+          "language": "es"
+        },
+        {
+          "title": "PortSwigger Web Security Academy",
+          "type": "Laboratorios",
+          "description": "Laboratorios gratuitos de seguridad web autorizada.",
+          "url": "https://portswigger.net/web-security",
+          "topic": "Seguridad web",
+          "level": "Principiante",
+          "source": "PortSwigger",
+          "language": "es"
+        },
+        {
+          "title": "OWASP WebGoat",
+          "type": "GitHub",
+          "description": "Aplicación deliberadamente vulnerable para laboratorio local.",
+          "url": "https://github.com/WebGoat/WebGoat",
+          "topic": "Java",
+          "level": "Intermedio",
+          "source": "OWASP",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "frontend",
+      "name": "Desarrollo frontend",
+      "description": "Construye interfaces web accesibles e interactivas con HTML, CSS y JavaScript.",
+      "objective": "Crear páginas semánticas, adaptables y usables.",
+      "modules": [
+        {
+          "title": "Estructura y presentación",
+          "lessons": [
+            {
+              "id": "frontend-html",
+              "title": "HTML semántico",
+              "concept": "HTML describe la estructura y el significado del contenido de una página.",
+              "explanation": "HTML describe la estructura y el significado del contenido de una página.",
+              "example": "Usa header, nav, main, article y footer. Los encabezados organizan el documento. Los formularios requieren etiquetas asociadas a sus controles.",
+              "task": "Un documento HTML incluye doctype, html, head y body.",
+              "question": "¿Qué elemento contiene el contenido principal único de una página?",
+              "options": [
+                "main",
+                "footer",
+                "aside",
+                "style"
+              ],
+              "answer": "main",
+              "feedback": "main identifica el contenido principal.",
+              "type": "quiz"
+            },
+            {
+              "id": "frontend-css",
+              "title": "CSS y modelo de caja",
+              "concept": "CSS controla colores, tipografía, espacios y distribución visual.",
+              "explanation": "CSS controla colores, tipografía, espacios y distribución visual.",
+              "example": "El modelo de caja incluye contenido, padding, borde y margen. Flexbox y Grid ayudan a organizar componentes. box-sizing:border-box facilita calcular dimensiones.",
+              "task": "Una tarjeta con padding tiene espacio interior alrededor de su contenido.",
+              "question": "¿Qué tecnología define principalmente la presentación visual?",
+              "options": [
+                "HTML",
+                "CSS",
+                "SQL",
+                "HTTP"
+              ],
+              "answer": "CSS",
+              "feedback": "CSS define presentación y diseño visual.",
+              "type": "quiz"
+            },
+            {
+              "id": "frontend-responsive",
+              "title": "Diseño adaptable",
+              "concept": "El diseño responsive adapta la interfaz a móviles, tabletas y pantallas grandes.",
+              "explanation": "El diseño responsive adapta la interfaz a móviles, tabletas y pantallas grandes.",
+              "example": "Usa unidades flexibles, imágenes adaptables y media queries. Diseña para pantallas pequeñas y evita anchos rígidos. Prueba zoom y navegación por teclado.",
+              "task": "Una cuadrícula con auto-fit y minmax puede ajustar columnas automáticamente.",
+              "question": "¿Qué recurso CSS aplica estilos según el ancho de pantalla?",
+              "options": [
+                "Media queries",
+                "JOIN",
+                "DNS",
+                "Funciones SQL"
+              ],
+              "answer": "Media queries",
+              "feedback": "Las media queries aplican reglas según características del dispositivo.",
+              "type": "quiz"
+            }
+          ]
+        },
+        {
+          "title": "Interacción y calidad",
+          "lessons": [
+            {
+              "id": "frontend-js",
+              "title": "JavaScript y DOM",
+              "concept": "JavaScript agrega comportamiento e interacción a la página.",
+              "explanation": "JavaScript agrega comportamiento e interacción a la página.",
+              "example": "Selecciona elementos del DOM, escucha eventos y actualiza contenido. Usa addEventListener. Para mostrar texto no confiable, prefiere textContent a innerHTML.",
+              "task": "Un botón puede escuchar click y actualizar un mensaje.",
+              "question": "¿Qué método registra un evento de clic?",
+              "options": [
+                "addEventListener",
+                "querySelectorAllText",
+                "fetchHTML",
+                "styleClick"
+              ],
+              "answer": "addEventListener",
+              "feedback": "addEventListener registra una función para un evento.",
+              "type": "quiz"
+            },
+            {
+              "id": "frontend-accessibility",
+              "title": "Accesibilidad web",
+              "concept": "Una interfaz accesible puede utilizarse con teclado, lector de pantalla y distintas capacidades.",
+              "explanation": "Una interfaz accesible puede utilizarse con teclado, lector de pantalla y distintas capacidades.",
+              "example": "Asocia label e input, añade textos alternativos útiles, mantén foco visible y usa HTML semántico. ARIA complementa HTML nativo; no lo sustituye.",
+              "task": "Una imagen informativa necesita texto alternativo que comunique su propósito.",
+              "question": "¿Qué atributo ofrece texto alternativo a una imagen?",
+              "options": [
+                "title",
+                "alt",
+                "name",
+                "role"
+              ],
+              "answer": "alt",
+              "feedback": "El atributo alt proporciona una alternativa textual.",
+              "type": "quiz"
+            },
+            {
+              "id": "frontend-api",
+              "title": "Consumir APIs",
+              "concept": "fetch permite que la interfaz consulte servicios web.",
+              "explanation": "fetch permite que la interfaz consulte servicios web.",
+              "example": "Comprueba response.ok, interpreta el formato esperado y maneja errores de red. No guardes secretos de servidor en JavaScript público.",
+              "task": "Una clave privada incluida en el frontend deja de ser secreta.",
+              "question": "¿Qué propiedad indica que la respuesta HTTP fue exitosa?",
+              "options": [
+                "ok",
+                "bodyUsed",
+                "redirected",
+                "type"
+              ],
+              "answer": "ok",
+              "feedback": "response.ok indica estados HTTP exitosos 200–299.",
+              "type": "quiz"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Documentación oficial de Python",
+          "type": "Documentación",
+          "description": "Tutorial oficial del lenguaje Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python Software Foundation",
+          "language": "es"
+        },
+        {
+          "title": "MDN: aprender desarrollo web",
+          "type": "Documentación",
+          "description": "Fundamentos de HTML, CSS y JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
+          "topic": "Web",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "freeCodeCamp",
+          "type": "Práctica",
+          "description": "Lecciones y proyectos gratuitos de programación.",
+          "url": "https://www.freecodecamp.org/learn/",
+          "topic": "Varios",
+          "level": "Principiante",
+          "source": "freeCodeCamp",
+          "language": "es"
+        },
+        {
+          "title": "GitHub Skills",
+          "type": "Práctica",
+          "description": "Cursos prácticos para aprender GitHub.",
+          "url": "https://skills.github.com/",
+          "topic": "GitHub",
+          "level": "Principiante",
+          "source": "GitHub",
+          "language": "es"
+        },
+        {
+          "title": "CS50",
+          "type": "Curso",
+          "description": "Introducción a ciencias de computación.",
+          "url": "https://cs50.harvard.edu/x/",
+          "topic": "Fundamentos",
+          "level": "Principiante",
+          "source": "Harvard",
+          "language": "es"
+        },
+        {
+          "title": "Corey Schafer",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de Python.",
+          "url": "https://www.youtube.com/@coreyms",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Corey Schafer",
+          "language": "es"
+        },
+        {
+          "title": "MDN HTML",
+          "type": "Documentación",
+          "description": "Referencia oficial de HTML.",
+          "url": "https://developer.mozilla.org/es/docs/Web/HTML",
+          "topic": "HTML",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "MDN CSS",
+          "type": "Documentación",
+          "description": "Referencia y aprendizaje de CSS.",
+          "url": "https://developer.mozilla.org/es/docs/Web/CSS",
+          "topic": "CSS",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "MDN JavaScript",
+          "type": "Documentación",
+          "description": "Guía de JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Web/JavaScript/Guide",
+          "topic": "JavaScript",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "Desarrollo backend",
+      "description": "Diseña APIs, lógica de negocio, autenticación y servicios confiables.",
+      "objective": "Construir servicios que validen datos y gestionen persistencia de forma segura.",
+      "modules": [
+        {
+          "title": "Servicios y APIs",
+          "lessons": [
+            {
+              "id": "backend-http",
+              "title": "HTTP y solicitudes",
+              "concept": "HTTP conecta clientes y servidores mediante solicitudes y respuestas.",
+              "explanation": "HTTP conecta clientes y servidores mediante solicitudes y respuestas.",
+              "example": "GET consulta, POST crea o procesa, PUT reemplaza, PATCH modifica parcialmente y DELETE elimina. Los códigos 2xx indican éxito, 4xx errores del cliente y 5xx errores del servidor.",
+              "task": "No uses GET para operaciones que cambian estado.",
+              "question": "¿Qué método HTTP se utiliza normalmente para recuperar un recurso?",
+              "options": [
+                "GET",
+                "POST",
+                "PATCH",
+                "DELETE"
+              ],
+              "answer": "GET",
+              "feedback": "GET solicita una representación de un recurso.",
+              "type": "quiz"
+            },
+            {
+              "id": "backend-rest",
+              "title": "Diseño de APIs",
+              "concept": "Una API define rutas, métodos, formatos, validaciones y errores consistentes.",
+              "explanation": "Una API define rutas, métodos, formatos, validaciones y errores consistentes.",
+              "example": "Organiza rutas alrededor de recursos. Documenta contratos, usa paginación y evita filtrar detalles internos sensibles en errores.",
+              "task": "GET /api/users/42 consulta un recurso con identificador 42.",
+              "question": "¿Qué describe un endpoint?",
+              "options": [
+                "Una ruta y método para interactuar con un recurso",
+                "Un color",
+                "Una contraseña",
+                "Una imagen"
+              ],
+              "answer": "Una ruta y método para interactuar con un recurso",
+              "feedback": "El endpoint identifica dónde y cómo interactuar con la API.",
+              "type": "quiz"
+            },
+            {
+              "id": "backend-validation",
+              "title": "Validación en servidor",
+              "concept": "Toda entrada externa debe validarse antes de procesarse.",
+              "explanation": "Toda entrada externa debe validarse antes de procesarse.",
+              "example": "Valida tipo, longitud, formato, rangos y reglas de negocio en el servidor. La validación del navegador mejora la experiencia, pero no es una frontera de seguridad.",
+              "task": "Un campo edad debe ser entero y estar dentro del rango permitido.",
+              "question": "¿Dónde debe aplicarse la validación que protege la lógica de negocio?",
+              "options": [
+                "Solo en el navegador",
+                "En el servidor",
+                "En CSS",
+                "En el nombre del formulario"
+              ],
+              "answer": "En el servidor",
+              "feedback": "El servidor debe validar incluso si el cliente manipula la solicitud.",
+              "type": "quiz"
+            }
+          ]
+        },
+        {
+          "title": "Persistencia y confiabilidad",
+          "lessons": [
+            {
+              "id": "backend-sql",
+              "title": "Consultas y persistencia",
+              "concept": "Las bases relacionales organizan información en tablas relacionadas.",
+              "explanation": "Las bases relacionales organizan información en tablas relacionadas.",
+              "example": "Usa consultas parametrizadas para evitar inyección SQL y transacciones para mantener consistencia. No construyas SQL concatenando texto del usuario.",
+              "task": "Los parámetros separan instrucciones SQL de los valores.",
+              "question": "¿Qué técnica ayuda a prevenir inyección SQL?",
+              "options": [
+                "Concatenar cadenas",
+                "Consultas parametrizadas",
+                "Ocultar el botón",
+                "Cambiar colores"
+              ],
+              "answer": "Consultas parametrizadas",
+              "feedback": "Los parámetros separan datos de instrucciones SQL.",
+              "type": "quiz"
+            },
+            {
+              "id": "backend-auth",
+              "title": "Autenticación y autorización",
+              "concept": "Autenticación verifica quién eres; autorización determina qué puedes hacer.",
+              "explanation": "Autenticación verifica quién eres; autorización determina qué puedes hacer.",
+              "example": "Almacena contraseñas con algoritmos de hash diseñados para contraseñas. Las sesiones deben expirar y poder revocarse. Aplica permisos en cada operación protegida.",
+              "task": "Una cookie HttpOnly reduce el acceso directo de JavaScript a la cookie.",
+              "question": "¿Qué proceso decide si una persona puede borrar un recurso?",
+              "options": [
+                "Autenticación",
+                "Autorización",
+                "Compresión",
+                "Serialización"
+              ],
+              "answer": "Autorización",
+              "feedback": "La autorización determina las acciones permitidas.",
+              "type": "quiz"
+            },
+            {
+              "id": "backend-tests",
+              "title": "Pruebas unitarias y de integración",
+              "concept": "Las pruebas verifican comportamiento esperado y fallos previsibles.",
+              "explanation": "Las pruebas verifican comportamiento esperado y fallos previsibles.",
+              "example": "Las unitarias prueban unidades pequeñas; las de integración prueban componentes conectados. Incluye entradas inválidas, autenticación, persistencia y límites.",
+              "task": "Un endpoint de registro debe probar correo duplicado y contraseña corta.",
+              "question": "¿Qué prueba verifica que varios componentes funcionen juntos?",
+              "options": [
+                "Unitaria",
+                "Integración",
+                "Visual",
+                "De color"
+              ],
+              "answer": "Integración",
+              "feedback": "Las pruebas de integración comprueban la colaboración entre componentes.",
+              "type": "quiz"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Documentación oficial de Python",
+          "type": "Documentación",
+          "description": "Tutorial oficial del lenguaje Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python Software Foundation",
+          "language": "es"
+        },
+        {
+          "title": "MDN: aprender desarrollo web",
+          "type": "Documentación",
+          "description": "Fundamentos de HTML, CSS y JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
+          "topic": "Web",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "freeCodeCamp",
+          "type": "Práctica",
+          "description": "Lecciones y proyectos gratuitos de programación.",
+          "url": "https://www.freecodecamp.org/learn/",
+          "topic": "Varios",
+          "level": "Principiante",
+          "source": "freeCodeCamp",
+          "language": "es"
+        },
+        {
+          "title": "GitHub Skills",
+          "type": "Práctica",
+          "description": "Cursos prácticos para aprender GitHub.",
+          "url": "https://skills.github.com/",
+          "topic": "GitHub",
+          "level": "Principiante",
+          "source": "GitHub",
+          "language": "es"
+        },
+        {
+          "title": "CS50",
+          "type": "Curso",
+          "description": "Introducción a ciencias de computación.",
+          "url": "https://cs50.harvard.edu/x/",
+          "topic": "Fundamentos",
+          "level": "Principiante",
+          "source": "Harvard",
+          "language": "es"
+        },
+        {
+          "title": "Corey Schafer",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de Python.",
+          "url": "https://www.youtube.com/@coreyms",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Corey Schafer",
+          "language": "es"
+        },
+        {
+          "title": "FastAPI Tutorial",
+          "type": "Documentación",
+          "description": "Construcción de APIs con Python.",
+          "url": "https://fastapi.tiangolo.com/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "FastAPI",
+          "language": "es"
+        },
+        {
+          "title": "Django Tutorial",
+          "type": "Documentación",
+          "description": "Primeros pasos con Django.",
+          "url": "https://docs.djangoproject.com/en/stable/intro/tutorial01/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Django",
+          "language": "es"
+        },
+        {
+          "title": "Node.js Learn",
+          "type": "Documentación",
+          "description": "Guías de desarrollo backend con Node.js.",
+          "url": "https://nodejs.org/en/learn",
+          "topic": "JavaScript",
+          "level": "Principiante",
+          "source": "OpenJS",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "datos",
+      "name": "Análisis de datos",
+      "description": "Prepara, explora, visualiza e interpreta datos para responder preguntas.",
+      "objective": "Transformar datos en información clara, reproducible y responsable.",
+      "modules": [
+        {
+          "title": "Fundamentos y preparación",
+          "lessons": [
+            {
+              "id": "data-questions",
+              "title": "Preguntas y tipos de datos",
+              "concept": "Una pregunta analítica concreta determina qué datos y métodos necesitas.",
+              "explanation": "Una pregunta analítica concreta determina qué datos y métodos necesitas.",
+              "example": "Distingue datos numéricos, categóricos, fechas y texto. Revisa origen, cobertura, calidad y posibles sesgos antes de sacar conclusiones.",
+              "task": "Para estudiar retrasos de entregas define periodo, unidad de análisis y qué significa retraso.",
+              "question": "¿Qué conviene definir antes de iniciar un análisis?",
+              "options": [
+                "El color del gráfico",
+                "La pregunta que se quiere responder",
+                "La conclusión final",
+                "El software más costoso"
+              ],
+              "answer": "La pregunta que se quiere responder",
+              "feedback": "La pregunta guía los datos, métodos y resultados.",
+              "type": "quiz"
+            },
+            {
+              "id": "data-cleaning",
+              "title": "Limpieza de datos",
+              "concept": "La limpieza revisa nulos, duplicados, tipos, unidades y valores imposibles.",
+              "explanation": "La limpieza revisa nulos, duplicados, tipos, unidades y valores imposibles.",
+              "example": "Un valor faltante no siempre equivale a cero. Documenta las transformaciones y no elimines registros sin comprender su significado.",
+              "task": "Si una columna mezcla formatos de fecha, primero aclara cuál se está usando.",
+              "question": "¿Qué significa normalmente un valor nulo?",
+              "options": [
+                "Siempre cero",
+                "Dato ausente o no disponible",
+                "Siempre error",
+                "Falso"
+              ],
+              "answer": "Dato ausente o no disponible",
+              "feedback": "Nulo representa ausencia de un valor conocido.",
+              "type": "quiz"
+            },
+            {
+              "id": "data-stats",
+              "title": "Estadística descriptiva",
+              "concept": "Media, mediana, moda, rango y percentiles resumen una distribución.",
+              "explanation": "Media, mediana, moda, rango y percentiles resumen una distribución.",
+              "example": "La mediana suele resistir mejor valores extremos que la media. Mira la distribución antes de resumir con una sola cifra.",
+              "task": "En salarios con valores extremos, la mediana puede representar mejor el centro.",
+              "question": "¿Qué medida suele ser menos sensible a valores extremos?",
+              "options": [
+                "Media",
+                "Mediana",
+                "Suma",
+                "Máximo"
+              ],
+              "answer": "Mediana",
+              "feedback": "La mediana depende de la posición central.",
+              "type": "quiz"
+            }
+          ]
+        },
+        {
+          "title": "Herramientas y comunicación",
+          "lessons": [
+            {
+              "id": "data-pandas",
+              "title": "Primeros pasos con pandas",
+              "concept": "pandas permite leer, limpiar, agrupar y resumir datos tabulares en Python.",
+              "explanation": "pandas permite leer, limpiar, agrupar y resumir datos tabulares en Python.",
+              "example": "DataFrame representa datos en filas y columnas. Inspecciona shape, dtypes, info y describe antes de analizar.",
+              "task": "df.groupby('region')['ventas'].sum() resume ventas por región.",
+              "question": "¿Qué estructura de pandas representa datos tabulares?",
+              "options": [
+                "Series",
+                "DataFrame",
+                "Tuple",
+                "Socket"
+              ],
+              "answer": "DataFrame",
+              "feedback": "DataFrame organiza datos en filas y columnas.",
+              "type": "quiz"
+            },
+            {
+              "id": "data-viz",
+              "title": "Visualización responsable",
+              "concept": "Elige gráficos según la pregunta que quieres responder.",
+              "explanation": "Elige gráficos según la pregunta que quieres responder.",
+              "example": "Barras comparan categorías; líneas muestran evolución temporal; histogramas muestran distribuciones; dispersión explora relaciones. Etiqueta ejes y evita escalas engañosas.",
+              "task": "Para ventas mensuales a lo largo del año, una línea suele mostrar bien la tendencia.",
+              "question": "¿Qué gráfico suele servir para una serie mensual?",
+              "options": [
+                "Líneas",
+                "Sectores con 40 categorías",
+                "Mapa sin etiquetas",
+                "Nube de palabras"
+              ],
+              "answer": "Líneas",
+              "feedback": "Las líneas ayudan a ver cambios en el tiempo.",
+              "type": "quiz"
+            },
+            {
+              "id": "data-ethics",
+              "title": "Privacidad y ética de datos",
+              "concept": "Un análisis responsable protege datos personales y comunica incertidumbre.",
+              "explanation": "Un análisis responsable protege datos personales y comunica incertidumbre.",
+              "example": "Minimiza datos personales, controla accesos y comunica muestra, periodo y limitaciones. Correlación no demuestra causalidad.",
+              "task": "Una encuesta voluntaria puede no representar a toda la población.",
+              "question": "¿Qué debe acompañar una conclusión basada en una muestra limitada?",
+              "options": [
+                "Promesa absoluta",
+                "Limitaciones y contexto",
+                "Solo un gráfico",
+                "Datos identificables"
+              ],
+              "answer": "Limitaciones y contexto",
+              "feedback": "El contexto define hasta dónde puede generalizarse.",
+              "type": "quiz"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Documentación oficial de Python",
+          "type": "Documentación",
+          "description": "Tutorial oficial del lenguaje Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python Software Foundation",
+          "language": "es"
+        },
+        {
+          "title": "MDN: aprender desarrollo web",
+          "type": "Documentación",
+          "description": "Fundamentos de HTML, CSS y JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
+          "topic": "Web",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "freeCodeCamp",
+          "type": "Práctica",
+          "description": "Lecciones y proyectos gratuitos de programación.",
+          "url": "https://www.freecodecamp.org/learn/",
+          "topic": "Varios",
+          "level": "Principiante",
+          "source": "freeCodeCamp",
+          "language": "es"
+        },
+        {
+          "title": "GitHub Skills",
+          "type": "Práctica",
+          "description": "Cursos prácticos para aprender GitHub.",
+          "url": "https://skills.github.com/",
+          "topic": "GitHub",
+          "level": "Principiante",
+          "source": "GitHub",
+          "language": "es"
+        },
+        {
+          "title": "CS50",
+          "type": "Curso",
+          "description": "Introducción a ciencias de computación.",
+          "url": "https://cs50.harvard.edu/x/",
+          "topic": "Fundamentos",
+          "level": "Principiante",
+          "source": "Harvard",
+          "language": "es"
+        },
+        {
+          "title": "Corey Schafer",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de Python.",
+          "url": "https://www.youtube.com/@coreyms",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Corey Schafer",
+          "language": "es"
+        },
+        {
+          "title": "Pandas Getting Started",
+          "type": "Documentación",
+          "description": "Primeros pasos con datos tabulares.",
+          "url": "https://pandas.pydata.org/docs/getting_started/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "pandas",
+          "language": "es"
+        },
+        {
+          "title": "Kaggle Learn",
+          "type": "Cursos gratuitos",
+          "description": "Microcursos de Python, SQL y datos.",
+          "url": "https://www.kaggle.com/learn",
+          "topic": "Python y SQL",
+          "level": "Principiante",
+          "source": "Kaggle",
+          "language": "es"
+        },
+        {
+          "title": "pandas GitHub",
+          "type": "GitHub",
+          "description": "Código fuente del proyecto pandas.",
+          "url": "https://github.com/pandas-dev/pandas",
+          "topic": "Python",
+          "level": "Intermedio",
+          "source": "pandas",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "ia",
+      "name": "Inteligencia artificial y modelos de lenguaje",
+      "description": "Explora fundamentos de IA, aprendizaje automático, evaluación y modelos de lenguaje.",
+      "objective": "Comprender el ciclo de datos, entrenamiento, evaluación y uso responsable.",
+      "modules": [
+        {
+          "title": "Fundamentos de IA y ML",
+          "lessons": [
+            {
+              "id": "ai-ml",
+              "title": "Qué es aprendizaje automático",
+              "concept": "Machine learning aprende patrones a partir de datos para realizar tareas como clasificación o predicción.",
+              "explanation": "Machine learning aprende patrones a partir de datos para realizar tareas como clasificación o predicción.",
+              "example": "Los modelos ajustan parámetros usando ejemplos o señales. No implica conciencia humana ni garantiza respuestas correctas.",
+              "task": "Un filtro de spam puede aprender patrones a partir de mensajes etiquetados.",
+              "question": "¿Qué caracteriza al aprendizaje automático?",
+              "options": [
+                "Aprender patrones desde datos",
+                "Tener conciencia humana",
+                "No necesitar evaluación",
+                "Garantizar verdad"
+              ],
+              "answer": "Aprender patrones desde datos",
+              "feedback": "Los modelos ML ajustan parámetros usando datos.",
+              "type": "quiz"
+            },
+            {
+              "id": "ai-datasets",
+              "title": "Conjuntos de datos",
+              "concept": "Los datos deben representar el problema y dividirse correctamente.",
+              "explanation": "Los datos deben representar el problema y dividirse correctamente.",
+              "example": "Separa entrenamiento, validación y prueba. La fuga de datos ocurre cuando información de prueba influye en entrenamiento o decisiones del modelo.",
+              "task": "El conjunto de prueba se reserva para evaluar el modelo final.",
+              "question": "¿Para qué se reserva el conjunto de prueba?",
+              "options": [
+                "Ajustar continuamente",
+                "Estimar rendimiento con datos no usados al entrenar",
+                "Duplicar datos",
+                "Guardar contraseñas"
+              ],
+              "answer": "Estimar rendimiento con datos no usados al entrenar",
+              "feedback": "Permite aproximar el comportamiento ante datos no vistos.",
+              "type": "quiz"
+            },
+            {
+              "id": "ai-metrics",
+              "title": "Métricas de evaluación",
+              "concept": "Accuracy puede ocultar problemas en clases desbalanceadas.",
+              "explanation": "Accuracy puede ocultar problemas en clases desbalanceadas.",
+              "example": "Precision mide qué proporción de positivos predichos era correcta; recall mide qué proporción de positivos reales se detectó. Elige métricas según el coste de errores.",
+              "task": "En detección médica, los falsos negativos pueden tener un coste alto.",
+              "question": "¿Qué métrica mide qué proporción de positivos reales fue detectada?",
+              "options": [
+                "Recall",
+                "Precision",
+                "Tiempo de carga",
+                "Tamaño"
+              ],
+              "answer": "Recall",
+              "feedback": "Recall mide la proporción de positivos reales identificados.",
+              "type": "quiz"
+            }
+          ]
+        },
+        {
+          "title": "Modelos de lenguaje y responsabilidad",
+          "lessons": [
+            {
+              "id": "ai-llm",
+              "title": "Cómo funcionan los modelos de lenguaje",
+              "concept": "Un modelo de lenguaje procesa tokens y estima probabilidades para generar el siguiente token.",
+              "explanation": "Un modelo de lenguaje procesa tokens y estima probabilidades para generar el siguiente token.",
+              "example": "El contexto condiciona la generación. La salida puede ser convincente y aun así contener errores o invenciones. Un LLM no es una base de datos infalible.",
+              "task": "La generación autorregresiva predice el siguiente token dado el contexto.",
+              "question": "¿Qué predice un modelo de lenguaje autorregresivo típico?",
+              "options": [
+                "Siguiente token condicionado al contexto",
+                "La verdad universal",
+                "La identidad del usuario",
+                "Cualquier resultado de programa"
+              ],
+              "answer": "Siguiente token condicionado al contexto",
+              "feedback": "El modelo genera secuencias estimando el siguiente token.",
+              "type": "quiz"
+            },
+            {
+              "id": "ai-prompts",
+              "title": "Instrucciones y evaluación de prompts",
+              "concept": "Un prompt útil especifica tarea, contexto, restricciones y formato esperado.",
+              "explanation": "Un prompt útil especifica tarea, contexto, restricciones y formato esperado.",
+              "example": "Evalúa con casos representativos, no solo un ejemplo exitoso. Valida salidas estructuradas y no introduzcas secretos o datos personales en servicios externos sin autorización.",
+              "task": "Un prompt claro no elimina errores del modelo.",
+              "question": "¿Qué mejora la evaluación de un prompt?",
+              "options": [
+                "Probar un solo caso",
+                "Evaluar casos variados y revisar errores",
+                "Asumir que siempre acierta",
+                "Incluir credenciales"
+              ],
+              "answer": "Evaluar casos variados y revisar errores",
+              "feedback": "Los casos variados revelan fallos y límites.",
+              "type": "quiz"
+            },
+            {
+              "id": "ai-responsible",
+              "title": "Sesgos y uso responsable",
+              "concept": "Evalúa privacidad, sesgo, robustez, explicabilidad y supervisión humana.",
+              "explanation": "Evalúa privacidad, sesgo, robustez, explicabilidad y supervisión humana.",
+              "example": "Mide el rendimiento por subgrupos, protege datos y establece revisión humana cuando las decisiones afectan personas. Automatizar no elimina la responsabilidad.",
+              "task": "Antes de desplegar un modelo, define cómo corregir decisiones injustas.",
+              "question": "¿Qué acción ayuda a detectar diferencias de rendimiento entre grupos?",
+              "options": [
+                "Medir por subgrupos",
+                "Ocultar errores",
+                "Eliminar documentación",
+                "Aumentar el prompt"
+              ],
+              "answer": "Medir por subgrupos",
+              "feedback": "La evaluación desagregada permite detectar diferencias.",
+              "type": "quiz"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Documentación oficial de Python",
+          "type": "Documentación",
+          "description": "Tutorial oficial del lenguaje Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python Software Foundation",
+          "language": "es"
+        },
+        {
+          "title": "MDN: aprender desarrollo web",
+          "type": "Documentación",
+          "description": "Fundamentos de HTML, CSS y JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
+          "topic": "Web",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "freeCodeCamp",
+          "type": "Práctica",
+          "description": "Lecciones y proyectos gratuitos de programación.",
+          "url": "https://www.freecodecamp.org/learn/",
+          "topic": "Varios",
+          "level": "Principiante",
+          "source": "freeCodeCamp",
+          "language": "es"
+        },
+        {
+          "title": "GitHub Skills",
+          "type": "Práctica",
+          "description": "Cursos prácticos para aprender GitHub.",
+          "url": "https://skills.github.com/",
+          "topic": "GitHub",
+          "level": "Principiante",
+          "source": "GitHub",
+          "language": "es"
+        },
+        {
+          "title": "CS50",
+          "type": "Curso",
+          "description": "Introducción a ciencias de computación.",
+          "url": "https://cs50.harvard.edu/x/",
+          "topic": "Fundamentos",
+          "level": "Principiante",
+          "source": "Harvard",
+          "language": "es"
+        },
+        {
+          "title": "Corey Schafer",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de Python.",
+          "url": "https://www.youtube.com/@coreyms",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Corey Schafer",
+          "language": "es"
+        },
+        {
+          "title": "Hugging Face Learn",
+          "type": "Cursos gratuitos",
+          "description": "Rutas de NLP, modelos y herramientas IA.",
+          "url": "https://huggingface.co/learn",
+          "topic": "Python",
+          "level": "Intermedio",
+          "source": "Hugging Face",
+          "language": "es"
+        },
+        {
+          "title": "PyTorch Tutorials",
+          "type": "Documentación",
+          "description": "Tutoriales oficiales de aprendizaje profundo.",
+          "url": "https://pytorch.org/tutorials/",
+          "topic": "Python",
+          "level": "Intermedio",
+          "source": "PyTorch",
+          "language": "es"
+        },
+        {
+          "title": "Transformers GitHub",
+          "type": "GitHub",
+          "description": "Biblioteca abierta para modelos de lenguaje.",
+          "url": "https://github.com/huggingface/transformers",
+          "topic": "Python",
+          "level": "Avanzado",
+          "source": "Hugging Face",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "bases-datos",
+      "name": "Bases de datos",
+      "description": "Diseña estructuras de datos, consultas SQL, relaciones e integridad.",
+      "objective": "Modelar y consultar datos con seguridad y consistencia.",
+      "modules": [
+        {
+          "title": "Modelo relacional y SQL",
+          "lessons": [
+            {
+              "id": "db-relational",
+              "title": "Tablas y claves",
+              "concept": "Las tablas organizan registros y atributos. Una clave primaria identifica cada fila.",
+              "explanation": "Las tablas organizan registros y atributos. Una clave primaria identifica cada fila.",
+              "example": "Una clave foránea relaciona tablas. El diseño debe reflejar entidades y relaciones del problema.",
+              "task": "En estudiantes, id_estudiante puede identificar cada registro.",
+              "question": "¿Qué función cumple una clave primaria?",
+              "options": [
+                "Identificar de forma única cada fila",
+                "Guardar imágenes",
+                "Cifrar el servidor",
+                "Ordenar por color"
+              ],
+              "answer": "Identificar de forma única cada fila",
+              "feedback": "La clave primaria identifica un registro.",
+              "type": "quiz"
+            },
+            {
+              "id": "db-select",
+              "title": "Consultar con SELECT",
+              "concept": "SELECT elige columnas; FROM indica tabla; WHERE filtra filas; ORDER BY ordena.",
+              "explanation": "SELECT elige columnas; FROM indica tabla; WHERE filtra filas; ORDER BY ordena.",
+              "example": "Empieza seleccionando solo columnas necesarias. WHERE aplica condiciones antes de agrupar; HAVING filtra grupos agregados.",
+              "task": "SELECT nombre FROM estudiantes WHERE activo = TRUE;",
+              "question": "¿Qué cláusula filtra filas?",
+              "options": [
+                "WHERE",
+                "ORDER BY",
+                "LIMIT",
+                "CREATE"
+              ],
+              "answer": "WHERE",
+              "feedback": "WHERE aplica condiciones a filas.",
+              "type": "quiz"
+            },
+            {
+              "id": "db-joins",
+              "title": "Relaciones y JOIN",
+              "concept": "JOIN combina filas relacionadas entre tablas.",
+              "explanation": "JOIN combina filas relacionadas entre tablas.",
+              "example": "INNER JOIN devuelve coincidencias; LEFT JOIN conserva todas las filas de la tabla izquierda y agrega coincidencias cuando existen.",
+              "task": "Pedidos puede relacionarse con clientes mediante cliente_id.",
+              "question": "¿Qué JOIN conserva todas las filas de la tabla izquierda?",
+              "options": [
+                "INNER JOIN",
+                "LEFT JOIN",
+                "CROSS JOIN",
+                "DELETE"
+              ],
+              "answer": "LEFT JOIN",
+              "feedback": "LEFT JOIN mantiene todas las filas del lado izquierdo.",
+              "type": "quiz"
+            }
+          ]
+        },
+        {
+          "title": "Diseño y confiabilidad",
+          "lessons": [
+            {
+              "id": "db-normalization",
+              "title": "Normalización",
+              "concept": "La normalización reduce redundancia y anomalías de inserción, actualización y eliminación.",
+              "explanation": "La normalización reduce redundancia y anomalías de inserción, actualización y eliminación.",
+              "example": "Organiza atributos y relaciones para evitar duplicaciones. El diseño debe equilibrar integridad y necesidades reales de consulta.",
+              "task": "Separar clientes y pedidos representa que un cliente puede tener muchos pedidos.",
+              "question": "¿Qué problema busca reducir la normalización?",
+              "options": [
+                "Redundancia y anomalías",
+                "Número de usuarios",
+                "Velocidad de internet",
+                "Resolución"
+              ],
+              "answer": "Redundancia y anomalías",
+              "feedback": "La normalización organiza datos y reduce duplicaciones.",
+              "type": "quiz"
+            },
+            {
+              "id": "db-acid",
+              "title": "Transacciones y ACID",
+              "concept": "ACID significa atomicidad, consistencia, aislamiento y durabilidad.",
+              "explanation": "ACID significa atomicidad, consistencia, aislamiento y durabilidad.",
+              "example": "Una transacción agrupa operaciones para confirmarlas juntas o revertirlas ante un fallo. COMMIT confirma y ROLLBACK revierte cambios no confirmados.",
+              "task": "Una transferencia no debe descontar dinero y fallar antes de acreditarlo.",
+              "question": "¿Qué propiedad significa que la operación ocurre completa o no ocurre?",
+              "options": [
+                "Atomicidad",
+                "Aislamiento",
+                "Durabilidad",
+                "Consistencia"
+              ],
+              "answer": "Atomicidad",
+              "feedback": "Atomicidad evita operaciones parcialmente aplicadas.",
+              "type": "quiz"
+            },
+            {
+              "id": "db-backup",
+              "title": "Seguridad y copias de respaldo",
+              "concept": "Protege datos con permisos mínimos, consultas seguras y respaldos probados.",
+              "explanation": "Protege datos con permisos mínimos, consultas seguras y respaldos probados.",
+              "example": "Una copia no sirve si nunca se verifica su restauración. Define quién puede leer, modificar y administrar los datos.",
+              "task": "Prueba la restauración de una copia en un entorno controlado.",
+              "question": "¿Qué demuestra que un respaldo es útil?",
+              "options": [
+                "Que el archivo existe",
+                "Que se probó su restauración",
+                "Que tiene nombre largo",
+                "Que está en el mismo disco"
+              ],
+              "answer": "Que se probó su restauración",
+              "feedback": "La restauración verificada demuestra que los datos se pueden recuperar.",
+              "type": "quiz"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Documentación oficial de Python",
+          "type": "Documentación",
+          "description": "Tutorial oficial del lenguaje Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python Software Foundation",
+          "language": "es"
+        },
+        {
+          "title": "MDN: aprender desarrollo web",
+          "type": "Documentación",
+          "description": "Fundamentos de HTML, CSS y JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
+          "topic": "Web",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "freeCodeCamp",
+          "type": "Práctica",
+          "description": "Lecciones y proyectos gratuitos de programación.",
+          "url": "https://www.freecodecamp.org/learn/",
+          "topic": "Varios",
+          "level": "Principiante",
+          "source": "freeCodeCamp",
+          "language": "es"
+        },
+        {
+          "title": "GitHub Skills",
+          "type": "Práctica",
+          "description": "Cursos prácticos para aprender GitHub.",
+          "url": "https://skills.github.com/",
+          "topic": "GitHub",
+          "level": "Principiante",
+          "source": "GitHub",
+          "language": "es"
+        },
+        {
+          "title": "CS50",
+          "type": "Curso",
+          "description": "Introducción a ciencias de computación.",
+          "url": "https://cs50.harvard.edu/x/",
+          "topic": "Fundamentos",
+          "level": "Principiante",
+          "source": "Harvard",
+          "language": "es"
+        },
+        {
+          "title": "Corey Schafer",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de Python.",
+          "url": "https://www.youtube.com/@coreyms",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Corey Schafer",
+          "language": "es"
+        },
+        {
+          "title": "PostgreSQL Tutorial",
+          "type": "Documentación",
+          "description": "Tutorial oficial de PostgreSQL.",
+          "url": "https://www.postgresql.org/docs/current/tutorial.html",
+          "topic": "SQL",
+          "level": "Principiante",
+          "source": "PostgreSQL",
+          "language": "es"
+        },
+        {
+          "title": "SQLBolt",
+          "type": "Práctica",
+          "description": "Lecciones interactivas de SQL.",
+          "url": "https://sqlbolt.com/",
+          "topic": "SQL",
+          "level": "Principiante",
+          "source": "SQLBolt",
+          "language": "es"
+        },
+        {
+          "title": "PostgreSQL GitHub",
+          "type": "GitHub",
+          "description": "Código fuente del motor PostgreSQL.",
+          "url": "https://github.com/postgres/postgres",
+          "topic": "C",
+          "level": "Avanzado",
+          "source": "PostgreSQL",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "redes-sistemas",
+      "name": "Redes y sistemas",
+      "description": "Comprende sistemas operativos, Linux, redes, servicios y administración básica.",
+      "objective": "Diagnosticar conexiones y administrar sistemas con buenas prácticas.",
+      "modules": [
+        {
+          "title": "Sistemas operativos",
+          "lessons": [
+            {
+              "id": "sys-os",
+              "title": "Funciones del sistema operativo",
+              "concept": "El sistema operativo administra hardware y ofrece servicios a programas.",
+              "explanation": "El sistema operativo administra hardware y ofrece servicios a programas.",
+              "example": "Gestiona procesos, memoria, archivos, dispositivos y permisos. Un proceso es una instancia de un programa en ejecución.",
+              "task": "El sistema operativo programa procesos y controla acceso a archivos.",
+              "question": "¿Cuál es una función central del sistema operativo?",
+              "options": [
+                "Administrar recursos del equipo",
+                "Crear webs automáticamente",
+                "Garantizar internet",
+                "Reemplazar aplicaciones"
+              ],
+              "answer": "Administrar recursos del equipo",
+              "feedback": "Coordina hardware y servicios para aplicaciones.",
+              "type": "quiz"
+            },
+            {
+              "id": "sys-linux",
+              "title": "Primeros pasos en Linux",
+              "concept": "La terminal permite consultar y administrar el sistema mediante comandos.",
+              "explanation": "La terminal permite consultar y administrar el sistema mediante comandos.",
+              "example": "pwd muestra el directorio actual; ls lista contenido; cd cambia de directorio; mkdir crea carpetas; cp copia y mv mueve. Consulta man o --help.",
+              "task": "pwd muestra dónde estás ubicado.",
+              "question": "¿Qué comando muestra el directorio actual?",
+              "options": [
+                "pwd",
+                "ls",
+                "cd",
+                "mkdir"
+              ],
+              "answer": "pwd",
+              "feedback": "pwd imprime el directorio de trabajo actual.",
+              "type": "quiz"
+            },
+            {
+              "id": "sys-permissions",
+              "title": "Usuarios y permisos",
+              "concept": "Linux asocia archivos con propietario, grupo y permisos.",
+              "explanation": "Linux asocia archivos con propietario, grupo y permisos.",
+              "example": "Los permisos básicos son lectura, escritura y ejecución. Aplica privilegios mínimos y evita usar sudo como solución automática.",
+              "task": "chmod modifica permisos; chown cambia propietario.",
+              "question": "¿Qué permiso permite ejecutar un archivo?",
+              "options": [
+                "r",
+                "w",
+                "x",
+                "-"
+              ],
+              "answer": "x",
+              "feedback": "x representa permiso de ejecución.",
+              "type": "quiz"
+            }
+          ]
+        },
+        {
+          "title": "Redes y operación",
+          "lessons": [
+            {
+              "id": "net-ip",
+              "title": "Direcciones IP",
+              "concept": "Una IP identifica una interfaz dentro de una red.",
+              "explanation": "Una IP identifica una interfaz dentro de una red.",
+              "example": "IPv4 usa 32 bits e IPv6 usa 128. El prefijo indica qué parte corresponde a la red. Una IP privada no es enrutable directamente en internet público.",
+              "task": "192.168.1.10 suele pertenecer a un rango privado IPv4.",
+              "question": "¿Cuántos bits tiene una dirección IPv4?",
+              "options": [
+                "16",
+                "32",
+                "64",
+                "128"
+              ],
+              "answer": "32",
+              "feedback": "IPv4 utiliza 32 bits.",
+              "type": "quiz"
+            },
+            {
+              "id": "net-dns",
+              "title": "DNS y nombres",
+              "concept": "DNS distribuye información para resolver nombres de dominio.",
+              "explanation": "DNS distribuye información para resolver nombres de dominio.",
+              "example": "A y AAAA relacionan nombres con direcciones IPv4 e IPv6; MX identifica servidores de correo. La caché puede influir en la resolución.",
+              "task": "dig y nslookup permiten consultar DNS.",
+              "question": "¿Qué registro asocia un nombre con una dirección IPv4?",
+              "options": [
+                "A",
+                "MX",
+                "TXT",
+                "PTR"
+              ],
+              "answer": "A",
+              "feedback": "El registro A contiene una dirección IPv4.",
+              "type": "quiz"
+            },
+            {
+              "id": "net-debug",
+              "title": "Diagnóstico de conectividad",
+              "concept": "Sigue un proceso ordenado: interfaz, IP, puerta de enlace, DNS y servicio.",
+              "explanation": "Sigue un proceso ordenado: interfaz, IP, puerta de enlace, DNS y servicio.",
+              "example": "ip, ping, traceroute y ss muestran partes distintas del problema. Un ping fallido no demuestra por sí solo que todo el servidor esté caído.",
+              "task": "Compara acceso por IP y por nombre para detectar problemas DNS.",
+              "question": "Si una web responde por IP pero no por nombre, ¿qué revisarías primero?",
+              "options": [
+                "DNS",
+                "Teclado",
+                "RAM del cliente",
+                "CSS"
+              ],
+              "answer": "DNS",
+              "feedback": "La diferencia apunta a resolución de nombres.",
+              "type": "quiz"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Documentación oficial de Python",
+          "type": "Documentación",
+          "description": "Tutorial oficial del lenguaje Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python Software Foundation",
+          "language": "es"
+        },
+        {
+          "title": "MDN: aprender desarrollo web",
+          "type": "Documentación",
+          "description": "Fundamentos de HTML, CSS y JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
+          "topic": "Web",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "freeCodeCamp",
+          "type": "Práctica",
+          "description": "Lecciones y proyectos gratuitos de programación.",
+          "url": "https://www.freecodecamp.org/learn/",
+          "topic": "Varios",
+          "level": "Principiante",
+          "source": "freeCodeCamp",
+          "language": "es"
+        },
+        {
+          "title": "GitHub Skills",
+          "type": "Práctica",
+          "description": "Cursos prácticos para aprender GitHub.",
+          "url": "https://skills.github.com/",
+          "topic": "GitHub",
+          "level": "Principiante",
+          "source": "GitHub",
+          "language": "es"
+        },
+        {
+          "title": "CS50",
+          "type": "Curso",
+          "description": "Introducción a ciencias de computación.",
+          "url": "https://cs50.harvard.edu/x/",
+          "topic": "Fundamentos",
+          "level": "Principiante",
+          "source": "Harvard",
+          "language": "es"
+        },
+        {
+          "title": "Corey Schafer",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de Python.",
+          "url": "https://www.youtube.com/@coreyms",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Corey Schafer",
+          "language": "es"
+        },
+        {
+          "title": "Ubuntu Command Line",
+          "type": "Tutorial",
+          "description": "Introducción a la terminal.",
+          "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+          "topic": "Linux",
+          "level": "Principiante",
+          "source": "Ubuntu",
+          "language": "es"
+        },
+        {
+          "title": "Linux Journey",
+          "type": "Tutorial",
+          "description": "Recorrido gratuito por Linux.",
+          "url": "https://linuxjourney.com/",
+          "topic": "Linux",
+          "level": "Principiante",
+          "source": "Linux Journey",
+          "language": "es"
+        },
+        {
+          "title": "Cisco Skills for All",
+          "type": "Cursos gratuitos",
+          "description": "Cursos introductorios de redes y ciberseguridad.",
+          "url": "https://skillsforall.com/",
+          "topic": "Redes",
+          "level": "Principiante",
+          "source": "Cisco",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "programacion",
+      "name": "Programación y lenguajes",
+      "description": "Aprende lógica, algoritmos, estructuras de datos y fundamentos transferibles entre lenguajes.",
+      "objective": "Resolver problemas paso a paso y construir programas claros y comprobables.",
+      "modules": [
+        {
+          "title": "Fundamentos de programación",
+          "lessons": [
+            {
+              "id": "fundamentos-variables",
+              "title": "Variables y tipos de datos",
+              "concept": "Módulo 1 · Fundamentos",
+              "explanation": "Una variable es un nombre que usamos para guardar un dato y reutilizarlo. En Python los tipos básicos incluyen int, float, str y bool.",
+              "example": "El signo = asigna un valor; no significa igualdad matemática.",
+              "task": "edad = 24\nprint(edad)",
+              "question": "Crea una variable edad con valor 24 y muestra su contenido.",
+              "options": "¿Qué operador asigna un valor a una variable?",
+              "answer": [
+                "=",
+                "==",
+                ">=",
+                "!="
+              ],
+              "feedback": "=",
+              "type": "El signo igual simple realiza asignación."
+            },
+            {
+              "id": "fundamentos-condiciones",
+              "title": "Condiciones if y else",
+              "concept": "Módulo 1 · Fundamentos",
+              "explanation": "if ejecuta un bloque cuando una expresión es verdadera; else ofrece una alternativa. Los dos puntos y la indentación son obligatorios.",
+              "example": "La indentación define qué instrucciones pertenecen a cada bloque.",
+              "task": "nota = 4\nif nota >= 3:\n    print('Aprobado')\nelse:\n    print('Revisar')",
+              "question": "Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado.",
+              "options": "¿Qué palabra inicia una condición en Python?",
+              "answer": [
+                "if",
+                "for",
+                "def",
+                "import"
+              ],
+              "feedback": "if",
+              "type": "if inicia una estructura condicional."
+            },
+            {
+              "id": "estructuras-for",
+              "title": "Ciclo for",
+              "concept": "Módulo 2 · Estructuras de control",
+              "explanation": "for recorre elementos de una secuencia. range(1, 6) produce 1, 2, 3, 4 y 5; el límite final no se incluye.",
+              "example": "El límite superior de range no se incluye.",
+              "task": "for numero in range(1, 6):\n    print(numero)",
+              "question": "Imprime los números del 1 al 5 usando for y range.",
+              "options": "¿Qué produce range(1, 4)?",
+              "answer": [
+                "1, 2, 3",
+                "1, 2, 3, 4",
+                "0, 1, 2, 3",
+                "2, 3, 4"
+              ],
+              "feedback": "1, 2, 3",
+              "type": "El límite final de range no se incluye."
+            },
+            {
+              "id": "estructuras-while",
+              "title": "Ciclo while",
+              "concept": "Módulo 2 · Estructuras de control",
+              "explanation": "while repite un bloque mientras una condición sea verdadera. Actualiza la variable de control para evitar ciclos infinitos.",
+              "example": "Comprueba que la condición pueda volverse falsa.",
+              "task": "contador = 1\nwhile contador <= 3:\n    print(contador)\n    contador += 1",
+              "question": "Usa while para imprimir 1, 2 y 3 e incrementa el contador.",
+              "options": "¿Cuándo termina un ciclo while?",
+              "answer": [
+                "Cuando la condición es falsa",
+                "Después de una vuelta siempre",
+                "Cuando se cierra el editor",
+                "Nunca"
+              ],
+              "feedback": "Cuando la condición es falsa",
+              "type": "while deja de repetir cuando la condición ya no es verdadera."
+            }
+          ]
+        },
+        {
+          "title": "Resolución de problemas",
+          "lessons": [
+            {
+              "id": "prog-functions",
+              "title": "Funciones",
+              "concept": "Una función agrupa instrucciones para realizar una tarea y puede recibir parámetros y devolver resultados.",
+              "explanation": "Una función agrupa instrucciones para realizar una tarea y puede recibir parámetros y devolver resultados.",
+              "example": "Define funciones con def. Los parámetros reciben valores; return devuelve un resultado. Funciones pequeñas facilitan pruebas y reutilización.",
+              "task": "def doble(numero): return numero * 2",
+              "question": "¿Qué palabra devuelve un valor desde una función?",
+              "options": [
+                "return",
+                "print",
+                "input",
+                "while"
+              ],
+              "answer": "return",
+              "feedback": "return devuelve un resultado al punto de llamada.",
+              "type": "quiz"
+            },
+            {
+              "id": "prog-collections",
+              "title": "Listas y colecciones",
+              "concept": "Las listas guardan secuencias ordenadas que pueden cambiar.",
+              "explanation": "Las listas guardan secuencias ordenadas que pueden cambiar.",
+              "example": "Los índices empiezan en cero. append agrega elementos y len devuelve la longitud.",
+              "task": "frutas = ['pera', 'mango']\nfrutas.append('uva')",
+              "question": "¿Qué método agrega un elemento al final de una lista Python?",
+              "options": [
+                "append",
+                "push_back_only",
+                "join",
+                "select"
+              ],
+              "answer": "append",
+              "feedback": "append agrega un elemento al final.",
+              "type": "quiz"
+            },
+            {
+              "id": "prog-debug",
+              "title": "Depuración y pruebas",
+              "concept": "Los errores comunican qué falló; leerlos sistemáticamente acelera la corrección.",
+              "explanation": "Los errores comunican qué falló; leerlos sistemáticamente acelera la corrección.",
+              "example": "SyntaxError indica estructura inválida; NameError un nombre no definido; TypeError una operación incompatible. Reproduce, observa, formula hipótesis y vuelve a probar.",
+              "task": "Un test pequeño comprueba que una función devuelve el resultado esperado.",
+              "question": "¿Qué indica normalmente un NameError?",
+              "options": [
+                "Nombre no definido",
+                "Fallo de conexión",
+                "Error CSS",
+                "Archivo grande"
+              ],
+              "answer": "Nombre no definido",
+              "feedback": "NameError aparece cuando se usa un nombre que no está definido.",
+              "type": "quiz"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Documentación oficial de Python",
+          "type": "Documentación",
+          "description": "Tutorial oficial del lenguaje Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python Software Foundation",
+          "language": "es"
+        },
+        {
+          "title": "MDN: aprender desarrollo web",
+          "type": "Documentación",
+          "description": "Fundamentos de HTML, CSS y JavaScript.",
+          "url": "https://developer.mozilla.org/es/docs/Learn_web_development",
+          "topic": "Web",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "freeCodeCamp",
+          "type": "Práctica",
+          "description": "Lecciones y proyectos gratuitos de programación.",
+          "url": "https://www.freecodecamp.org/learn/",
+          "topic": "Varios",
+          "level": "Principiante",
+          "source": "freeCodeCamp",
+          "language": "es"
+        },
+        {
+          "title": "GitHub Skills",
+          "type": "Práctica",
+          "description": "Cursos prácticos para aprender GitHub.",
+          "url": "https://skills.github.com/",
+          "topic": "GitHub",
+          "level": "Principiante",
+          "source": "GitHub",
+          "language": "es"
+        },
+        {
+          "title": "CS50",
+          "type": "Curso",
+          "description": "Introducción a ciencias de computación.",
+          "url": "https://cs50.harvard.edu/x/",
+          "topic": "Fundamentos",
+          "level": "Principiante",
+          "source": "Harvard",
+          "language": "es"
+        },
+        {
+          "title": "Corey Schafer",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de Python.",
+          "url": "https://www.youtube.com/@coreyms",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Corey Schafer",
+          "language": "es"
+        },
+        {
+          "title": "Python Tutorial",
+          "type": "Documentación",
+          "description": "Tutorial oficial de Python.",
+          "url": "https://docs.python.org/es/3/tutorial/",
+          "topic": "Python",
+          "level": "Principiante",
+          "source": "Python",
+          "language": "es"
+        },
+        {
+          "title": "Go Tour",
+          "type": "Práctica",
+          "description": "Introducción interactiva a Go.",
+          "url": "https://go.dev/tour/",
+          "topic": "Go",
+          "level": "Principiante",
+          "source": "Go",
+          "language": "es"
+        },
+        {
+          "title": "Java Learn",
+          "type": "Documentación",
+          "description": "Rutas oficiales para aprender Java.",
+          "url": "https://dev.java/learn/",
+          "topic": "Java",
+          "level": "Principiante",
+          "source": "OpenJDK",
+          "language": "es"
+        },
+        {
+          "title": "C++ Learn",
+          "type": "Documentación",
+          "description": "Material de aprendizaje y referencia de C++.",
+          "url": "https://learn.microsoft.com/en-us/cpp/?view=msvc-170",
+          "topic": "C++",
+          "level": "Principiante",
+          "source": "Microsoft",
+          "language": "es"
+        }
+      ]
+    }
+  ]
+}
