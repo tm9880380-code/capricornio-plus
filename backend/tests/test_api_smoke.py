@@ -624,3 +624,20 @@ def test_security_headers_are_present_on_private_pages(client):
     assert response.headers["cross-origin-opener-policy"] == "same-origin"
     assert response.headers["cross-origin-resource-policy"] == "same-origin"
     assert response.headers["cache-control"] == "no-store"
+
+
+def test_dashboard_uses_class_continuation_and_competency_language(client):
+    client.post("/api/register", json={
+        "name": "Estudiante Panel", "email": "panel-adaptativo@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "privacy_consent": True, "terms_accepted": True,
+    })
+    response = client.get("/plan.html")
+    assert response.status_code == 200
+    assert "Continuar con mis clases" in response.text
+    assert "Prácticas · Resolver ejercicios" in response.text
+    assert "Repasar mi ruta" in response.text
+    assert "Nivel de competencia" in response.text
+    assert "Prácticas registradas" in response.text
+    assert "Lecciones listas" not in response.text
+    assert "Por avanzar" not in response.text
