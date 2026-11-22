@@ -16,4 +16,6 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: pip install -r requirements-dev.txt
       - run: python -m compileall -q backend
+      - run: node --check js/app-shell.js
+      - run: node --check js/python-runner.js
       - run: pytest -q

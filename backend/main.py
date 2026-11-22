@@ -376,12 +376,21 @@ CURRICULUM = json.loads(CURRICULUM_PATH.read_text(encoding="utf-8"))
 CURRICULUM_AREA_BY_NAME = {area["name"]: area for area in CURRICULUM["areas"]}
 CURRICULUM_AREA_BY_ID = {area["id"]: area for area in CURRICULUM["areas"]}
 CURRICULUM_BANK_KEY = {area["name"]: "curriculum:" + area["id"] for area in CURRICULUM["areas"]}
+CURRICULUM_LESSON_BY_QUESTION = {}
 for alias in ("Python", "JavaScript", "Go", "Java", "C++", "Programación y lenguajes"):
     CURRICULUM_BANK_KEY[alias] = "curriculum:programacion"
 for alias in ("Desarrollo frontend",):
     CURRICULUM_BANK_KEY[alias] = "curriculum:frontend"
 for alias in ("Desarrollo backend",):
     CURRICULUM_BANK_KEY[alias] = "curriculum:backend"
+for alias, curriculum_id in {
+    "Desarrollo web": "frontend",
+    "Desarrollo de software y programación": "programacion",
+    "Fundamentos de programación": "programacion",
+    "Programación orientada a objetos": "programacion",
+    "Inteligencia artificial": "ia",
+}.items():
+    CURRICULUM_BANK_KEY[alias] = "curriculum:" + curriculum_id
 
 for curriculum_area in CURRICULUM["areas"]:
     bank_key = "curriculum:" + curriculum_area["id"]
@@ -391,9 +400,10 @@ for curriculum_area in CURRICULUM["areas"]:
             if not lesson.get("question") or not lesson.get("options") or not lesson.get("answer"):
                 continue
             question_id = "cur_" + lesson["id"].replace("-", "_")
+            CURRICULUM_LESSON_BY_QUESTION[question_id] = lesson
             options = [(chr(97 + i), option) for i, option in enumerate(lesson["options"])]
             answer_index = lesson["options"].index(lesson["answer"])
-            generated_questions.append((question_id, lesson["title"], options, chr(97 + answer_index)))
+            generated_questions.append((question_id, lesson.get("question") or lesson["title"], options, chr(97 + answer_index)))
             SKILL_BY_QUESTION[question_id] = curriculum_area["id"] + "." + lesson["id"]
     if generated_questions:
         QUESTION_BANK[bank_key] = generated_questions
@@ -627,7 +637,7 @@ def submit_diagnostic(data: DiagnosticSubmitData, user=Depends(current_user)):
     if data.area not in VALID_LEARNING_AREAS:
         raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
 
-    bank_area = AREA_BANK_KEY.get(data.area, data.area)
+    bank_area = CURRICULUM_BANK_KEY.get(data.area, AREA_BANK_KEY.get(data.area, data.area))
     questions = QUESTION_BANK[bank_area]
     expected = {q[0]: q[3] for q in questions}
 
@@ -773,7 +783,7 @@ def get_progress(user=Depends(current_user)):
             (user["id"],),
         ).fetchall()
     selected_area = diagnostic["learning_area"] if diagnostic else user["learning_goal"]
-    selected_bank = AREA_BANK_KEY.get(selected_area, selected_area)
+    selected_bank = CURRICULUM_BANK_KEY.get(selected_area, AREA_BANK_KEY.get(selected_area, selected_area))
     selected_area_id = selected_bank.split(":", 1)[1] if selected_bank.startswith("curriculum:") else None
     route_lessons = {
         lesson_id: item for lesson_id, item in LESSON_CATALOG.items()
@@ -831,7 +841,7 @@ def complete_lesson(data: LessonCompletionData, user=Depends(current_user)):
             (user["id"], ORIENTATION_ID),
         ).fetchone()
         selected_area = latest["learning_area"] if latest else user["learning_goal"]
-        selected_bank = AREA_BANK_KEY.get(selected_area, selected_area)
+        selected_bank = CURRICULUM_BANK_KEY.get(selected_area, AREA_BANK_KEY.get(selected_area, selected_area))
         selected_area_id = selected_bank.split(":", 1)[1] if selected_bank.startswith("curriculum:") else None
         route_ids = [key for key, value in LESSON_CATALOG.items() if value["area_id"] == selected_area_id] if selected_area_id else list(LESSON_CATALOG)
         route_count = len(route_ids) or len(LESSON_CATALOG)
@@ -867,7 +877,7 @@ def learning_item_bank(area):
 def next_learning_item(area: str, user=Depends(current_user)):
     if area not in VALID_LEARNING_AREAS:
         raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
-    bank_area = AREA_BANK_KEY.get(area, area)
+    bank_area = CURRICULUM_BANK_KEY.get(area, AREA_BANK_KEY.get(area, area))
     with closing(connect()) as db:
         row = db.execute(
             "SELECT state_json FROM student_irt_state WHERE user_id = ? AND learning_area = ?",
@@ -925,12 +935,17 @@ def answer_learning_item(data: LearningAnswerData, user=Depends(current_user)):
             correct=correct,
         )
         db.commit()
+    lesson = CURRICULUM_LESSON_BY_QUESTION.get(data.item_id, {})
+    explanation = lesson.get("feedback") or "Revisa el concepto y compara tu razonamiento con la respuesta esperada."
+    feedback = ("¡Respuesta correcta! " if correct else "Todavía no es correcto. La respuesta es: " + str(lesson.get("answer", "consulta la explicación")) + ". ") + explanation
     return {
         "correct": correct,
-        "feedback": "¡Respuesta correcta!" if correct else "Aún no es correcta. Revisa el concepto e inténtalo en el repaso.",
+        "feedback": feedback,
+        "correct_answer": lesson.get("answer"),
+        "explanation": explanation,
+        "reinforcement": lesson.get("reinforcement"),
         "competency_update": update,
     }
-
 
 
 @app.get("/api/curriculum")
@@ -1124,7 +1139,8 @@ def home():
 def serve_page(page: str):
     allowed = {
         "index", "registro", "login", "diagnostico",
-        "plan", "modulo", "leccion", "practica", "suscripciones", "recursos"
+        "plan", "modulo", "leccion", "practica", "suscripciones", "recursos",
+        "ayuda", "ajustes", "perfil", "entorno"
     }
     if page not in allowed:
         raise HTTPException(status_code=404, detail="Página no encontrada.")

@@ -4,6 +4,7 @@
 
 ## Principios
 - Acceso abierto y autoalojable.
+- Enseñanza guiada y adaptativa, con fuentes externas seleccionadas y aprendizaje comprobable.
 - Prioridad a recursos gratuitos y fuentes originales.
 - Una ruta adecuada al objetivo y nivel inicial de cada estudiante.
 - Aprender, practicar, recibir retroalimentación y volver a intentarlo.
@@ -67,6 +68,7 @@ SQLite se crea en data/capricornio.db. Conserva la carpeta data/ en un volumen p
 No se garantiza que un proveedor externo mantenga un plan gratuito permanente. Para una instalación sin pagos de hosting, se puede ejecutar en un equipo o servidor propio; el equipo debe permanecer disponible y administrado.
 
 ## Documentación para revisión
+- Modelo pedagógico y criterios de curación: docs/LEARNING-MODEL.md
 - Arquitectura: docs/ARCHITECTURE.md
 - Seguridad: docs/SECURITY.md
 - Accesibilidad: docs/ACCESSIBILITY.md

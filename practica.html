@@ -36,7 +36,7 @@ async function submit(){
  answersEl.querySelectorAll("button").forEach(x=>x.disabled=true);
  try{
   const d=await api("/api/learning/answer",{method:"POST",body:JSON.stringify({area,item_id:itemId,answer:selected})});
-  statusEl.textContent=d.feedback+" Dominio estimado de esta competencia: "+d.competency_update.mastery+".";
+  statusEl.textContent=d.feedback+(d.reinforcement?" Otra forma de verlo: "+d.reinforcement:"")+" Dominio estimado de esta competencia: "+d.competency_update.mastery+".";
   nextBtn.hidden=false;
  }catch(e){statusEl.textContent=e.message;answersEl.querySelectorAll("button").forEach(x=>x.disabled=false);}
 }
@@ -49,4 +49,4 @@ try{
  await load();
 }catch(e){questionEl.textContent="No se pudo iniciar la práctica.";statusEl.textContent=e.message+" Inicia sesión y realiza tu diagnóstico.";}
 })();
-</script></body></html>
+</script><script src="js/app-shell.js" defer></script></body></html>

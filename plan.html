@@ -3,9 +3,9 @@
 .panel{background:#f3e6c8;border:2px solid #5a3a1e;border-radius:12px;padding:22px;margin:18px 0}.barra-progreso{height:12px;background:#eadfc8;border-radius:20px;overflow:hidden;margin:12px 0}.barra-progreso span{display:block;height:100%;background:#8f6b3e}.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.area{padding:16px;border:1px solid #b69a70;border-radius:10px;background:#fbf4e2}.area h3{margin-bottom:5px}.area p{font-size:14px}.area a{font-weight:bold;text-decoration:underline}.acciones{display:flex;gap:10px;flex-wrap:wrap}
 </style></head><body>
 <header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi inicio</a><a href="recursos.html">Explorar recursos</a><a href="practica.html">Practicar</a><a href="login.html" id="salir">Cerrar sesión</a></nav></header>
-<main class="contenedor"><p>Tu espacio de aprendizaje</p><h1 id="saludo">¡Hola!</h1><p>Un lugar para encontrar buenos recursos, practicar y avanzar a tu ritmo.</p>
-<section class="panel"><h2>Tu ruta actual</h2><p id="ruta">Cargando tu ruta...</p><p id="nivel"></p><div class="barra-progreso"><span id="barra" style="width:0%"></span></div><strong id="avance">Consultando tu avance...</strong><p id="ultima"></p><div class="acciones" style="margin-top:14px"><a class="boton" id="siguiente-leccion" href="modulo.html">Continuar mi ruta</a><a class="boton claro" href="recursos.html">Buscar recursos</a><a class="boton claro" href="practica.html">Practicar ahora</a></div></section>
-<section class="panel"><h2>¿Qué quieres aprender?</h2><p>Explora las ocho áreas. Puedes cambiar de ruta cuando lo necesites.</p><div class="area-grid" id="areas"></div></section>
+<main class="contenedor"><p>Tu espacio de aprendizaje</p><h1 id="saludo">¡Hola!</h1><p>Tu espacio de estudio: continúa tu ruta, consulta recursos y revisa lo que ya puedes demostrar.</p>
+<section class="panel" id="avance"><h2>Tu ruta actual</h2><p id="ruta">Cargando tu ruta...</p><p id="nivel"></p><div class="barra-progreso"><span id="barra" style="width:0%"></span></div><strong id="avance">Consultando tu avance...</strong><p id="ultima"></p><div class="acciones" style="margin-top:14px"><a class="boton" id="siguiente-leccion" href="modulo.html">Continuar mi ruta</a><a class="boton claro" href="recursos.html">Buscar recursos</a><a class="boton claro" href="practica.html">Practicar ahora</a></div></section>
+<section class="panel" id="explorador-areas"><h2>Explorar otras áreas</h2><p>Explora las ocho áreas. Puedes cambiar de ruta cuando lo necesites.</p><div class="area-grid" id="areas"></div></section>
 <section class="panel"><h2>¿Todavía no sabes por dónde empezar?</h2><p>Responde unas preguntas sobre lo que te interesa y Capricornio te propone una ruta inicial.</p><a class="boton" href="diagnostico.html">Descubrir mi camino</a></section>
 <p id="estado" role="status" aria-live="polite"></p></main><footer class="pie-pagina">Capricornio · Conectar para aprender</footer>
 <script>
@@ -28,17 +28,27 @@ try{
  if(!meR.ok||!progressR.ok)throw new Error("Tu sesión terminó. Inicia sesión para recuperar tu avance.");
  const me=await meR.json(),d=await progressR.json();
  document.getElementById("saludo").textContent="¡Hola, "+me.user.name+"!";
- document.getElementById("ruta").textContent="Estás aprendiendo: "+me.user.learning_goal;
+ const routeName=d.diagnostic?.learning_area||me.user.learning_goal;
+ document.getElementById("ruta").textContent="Estás aprendiendo: "+routeName;
+ const explorer=document.getElementById("explorador-areas");
+ if(me.user.learning_goal && me.user.learning_goal!=="Aún no lo sé; necesito orientación"){
+  const title=explorer.querySelector("h2");title.textContent="Mi entorno de aprendizaje";
+  const intro=explorer.querySelector("p");intro.textContent="Tu ruta activa está seleccionada. Desde aquí puedes explorar otras disciplinas o cambiar de especialidad cuando lo decidas.";
+ }
  document.getElementById("barra").style.width=d.progress_percent+"%";
  document.getElementById("avance").textContent=d.progress_percent+"% del itinerario de lecciones de muestra completado · "+d.completed_count+" de "+d.total_lessons;
  if(d.diagnostic)document.getElementById("nivel").textContent="Diagnóstico inicial: "+d.diagnostic.detected_level+" · "+d.diagnostic.score+"% · "+d.diagnostic.learning_area;
  else document.getElementById("nivel").textContent="Todavía no has realizado tu diagnóstico de conocimientos.";
  document.getElementById("ultima").textContent=d.completed_count?"Tus lecciones completadas se guardan en esta cuenta.":"Cuando completes una actividad, tu avance aparecerá aquí.";
  const next=Object.entries(d.catalog||{}).find(([id])=>!d.completed_lessons.includes(id));
+ const mastery=document.createElement("p");mastery.id="competency-summary";
+ const values=(d.mastery||[]).filter(x=>x.observations>0);
+ mastery.textContent=values.length?"Competencias con práctica registrada: "+values.length+". El dominio es una estimación experimental, no una certificación.":"Todavía no hay suficientes intentos para mostrar señales de dominio.";
+ document.getElementById("avance").append(mastery);
  const nextLink=document.getElementById("siguiente-leccion");
  if(next){nextLink.href="leccion.html?id="+encodeURIComponent(next[0]);nextLink.textContent="Continuar: "+next[1].title;}
  else{nextLink.href="modulo.html";nextLink.textContent="Explorar o repasar mi ruta";}
 }catch(e){status.textContent=e.message;const a=document.createElement("a");a.href="login.html";a.textContent=" Iniciar sesión";status.append(a);}
 })();
 document.getElementById("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
-</script></body></html>
+</script><script src="js/app-shell.js" defer></script></body></html>
