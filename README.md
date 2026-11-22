@@ -44,7 +44,7 @@ Esta versión es un prototipo funcional para revisión y pruebas, no una platafo
 - Los diagnósticos son breves y sus niveles son orientativos. No han sido validados psicométricamente ni equivalen a certificaciones.
 - El motor BKT/IRT es experimental y requiere calibración con datos de aprendizaje y revisión pedagógica.
 - Los cuatro ejercicios ejecutables son de Python. Las demás lecciones utilizan preguntas de comprensión; todavía no hay sandbox de ejecución para JavaScript, Go, Java o C++.
-- La evaluación de Python compara la salida esperada y muestra errores del intérprete; no es un depurador profesional ni un corrector general de código.
+- La evaluación de Python compara la salida esperada y muestra errores del intérprete; no es un depurador profesional ni un corrector general de código. El Web Worker no es una sandbox segura para código hostil; no debe exponerse como servicio público para ejecutar código arbitrario.
 - La gestión de progreso se realiza por cuenta y ruta; faltan funciones institucionales como panel docente, cohortes, roles, SSO, exportación académica y multi-tenancy.
 - El catálogo de recursos se mantiene manualmente. Los enlaces y condiciones de terceros pueden cambiar; las páginas profundas y sus anclas deben verificarse periódicamente.
 - La guía de lectura ayuda a localizar conceptos, pero no garantiza que cada proveedor mantenga la misma estructura o traducción.

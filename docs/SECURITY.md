@@ -12,6 +12,8 @@
 - Cabeceras X-Content-Type-Options, X-Frame-Options, Referrer-Policy y Permissions-Policy.
 - Código Python educativo ejecutado en Web Worker del navegador, nunca mediante `exec` en el servidor. Se bloquea el acceso de red del worker y se limita el tiempo de ejecución y la salida capturada.
 
+**Límite importante:** un Web Worker y Pyodide no constituyen una caja de arena de seguridad para ejecutar código hostil. La plataforma está pensada para ejercicios educativos de estudiantes de confianza. No ejecutes código de terceros ni la presentes como entorno aislado multiusuario. Para un servicio público con código no confiable se necesita aislamiento real en servidor (contenedores/VM efímeros, límites de CPU/memoria, red denegada, sistema de archivos temporal y revisión de seguridad).
+
 ## Antes de desplegar públicamente
 
 - Configurar HTTPS y `CAPRICORNIO_HTTPS=1`.
@@ -22,7 +24,7 @@
 - Revisar CSRF, XSS, CSP, cookies, dependencias y configuración del proxy.
 - Ejecutar análisis SAST, escaneo de dependencias, pruebas de penetración y revisión independiente.
 - Definir registros sin contraseñas, tokens ni datos personales innecesarios.
-- Revisar la ejecución de Pyodide, límites de recursos y versiones CDN; el Web Worker no sustituye una auditoría de seguridad del navegador.
+- Revisar la ejecución de Pyodide, límites de recursos y versiones CDN; el Web Worker no sustituye una auditoría de seguridad del navegador ni una sandbox de código no confiable.
 - Para una institución, definir responsables, gestión de incidentes, retención, accesos administrativos y plan de continuidad.
 
 ## Uso con menores

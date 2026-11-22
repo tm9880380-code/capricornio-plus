@@ -12,7 +12,34 @@ self.onmessage=async event=>{
   const {id,code}=event.data||{};
   try{
     const py=await start();
-    await py.runPythonAsync("import sys, io\n_cap_out=io.StringIO()\n_cap_err=io.StringIO()\nsys.stdout=_cap_out\nsys.stderr=_cap_err");
+    await py.runPythonAsync(`
+import sys
+class _CapricornioLimitedWriter:
+    def __init__(self, limit):
+        self.limit = limit
+        self.parts = []
+        self.size = 0
+        self.truncated = False
+    def write(self, value):
+        value = str(value)
+        remaining = self.limit - self.size
+        if remaining > 0:
+            piece = value[:remaining]
+            self.parts.append(piece)
+            self.size += len(piece)
+        if len(value) > remaining:
+            self.truncated = True
+        return len(value)
+    def getvalue(self):
+        result = "".join(self.parts)
+        return result + ("\\n[Salida recortada por el límite de Capricornio.]" if self.truncated else "")
+    def flush(self):
+        return None
+_cap_out = _CapricornioLimitedWriter(10000)
+_cap_err = _CapricornioLimitedWriter(4000)
+sys.stdout = _cap_out
+sys.stderr = _cap_err
+`);
     await py.runPythonAsync(code);
     const stdout=py.runPython("_cap_out.getvalue()");
     const stderr=py.runPython("_cap_err.getvalue()");
