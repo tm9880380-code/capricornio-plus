@@ -1,39 +1,57 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Capricornio - Lección</title><link rel="stylesheet" href="css/estilos.css"><style>
-.ejercicio textarea{width:100%;min-height:130px;padding:12px;font:15px monospace;border:2px solid #5a3a1e;border-radius:8px}
-#resultado{min-height:1.5em} pre{white-space:pre-wrap;background:#f4ead7;padding:14px;border-radius:8px;overflow:auto}
-</style></head><body><header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi plan</a><a href="modulo.html">Módulos</a></nav></header>
-<main class="contenedor"><p><a href="plan.html"><strong>← Volver a mi plan</strong></a></p><h1 id="titulo">Lección</h1><p id="modulo"></p><section class="tarjeta"><h2>Aprende</h2><div id="explicacion"></div><h3>Ejemplo</h3><pre id="ejemplo"></pre><h3>¿Qué debes recordar?</h3><p id="recordatorio"></p></section>
-<section class="tarjeta ejercicio"><h2>Practica</h2><p id="consigna"></p><label for="respuesta">Escribe tu solución en Python</label><textarea id="respuesta" placeholder="Escribe tu código aquí..."></textarea><p><button class="boton" id="comprobar" type="button">Comprobar ejercicio</button></p><p id="resultado" role="status" aria-live="polite"></p></section>
-</main><footer class="pie-pagina">Capricornio · Aprender haciendo</footer>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Aprende con recursos abiertos, ejercicios y retroalimentación paso a paso."><title>Capricornio · Lección</title><link rel="stylesheet" href="css/estilos.css"><style>
+.leccion-meta{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.bloque{background:#f3e6c8;border:2px solid #5a3a1e;border-radius:10px;padding:20px;margin:16px 0}.codigo{white-space:pre-wrap;overflow:auto;background:#14232a;color:#e8d3a4;padding:16px;border-radius:8px;font:14px/1.6 ui-monospace,monospace}.editor{width:100%;min-height:190px;resize:vertical;padding:14px;background:#14232a;color:#f3e6c8;border:2px solid #5a3a1e;border-radius:8px;font:14px/1.6 ui-monospace,monospace;tab-size:4}.respuesta{border-left:5px solid #8f6b3e;background:#fbf4e2;padding:14px;margin-top:12px;white-space:pre-wrap;overflow-wrap:anywhere}.respuesta.error{border-left-color:#9b2525}.respuesta.ok{border-left-color:#66865b}.opcion-leccion{display:block;width:100%;text-align:left;margin:9px 0;padding:13px;border:2px solid #5a3a1e;border-radius:8px;background:#fbf4e2;color:#2b1608;cursor:pointer}.opcion-leccion:hover,.opcion-leccion[aria-pressed=true]{background:#3b2314;color:#f3e6c8}.opcion-leccion:disabled{opacity:.7;cursor:default}.nota{font-size:13px;color:#725638}.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.error-linea{color:#9b2525;font-weight:bold}.recurso-link{display:block;padding:8px 0;text-decoration:underline}
+</style></head><body>
+<header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi inicio</a><a href="modulo.html">Mi ruta</a><a href="recursos.html">Recursos</a><a href="login.html" id="salir">Salir</a></nav></header>
+<main class="contenedor"><p><a href="modulo.html">← Volver a mi ruta</a></p><h1 id="titulo">Cargando lección…</h1><p id="resumen"></p><div class="leccion-meta"><span class="etiqueta" id="area"></span><span class="etiqueta" id="modulo"></span></div>
+<section class="bloque"><h2>Aprende</h2><p id="explicacion"></p><h3>Ejemplo</h3><pre class="codigo" id="ejemplo"></pre><p id="recordatorio"></p></section>
+<section class="bloque" id="practica"><h2>Ahora te toca a ti</h2><p id="consigna"></p><div id="zona-codigo" hidden><label for="codigo">Escribe tu código Python</label><textarea id="codigo" class="editor" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="# Escribe tu solución aquí"></textarea><p class="nota">El código se ejecuta en tu navegador dentro de un Web Worker. No se envía al servidor de Capricornio. Se requiere conexión para cargar el motor Python la primera vez.</p><button class="boton" id="ejecutar" type="button">Ejecutar y evaluar</button><div id="linea-error" class="nota" aria-live="polite"></div><pre id="salida" class="respuesta" hidden></pre></div><div id="zona-pregunta" hidden><p id="pregunta"></p><div id="opciones"></div></div><p id="estado" role="status" aria-live="polite"></p><div class="acciones"><a class="boton claro" href="recursos.html">Consultar recursos</a><a class="boton" href="modulo.html" id="continuar" hidden>Volver a la ruta</a></div></section>
+<section class="bloque"><h2>Recursos para profundizar</h2><div id="recursos-leccion">Cargando recursos…</div></section>
+</main><footer class="pie-pagina">Capricornio · Aprender, practicar y avanzar</footer>
 <script>
-const lessons={
-"fundamentos-variables":{title:"Variables y tipos de datos",module:"Módulo 1 · Fundamentos",explain:"Una variable es un nombre que usamos para guardar un dato y reutilizarlo. En Python no necesitas declarar el tipo antes de asignarlo. Los tipos básicos incluyen int (enteros), float (decimales), str (texto) y bool (verdadero o falso).",example:"nombre = \"Ana\"\nedad = 20\naltura = 1.65\nestudia = True\nprint(nombre, edad)",remember:"El signo = asigna un valor a una variable; no significa igualdad matemática.",task:"Crea una variable llamada edad con el valor 24 y muestra su contenido.",check:c=>/edad\s*=\s*24/.test(c)&&/print\s*\(\s*edad\s*\)/.test(c)},
-"fundamentos-condiciones":{title:"Condiciones if y else",module:"Módulo 1 · Fundamentos",explain:"Una condición permite ejecutar instrucciones diferentes según se cumpla o no una expresión lógica. Python usa if, elif y else. Después de la condición se escribe dos puntos y el bloque se indenta.",example:"edad = 18\nif edad >= 18:\n    print(\"Mayor de edad\")\nelse:\n    print(\"Menor de edad\")",remember:"La indentación define qué instrucciones pertenecen a cada bloque.",task:"Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado dentro del if.",check:c=>/if\s+nota\s*>=\s*3\s*:/.test(c)&&/print\s*\(\s*[\"']Aprobado[\"']\s*\)/i.test(c)},
-"estructuras-for":{title:"Ciclo for",module:"Módulo 2 · Estructuras de control",explain:"El ciclo for recorre los elementos de una secuencia. La función range genera una secuencia de números. range(1, 6) produce 1, 2, 3, 4 y 5: el límite final no se incluye.",example:"for numero in range(1, 6):\n    print(numero)",remember:"El límite superior de range no se incluye. La indentación marca el cuerpo del ciclo.",task:"Escribe un programa que imprima los números del 1 al 5 usando for y range.",check:c=>/for\s+\w+\s+in\s+range\s*\(\s*1\s*,\s*6\s*\)\s*:/.test(c)&&/print\s*\(/.test(c)},
-"estructuras-while":{title:"Ciclo while",module:"Módulo 2 · Estructuras de control",explain:"El ciclo while repite un bloque mientras una condición sea verdadera. Debes actualizar la variable que controla la condición para evitar un ciclo infinito.",example:"contador = 1\nwhile contador <= 5:\n    print(contador)\n    contador += 1",remember:"Comprueba que la condición pueda volverse falsa; de lo contrario el ciclo puede no terminar.",task:"Crea contador = 1 y usa while para repetir mientras contador sea menor o igual a 3. Incrementa contador dentro del ciclo.",check:c=>/contador\s*=\s*1/.test(c)&&/while\s+contador\s*<=\s*3\s*:/.test(c)&&/contador\s*(\+=\s*1|=\s*contador\s*\+\s*1)/.test(c)}
-};
-const id=new URLSearchParams(location.search).get("id")||"estructuras-for";
-const lesson=lessons[id];
-const title=document.getElementById("titulo"), result=document.getElementById("resultado"), button=document.getElementById("comprobar");
-if(!lesson){title.textContent="Lección no encontrada";button.disabled=true;}
-else{
- document.title="Capricornio - "+lesson.title;title.textContent=lesson.title;
- document.getElementById("modulo").textContent=lesson.module;
- document.getElementById("explicacion").textContent=lesson.explain;
- document.getElementById("ejemplo").textContent=lesson.example;
- document.getElementById("recordatorio").textContent=lesson.remember;
- document.getElementById("consigna").textContent=lesson.task;
-}
-button.addEventListener("click",async()=>{
- if(!lesson)return;
- const code=document.getElementById("respuesta").value;
- if(!lesson.check(code)){result.textContent="Todavía no está completo. Revisa la explicación y comprueba que tu código cumpla todos los requisitos.";return;}
- button.disabled=true;result.textContent="Respuesta correcta. Guardando tu avance...";
+(async()=>{
+const $=id=>document.getElementById(id),params=new URLSearchParams(location.search),lessonId=params.get("id");
+let lessonData,worker,timeout;
+async function api(url,options={}){const r=await fetch(url,{credentials:"same-origin",...options,headers:{"Content-Type":"application/json",...(options.headers||{})}});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||"No se pudo completar la solicitud.");return d;}
+function normalize(s){return String(s??"").replace(/\r/g,"").trim();}
+async function complete(){await api("/api/lessons/complete",{method:"POST",body:JSON.stringify({lesson_id:lessonId})});$("estado").textContent="¡Excelente! Tu respuesta es correcta y la lección quedó guardada en tu progreso.";$("estado").className="respuesta ok";$("continuar").hidden=false;}
+function showPythonError(message){const match=String(message).match(/line (\d+)/i);$("linea-error").textContent=match?"Revisa la línea "+match[1]+".":"Revisa el mensaje del intérprete y la sintaxis."; $("linea-error").className="error-linea";}
+async function runPython(){
+ const code=$("codigo").value;if(!code.trim()){$("estado").textContent="Escribe una solución antes de ejecutar.";return;}
+ $("ejecutar").disabled=true;$("estado").textContent="Preparando Python en tu navegador…";$("salida").hidden=true;$("linea-error").textContent="";
+ worker=new Worker("/js/python-runner.js");
+ const runId=String(Date.now());
+ const result=new Promise((resolve,reject)=>{worker.onmessage=e=>e.data.id===runId&&resolve(e.data);worker.onerror=e=>reject(new Error(e.message||"El motor Python no pudo iniciarse."));});
+ worker.postMessage({id:runId,code});
+ timeout=setTimeout(()=>{worker.terminate();rejectTimeout();},8000);
+ function rejectTimeout(){ $("estado").textContent="El programa superó el límite de 8 segundos y se detuvo para proteger el navegador. Revisa si hay un ciclo infinito."; $("ejecutar").disabled=false; }
  try{
-  const r=await fetch("/api/lessons/complete",{method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify({lesson_id:id})});
-  const d=await r.json();if(!r.ok)throw new Error(d.detail||"No se pudo guardar el progreso.");
-  result.textContent="¡Muy bien! Lección completada y guardada. Tu progreso es "+d.progress_percent+"%.";
- }catch(e){result.textContent=e.message;button.disabled=false;}
-});
+  const out=await result;clearTimeout(timeout);worker.terminate();worker=null;$("salida").hidden=false;
+  if(!out.ok){$("salida").textContent=out.error;$("salida").className="respuesta error";showPythonError(out.error);$("estado").textContent="El programa encontró un error. Lee el mensaje y vuelve a intentarlo.";return;}
+  const actual=normalize(out.stdout),expected=normalize(lessonData.lesson.expected_output);
+  $("salida").textContent="Salida del programa:\n"+(actual||"(sin salida)");
+  if(actual===expected){$("salida").className="respuesta ok";$("estado").textContent="La salida coincide con el resultado esperado. ¡Muy bien!";await complete();}
+  else{$("salida").className="respuesta error";$("estado").textContent="El código se ejecutó, pero el resultado no coincide con lo que pide el ejercicio. Compara tu salida con la consigna y vuelve a intentarlo.";}
+ }catch(error){clearTimeout(timeout);if(worker)worker.terminate();worker=null;$("estado").textContent=error.message||"No fue posible ejecutar Python.";}
+ finally{$("ejecutar").disabled=false;}
+}
+async function answerQuiz(value,button){
+ document.querySelectorAll(".opcion-leccion").forEach(b=>b.disabled=true);
+ const itemId="cur_"+lessonId.replace(/-/g,"_");
+ try{
+  const d=await api("/api/learning/answer",{method:"POST",body:JSON.stringify({area:lessonData.area,item_id:itemId,answer:value})});
+  if(d.correct){$("estado").textContent=lessonData.lesson.feedback||"¡Respuesta correcta!";$("estado").className="respuesta ok";await complete();}
+  else{$("estado").textContent="Todavía no. "+(lessonData.lesson.feedback||"Revisa la explicación y vuelve a intentarlo.");$("estado").className="respuesta error";document.querySelectorAll(".opcion-leccion").forEach(b=>b.disabled=false);button.focus();}
+ }catch(e){$("estado").textContent=e.message;document.querySelectorAll(".opcion-leccion").forEach(b=>b.disabled=false);}
+}
+try{
+ if(!lessonId)throw new Error("No se indicó una lección.");
+ lessonData=await api("/api/lessons/"+encodeURIComponent(lessonId));
+ const l=lessonData.lesson;$("titulo").textContent=l.title;$("resumen").textContent=l.concept||"";$("area").textContent=lessonData.area;$("modulo").textContent=lessonData.module;$("explicacion").textContent=l.explanation||l.concept||"";$("ejemplo").textContent=l.example||"Consulta los recursos recomendados para ver ejemplos."; $("recordatorio").textContent=l.remember||"";$("consigna").textContent=l.task||"Responde la pregunta para comprobar lo aprendido.";
+ if(l.type==="code"){$("zona-codigo").hidden=false;$("codigo").value="";$("ejecutar").addEventListener("click",runPython);}
+ else{$("zona-pregunta").hidden=false;$("pregunta").textContent=l.question;const bank=await api("/api/curriculum/"+lessonData.area_id);for(let i=0;i<l.options.length;i++){const b=document.createElement("button");b.type="button";b.className="opcion-leccion";b.textContent=l.options[i];b.addEventListener("click",()=>answerQuiz(String.fromCharCode(97+i),b));$("opciones").append(b);}}
+ const resourceData=await api("/api/resources/"+lessonData.area_id);$("recursos-leccion").replaceChildren();for(const r of resourceData.resources.slice(0,8)){const a=document.createElement("a");a.className="recurso-link";a.href=r.url;a.target="_blank";a.rel="noopener noreferrer";a.textContent=r.title+" · "+r.type+" ↗";$("recursos-leccion").append(a);}
+}catch(e){$("titulo").textContent="No se pudo cargar la lección";$("estado").textContent=e.message;}
+$("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
+})();
 </script></body></html>
