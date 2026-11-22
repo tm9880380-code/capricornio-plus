@@ -982,6 +982,8 @@ def record_lesson_attempt(data: LessonAttemptData, user=Depends(current_user)):
             break
     if lesson is None:
         raise HTTPException(status_code=404, detail="Lección no encontrada.")
+    if lesson.get("type") != "code":
+        raise HTTPException(status_code=422, detail="Esta ruta de evaluación es solo para ejercicios de código.")
     question_id = "cur_" + data.lesson_id.replace("-", "_")
     if question_id not in SKILL_BY_QUESTION:
         raise HTTPException(status_code=422, detail="Esta lección no tiene una competencia evaluable.")
