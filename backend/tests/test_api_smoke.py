@@ -319,6 +319,8 @@ def test_lesson_page_has_guided_resource_and_return_flow(client):
     assert "Vuelve y comprobemos qué encontraste" in page.text
     assert "No lo entendí; explícame de otra forma" in page.text
     assert "Ya entendí · Ir a la práctica" in page.text
+    assert "Errores que conviene evitar" in page.text
+    assert "Practica el razonamiento paso a paso" in page.text
     assert 'id="practica" hidden' in page.text
 
  
@@ -336,3 +338,13 @@ def test_curriculum_lessons_include_learning_and_reading_guides(client):
     assert all(lesson.get("why_it_matters") for lesson in lessons)
     assert all(len(lesson.get("reading_guide", [])) >= 4 for lesson in lessons)
     assert all(lesson.get("reflection_prompt") for lesson in lessons)
+
+
+def test_all_curriculum_lessons_have_explanations_examples_and_practice_steps(client):
+    response = client.get("/api/curriculum")
+    assert response.status_code == 200
+    lessons = [lesson for area in response.json()["areas"] for module in area["modules"] for lesson in module["lessons"]]
+    assert all(len(lesson.get("explanation", "").split()) >= 35 for lesson in lessons)
+    assert all(len(lesson.get("example", "").split()) >= 20 for lesson in lessons)
+    assert all(lesson.get("common_mistake") for lesson in lessons)
+    assert all(len(lesson.get("guided_steps", [])) >= 4 for lesson in lessons)
