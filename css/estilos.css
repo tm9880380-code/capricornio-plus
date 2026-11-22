@@ -1,14 +1,14 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Inter, system-ui, "Segoe UI", Arial, sans-serif; background: radial-gradient(ellipse at top, #f6ecd6 0%, #ecdcb8 100%); background-attachment: fixed; color: #2b1608; line-height: 1.5; min-height: 100vh; }
+body { font-family: 'Trebuchet MS', Arial, sans-serif; background: radial-gradient(ellipse at top, #f6ecd6 0%, #ecdcb8 100%); background-attachment: fixed; color: #2b1608; line-height: 1.5; min-height: 100vh; }
 a { color: inherit; text-decoration: none; }
 
 .barra { background: #4a2c17; color: #f3e6c8; display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; flex-wrap: wrap; gap: 10px; border-bottom: 3px solid #2b1608; }
-.barra .logo { font-family: Inter, system-ui, "Segoe UI", Arial, sans-serif; font-size: 24px; font-weight: bold; letter-spacing: 3px; color: #e8d3a4; }
+.barra .logo { font-family: Georgia, 'Palatino Linotype', serif; font-size: 24px; font-weight: bold; letter-spacing: 3px; color: #e8d3a4; }
 .barra nav a { margin-left: 20px; font-size: 15px; color: #e8d3a4; }
 .barra nav a:hover { text-decoration: underline; color: #fff; }
 
 .contenedor { max-width: 1000px; margin: 0 auto; padding: 32px 20px; }
-h1, h2, h3 { font-family: Inter, system-ui, "Segoe UI", Arial, sans-serif; color: #3b2314; }
+h1, h2, h3 { font-family: Georgia, 'Palatino Linotype', serif; color: #3b2314; }
 h1 { font-size: 32px; margin-bottom: 8px; }
 h2 { font-size: 23px; margin-bottom: 12px; }
 h3 { font-size: 18px; margin-bottom: 6px; }
@@ -49,7 +49,7 @@ p { margin-bottom: 12px; color: #4a3322; }
 .codigo { background: #14232a; color: #e8d3a4; font-family: monospace; padding: 16px; border-radius: 8px; margin-bottom: 14px; white-space: pre-wrap; font-size: 14px; }
 .dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-.precio { font-family: Inter, system-ui, "Segoe UI", Arial, sans-serif; font-size: 32px; font-weight: bold; margin: 8px 0; color: #3b2314; }
+.precio { font-family: Georgia, serif; font-size: 32px; font-weight: bold; margin: 8px 0; color: #3b2314; }
 .tarjeta ul { margin: 10px 0 16px 18px; font-size: 14px; }
 
 .pie-pagina { text-align: center; padding: 24px; font-size: 13px; color: #e8d3a4; background: #14232a; border-top: 3px solid #8f6b3e; margin-top: 30px; }
@@ -96,7 +96,7 @@ p { margin-bottom: 12px; color: #4a3322; }
 .barra-progreso span{display:block;height:100%;background:#8f6b3e}
 .cp-layout{min-height:100vh}
 .cp-sidebar{position:fixed;z-index:20;inset:0 auto 0 0;width:252px;background:#14232a;color:#f3e6c8;padding:22px 16px;display:flex;flex-direction:column;gap:22px;overflow-y:auto;border-right:3px solid #2b1608}
-.cp-brand{display:flex;align-items:center;gap:10px;padding:0 8px 18px;border-bottom:1px solid #ffffff35;color:#e8d3a4;font-family:Inter,system-ui,"Segoe UI",Arial,sans-serif;font-size:17px;font-weight:700;letter-spacing:.6px;white-space:nowrap}
+.cp-brand{display:flex;align-items:center;gap:10px;padding:0 8px 18px;border-bottom:1px solid #ffffff35;color:#e8d3a4;font-family:Georgia,"Palatino Linotype",serif;font-size:17px;font-weight:700;letter-spacing:.6px;white-space:nowrap}
 .cp-brand img{width:42px;height:42px;object-fit:contain;background:#ecdcb8;border-radius:10px;padding:3px;mix-blend-mode:multiply}
 .cp-nav-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#d1b98b;padding:0 10px;margin:8px 0}
 .cp-nav{display:grid;gap:5px}
@@ -125,22 +125,3 @@ p { margin-bottom: 12px; color: #4a3322; }
 }
 @media(prefers-reduced-motion:no-preference){.cp-nav a,.boton{transition:background .15s ease,color .15s ease}}
 @media print{.cp-sidebar,.cp-top,.barra,.pie-pagina{display:none!important}.cp-main{margin:0}.contenedor{max-width:none}}
-
-
-/* Sistema tipográfico profesional de Capricornio Plus */
-:root {
-  --cp-font-ui: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-}
-html, body, button, input, select, textarea {
-  font-family: var(--cp-font-ui);
-  font-style: normal;
-}
-h1, h2, h3, h4, h5, h6,
-.barra .logo, .cp-brand, .precio,
-button, label, nav, .boton, .area, .env-card {
-  font-family: var(--cp-font-ui);
-  font-style: normal;
-}
-*, *::before, *::after {
-  font-style: normal;
-}
