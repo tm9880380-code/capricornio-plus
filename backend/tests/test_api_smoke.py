@@ -32,7 +32,9 @@ def test_health_and_root(client):
     assert client.get("/api/health").json()["status"] == "ok"
     response = client.get("/")
     assert response.status_code == 200
-    assert "Encuentra tu camino para aprender tecnología" in response.text
+    assert "Trabajar, persistir y avanzar." in response.text
+    assert "¿Qué es Capricornio?" in response.text
+    assert "Ya tengo cuenta" in response.text
     assert response.headers["x-frame-options"] == "DENY"
     assert response.headers["x-content-type-options"] == "nosniff"
 
