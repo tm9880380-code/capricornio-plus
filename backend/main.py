@@ -353,6 +353,38 @@ SKILL_BY_QUESTION = {
 }
 
 
+# Curriculum declarativo: las rutas y lecciones viven en curriculum.json.
+CURRICULUM_PATH = BASE_DIR / "curriculum.json"
+CURRICULUM = json.loads(CURRICULUM_PATH.read_text(encoding="utf-8"))
+CURRICULUM_AREA_BY_NAME = {area["name"]: area for area in CURRICULUM["areas"]}
+CURRICULUM_AREA_BY_ID = {area["id"]: area for area in CURRICULUM["areas"]}
+CURRICULUM_BANK_KEY = {area["name"]: "curriculum:" + area["id"] for area in CURRICULUM["areas"]}
+for alias in ("Python", "JavaScript", "Go", "Java", "C++", "Programación y lenguajes"):
+    CURRICULUM_BANK_KEY[alias] = "curriculum:programacion"
+for alias in ("Desarrollo frontend",):
+    CURRICULUM_BANK_KEY[alias] = "curriculum:frontend"
+for alias in ("Desarrollo backend",):
+    CURRICULUM_BANK_KEY[alias] = "curriculum:backend"
+
+for curriculum_area in CURRICULUM["areas"]:
+    bank_key = "curriculum:" + curriculum_area["id"]
+    generated_questions = []
+    for module in curriculum_area["modules"]:
+        for lesson in module["lessons"]:
+            if not lesson.get("question") or not lesson.get("options") or not lesson.get("answer"):
+                continue
+            question_id = "cur_" + lesson["id"].replace("-", "_")
+            options = [(chr(97 + i), option) for i, option in enumerate(lesson["options"])]
+            answer_index = lesson["options"].index(lesson["answer"])
+            generated_questions.append((question_id, lesson["title"], options, chr(97 + answer_index)))
+            SKILL_BY_QUESTION[question_id] = curriculum_area["id"] + "." + lesson["id"]
+    if generated_questions:
+        QUESTION_BANK[bank_key] = generated_questions
+
+AREA_BANK_KEY.update(CURRICULUM_BANK_KEY)
+VALID_LEARNING_AREAS.update(CURRICULUM_BANK_KEY)
+
+
 def record_learning_response(
     db, user_id, source, item_id, skill_id, learning_area, correct
 ):
@@ -689,10 +721,16 @@ def latest_diagnostic(user=Depends(current_user)):
 
 
 LESSON_CATALOG = {
-    "fundamentos-variables": {"title": "Variables y tipos de datos", "module": "Fundamentos de programación"},
-    "fundamentos-condiciones": {"title": "Condiciones if y else", "module": "Fundamentos de programación"},
-    "estructuras-for": {"title": "Ciclo for", "module": "Estructuras de control"},
-    "estructuras-while": {"title": "Ciclo while", "module": "Estructuras de control"},
+    lesson["id"]: {
+        "title": lesson["title"],
+        "module": module["title"],
+        "area": area["name"],
+        "area_id": area["id"],
+        "type": lesson.get("type", "quiz"),
+    }
+    for area in CURRICULUM["areas"]
+    for module in area["modules"]
+    for lesson in module["lessons"]
 }
 
 @app.get("/api/progress")
@@ -711,7 +749,7 @@ def get_progress(user=Depends(current_user)):
             (user["id"],),
         ).fetchall()
     completed_ids = [row["lesson_id"] for row in completed]
-    total = len(LESSON_CATALOG)
+    total = sum(1 for item in LESSON_CATALOG.values() if item["area_id"] == (diagnostic["learning_area"] if diagnostic else user["learning_goal"])) or len(LESSON_CATALOG)
     return {
         "completed_lessons": completed_ids,
         "completed_count": len(completed_ids),
@@ -835,6 +873,35 @@ def answer_learning_item(data: LearningAnswerData, user=Depends(current_user)):
         "feedback": "¡Respuesta correcta!" if correct else "Aún no es correcta. Revisa el concepto e inténtalo en el repaso.",
         "competency_update": update,
     }
+
+
+
+@app.get("/api/curriculum")
+def get_curriculum():
+    return {
+        "version": CURRICULUM["version"],
+        "levels": CURRICULUM["levels"],
+        "areas": [
+            {key: value for key, value in area.items() if key != "resources"}
+            for area in CURRICULUM["areas"]
+        ],
+    }
+
+
+@app.get("/api/curriculum/{area_id}")
+def get_curriculum_area(area_id: str):
+    area = CURRICULUM_AREA_BY_ID.get(area_id)
+    if area is None:
+        raise HTTPException(status_code=404, detail="Ruta de aprendizaje no encontrada.")
+    return area
+
+
+@app.get("/api/resources/{area_id}")
+def get_area_resources(area_id: str):
+    area = CURRICULUM_AREA_BY_ID.get(area_id)
+    if area is None:
+        raise HTTPException(status_code=404, detail="Área de aprendizaje no encontrada.")
+    return {"area_id": area_id, "resources": area["resources"]}
 
 
 @app.get("/api/health")
