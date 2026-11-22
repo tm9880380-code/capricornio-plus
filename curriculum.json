@@ -56,7 +56,16 @@
               "resource_ids": [
                 "OWASP Developer Guide · Fundamentos de seguridad"
               ],
-              "reinforcement": "Imagina una historia clínica: confidencialidad significa que solo la ve el personal autorizado; integridad, que nadie cambia un diagnóstico sin permiso; disponibilidad, que el sistema funciona cuando el médico lo necesita."
+              "reinforcement": "Imagina una historia clínica: confidencialidad significa que solo la ve el personal autorizado; integridad, que nadie cambia un diagnóstico sin permiso; disponibilidad, que el sistema funciona cuando el médico lo necesita.",
+              "learning_objective": "Al terminar, podrás explicar la tríada de seguridad y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de ciberseguridad. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «La tríada de seguridad» o del concepto «La ciberseguridad protege la confidencialidad, integridad y disponibilidad de información y servicios.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una clínica evita que extraños lean historias médicas, que alguien las modifique y que el sistema quede fuera de servicio..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «La tríada de seguridad» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "cyber-risk",
@@ -78,7 +87,16 @@
               "resource_ids": [
                 "OWASP Developer Guide · Fundamentos de seguridad"
               ],
-              "reinforcement": "Piensa en una casa: la amenaza es un ladrón, la vulnerabilidad es una ventana sin seguro y el riesgo depende de qué tan probable sea que entre y cuánto daño pueda causar."
+              "reinforcement": "Piensa en una casa: la amenaza es un ladrón, la vulnerabilidad es una ventana sin seguro y el riesgo depende de qué tan probable sea que entre y cuánto daño pueda causar.",
+              "learning_objective": "Al terminar, podrás explicar amenazas, vulnerabilidades y riesgos y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de ciberseguridad. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Amenazas, vulnerabilidades y riesgos» o del concepto «Una amenaza puede causar daño; una vulnerabilidad es una debilidad; el riesgo combina probabilidad e impacto.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un servicio expuesto con software antiguo requiere priorizar actualizaciones y controles..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Amenazas, vulnerabilidades y riesgos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "cyber-passwords",
@@ -100,7 +118,16 @@
               "resource_ids": [
                 "INCIBE · Guía de ciberataques"
               ],
-              "reinforcement": "Una contraseña es una llave. Si usas la misma llave para todas tus puertas y alguien la copia, todas quedan expuestas. Una segunda verificación añade otra cerradura."
+              "reinforcement": "Una contraseña es una llave. Si usas la misma llave para todas tus puertas y alguien la copia, todas quedan expuestas. Una segunda verificación añade otra cerradura.",
+              "learning_objective": "Al terminar, podrás explicar contraseñas y autenticación y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de ciberseguridad. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Contraseñas y autenticación» o del concepto «Usa contraseñas largas, únicas y autenticación multifactor.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una contraseña única limita el daño si otro servicio sufre una filtración..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Contraseñas y autenticación» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "cyber-phishing",
@@ -122,7 +149,16 @@
               "resource_ids": [
                 "INCIBE · Guía de ciberataques"
               ],
-              "reinforcement": "El atacante se disfraza de alguien conocido para que actúes rápido. No confíes solo en el nombre o logotipo: verifica por otro canal antes de entregar datos o dinero."
+              "reinforcement": "El atacante se disfraza de alguien conocido para que actúes rápido. No confíes solo en el nombre o logotipo: verifica por otro canal antes de entregar datos o dinero.",
+              "learning_objective": "Al terminar, podrás explicar phishing e ingeniería social y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de ciberseguridad. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Phishing e ingeniería social» o del concepto «El phishing suplanta entidades confiables para inducir clics, pagos o entrega de credenciales.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un correo que exige pagar en diez minutos y usa un dominio extraño tiene señales de phishing..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Phishing e ingeniería social» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         },
@@ -149,7 +185,16 @@
               "resource_ids": [
                 "OWASP Developer Guide · Desarrollo seguro"
               ],
-              "reinforcement": "El firewall es como un portero que aplica reglas a las conexiones. El mínimo privilegio es entregar a cada persona solo las llaves de las habitaciones que necesita."
+              "reinforcement": "El firewall es como un portero que aplica reglas a las conexiones. El mínimo privilegio es entregar a cada persona solo las llaves de las habitaciones que necesita.",
+              "learning_objective": "Al terminar, podrás explicar firewall y mínimo privilegio y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de ciberseguridad. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Firewall y mínimo privilegio» o del concepto «Un firewall aplica reglas al tráfico. El mínimo privilegio permite solo lo necesario.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una base de datos interna no necesita aceptar conexiones desde todo internet..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Firewall y mínimo privilegio» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "cyber-web",
@@ -171,7 +216,16 @@
               "resource_ids": [
                 "OWASP Developer Guide · Desarrollo seguro"
               ],
-              "reinforcement": "Una aplicación web recibe datos que no controla. Debe validar en el servidor y comprobar permisos en cada operación, no confiar en que el botón esté oculto en la pantalla."
+              "reinforcement": "Una aplicación web recibe datos que no controla. Debe validar en el servidor y comprobar permisos en cada operación, no confiar en que el botón esté oculto en la pantalla.",
+              "learning_objective": "Al terminar, podrás explicar seguridad de aplicaciones web y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de ciberseguridad. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Seguridad de aplicaciones web» o del concepto «OWASP publica guías para reconocer riesgos frecuentes en aplicaciones.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: El servidor debe comprobar permisos incluso si la interfaz oculta una acción..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Seguridad de aplicaciones web» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "cyber-lab",
@@ -193,7 +247,16 @@
               "resource_ids": [
                 "PortSwigger Web Security Academy"
               ],
-              "reinforcement": "Practicar sin autorización es como entrar a una casa ajena para probar una cerradura. Un laboratorio propio o autorizado define límites seguros para aprender."
+              "reinforcement": "Practicar sin autorización es como entrar a una casa ajena para probar una cerradura. Un laboratorio propio o autorizado define límites seguros para aprender.",
+              "learning_objective": "Al terminar, podrás explicar práctica responsable y laboratorios y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de ciberseguridad. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Práctica responsable y laboratorios» o del concepto «Aprende seguridad únicamente en sistemas propios o con autorización explícita.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un laboratorio local permite experimentar sin afectar servicios de terceros..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Práctica responsable y laboratorios» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         }
@@ -320,7 +383,16 @@
               "resource_ids": [
                 "MDN HTML"
               ],
-              "reinforcement": "HTML es el plano y la estructura de una casa: define qué es una puerta, una habitación o una entrada. No decide el color de las paredes."
+              "reinforcement": "HTML es el plano y la estructura de una casa: define qué es una puerta, una habitación o una entrada. No decide el color de las paredes.",
+              "learning_objective": "Al terminar, podrás explicar html semántico y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo frontend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «HTML semántico» o del concepto «HTML describe la estructura y el significado del contenido de una página.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un documento HTML incluye doctype, html, head y body..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «HTML semántico» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "frontend-css",
@@ -342,7 +414,16 @@
               "resource_ids": [
                 "MDN · Primeros pasos con CSS"
               ],
-              "reinforcement": "CSS es la decoración y distribución: cambia colores, espacios y tamaños, pero no debería reemplazar el significado del contenido."
+              "reinforcement": "CSS es la decoración y distribución: cambia colores, espacios y tamaños, pero no debería reemplazar el significado del contenido.",
+              "learning_objective": "Al terminar, podrás explicar css y modelo de caja y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo frontend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «CSS y modelo de caja» o del concepto «CSS controla colores, tipografía, espacios y distribución visual.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una tarjeta con padding tiene espacio interior alrededor de su contenido..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «CSS y modelo de caja» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "frontend-responsive",
@@ -364,7 +445,16 @@
               "resource_ids": [
                 "MDN · Aprende desarrollo web"
               ],
-              "reinforcement": "Una interfaz responsive es como un mueble modular: se reorganiza para caber en una habitación pequeña sin perder su función."
+              "reinforcement": "Una interfaz responsive es como un mueble modular: se reorganiza para caber en una habitación pequeña sin perder su función.",
+              "learning_objective": "Al terminar, podrás explicar diseño adaptable y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo frontend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Diseño adaptable» o del concepto «El diseño responsive adapta la interfaz a móviles, tabletas y pantallas grandes.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una cuadrícula con auto-fit y minmax puede ajustar columnas automáticamente..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diseño adaptable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         },
@@ -391,7 +481,16 @@
               "resource_ids": [
                 "MDN · Primeros pasos con JavaScript"
               ],
-              "reinforcement": "HTML construye la página; JavaScript permite que reaccione cuando una persona hace clic, escribe o recibe datos."
+              "reinforcement": "HTML construye la página; JavaScript permite que reaccione cuando una persona hace clic, escribe o recibe datos.",
+              "learning_objective": "Al terminar, podrás explicar javascript y dom y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo frontend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «JavaScript y DOM» o del concepto «JavaScript agrega comportamiento e interacción a la página.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un botón puede escuchar click y actualizar un mensaje..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «JavaScript y DOM» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "frontend-accessibility",
@@ -413,7 +512,16 @@
               "resource_ids": [
                 "MDN · Accesibilidad"
               ],
-              "reinforcement": "Accesibilidad significa que la puerta de entrada no tenga un único modo de abrirse: una persona puede navegar con ratón, teclado o lector de pantalla."
+              "reinforcement": "Accesibilidad significa que la puerta de entrada no tenga un único modo de abrirse: una persona puede navegar con ratón, teclado o lector de pantalla.",
+              "learning_objective": "Al terminar, podrás explicar accesibilidad web y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo frontend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Accesibilidad web» o del concepto «Una interfaz accesible puede utilizarse con teclado, lector de pantalla y distintas capacidades.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una imagen informativa necesita texto alternativo que comunique su propósito..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Accesibilidad web» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "frontend-api",
@@ -435,7 +543,16 @@
               "resource_ids": [
                 "MDN · Aprende desarrollo web"
               ],
-              "reinforcement": "Una API es como una ventanilla de atención: la interfaz hace una solicitud, el servidor responde y la aplicación debe comprobar si la respuesta fue exitosa."
+              "reinforcement": "Una API es como una ventanilla de atención: la interfaz hace una solicitud, el servidor responde y la aplicación debe comprobar si la respuesta fue exitosa.",
+              "learning_objective": "Al terminar, podrás explicar consumir apis y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo frontend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Consumir APIs» o del concepto «fetch permite que la interfaz consulte servicios web.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una clave privada incluida en el frontend deja de ser secreta..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Consumir APIs» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         }
@@ -562,7 +679,16 @@
               "resource_ids": [
                 "MDN · Introducción a HTTP"
               ],
-              "reinforcement": "HTTP es el protocolo de conversación entre cliente y servidor: uno solicita algo con un método y el otro responde con datos y un código de estado."
+              "reinforcement": "HTTP es el protocolo de conversación entre cliente y servidor: uno solicita algo con un método y el otro responde con datos y un código de estado.",
+              "learning_objective": "Al terminar, podrás explicar http y solicitudes y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo backend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «HTTP y solicitudes» o del concepto «HTTP conecta clientes y servidores mediante solicitudes y respuestas.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: No uses GET para operaciones que cambian estado..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «HTTP y solicitudes» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "backend-rest",
@@ -584,7 +710,16 @@
               "resource_ids": [
                 "FastAPI · Primeros pasos"
               ],
-              "reinforcement": "Una API bien diseñada es como un catálogo organizado: cada ruta identifica un recurso y cada método expresa qué operación se solicita."
+              "reinforcement": "Una API bien diseñada es como un catálogo organizado: cada ruta identifica un recurso y cada método expresa qué operación se solicita.",
+              "learning_objective": "Al terminar, podrás explicar diseño de apis y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo backend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Diseño de APIs» o del concepto «Una API define rutas, métodos, formatos, validaciones y errores consistentes.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: GET /api/users/42 consulta un recurso con identificador 42..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diseño de APIs» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "backend-validation",
@@ -606,7 +741,16 @@
               "resource_ids": [
                 "FastAPI · Tutorial completo"
               ],
-              "reinforcement": "Nunca aceptes una caja cerrada sin revisar su contenido. El servidor valida tipo, formato, tamaño y reglas antes de guardar o procesar una entrada."
+              "reinforcement": "Nunca aceptes una caja cerrada sin revisar su contenido. El servidor valida tipo, formato, tamaño y reglas antes de guardar o procesar una entrada.",
+              "learning_objective": "Al terminar, podrás explicar validación en servidor y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo backend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Validación en servidor» o del concepto «Toda entrada externa debe validarse antes de procesarse.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un campo edad debe ser entero y estar dentro del rango permitido..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Validación en servidor» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         },
@@ -633,7 +777,16 @@
               "resource_ids": [
                 "Django · Tutorial oficial, parte 1"
               ],
-              "reinforcement": "Una base relacional es como varias hojas de cálculo conectadas por identificadores. Las consultas deben usar parámetros para no mezclar datos con instrucciones."
+              "reinforcement": "Una base relacional es como varias hojas de cálculo conectadas por identificadores. Las consultas deben usar parámetros para no mezclar datos con instrucciones.",
+              "learning_objective": "Al terminar, podrás explicar consultas y persistencia y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo backend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Consultas y persistencia» o del concepto «Las bases relacionales organizan información en tablas relacionadas.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Los parámetros separan instrucciones SQL de los valores..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Consultas y persistencia» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "backend-auth",
@@ -655,7 +808,16 @@
               "resource_ids": [
                 "FastAPI · Tutorial completo"
               ],
-              "reinforcement": "Autenticación pregunta quién eres; autorización pregunta qué tienes permitido hacer. Mostrar una identificación no significa tener acceso a todas las oficinas."
+              "reinforcement": "Autenticación pregunta quién eres; autorización pregunta qué tienes permitido hacer. Mostrar una identificación no significa tener acceso a todas las oficinas.",
+              "learning_objective": "Al terminar, podrás explicar autenticación y autorización y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo backend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Autenticación y autorización» o del concepto «Autenticación verifica quién eres; autorización determina qué puedes hacer.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una cookie HttpOnly reduce el acceso directo de JavaScript a la cookie..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Autenticación y autorización» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "backend-tests",
@@ -677,7 +839,16 @@
               "resource_ids": [
                 "FastAPI · Tutorial completo"
               ],
-              "reinforcement": "Una prueba unitaria revisa una pieza por separado; una prueba de integración comprueba que varias piezas trabajen juntas."
+              "reinforcement": "Una prueba unitaria revisa una pieza por separado; una prueba de integración comprueba que varias piezas trabajen juntas.",
+              "learning_objective": "Al terminar, podrás explicar pruebas unitarias y de integración y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de desarrollo backend. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Pruebas unitarias y de integración» o del concepto «Las pruebas verifican comportamiento esperado y fallos previsibles.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un endpoint de registro debe probar correo duplicado y contraseña corta..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Pruebas unitarias y de integración» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         }
@@ -804,7 +975,16 @@
               "resource_ids": [
                 "datos.gob.es · Guía de análisis exploratorio de datos con Python"
               ],
-              "reinforcement": "Antes de buscar una respuesta, formula la pregunta. Si preguntas cuántas entregas llegaron tarde, necesitas definir qué significa tarde y qué periodo observarás."
+              "reinforcement": "Antes de buscar una respuesta, formula la pregunta. Si preguntas cuántas entregas llegaron tarde, necesitas definir qué significa tarde y qué periodo observarás.",
+              "learning_objective": "Al terminar, podrás explicar preguntas y tipos de datos y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de análisis de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Preguntas y tipos de datos» o del concepto «Una pregunta analítica concreta determina qué datos y métodos necesitas.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Para estudiar retrasos de entregas define periodo, unidad de análisis y qué significa retraso..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Preguntas y tipos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "data-cleaning",
@@ -826,7 +1006,16 @@
               "resource_ids": [
                 "datos.gob.es · Guía de análisis exploratorio de datos con Python"
               ],
-              "reinforcement": "Limpiar datos es revisar una despensa antes de cocinar: retirar duplicados, identificar faltantes y comprobar que las medidas estén expresadas en la misma unidad."
+              "reinforcement": "Limpiar datos es revisar una despensa antes de cocinar: retirar duplicados, identificar faltantes y comprobar que las medidas estén expresadas en la misma unidad.",
+              "learning_objective": "Al terminar, podrás explicar limpieza de datos y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de análisis de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Limpieza de datos» o del concepto «La limpieza revisa nulos, duplicados, tipos, unidades y valores imposibles.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Si una columna mezcla formatos de fecha, primero aclara cuál se está usando..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Limpieza de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "data-stats",
@@ -848,7 +1037,16 @@
               "resource_ids": [
                 "datos.gob.es · Guía de análisis exploratorio de datos con Python"
               ],
-              "reinforcement": "La media reparte el total; la mediana busca el valor central al ordenar; la moda identifica el valor más frecuente. No responden exactamente la misma pregunta."
+              "reinforcement": "La media reparte el total; la mediana busca el valor central al ordenar; la moda identifica el valor más frecuente. No responden exactamente la misma pregunta.",
+              "learning_objective": "Al terminar, podrás explicar estadística descriptiva y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de análisis de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Estadística descriptiva» o del concepto «Media, mediana, moda, rango y percentiles resumen una distribución.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: En salarios con valores extremos, la mediana puede representar mejor el centro..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Estadística descriptiva» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         },
@@ -876,7 +1074,16 @@
                 "UNAM · Python para análisis de datos",
                 "pandas · Getting started"
               ],
-              "reinforcement": "Un DataFrame es una tabla con filas y columnas. pandas ofrece herramientas para leerla, filtrar registros, crear columnas y resumir grupos."
+              "reinforcement": "Un DataFrame es una tabla con filas y columnas. pandas ofrece herramientas para leerla, filtrar registros, crear columnas y resumir grupos.",
+              "learning_objective": "Al terminar, podrás explicar primeros pasos con pandas y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de análisis de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Primeros pasos con pandas» o del concepto «pandas permite leer, limpiar, agrupar y resumir datos tabulares en Python.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: df.groupby('region')['ventas'].sum() resume ventas por región..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Primeros pasos con pandas» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "data-viz",
@@ -898,7 +1105,16 @@
               "resource_ids": [
                 "UNAM · Python para análisis de datos"
               ],
-              "reinforcement": "Un gráfico es una explicación visual. Elige líneas para cambios en el tiempo, barras para comparar categorías y evita escalas que exageren diferencias."
+              "reinforcement": "Un gráfico es una explicación visual. Elige líneas para cambios en el tiempo, barras para comparar categorías y evita escalas que exageren diferencias.",
+              "learning_objective": "Al terminar, podrás explicar visualización responsable y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de análisis de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Visualización responsable» o del concepto «Elige gráficos según la pregunta que quieres responder.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Para ventas mensuales a lo largo del año, una línea suele mostrar bien la tendencia..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Visualización responsable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "data-ethics",
@@ -920,7 +1136,16 @@
               "resource_ids": [
                 "datos.gob.es · Guía de análisis exploratorio de datos con Python"
               ],
-              "reinforcement": "Un resultado no cuenta toda la historia si los datos dejan por fuera a un grupo o exponen información privada. Explica de dónde vienen y qué no permiten concluir."
+              "reinforcement": "Un resultado no cuenta toda la historia si los datos dejan por fuera a un grupo o exponen información privada. Explica de dónde vienen y qué no permiten concluir.",
+              "learning_objective": "Al terminar, podrás explicar privacidad y ética de datos y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de análisis de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Privacidad y ética de datos» o del concepto «Un análisis responsable protege datos personales y comunica incertidumbre.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una encuesta voluntaria puede no representar a toda la población..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Privacidad y ética de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         }
@@ -1047,7 +1272,16 @@
               "resource_ids": [
                 "Google · Curso intensivo de aprendizaje automático"
               ],
-              "reinforcement": "En vez de escribir cada regla a mano, un modelo ajusta parámetros a partir de ejemplos. Luego se prueba con datos que no usó para aprender."
+              "reinforcement": "En vez de escribir cada regla a mano, un modelo ajusta parámetros a partir de ejemplos. Luego se prueba con datos que no usó para aprender.",
+              "learning_objective": "Al terminar, podrás explicar qué es aprendizaje automático y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de inteligencia artificial y modelos de lenguaje. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Qué es aprendizaje automático» o del concepto «Machine learning aprende patrones a partir de datos para realizar tareas como clasificación o predicción.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un filtro de spam puede aprender patrones a partir de mensajes etiquetados..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Qué es aprendizaje automático» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "ai-datasets",
@@ -1069,7 +1303,16 @@
               "resource_ids": [
                 "Google · Curso intensivo de aprendizaje automático"
               ],
-              "reinforcement": "Si enseñas a reconocer frutas usando solo manzanas rojas, el modelo no aprenderá a reconocer bien otras frutas. Los datos deben representar el problema real."
+              "reinforcement": "Si enseñas a reconocer frutas usando solo manzanas rojas, el modelo no aprenderá a reconocer bien otras frutas. Los datos deben representar el problema real.",
+              "learning_objective": "Al terminar, podrás explicar conjuntos de datos y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de inteligencia artificial y modelos de lenguaje. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Conjuntos de datos» o del concepto «Los datos deben representar el problema y dividirse correctamente.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: El conjunto de prueba se reserva para evaluar el modelo final..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Conjuntos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "ai-metrics",
@@ -1091,7 +1334,16 @@
               "resource_ids": [
                 "Google · Curso intensivo de aprendizaje automático"
               ],
-              "reinforcement": "Si una enfermedad es rara, un modelo que diga siempre 'sano' puede tener accuracy alta y aun así fallar en lo importante. Por eso se revisan varias métricas."
+              "reinforcement": "Si una enfermedad es rara, un modelo que diga siempre 'sano' puede tener accuracy alta y aun así fallar en lo importante. Por eso se revisan varias métricas.",
+              "learning_objective": "Al terminar, podrás explicar métricas de evaluación y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de inteligencia artificial y modelos de lenguaje. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Métricas de evaluación» o del concepto «Accuracy puede ocultar problemas en clases desbalanceadas.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: En detección médica, los falsos negativos pueden tener un coste alto..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Métricas de evaluación» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         },
@@ -1118,7 +1370,16 @@
               "resource_ids": [
                 "Google · Introducción a los modelos de lenguaje grandes"
               ],
-              "reinforcement": "Un modelo de lenguaje divide el texto en tokens y estima qué token podría venir después según los patrones aprendidos. Una respuesta convincente no garantiza que sea cierta."
+              "reinforcement": "Un modelo de lenguaje divide el texto en tokens y estima qué token podría venir después según los patrones aprendidos. Una respuesta convincente no garantiza que sea cierta.",
+              "learning_objective": "Al terminar, podrás explicar cómo funcionan los modelos de lenguaje y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de inteligencia artificial y modelos de lenguaje. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Cómo funcionan los modelos de lenguaje» o del concepto «Un modelo de lenguaje procesa tokens y estima probabilidades para generar el siguiente token.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: La generación autorregresiva predice el siguiente token dado el contexto..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Cómo funcionan los modelos de lenguaje» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "ai-prompts",
@@ -1140,7 +1401,16 @@
               "resource_ids": [
                 "Google · Introducción a los modelos de lenguaje grandes"
               ],
-              "reinforcement": "Una buena instrucción se parece a una tarea bien asignada: dice qué hacer, con qué contexto, qué límites respetar y cómo entregar el resultado."
+              "reinforcement": "Una buena instrucción se parece a una tarea bien asignada: dice qué hacer, con qué contexto, qué límites respetar y cómo entregar el resultado.",
+              "learning_objective": "Al terminar, podrás explicar instrucciones y evaluación de prompts y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de inteligencia artificial y modelos de lenguaje. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Instrucciones y evaluación de prompts» o del concepto «Un prompt útil especifica tarea, contexto, restricciones y formato esperado.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un prompt claro no elimina errores del modelo..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Instrucciones y evaluación de prompts» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "ai-responsible",
@@ -1162,7 +1432,16 @@
               "resource_ids": [
                 "Microsoft · IA para principiantes"
               ],
-              "reinforcement": "Un modelo debe revisarse como cualquier sistema importante: quién sale perjudicado, qué datos usa, cómo falla y quién supervisa sus decisiones."
+              "reinforcement": "Un modelo debe revisarse como cualquier sistema importante: quién sale perjudicado, qué datos usa, cómo falla y quién supervisa sus decisiones.",
+              "learning_objective": "Al terminar, podrás explicar sesgos y uso responsable y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de inteligencia artificial y modelos de lenguaje. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Sesgos y uso responsable» o del concepto «Evalúa privacidad, sesgo, robustez, explicabilidad y supervisión humana.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Antes de desplegar un modelo, define cómo corregir decisiones injustas..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Sesgos y uso responsable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         }
@@ -1289,7 +1568,16 @@
               "resource_ids": [
                 "PostgreSQL Wiki · Material en español"
               ],
-              "reinforcement": "La clave primaria funciona como el número único de una persona en un registro: permite distinguir una fila de todas las demás."
+              "reinforcement": "La clave primaria funciona como el número único de una persona en un registro: permite distinguir una fila de todas las demás.",
+              "learning_objective": "Al terminar, podrás explicar tablas y claves y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de bases de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Tablas y claves» o del concepto «Las tablas organizan registros y atributos. Una clave primaria identifica cada fila.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: En estudiantes, id_estudiante puede identificar cada registro..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Tablas y claves» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "db-select",
@@ -1311,7 +1599,16 @@
               "resource_ids": [
                 "MongoDB · Comenzando con la base de datos"
               ],
-              "reinforcement": "SELECT elige qué columnas mirar, FROM indica de qué tabla vienen y WHERE filtra las filas que cumplen una condición."
+              "reinforcement": "SELECT elige qué columnas mirar, FROM indica de qué tabla vienen y WHERE filtra las filas que cumplen una condición.",
+              "learning_objective": "Al terminar, podrás explicar consultar con select y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de bases de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Consultar con SELECT» o del concepto «SELECT elige columnas; FROM indica tabla; WHERE filtra filas; ORDER BY ordena.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: SELECT nombre FROM estudiantes WHERE activo = TRUE;.",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Consultar con SELECT» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "db-joins",
@@ -1334,7 +1631,16 @@
                 "PostgreSQL Wiki · Material en español",
                 "SQLBolt · Aprende SQL con ejercicios"
               ],
-              "reinforcement": "JOIN combina información relacionada. Es como unir la lista de estudiantes con la lista de matrículas usando el identificador común."
+              "reinforcement": "JOIN combina información relacionada. Es como unir la lista de estudiantes con la lista de matrículas usando el identificador común.",
+              "learning_objective": "Al terminar, podrás explicar relaciones y join y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de bases de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Relaciones y JOIN» o del concepto «JOIN combina filas relacionadas entre tablas.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Pedidos puede relacionarse con clientes mediante cliente_id..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Relaciones y JOIN» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         },
@@ -1361,7 +1667,16 @@
               "resource_ids": [
                 "PostgreSQL · Tutorial oficial"
               ],
-              "reinforcement": "La normalización evita escribir la misma información en muchos lugares. Así reduces contradicciones cuando un dato cambia."
+              "reinforcement": "La normalización evita escribir la misma información en muchos lugares. Así reduces contradicciones cuando un dato cambia.",
+              "learning_objective": "Al terminar, podrás explicar normalización y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de bases de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Normalización» o del concepto «La normalización reduce redundancia y anomalías de inserción, actualización y eliminación.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Separar clientes y pedidos representa que un cliente puede tener muchos pedidos..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Normalización» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "db-acid",
@@ -1383,7 +1698,16 @@
               "resource_ids": [
                 "PostgreSQL · Tutorial oficial"
               ],
-              "reinforcement": "Una transacción bancaria no debería descontar dinero de una cuenta y fallar al abonarlo a la otra. ACID ayuda a mantener operaciones consistentes."
+              "reinforcement": "Una transacción bancaria no debería descontar dinero de una cuenta y fallar al abonarlo a la otra. ACID ayuda a mantener operaciones consistentes.",
+              "learning_objective": "Al terminar, podrás explicar transacciones y acid y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de bases de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Transacciones y ACID» o del concepto «ACID significa atomicidad, consistencia, aislamiento y durabilidad.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Una transferencia no debe descontar dinero y fallar antes de acreditarlo..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Transacciones y ACID» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "db-backup",
@@ -1405,7 +1729,16 @@
               "resource_ids": [
                 "MongoDB · Desarrollo y operaciones CRUD"
               ],
-              "reinforcement": "Una copia de seguridad solo es útil si puedes restaurarla. Practica recuperar datos y verifica que la copia esté completa y protegida."
+              "reinforcement": "Una copia de seguridad solo es útil si puedes restaurarla. Practica recuperar datos y verifica que la copia esté completa y protegida.",
+              "learning_objective": "Al terminar, podrás explicar seguridad y copias de respaldo y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de bases de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Seguridad y copias de respaldo» o del concepto «Protege datos con permisos mínimos, consultas seguras y respaldos probados.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Prueba la restauración de una copia en un entorno controlado..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Seguridad y copias de respaldo» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         }
@@ -1532,7 +1865,16 @@
               "resource_ids": [
                 "Red Hat · Introducción a Linux"
               ],
-              "reinforcement": "El sistema operativo es el administrador del equipo: reparte memoria, organiza archivos y coordina programas para que compartan el hardware."
+              "reinforcement": "El sistema operativo es el administrador del equipo: reparte memoria, organiza archivos y coordina programas para que compartan el hardware.",
+              "learning_objective": "Al terminar, podrás explicar funciones del sistema operativo y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de redes y sistemas. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Funciones del sistema operativo» o del concepto «El sistema operativo administra hardware y ofrece servicios a programas.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: El sistema operativo programa procesos y controla acceso a archivos..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Funciones del sistema operativo» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "sys-linux",
@@ -1554,7 +1896,16 @@
               "resource_ids": [
                 "Red Hat · Introducción a Linux"
               ],
-              "reinforcement": "La terminal es una forma de conversar con el sistema mediante órdenes. pwd pregunta en qué carpeta estás; ls muestra su contenido."
+              "reinforcement": "La terminal es una forma de conversar con el sistema mediante órdenes. pwd pregunta en qué carpeta estás; ls muestra su contenido.",
+              "learning_objective": "Al terminar, podrás explicar primeros pasos en linux y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de redes y sistemas. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Primeros pasos en Linux» o del concepto «La terminal permite consultar y administrar el sistema mediante comandos.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: pwd muestra dónde estás ubicado..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Primeros pasos en Linux» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "sys-permissions",
@@ -1576,7 +1927,16 @@
               "resource_ids": [
                 "Red Hat · Introducción a Linux"
               ],
-              "reinforcement": "Los permisos indican quién puede leer, modificar o ejecutar un archivo. No entregues permisos amplios si la tarea solo necesita lectura."
+              "reinforcement": "Los permisos indican quién puede leer, modificar o ejecutar un archivo. No entregues permisos amplios si la tarea solo necesita lectura.",
+              "learning_objective": "Al terminar, podrás explicar usuarios y permisos y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de redes y sistemas. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Usuarios y permisos» o del concepto «Linux asocia archivos con propietario, grupo y permisos.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: chmod modifica permisos; chown cambia propietario..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Usuarios y permisos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         },
@@ -1603,7 +1963,16 @@
               "resource_ids": [
                 "Cisco Skills for All · Curso de redes"
               ],
-              "reinforcement": "Una dirección IP funciona como la dirección de una vivienda dentro de una red: permite que los paquetes sepan a qué interfaz llegar."
+              "reinforcement": "Una dirección IP funciona como la dirección de una vivienda dentro de una red: permite que los paquetes sepan a qué interfaz llegar.",
+              "learning_objective": "Al terminar, podrás explicar direcciones ip y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de redes y sistemas. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Direcciones IP» o del concepto «Una IP identifica una interfaz dentro de una red.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: 192.168.1.10 suele pertenecer a un rango privado IPv4..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Direcciones IP» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "net-dns",
@@ -1625,7 +1994,16 @@
               "resource_ids": [
                 "Cisco Skills for All · Curso de redes"
               ],
-              "reinforcement": "DNS es como una agenda telefónica: traduce un nombre fácil de recordar a la información de red necesaria para encontrar el servicio."
+              "reinforcement": "DNS es como una agenda telefónica: traduce un nombre fácil de recordar a la información de red necesaria para encontrar el servicio.",
+              "learning_objective": "Al terminar, podrás explicar dns y nombres y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de redes y sistemas. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «DNS y nombres» o del concepto «DNS distribuye información para resolver nombres de dominio.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: dig y nslookup permiten consultar DNS..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «DNS y nombres» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "net-debug",
@@ -1648,7 +2026,16 @@
                 "Cisco Skills for All · Dispositivos de red y configuración inicial",
                 "Wireshark · User Guide"
               ],
-              "reinforcement": "Diagnosticar es seguir pistas en orden: primero comprueba la conexión local, después la puerta de enlace, luego DNS y finalmente el servicio remoto."
+              "reinforcement": "Diagnosticar es seguir pistas en orden: primero comprueba la conexión local, después la puerta de enlace, luego DNS y finalmente el servicio remoto.",
+              "learning_objective": "Al terminar, podrás explicar diagnóstico de conectividad y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de redes y sistemas. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Diagnóstico de conectividad» o del concepto «Sigue un proceso ordenado: interfaz, IP, puerta de enlace, DNS y servicio.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Compara acceso por IP y por nombre para detectar problemas DNS..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diagnóstico de conectividad» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         }
@@ -1779,7 +2166,16 @@
                 "PSeInt · Pseudocódigo y algoritmos",
                 "Python · Tutorial oficial en español"
               ],
-              "reinforcement": "Una variable es una etiqueta pegada a una caja. La etiqueta permite volver a usar el valor sin recordar dónde está guardado."
+              "reinforcement": "Una variable es una etiqueta pegada a una caja. La etiqueta permite volver a usar el valor sin recordar dónde está guardado.",
+              "learning_objective": "Al terminar, podrás explicar variables y tipos de datos y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de programación y lenguajes. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Variables y tipos de datos» o del concepto «Una variable es un nombre que permite guardar y reutilizar un dato. Python incluye tipos como int, float, str y bool.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Crea una variable edad con el valor 24 y muestra su contenido..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Variables y tipos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "fundamentos-condiciones",
@@ -1804,7 +2200,16 @@
               "resource_ids": [
                 "PSeInt · Pseudocódigo y algoritmos"
               ],
-              "reinforcement": "Una condición es una bifurcación: si se cumple una regla tomas un camino; si no, puedes tomar otro."
+              "reinforcement": "Una condición es una bifurcación: si se cumple una regla tomas un camino; si no, puedes tomar otro.",
+              "learning_objective": "Al terminar, podrás explicar condiciones if y else y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de programación y lenguajes. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Condiciones if y else» o del concepto «Una condición permite ejecutar instrucciones diferentes según se cumpla o no una expresión lógica.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Condiciones if y else» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "estructuras-for",
@@ -1829,7 +2234,16 @@
               "resource_ids": [
                 "PSeInt · Pseudocódigo y algoritmos"
               ],
-              "reinforcement": "for es como revisar una lista de nombres uno por uno: el bloque se ejecuta una vez por cada elemento."
+              "reinforcement": "for es como revisar una lista de nombres uno por uno: el bloque se ejecuta una vez por cada elemento.",
+              "learning_objective": "Al terminar, podrás explicar ciclo for y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de programación y lenguajes. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Ciclo for» o del concepto «El ciclo for recorre los elementos de una secuencia. range(1, 6) genera los números 1, 2, 3, 4 y 5.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Imprime los números del 1 al 5 usando for y range..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Ciclo for» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "estructuras-while",
@@ -1854,7 +2268,16 @@
               "resource_ids": [
                 "PSeInt · Pseudocódigo y algoritmos"
               ],
-              "reinforcement": "while repite una acción mientras se cumpla una condición. Si nunca cambias esa condición, el ciclo puede no terminar."
+              "reinforcement": "while repite una acción mientras se cumpla una condición. Si nunca cambias esa condición, el ciclo puede no terminar.",
+              "learning_objective": "Al terminar, podrás explicar ciclo while y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de programación y lenguajes. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Ciclo while» o del concepto «El ciclo while repite un bloque mientras una condición sea verdadera.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Usa while para imprimir 1, 2 y 3 e incrementa el contador..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Ciclo while» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         },
@@ -1881,7 +2304,16 @@
               "resource_ids": [
                 "Python · Tutorial oficial en español"
               ],
-              "reinforcement": "Una función es una receta reutilizable: recibe ingredientes (parámetros), realiza pasos y puede entregar un resultado."
+              "reinforcement": "Una función es una receta reutilizable: recibe ingredientes (parámetros), realiza pasos y puede entregar un resultado.",
+              "learning_objective": "Al terminar, podrás explicar funciones y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de programación y lenguajes. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Funciones» o del concepto «Una función agrupa instrucciones para realizar una tarea y puede recibir parámetros y devolver resultados.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: def doble(numero): return numero * 2.",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Funciones» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "prog-collections",
@@ -1903,7 +2335,16 @@
               "resource_ids": [
                 "Python · Tutorial oficial en español"
               ],
-              "reinforcement": "Una lista es una fila ordenada de elementos. Puedes consultar una posición, recorrerla o añadir un elemento al final."
+              "reinforcement": "Una lista es una fila ordenada de elementos. Puedes consultar una posición, recorrerla o añadir un elemento al final.",
+              "learning_objective": "Al terminar, podrás explicar listas y colecciones y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de programación y lenguajes. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Listas y colecciones» o del concepto «Las listas guardan secuencias ordenadas que pueden cambiar.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: frutas = ['pera', 'mango']\nfrutas.append('uva').",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Listas y colecciones» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             },
             {
               "id": "prog-debug",
@@ -1925,7 +2366,16 @@
               "resource_ids": [
                 "freeCodeCamp Español"
               ],
-              "reinforcement": "Depurar es investigar: reproduce el error, lee el mensaje, localiza la línea, formula una hipótesis, cambia una cosa y vuelve a probar."
+              "reinforcement": "Depurar es investigar: reproduce el error, lee el mensaje, localiza la línea, formula una hipótesis, cambia una cosa y vuelve a probar.",
+              "learning_objective": "Al terminar, podrás explicar depuración y pruebas y reconocer cómo se aplica en una situación práctica.",
+              "why_it_matters": "Este conocimiento forma parte de programación y lenguajes. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
+              "reading_guide": [
+                "Localiza en la fuente la definición de «Depuración y pruebas» o del concepto «Los errores comunican qué falló; leerlos sistemáticamente acelera la corrección.».",
+                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
+                "Anota una idea principal y relaciónala con esta situación: Un test pequeño comprueba que una función devuelve el resultado esperado..",
+                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+              ],
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Depuración y pruebas» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
             }
           ]
         }
