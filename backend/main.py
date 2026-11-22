@@ -228,6 +228,19 @@ AREAS = [
 
 ORIENTATION_ID = "Aún no lo sé; necesito orientación"
 
+AREA_BANK_KEY = {
+    "Ciberseguridad": "Ciberseguridad",
+    "Desarrollo frontend": "Desarrollo web",
+    "Desarrollo backend": "Desarrollo de software y programación",
+    "Análisis de datos": "Análisis de datos",
+    "Inteligencia artificial y modelos de lenguaje": "Inteligencia artificial",
+    "Bases de datos": "Bases de datos",
+    "Redes y sistemas": "Redes y sistemas",
+    "Programación y lenguajes": "Fundamentos de programación",
+}
+VALID_LEARNING_AREAS = set(AREAS) | set(AREA_BANK_KEY)
+
+
 QUESTION_BANK = {
     "Ciberseguridad": [
         ("cyber_1", "¿Qué busca principalmente la ciberseguridad?",
@@ -445,51 +458,33 @@ def record_learning_response(
 
 
 ORIENTATION_QUESTIONS = [
-    {
-        "id": "orient_1",
-        "prompt": "¿Qué actividad te llama más la atención?",
-        "options": [
-            {"value": "Ciberseguridad", "label": "Investigar cómo proteger información y sistemas"},
-            {"value": "Desarrollo de software y programación", "label": "Crear programas que resuelvan problemas"},
-            {"value": "Desarrollo web", "label": "Construir páginas y aplicaciones web"},
-            {"value": "Análisis de datos", "label": "Encontrar respuestas a partir de datos"},
-            {"value": "Bases de datos", "label": "Organizar información para consultarla"},
-            {"value": "Inteligencia artificial", "label": "Crear sistemas que aprendan de datos"},
-            {"value": "Redes y sistemas", "label": "Entender cómo se conectan y funcionan los equipos"},
-            {"value": "Fundamentos de programación", "label": "Aprender desde cero a dar instrucciones a un computador"},
-            {"value": "Programación orientada a objetos", "label": "Diseñar programas con componentes organizados"},
-        ],
-    },
-    {
-        "id": "orient_2",
-        "prompt": "¿Qué tipo de reto preferirías explorar?",
-        "options": [
-            {"value": "Ciberseguridad", "label": "Detectar riesgos y proteger cuentas"},
-            {"value": "Desarrollo de software y programación", "label": "Resolver un problema paso a paso con código"},
-            {"value": "Desarrollo web", "label": "Diseñar una página interactiva"},
-            {"value": "Análisis de datos", "label": "Descubrir tendencias en una tabla"},
-            {"value": "Bases de datos", "label": "Guardar y encontrar información rápidamente"},
-            {"value": "Inteligencia artificial", "label": "Enseñar a un sistema a reconocer patrones"},
-            {"value": "Redes y sistemas", "label": "Comprender por qué dos equipos no se conectan"},
-            {"value": "Fundamentos de programación", "label": "Aprender la lógica básica de los programas"},
-            {"value": "Programación orientada a objetos", "label": "Organizar un programa en objetos y responsabilidades"},
-        ],
-    },
-    {
-        "id": "orient_3",
-        "prompt": "¿Cuál de estas metas te gustaría alcanzar?",
-        "options": [
-            {"value": "Ciberseguridad", "label": "Ayudar a mantener seguros los sistemas"},
-            {"value": "Desarrollo de software y programación", "label": "Crear herramientas y aplicaciones"},
-            {"value": "Desarrollo web", "label": "Publicar sitios web propios"},
-            {"value": "Análisis de datos", "label": "Convertir datos en decisiones útiles"},
-            {"value": "Bases de datos", "label": "Diseñar sistemas para manejar información"},
-            {"value": "Inteligencia artificial", "label": "Desarrollar soluciones inteligentes"},
-            {"value": "Redes y sistemas", "label": "Administrar equipos, servidores y redes"},
-            {"value": "Fundamentos de programación", "label": "Comprender cómo se construye el software"},
-            {"value": "Programación orientada a objetos", "label": "Crear programas grandes y bien organizados"},
-        ],
-    },
+    {"id":"orient_1","prompt":"¿Qué actividad te gustaría hacer?","options":[
+        {"value":"Ciberseguridad","label":"Investigar cómo proteger sistemas y detectar vulnerabilidades"},
+        {"value":"Desarrollo frontend","label":"Diseñar interfaces, páginas y experiencias visuales"},
+        {"value":"Desarrollo backend","label":"Construir la lógica, servicios y APIs detrás de una aplicación"},
+        {"value":"Análisis de datos","label":"Encontrar patrones y respuestas en conjuntos de datos"},
+        {"value":"Inteligencia artificial y modelos de lenguaje","label":"Crear o comprender sistemas de IA y modelos de lenguaje"},
+        {"value":"Bases de datos","label":"Organizar, consultar y administrar información"},
+        {"value":"Redes y sistemas","label":"Entender servidores, sistemas operativos y conexiones"},
+        {"value":"Programación y lenguajes","label":"Aprender a programar con Python, JavaScript, Go u otro lenguaje"}]},
+    {"id":"orient_2","prompt":"¿Qué tipo de reto te entusiasma más?","options":[
+        {"value":"Ciberseguridad","label":"Investigar un incidente en un laboratorio autorizado"},
+        {"value":"Desarrollo frontend","label":"Crear una página que se vea y funcione bien"},
+        {"value":"Desarrollo backend","label":"Diseñar una API que procese solicitudes y datos"},
+        {"value":"Análisis de datos","label":"Analizar una tabla y explicar qué está ocurriendo"},
+        {"value":"Inteligencia artificial y modelos de lenguaje","label":"Experimentar con datos, modelos y prompts"},
+        {"value":"Bases de datos","label":"Diseñar tablas y realizar consultas"},
+        {"value":"Redes y sistemas","label":"Configurar y diagnosticar una red o un servidor"},
+        {"value":"Programación y lenguajes","label":"Resolver problemas mediante código"}]},
+    {"id":"orient_3","prompt":"¿Qué te gustaría construir o conseguir?","options":[
+        {"value":"Ciberseguridad","label":"Ayudar a proteger personas, aplicaciones y organizaciones"},
+        {"value":"Desarrollo frontend","label":"Publicar sitios web y aplicaciones visuales"},
+        {"value":"Desarrollo backend","label":"Crear servicios, automatizaciones y sistemas"},
+        {"value":"Análisis de datos","label":"Convertir información en decisiones útiles"},
+        {"value":"Inteligencia artificial y modelos de lenguaje","label":"Construir proyectos que utilicen IA"},
+        {"value":"Bases de datos","label":"Crear estructuras confiables para almacenar información"},
+        {"value":"Redes y sistemas","label":"Administrar equipos, servidores y redes"},
+        {"value":"Programación y lenguajes","label":"Dominar un lenguaje para desarrollar mis propias ideas"}]}
 ]
 
 
@@ -514,14 +509,14 @@ def diagnostic_questions(area: str | None = None, user=Depends(current_user)):
 
     selected = attempt["learning_area"] if attempt else (area or user["learning_goal"])
 
-    if selected == ORIENTATION_ID or selected not in AREAS:
+    if selected == ORIENTATION_ID or selected not in VALID_LEARNING_AREAS:
         return {
             "mode": "orientation",
             "area": ORIENTATION_ID,
             "questions": ORIENTATION_QUESTIONS,
         }
 
-    questions = QUESTION_BANK[selected]
+    questions = QUESTION_BANK[AREA_BANK_KEY.get(selected, selected)]
     return {
         "mode": "assessment",
         "area": selected,
@@ -574,10 +569,11 @@ def submit_diagnostic(data: DiagnosticSubmitData, user=Depends(current_user)):
             "next_step": "Realizar el diagnóstico de conocimientos del área recomendada.",
         }
 
-    if data.area not in AREAS:
+    if data.area not in VALID_LEARNING_AREAS:
         raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
 
-    questions = QUESTION_BANK[data.area]
+    bank_area = AREA_BANK_KEY.get(data.area, data.area)
+    questions = QUESTION_BANK[bank_area]
     expected = {q[0]: q[3] for q in questions}
 
     if set(data.answers) != set(expected):
@@ -650,7 +646,7 @@ def submit_diagnostic(data: DiagnosticSubmitData, user=Depends(current_user)):
                     source="diagnostic",
                     item_id=qid,
                     skill_id=SKILL_BY_QUESTION[qid],
-                    learning_area=data.area,
+                    learning_area=bank_area,
                     correct=is_correct,
                 )
             )
@@ -754,7 +750,7 @@ class LearningAnswerData(BaseModel):
 
 
 def learning_item_bank(area):
-    questions = QUESTION_BANK[area]
+    questions = QUESTION_BANK[AREA_BANK_KEY.get(area, area)]
     return ItemBank([
         Item(
             id=q[0],
@@ -768,12 +764,13 @@ def learning_item_bank(area):
 
 @app.get("/api/learning/next")
 def next_learning_item(area: str, user=Depends(current_user)):
-    if area not in AREAS:
+    if area not in VALID_LEARNING_AREAS:
         raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
+    bank_area = AREA_BANK_KEY.get(area, area)
     with closing(connect()) as db:
         row = db.execute(
             "SELECT state_json FROM student_irt_state WHERE user_id = ? AND learning_area = ?",
-            (user["id"], area),
+            (user["id"], bank_area),
         ).fetchone()
         practice_rows = db.execute(
             "SELECT item_id FROM learning_events WHERE user_id = ? AND source = 'practice'",
@@ -792,7 +789,7 @@ def next_learning_item(area: str, user=Depends(current_user)):
     item = engine.next_item(state)
     if item is None:
         return {"complete": True, "message": "Ya respondiste todos los ejercicios disponibles de esta área."}
-    question = next(q for q in QUESTION_BANK[area] if q[0] == item.id)
+    question = next(q for q in QUESTION_BANK[bank_area] if q[0] == item.id)
     return {
         "complete": False,
         "area": area,
@@ -806,9 +803,10 @@ def next_learning_item(area: str, user=Depends(current_user)):
 
 @app.post("/api/learning/answer")
 def answer_learning_item(data: LearningAnswerData, user=Depends(current_user)):
-    if data.area not in AREAS:
+    if data.area not in VALID_LEARNING_AREAS:
         raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
-    question = next((q for q in QUESTION_BANK[data.area] if q[0] == data.item_id), None)
+    bank_area = AREA_BANK_KEY.get(data.area, data.area)
+    question = next((q for q in QUESTION_BANK[bank_area] if q[0] == data.item_id), None)
     if question is None:
         raise HTTPException(status_code=404, detail="El ejercicio no existe en esta área.")
     allowed = {option[0] for option in question[2]}
@@ -822,7 +820,7 @@ def answer_learning_item(data: LearningAnswerData, user=Depends(current_user)):
             source="practice",
             item_id=data.item_id,
             skill_id=SKILL_BY_QUESTION[data.item_id],
-            learning_area=data.area,
+            learning_area=bank_area,
             correct=correct,
         )
         db.commit()
