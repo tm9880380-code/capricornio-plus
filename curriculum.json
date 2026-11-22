@@ -52,7 +52,11 @@
               ],
               "answer": "Integridad",
               "feedback": "La integridad busca que los datos permanezcan exactos y completos.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "OWASP Developer Guide · Fundamentos de seguridad"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve la tríada de seguridad. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "cyber-risk",
@@ -70,7 +74,11 @@
               ],
               "answer": "Vulnerabilidad",
               "feedback": "El software desactualizado puede contener una debilidad explotable.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "OWASP Developer Guide · Fundamentos de seguridad"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve amenazas, vulnerabilidades y riesgos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "cyber-passwords",
@@ -88,7 +96,11 @@
               ],
               "answer": "Una contraseña única por servicio",
               "feedback": "Las claves únicas evitan que una filtración abra otras cuentas.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "INCIBE · Guía de ciberseguridad para todos"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve contraseñas y autenticación. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "cyber-phishing",
@@ -106,7 +118,11 @@
               ],
               "answer": "Verificar por un canal oficial independiente",
               "feedback": "La verificación independiente evita confiar en un canal posiblemente comprometido.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "INCIBE · Guía de ciberseguridad para todos"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve phishing e ingeniería social. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         },
@@ -129,7 +145,11 @@
               ],
               "answer": "Mínimo privilegio",
               "feedback": "El acceso se limita a lo imprescindible.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "OWASP Developer Guide · Desarrollo seguro"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve firewall y mínimo privilegio. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "cyber-web",
@@ -147,7 +167,11 @@
               ],
               "answer": "En el servidor",
               "feedback": "La autorización debe aplicarse en el servidor.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "OWASP Developer Guide · Desarrollo seguro"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve seguridad de aplicaciones web. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "cyber-lab",
@@ -165,7 +189,11 @@
               ],
               "answer": "En un laboratorio propio o autorizado",
               "feedback": "La autorización y el alcance definido son requisitos esenciales.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "PortSwigger Web Security Academy"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve práctica responsable y laboratorios. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         }
@@ -221,6 +249,46 @@
           "source": "PortSwigger",
           "language": "en"
         }
+      ],
+      "competencies": [
+        "Identificar activos, amenazas, vulnerabilidades y riesgos",
+        "Aplicar controles básicos de identidad, acceso y protección",
+        "Explicar HTTP, redes y seguridad de aplicaciones",
+        "Realizar pruebas únicamente en laboratorios autorizados",
+        "Documentar hallazgos, impacto y mitigaciones"
+      ],
+      "capstone_project": {
+        "title": "Evaluación de seguridad de un laboratorio local",
+        "description": "Documenta un entorno de práctica intencionalmente vulnerable. Identifica activos, registra al menos cinco hallazgos reproducibles, clasifica impacto y probabilidad, y propone mitigaciones. No pruebes sistemas ajenos.",
+        "deliverables": [
+          "Diagrama del laboratorio y alcance autorizado",
+          "Registro de hallazgos con evidencia no sensible",
+          "Matriz de riesgo y plan de mitigación",
+          "Informe ejecutivo y técnico"
+        ],
+        "rubric": [
+          "Alcance y autorización explícitos",
+          "Hallazgos reproducibles sin exponer secretos",
+          "Riesgo justificado y mitigaciones viables",
+          "Informe claro y responsable"
+        ]
+      },
+      "english_progression": [
+        {
+          "stage": "Inicio",
+          "goal": "Reconocer vocabulario técnico frecuente y sus equivalentes en español.",
+          "practice": "Aprende 5 a 8 términos por módulo y úsalos en frases cortas."
+        },
+        {
+          "stage": "Desarrollo",
+          "goal": "Leer títulos, menús, mensajes de error y fragmentos cortos de documentación.",
+          "practice": "Consultar una sección breve en inglés con glosario en español."
+        },
+        {
+          "stage": "Autonomía",
+          "goal": "Seguir documentación oficial, comparar versiones y consultar issues o repositorios.",
+          "practice": "Resolver una tarea usando una fuente primaria en inglés y documentar el proceso."
+        }
       ]
     },
     {
@@ -248,7 +316,11 @@
               ],
               "answer": "main",
               "feedback": "main identifica el contenido principal.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MDN · Estructurando la web con HTML"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve html semántico. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "frontend-css",
@@ -266,7 +338,11 @@
               ],
               "answer": "CSS",
               "feedback": "CSS define presentación y diseño visual.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MDN · Primeros pasos con CSS"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve css y modelo de caja. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "frontend-responsive",
@@ -284,7 +360,11 @@
               ],
               "answer": "Media queries",
               "feedback": "Las media queries aplican reglas según características del dispositivo.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MDN · Aprende desarrollo web"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve diseño adaptable. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         },
@@ -307,7 +387,11 @@
               ],
               "answer": "addEventListener",
               "feedback": "addEventListener registra una función para un evento.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MDN · Primeros pasos con JavaScript"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve javascript y dom. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "frontend-accessibility",
@@ -325,7 +409,11 @@
               ],
               "answer": "alt",
               "feedback": "El atributo alt proporciona una alternativa textual.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MDN · Accesibilidad"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve accesibilidad web. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "frontend-api",
@@ -343,7 +431,11 @@
               ],
               "answer": "ok",
               "feedback": "response.ok indica estados HTTP exitosos 200–299.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MDN · Aprende desarrollo web"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve consumir apis. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         }
@@ -399,6 +491,46 @@
           "source": "MDN",
           "language": "es"
         }
+      ],
+      "competencies": [
+        "Construir documentos HTML semánticos",
+        "Diseñar layouts CSS adaptables y mantenibles",
+        "Programar interacciones con JavaScript y DOM",
+        "Consumir APIs y gestionar estados de carga/error",
+        "Aplicar accesibilidad y probar en distintos tamaños"
+      ],
+      "capstone_project": {
+        "title": "Sitio web accesible para una organización comunitaria",
+        "description": "Construye un sitio responsive de varias secciones, con navegación por teclado, formularios etiquetados, contenido semántico y datos obtenidos de una API pública.",
+        "deliverables": [
+          "Repositorio con instrucciones de ejecución",
+          "Páginas responsive y navegación funcional",
+          "Pruebas de teclado y accesibilidad",
+          "README con decisiones y capturas"
+        ],
+        "rubric": [
+          "Semántica y accesibilidad verificables",
+          "Diseño adaptable sin desbordamientos",
+          "Interacciones robustas y estados de error",
+          "Código organizado y documentación reproducible"
+        ]
+      },
+      "english_progression": [
+        {
+          "stage": "Inicio",
+          "goal": "Reconocer vocabulario técnico frecuente y sus equivalentes en español.",
+          "practice": "Aprende 5 a 8 términos por módulo y úsalos en frases cortas."
+        },
+        {
+          "stage": "Desarrollo",
+          "goal": "Leer títulos, menús, mensajes de error y fragmentos cortos de documentación.",
+          "practice": "Consultar una sección breve en inglés con glosario en español."
+        },
+        {
+          "stage": "Autonomía",
+          "goal": "Seguir documentación oficial, comparar versiones y consultar issues o repositorios.",
+          "practice": "Resolver una tarea usando una fuente primaria en inglés y documentar el proceso."
+        }
       ]
     },
     {
@@ -426,7 +558,11 @@
               ],
               "answer": "GET",
               "feedback": "GET solicita una representación de un recurso.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MDN · Introducción a HTTP"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve http y solicitudes. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "backend-rest",
@@ -444,7 +580,11 @@
               ],
               "answer": "Una ruta y método para interactuar con un recurso",
               "feedback": "El endpoint identifica dónde y cómo interactuar con la API.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "FastAPI · Primeros pasos"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve diseño de apis. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "backend-validation",
@@ -462,7 +602,11 @@
               ],
               "answer": "En el servidor",
               "feedback": "El servidor debe validar incluso si el cliente manipula la solicitud.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "FastAPI · Tutorial completo"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve validación en servidor. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         },
@@ -485,7 +629,11 @@
               ],
               "answer": "Consultas parametrizadas",
               "feedback": "Los parámetros separan datos de instrucciones SQL.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Django · Tutorial oficial, parte 1"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve consultas y persistencia. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "backend-auth",
@@ -503,7 +651,11 @@
               ],
               "answer": "Autorización",
               "feedback": "La autorización determina las acciones permitidas.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "FastAPI · Tutorial completo"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve autenticación y autorización. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "backend-tests",
@@ -521,7 +673,11 @@
               ],
               "answer": "Integración",
               "feedback": "Las pruebas de integración comprueban la colaboración entre componentes.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "FastAPI · Tutorial completo"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve pruebas unitarias y de integración. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         }
@@ -577,6 +733,46 @@
           "source": "FastAPI",
           "language": "es"
         }
+      ],
+      "competencies": [
+        "Explicar HTTP y diseñar endpoints coherentes",
+        "Validar entradas y manejar errores",
+        "Implementar autenticación y autorización seguras",
+        "Persistir datos con transacciones",
+        "Escribir pruebas automatizadas y documentación"
+      ],
+      "capstone_project": {
+        "title": "API de gestión de inventario",
+        "description": "Desarrolla una API con operaciones CRUD, validación, persistencia, autenticación, permisos por rol, pruebas y documentación OpenAPI.",
+        "deliverables": [
+          "Código fuente y esquema de datos",
+          "Contrato de endpoints y ejemplos",
+          "Pruebas unitarias e integración",
+          "Guía de despliegue y seguridad"
+        ],
+        "rubric": [
+          "Contratos HTTP coherentes",
+          "Validación y manejo de errores",
+          "Controles de acceso comprobables",
+          "Pruebas repetibles y documentación clara"
+        ]
+      },
+      "english_progression": [
+        {
+          "stage": "Inicio",
+          "goal": "Reconocer vocabulario técnico frecuente y sus equivalentes en español.",
+          "practice": "Aprende 5 a 8 términos por módulo y úsalos en frases cortas."
+        },
+        {
+          "stage": "Desarrollo",
+          "goal": "Leer títulos, menús, mensajes de error y fragmentos cortos de documentación.",
+          "practice": "Consultar una sección breve en inglés con glosario en español."
+        },
+        {
+          "stage": "Autonomía",
+          "goal": "Seguir documentación oficial, comparar versiones y consultar issues o repositorios.",
+          "practice": "Resolver una tarea usando una fuente primaria en inglés y documentar el proceso."
+        }
       ]
     },
     {
@@ -604,7 +800,11 @@
               ],
               "answer": "La pregunta que se quiere responder",
               "feedback": "La pregunta guía los datos, métodos y resultados.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "datos.gob.es · Guía de análisis exploratorio de datos con Python"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve preguntas y tipos de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "data-cleaning",
@@ -622,7 +822,11 @@
               ],
               "answer": "Dato ausente o no disponible",
               "feedback": "Nulo representa ausencia de un valor conocido.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "datos.gob.es · Guía de análisis exploratorio de datos con Python"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve limpieza de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "data-stats",
@@ -640,7 +844,11 @@
               ],
               "answer": "Mediana",
               "feedback": "La mediana depende de la posición central.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "datos.gob.es · Guía de análisis exploratorio de datos con Python"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve estadística descriptiva. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         },
@@ -663,7 +871,12 @@
               ],
               "answer": "DataFrame",
               "feedback": "DataFrame organiza datos en filas y columnas.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "UNAM · Python para análisis de datos",
+                "pandas · Getting started"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve primeros pasos con pandas. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "data-viz",
@@ -681,7 +894,11 @@
               ],
               "answer": "Líneas",
               "feedback": "Las líneas ayudan a ver cambios en el tiempo.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "UNAM · Python para análisis de datos"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve visualización responsable. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "data-ethics",
@@ -699,7 +916,11 @@
               ],
               "answer": "Limitaciones y contexto",
               "feedback": "El contexto define hasta dónde puede generalizarse.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "datos.gob.es · Guía de análisis exploratorio de datos con Python"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve privacidad y ética de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         }
@@ -755,6 +976,46 @@
           "source": "SQLBolt",
           "language": "en"
         }
+      ],
+      "competencies": [
+        "Formular preguntas analíticas y definir métricas",
+        "Inspeccionar y limpiar datos con trazabilidad",
+        "Aplicar estadística descriptiva básica",
+        "Construir visualizaciones honestas y accesibles",
+        "Comunicar límites, sesgos y conclusiones"
+      ],
+      "capstone_project": {
+        "title": "Análisis reproducible de un conjunto de datos público",
+        "description": "Selecciona un dataset abierto, formula tres preguntas, limpia los datos, realiza análisis descriptivo y presenta conclusiones con límites explícitos.",
+        "deliverables": [
+          "Fuente y diccionario de datos",
+          "Notebook reproducible con limpieza",
+          "Visualizaciones y métricas",
+          "Informe breve con conclusiones y limitaciones"
+        ],
+        "rubric": [
+          "Procedencia y calidad documentadas",
+          "Transformaciones reproducibles",
+          "Gráficos adecuados sin distorsión",
+          "Conclusiones respaldadas y prudentes"
+        ]
+      },
+      "english_progression": [
+        {
+          "stage": "Inicio",
+          "goal": "Reconocer vocabulario técnico frecuente y sus equivalentes en español.",
+          "practice": "Aprende 5 a 8 términos por módulo y úsalos en frases cortas."
+        },
+        {
+          "stage": "Desarrollo",
+          "goal": "Leer títulos, menús, mensajes de error y fragmentos cortos de documentación.",
+          "practice": "Consultar una sección breve en inglés con glosario en español."
+        },
+        {
+          "stage": "Autonomía",
+          "goal": "Seguir documentación oficial, comparar versiones y consultar issues o repositorios.",
+          "practice": "Resolver una tarea usando una fuente primaria en inglés y documentar el proceso."
+        }
       ]
     },
     {
@@ -782,7 +1043,11 @@
               ],
               "answer": "Aprender patrones desde datos",
               "feedback": "Los modelos ML ajustan parámetros usando datos.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Google · Curso intensivo de aprendizaje automático"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve qué es aprendizaje automático. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "ai-datasets",
@@ -800,7 +1065,11 @@
               ],
               "answer": "Estimar rendimiento con datos no usados al entrenar",
               "feedback": "Permite aproximar el comportamiento ante datos no vistos.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Google · Curso intensivo de aprendizaje automático"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve conjuntos de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "ai-metrics",
@@ -818,7 +1087,11 @@
               ],
               "answer": "Recall",
               "feedback": "Recall mide la proporción de positivos reales identificados.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Google · Curso intensivo de aprendizaje automático"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve métricas de evaluación. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         },
@@ -841,7 +1114,11 @@
               ],
               "answer": "Siguiente token condicionado al contexto",
               "feedback": "El modelo genera secuencias estimando el siguiente token.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Google · Introducción a los modelos de lenguaje grandes"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve cómo funcionan los modelos de lenguaje. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "ai-prompts",
@@ -859,7 +1136,11 @@
               ],
               "answer": "Evaluar casos variados y revisar errores",
               "feedback": "Los casos variados revelan fallos y límites.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Google · Introducción a los modelos de lenguaje grandes"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve instrucciones y evaluación de prompts. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "ai-responsible",
@@ -877,7 +1158,11 @@
               ],
               "answer": "Medir por subgrupos",
               "feedback": "La evaluación desagregada permite detectar diferencias.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Microsoft · IA para principiantes"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve sesgos y uso responsable. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         }
@@ -933,6 +1218,46 @@
           "source": "StatQuest",
           "language": "en"
         }
+      ],
+      "competencies": [
+        "Distinguir IA, ML y modelos de lenguaje",
+        "Preparar datasets y evitar fuga de información",
+        "Separar entrenamiento, validación y prueba",
+        "Elegir métricas adecuadas y analizar errores",
+        "Evaluar sesgos, privacidad y riesgos de despliegue"
+      ],
+      "capstone_project": {
+        "title": "Clasificador de texto con evaluación responsable",
+        "description": "Construye un clasificador sencillo, documenta el conjunto de datos, establece una línea base, evalúa métricas y analiza errores, sesgos y límites.",
+        "deliverables": [
+          "Dataset y ficha de procedencia",
+          "Notebook de entrenamiento reproducible",
+          "Métricas y análisis de errores",
+          "Ficha de riesgos y limitaciones"
+        ],
+        "rubric": [
+          "Separación correcta de datos",
+          "Métricas justificadas",
+          "Análisis de errores real",
+          "Límites y riesgos comunicados"
+        ]
+      },
+      "english_progression": [
+        {
+          "stage": "Inicio",
+          "goal": "Reconocer vocabulario técnico frecuente y sus equivalentes en español.",
+          "practice": "Aprende 5 a 8 términos por módulo y úsalos en frases cortas."
+        },
+        {
+          "stage": "Desarrollo",
+          "goal": "Leer títulos, menús, mensajes de error y fragmentos cortos de documentación.",
+          "practice": "Consultar una sección breve en inglés con glosario en español."
+        },
+        {
+          "stage": "Autonomía",
+          "goal": "Seguir documentación oficial, comparar versiones y consultar issues o repositorios.",
+          "practice": "Resolver una tarea usando una fuente primaria en inglés y documentar el proceso."
+        }
       ]
     },
     {
@@ -960,7 +1285,11 @@
               ],
               "answer": "Identificar de forma única cada fila",
               "feedback": "La clave primaria identifica un registro.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "PostgreSQL Wiki · Material en español"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve tablas y claves. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "db-select",
@@ -978,7 +1307,11 @@
               ],
               "answer": "WHERE",
               "feedback": "WHERE aplica condiciones a filas.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MongoDB · Comenzando con la base de datos"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve consultar con select. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "db-joins",
@@ -996,7 +1329,12 @@
               ],
               "answer": "LEFT JOIN",
               "feedback": "LEFT JOIN mantiene todas las filas del lado izquierdo.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "PostgreSQL Wiki · Material en español",
+                "SQLBolt · Aprende SQL con ejercicios"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve relaciones y join. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         },
@@ -1019,7 +1357,11 @@
               ],
               "answer": "Redundancia y anomalías",
               "feedback": "La normalización organiza datos y reduce duplicaciones.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "PostgreSQL · Tutorial oficial"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve normalización. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "db-acid",
@@ -1037,7 +1379,11 @@
               ],
               "answer": "Atomicidad",
               "feedback": "Atomicidad evita operaciones parcialmente aplicadas.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "PostgreSQL · Tutorial oficial"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve transacciones y acid. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "db-backup",
@@ -1055,7 +1401,11 @@
               ],
               "answer": "Que se probó su restauración",
               "feedback": "La restauración verificada demuestra que los datos se pueden recuperar.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "MongoDB · Desarrollo y operaciones CRUD"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve seguridad y copias de respaldo. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         }
@@ -1111,6 +1461,46 @@
           "source": "PostgreSQL",
           "language": "en"
         }
+      ],
+      "competencies": [
+        "Modelar entidades, atributos y relaciones",
+        "Escribir consultas SQL con filtros y JOIN",
+        "Aplicar claves, restricciones y normalización",
+        "Comprender transacciones y propiedades ACID",
+        "Diseñar copias de seguridad y controles de acceso"
+      ],
+      "capstone_project": {
+        "title": "Diseño de base de datos para una biblioteca",
+        "description": "Modela préstamos, usuarios, ejemplares y autores. Implementa el esquema relacional, consultas habituales, restricciones y estrategia de respaldo.",
+        "deliverables": [
+          "Diagrama entidad-relación",
+          "Script SQL de creación y datos de ejemplo",
+          "Consultas SELECT, JOIN y agregaciones",
+          "Plan de respaldo y restauración"
+        ],
+        "rubric": [
+          "Modelo coherente y normalizado",
+          "Integridad referencial aplicada",
+          "Consultas correctas y legibles",
+          "Respaldo y restauración documentados"
+        ]
+      },
+      "english_progression": [
+        {
+          "stage": "Inicio",
+          "goal": "Reconocer vocabulario técnico frecuente y sus equivalentes en español.",
+          "practice": "Aprende 5 a 8 términos por módulo y úsalos en frases cortas."
+        },
+        {
+          "stage": "Desarrollo",
+          "goal": "Leer títulos, menús, mensajes de error y fragmentos cortos de documentación.",
+          "practice": "Consultar una sección breve en inglés con glosario en español."
+        },
+        {
+          "stage": "Autonomía",
+          "goal": "Seguir documentación oficial, comparar versiones y consultar issues o repositorios.",
+          "practice": "Resolver una tarea usando una fuente primaria en inglés y documentar el proceso."
+        }
       ]
     },
     {
@@ -1138,7 +1528,11 @@
               ],
               "answer": "Administrar recursos del equipo",
               "feedback": "Coordina hardware y servicios para aplicaciones.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Red Hat · Introducción a Linux"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve funciones del sistema operativo. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "sys-linux",
@@ -1156,7 +1550,11 @@
               ],
               "answer": "pwd",
               "feedback": "pwd imprime el directorio de trabajo actual.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Red Hat · Introducción a Linux"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve primeros pasos en linux. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "sys-permissions",
@@ -1174,7 +1572,11 @@
               ],
               "answer": "x",
               "feedback": "x representa permiso de ejecución.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Red Hat · Introducción a Linux"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve usuarios y permisos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         },
@@ -1197,7 +1599,11 @@
               ],
               "answer": "32",
               "feedback": "IPv4 utiliza 32 bits.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Cisco Skills for All · Curso de redes"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve direcciones ip. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "net-dns",
@@ -1215,7 +1621,11 @@
               ],
               "answer": "A",
               "feedback": "El registro A contiene una dirección IPv4.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Cisco Skills for All · Curso de redes"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve dns y nombres. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "net-debug",
@@ -1233,7 +1643,12 @@
               ],
               "answer": "DNS",
               "feedback": "La diferencia apunta a resolución de nombres.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Cisco Skills for All · Dispositivos de red y configuración inicial",
+                "Wireshark · User Guide"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve diagnóstico de conectividad. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         }
@@ -1289,6 +1704,46 @@
           "source": "Wireshark",
           "language": "en"
         }
+      ],
+      "competencies": [
+        "Explicar procesos, memoria, archivos y permisos",
+        "Usar terminal Linux con seguridad",
+        "Comprender IP, DNS, puertos y protocolos",
+        "Diagnosticar conectividad de forma ordenada",
+        "Registrar cambios y aplicar mínimo privilegio"
+      ],
+      "capstone_project": {
+        "title": "Puesta en marcha de un servicio Linux en laboratorio",
+        "description": "En una máquina virtual local, crea usuarios y permisos, instala un servicio de prueba, configura red y documenta pruebas de conectividad y logs.",
+        "deliverables": [
+          "Diagrama de red y entorno",
+          "Comandos ejecutados y propósito",
+          "Matriz de permisos y usuarios",
+          "Registro de diagnóstico y solución"
+        ],
+        "rubric": [
+          "Entorno aislado y reproducible",
+          "Permisos mínimos necesarios",
+          "Diagnóstico basado en pruebas",
+          "Documentación clara y segura"
+        ]
+      },
+      "english_progression": [
+        {
+          "stage": "Inicio",
+          "goal": "Reconocer vocabulario técnico frecuente y sus equivalentes en español.",
+          "practice": "Aprende 5 a 8 términos por módulo y úsalos en frases cortas."
+        },
+        {
+          "stage": "Desarrollo",
+          "goal": "Leer títulos, menús, mensajes de error y fragmentos cortos de documentación.",
+          "practice": "Consultar una sección breve en inglés con glosario en español."
+        },
+        {
+          "stage": "Autonomía",
+          "goal": "Seguir documentación oficial, comparar versiones y consultar issues o repositorios.",
+          "practice": "Resolver una tarea usando una fuente primaria en inglés y documentar el proceso."
+        }
       ]
     },
     {
@@ -1319,7 +1774,12 @@
               "type": "code",
               "expected_output": "24",
               "hint": "Revisa el nombre de la variable, el valor asignado y que uses print(edad) para mostrarlo.",
-              "remember": "El signo = asigna un valor; no significa igualdad matemática."
+              "remember": "El signo = asigna un valor; no significa igualdad matemática.",
+              "resource_ids": [
+                "PSeInt · Pseudocódigo y algoritmos",
+                "Python · Tutorial oficial en español"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve variables y tipos de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "fundamentos-condiciones",
@@ -1340,7 +1800,11 @@
               "type": "code",
               "expected_output": "Aprobado",
               "hint": "Comprueba la condición nota >= 3, los dos puntos y que print('Aprobado') esté dentro del bloque if.",
-              "remember": "La indentación define qué instrucciones pertenecen a cada bloque."
+              "remember": "La indentación define qué instrucciones pertenecen a cada bloque.",
+              "resource_ids": [
+                "PSeInt · Pseudocódigo y algoritmos"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve condiciones if y else. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "estructuras-for",
@@ -1361,7 +1825,11 @@
               "type": "code",
               "expected_output": "1\n2\n3\n4\n5",
               "hint": "Revisa el rango: range(1, 6) incluye 1 y excluye 6. Asegúrate de imprimir el valor en cada vuelta.",
-              "remember": "El límite superior de range no se incluye."
+              "remember": "El límite superior de range no se incluye.",
+              "resource_ids": [
+                "PSeInt · Pseudocódigo y algoritmos"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve ciclo for. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "estructuras-while",
@@ -1382,7 +1850,11 @@
               "type": "code",
               "expected_output": "1\n2\n3",
               "hint": "Inicializa contador en 1, repite mientras sea <= 3 y aumenta contador en cada vuelta para que el ciclo termine.",
-              "remember": "Comprueba que la condición pueda volverse falsa."
+              "remember": "Comprueba que la condición pueda volverse falsa.",
+              "resource_ids": [
+                "PSeInt · Pseudocódigo y algoritmos"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve ciclo while. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         },
@@ -1405,7 +1877,11 @@
               ],
               "answer": "return",
               "feedback": "return devuelve un resultado al punto de llamada.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Python · Tutorial oficial en español"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve funciones. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "prog-collections",
@@ -1423,7 +1899,11 @@
               ],
               "answer": "append",
               "feedback": "append agrega un elemento al final.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "Python · Tutorial oficial en español"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve listas y colecciones. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             },
             {
               "id": "prog-debug",
@@ -1441,7 +1921,11 @@
               ],
               "answer": "Nombre no definido",
               "feedback": "NameError aparece cuando se usa un nombre que no está definido.",
-              "type": "quiz"
+              "type": "quiz",
+              "resource_ids": [
+                "freeCodeCamp Español"
+              ],
+              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve depuración y pruebas. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
             }
           ]
         }
@@ -1496,6 +1980,46 @@
           "level": "Intermedio",
           "source": "Harvard University",
           "language": "en"
+        }
+      ],
+      "competencies": [
+        "Descomponer problemas en algoritmos",
+        "Usar variables, tipos y estructuras de control",
+        "Diseñar funciones y estructuras de datos",
+        "Depurar errores y escribir pruebas",
+        "Usar Git y documentar proyectos"
+      ],
+      "capstone_project": {
+        "title": "Gestor de gastos personales por consola",
+        "description": "Crea una aplicación que registre movimientos, valide entradas, calcule totales por categoría y guarde datos. Añade pruebas y documentación.",
+        "deliverables": [
+          "Código organizado en funciones",
+          "Datos de ejemplo y validación",
+          "Pruebas automatizadas",
+          "README con instrucciones y decisiones"
+        ],
+        "rubric": [
+          "Solución correcta a casos normales y límite",
+          "Funciones pequeñas y nombres claros",
+          "Pruebas que detectan errores",
+          "Uso reproducible y documentado"
+        ]
+      },
+      "english_progression": [
+        {
+          "stage": "Inicio",
+          "goal": "Reconocer vocabulario técnico frecuente y sus equivalentes en español.",
+          "practice": "Aprende 5 a 8 términos por módulo y úsalos en frases cortas."
+        },
+        {
+          "stage": "Desarrollo",
+          "goal": "Leer títulos, menús, mensajes de error y fragmentos cortos de documentación.",
+          "practice": "Consultar una sección breve en inglés con glosario en español."
+        },
+        {
+          "stage": "Autonomía",
+          "goal": "Seguir documentación oficial, comparar versiones y consultar issues o repositorios.",
+          "practice": "Resolver una tarea usando una fuente primaria en inglés y documentar el proceso."
         }
       ]
     }
