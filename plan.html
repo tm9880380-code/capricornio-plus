@@ -67,8 +67,8 @@
 <main class="contenedor dash">
 <div class="dash-heading"><div><span class="dash-kicker">TU ESPACIO PERSONAL</span><h1 id="saludo">Hola, bienvenida</h1><p>Tu aprendizaje, tus cursos y cada avance en un solo lugar.</p></div><div class="dash-date" id="fecha">CAPRICORNIO PLUS · MI ESPACIO</div></div>
 <section class="dash-hero" aria-labelledby="hero-title">
-<div class="dash-hero-copy"><span class="kicker">TU SIGUIENTE PASO EMPIEZA AQUÍ</span><h2 id="hero-title">Cada avance construye tu camino.</h2><p id="hero-copy">Retoma una lección, practica una habilidad o explora una nueva especialidad. Tu progreso se actualiza con las actividades que completas.</p><div class="dash-actions"><a class="dash-btn" id="continuar" href="modulo.html">Continuar mi ruta →</a><a class="dash-btn ghost" href="practica.html">Practicar ahora</a></div></div>
-<div class="dash-ring-card"><div class="dash-ring" id="ring" role="img" aria-label="Progreso general"><strong id="ring-value">0%</strong></div><p id="ring-caption">Tu avance en el curso principal</p></div>
+<div class="dash-hero-copy"><span class="kicker">TU SIGUIENTE PASO EMPIEZA AQUÍ</span><h2 id="hero-title">Cada avance construye tu camino.</h2><p id="hero-copy">Retoma una lección, practica una habilidad o explora una nueva especialidad. Tu progreso se actualiza con las actividades que completas.</p><div class="dash-actions"><a class="dash-btn" id="siguiente-leccion" href="modulo.html">Continuar mi ruta →</a><a class="dash-btn ghost" href="practica.html">Practicar ahora</a></div></div>
+<div class="dash-ring-card"><div class="dash-ring" id="ring" role="img" aria-label="Progreso general"><strong id="ring-value">0%</strong></div><p id="resumen-avance">Tu avance en el curso principal</p></div>
 </section>
 <section class="dash-stats" aria-label="Resumen de aprendizaje">
 <div class="dash-stat"><small>Cursos activos</small><strong id="stat-courses">—</strong><span>Rutas en tu espacio</span></div>
@@ -77,7 +77,7 @@
 <div class="dash-stat"><small>Competencias</small><strong id="stat-skills">—</strong><span>Con práctica registrada</span></div>
 </section>
 <div class="dash-section-head"><div><h2>Mis cursos</h2><p>Consulta el avance de cada ruta que tienes activa.</p></div><a class="dash-text-link" href="modulo.html">Ver mi ruta completa →</a></div>
-<section id="courses" class="course-grid" aria-live="polite"><div class="dash-empty">Cargando tus cursos y progreso…</div></section>
+<section id="avance" class="course-grid" aria-live="polite"><div class="dash-empty">Cargando tus cursos y progreso…</div></section>
 <div class="dash-section-head"><div><h2>Explora nuevas áreas</h2><p>Amplía tus conocimientos cuando quieras.</p></div><a class="dash-text-link" href="diagnostico.html">Encontrar mi siguiente ruta →</a></div>
 <section class="dash-explore" id="explore"></section><p class="dash-status" id="estado" role="status" aria-live="polite"></p>
 </main>
@@ -110,9 +110,9 @@ function renderCourse(course){
   document.getElementById("stat-pending").textContent=String(Math.max(0,total-done));
   document.getElementById("stat-skills").textContent=String((d.mastery||[]).filter(x=>x.observations>0).length);
   document.getElementById("ring-value").textContent=avg+"%";document.getElementById("ring").style.setProperty("--ring",avg+"%");
-  document.getElementById("ring-caption").textContent=active.length>1?"Promedio de tus cursos activos":"Tu avance en el curso principal";
+  document.getElementById("resumen-avance").textContent=active.length>1?"Promedio de tus cursos activos":"Tu avance en el curso principal";
   coursesEl.replaceChildren(...active.map(renderCourse));
-  const next=active.find(c=>c.next_lesson_id),button=document.getElementById("continuar");
+  const next=active.find(c=>c.next_lesson_id),button=document.getElementById("siguiente-leccion");
   if(next){button.href="leccion.html?id="+encodeURIComponent(next.next_lesson_id);button.textContent="Continuar: "+(next.next_lesson_title||"siguiente lección")+" →"}
   else if(d.diagnostic){button.href="modulo.html";button.textContent="Repasar mi ruta →"}
   else{button.href="diagnostico.html";button.textContent="Comenzar diagnóstico →"}
