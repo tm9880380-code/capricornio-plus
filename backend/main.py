@@ -1058,17 +1058,15 @@ def login(data: LoginData, response: FastAPIResponse):
             "SELECT * FROM users WHERE email = ?", (email,)
         ).fetchone()
 
+        invalid_credentials = HTTPException(
+            status_code=401,
+            detail="Correo electrónico o contraseña incorrectos."
+        )
         if user is None:
-            raise HTTPException(
-                status_code=401,
-                detail="Todavía no tienes una cuenta. Regístrate para comenzar en Capricornio."
-            )
+            raise invalid_credentials
 
         if not password_hash.verify(data.password, user["password_hash"]):
-            raise HTTPException(
-                status_code=401,
-                detail="La contraseña es incorrecta. Inténtalo de nuevo."
-            )
+            raise invalid_credentials
 
         create_session(db, user["id"], response)
         db.commit()
