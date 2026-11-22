@@ -1596,7 +1596,8 @@
                 "!="
               ],
               "feedback": "=",
-              "type": "El signo igual simple realiza asignación."
+              "type": "El signo igual simple realiza asignación.",
+              "expected_output": "24"
             },
             {
               "id": "fundamentos-condiciones",
@@ -1614,7 +1615,8 @@
                 "import"
               ],
               "feedback": "if",
-              "type": "if inicia una estructura condicional."
+              "type": "if inicia una estructura condicional.",
+              "expected_output": "Aprobado"
             },
             {
               "id": "estructuras-for",
@@ -1632,7 +1634,8 @@
                 "2, 3, 4"
               ],
               "feedback": "1, 2, 3",
-              "type": "El límite final de range no se incluye."
+              "type": "El límite final de range no se incluye.",
+              "expected_output": "1\n2\n3\n4\n5"
             },
             {
               "id": "estructuras-while",
@@ -1650,7 +1653,8 @@
                 "Nunca"
               ],
               "feedback": "Cuando la condición es falsa",
-              "type": "while deja de repetir cuando la condición ya no es verdadera."
+              "type": "while deja de repetir cuando la condición ya no es verdadera.",
+              "expected_output": "1\n2\n3"
             }
           ]
         },
