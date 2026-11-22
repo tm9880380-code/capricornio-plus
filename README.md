@@ -25,7 +25,7 @@ El estudiante puede elegir una de estas áreas, seleccionar un lenguaje (Python,
 ## Qué incluye el prototipo actual
 - Registro, inicio de sesión y sesiones con cookies HttpOnly.
 - Orientación inicial para quien no sabe qué área elegir.
-- Diagnóstico específico por ruta: seis preguntas por área y siete en programación.
+- Diagnóstico específico por ruta: seis o siete preguntas por ruta.
 - Niveles internos provisionales A1–C2, sin valor de certificación.
 - Currículo declarativo con ocho áreas, dos módulos por área y aproximadamente 50 lecciones de muestra.
 - Explicaciones, ejemplos, preguntas de comprensión y retroalimentación.
