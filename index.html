@@ -3,50 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capricornio - Inicio</title>
-<link rel="stylesheet" href="css/estilos.css">
+<meta name="description" content="Capricornio: aprende tecnología con rutas claras, práctica real y recursos gratuitos.">
+<meta name="theme-color" content="#2b1608">
+<title>Capricornio | Aprende, crea y demuestra lo que sabes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+:root{--ink:#2b1608;--coffee:#3b2314;--brown:#5a3a1e;--accent:#7a4a1c;--cream:#fffaf0;--sand:#f6ecd6;--gold:#e6d3a8;--muted:#806b55;--line:#e7d8bd;--white:#fffdf8;--shadow:0 22px 60px rgba(43,22,8,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,250,240,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(90,58,30,.12)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font-size:17px;font-weight:900;letter-spacing:.14em;color:var(--coffee)}.brand img{width:42px;height:42px;object-fit:contain}.navlinks{display:flex;align-items:center;gap:27px;color:#6d5740;font-size:13px;font-weight:700}.navlinks a:hover{color:var(--accent)}.nav-actions{display:flex;gap:10px;align-items:center}.menu-toggle{display:none;border:1px solid var(--line);background:var(--white);border-radius:12px;padding:9px 12px;color:var(--coffee)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 19px;border-radius:12px;border:1px solid transparent;background:var(--coffee);color:#fff8e9;font-size:13px;font-weight:800;box-shadow:0 7px 18px rgba(43,22,8,.13);transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}.btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(43,22,8,.17);background:var(--accent)}.btn-light{background:var(--white);color:var(--coffee);border-color:#dfcfb0;box-shadow:none}.btn-light:hover{background:var(--sand);color:var(--coffee)}.btn-text{background:transparent;color:var(--coffee);box-shadow:none;padding-inline:8px}.btn-text:hover{background:var(--sand);box-shadow:none}
+.hero{position:relative;overflow:hidden;padding:82px 0 70px;background:radial-gradient(ellipse at 82% 20%,rgba(230,211,168,.45),transparent 35%),linear-gradient(135deg,#fffaf0 0%,#f7eedc 56%,#efe0c2 100%)}.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(90,58,30,.10);border-radius:50%;pointer-events:none}.hero:before{width:560px;height:560px;right:-180px;top:-260px}.hero:after{width:420px;height:420px;right:-110px;top:-190px}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:45px}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid #e2d1af;border-radius:99px;background:rgba(255,253,248,.7);color:#74542d;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.eyebrow i{width:7px;height:7px;border-radius:50%;background:#8f6b3e;box-shadow:0 0 0 4px rgba(143,107,62,.13)}h1,h2,h3,p{margin-top:0}h1{max-width:690px;margin:21px 0 18px;font-size:clamp(40px,5.6vw,67px);line-height:1.04;letter-spacing:-.055em;color:var(--ink)}h1 em{font-style:normal;color:#805729}.hero-copy{max-width:590px;color:#705b43;font-size:17px;line-height:1.8}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}.hero-note{display:flex;align-items:center;gap:12px;margin-top:28px;color:#806b55;font-size:12px}.avatars{display:flex;padding-left:5px}.avatars span{width:27px;height:27px;margin-left:-5px;display:grid;place-items:center;border:2px solid var(--cream);border-radius:50%;background:#e8d7b5;font-size:12px}.hero-art{position:relative;min-height:410px;display:grid;place-items:center}.art-orbit{position:absolute;width:min(390px,90%);aspect-ratio:1;border-radius:50%;border:1px solid rgba(90,58,30,.18);background:radial-gradient(circle,#fffaf0 0%,rgba(255,250,240,.55) 52%,rgba(230,211,168,.16) 72%,transparent 73%)}.art-orbit:before,.art-orbit:after{content:"";position:absolute;inset:24px;border:1px dashed rgba(90,58,30,.18);border-radius:50%}.art-orbit:after{inset:54px;border-style:solid;opacity:.5}.cat-card{position:relative;width:min(300px,78%);padding:22px 22px 18px;border:1px solid rgba(182,154,112,.55);border-radius:25px;background:rgba(255,253,248,.88);box-shadow:var(--shadow);text-align:center;transform:rotate(2deg);animation:float 5s ease-in-out infinite}.cat-card img{width:180px;height:180px;object-fit:contain;filter:drop-shadow(0 12px 14px rgba(43,22,8,.12))}.cat-card h3{margin:5px 0 3px;font-size:17px}.cat-card p{margin:0;color:var(--muted);font-size:12px}.float-chip{position:absolute;padding:11px 14px;border:1px solid #e6d6b8;border-radius:13px;background:var(--white);box-shadow:0 10px 25px rgba(43,22,8,.09);font-size:12px;font-weight:800;color:var(--coffee)}.chip-one{top:48px;right:0}.chip-two{bottom:55px;left:0}.chip-one b,.chip-two b{color:#8b6334}@keyframes float{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+.trust{border-block:1px solid var(--line);background:#fffdf8}.trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:20px 0}.trust-item{display:flex;align-items:center;justify-content:center;gap:12px;color:#6f5941;font-size:12px;font-weight:750}.trust-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--sand);color:#79552e;font-size:16px}
+.section{padding:76px 0}.section-head{max-width:680px;margin-bottom:30px}.kicker{color:#8b6334;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.section h2{margin:9px 0 11px;font-size:clamp(28px,3.5vw,42px);line-height:1.12;letter-spacing:-.04em}.section-head p{color:var(--muted);font-size:15px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.step{position:relative;min-height:210px;padding:25px;border:1px solid var(--line);border-radius:19px;background:var(--white);transition:transform .22s,border-color .22s,box-shadow .22s}.step:hover{transform:translateY(-5px);border-color:#c6a979;box-shadow:0 15px 35px rgba(43,22,8,.08)}.step-num{display:grid;place-items:center;width:42px;height:42px;margin-bottom:20px;border-radius:13px;background:var(--sand);color:#76532d;font-size:13px;font-weight:900}.step h3{margin-bottom:8px;font-size:17px}.step p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+.explore{background:#f7f0e3}.area-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.area-card{display:flex;min-height:155px;flex-direction:column;align-items:flex-start;padding:19px;border:1px solid #e3d4b9;border-radius:17px;background:rgba(255,253,248,.9);transition:transform .2s,box-shadow .2s,border-color .2s}.area-card:hover{transform:translateY(-4px);border-color:#bd9d6b;box-shadow:0 12px 28px rgba(43,22,8,.08)}.area-symbol{display:grid;place-items:center;width:38px;height:38px;margin-bottom:14px;border-radius:12px;background:#f1e4ca;color:#76532d;font-weight:900;font-size:12px}.area-card strong{font-size:14px}.area-card small{margin-top:5px;color:var(--muted);font-size:11px;line-height:1.5}.area-card .arrow{margin-top:auto;padding-top:13px;color:#8b6334;font-size:12px;font-weight:900}
+.lab{display:grid;grid-template-columns:.9fr 1.1fr;gap:35px;align-items:center}.lab-copy p{color:var(--muted);font-size:15px}.lab-points{display:grid;gap:11px;margin:22px 0}.lab-point{display:flex;align-items:flex-start;gap:10px;color:#5f4b35;font-size:13px}.check{flex:0 0 22px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#e9dfc8;color:#76532d;font-size:12px;font-weight:900}.code-window{overflow:hidden;border:1px solid #513d2a;border-radius:18px;background:#211a14;box-shadow:0 22px 50px rgba(43,22,8,.18)}.window-top{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;border-bottom:1px solid rgba(255,255,255,.09);color:#e8d9bd;font-size:11px}.dots{display:flex;gap:5px}.dots i{width:7px;height:7px;border-radius:50%;background:#9e8060}.code-body{padding:22px 22px 14px;color:#eadcc4;font:13px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;min-height:190px}.code-line{display:block}.ln{display:inline-block;width:25px;color:#826d56;user-select:none}.kw{color:#d6b77e}.fn{color:#a9c69b}.str{color:#e2bd8e}.comment{color:#a08d76}.code-output{margin:0 16px 16px;padding:13px 15px;border:1px solid rgba(230,211,168,.18);border-radius:11px;background:#2d241b;color:#d9c7a8;font:12px/1.6 ui-monospace,monospace}.output-label{display:block;margin-bottom:4px;color:#a88d65;font:10px Inter,Arial,sans-serif;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.run-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 16px 16px;color:#9e8b72;font-size:11px}.run-btn{padding:8px 12px;border:0;border-radius:9px;background:#e6d3a8;color:#352313;font-size:11px;font-weight:900;cursor:pointer}.run-btn:hover{background:#f3e6c8}
+.case{background:linear-gradient(130deg,#3b2314,#2b1608);color:#fff8e9}.case-grid{display:grid;grid-template-columns:1fr .9fr;gap:35px;align-items:center}.case h2{color:#fff8e9}.case p{color:#d9c7a8}.case .kicker{color:#e6d3a8}.case-box{padding:23px;border:1px solid rgba(230,211,168,.24);border-radius:18px;background:rgba(255,250,240,.07)}.case-tag{display:inline-block;padding:5px 9px;border-radius:7px;background:rgba(230,211,168,.15);color:#f1dfbd;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.case-box h3{margin:13px 0 7px;color:#fff8e9;font-size:18px}.case-box p{font-size:13px}.case-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}.case .btn{background:#e6d3a8;color:#352313}.case .btn-light{background:transparent;border-color:rgba(230,211,168,.35);color:#f3e6c8}
+.final-cta{padding:72px 0;text-align:center;background:linear-gradient(145deg,#fffaf0,#f3e6c8)}.final-cta h2{max-width:650px;margin:0 auto 13px;font-size:clamp(29px,4vw,44px);line-height:1.1;letter-spacing:-.04em}.final-cta p{max-width:560px;margin:0 auto 24px;color:var(--muted)}
+.footer{padding:40px 0 22px;background:#21170f;color:#e8d9bd}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:35px;padding-bottom:30px}.footer-brand{font-weight:900;letter-spacing:.13em}.footer p{max-width:340px;margin:12px 0 0;color:#b8a58a;font-size:12px}.footer h4{margin:0 0 12px;color:#f1dfbd;font-size:12px}.footer-links{display:grid;gap:8px;color:#c4b397;font-size:12px}.footer-links a:hover{color:#fff}.footer-bottom{display:flex;justify-content:space-between;gap:15px;padding-top:18px;border-top:1px solid rgba(230,211,168,.16);color:#a99578;font-size:11px}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr  .8fr;gap:20px}.area-grid{grid-template-columns:repeat(2,1fr)}.navlinks{gap:14px}.navlinks a{font-size:12px}.nav-actions .btn{padding:10px 13px}.lab,.case-grid{gap:22px}}
+@media(max-width:700px){.wrap{width:min(100% - 30px,560px)}.nav{height:66px}.menu-toggle{display:block}.navlinks{display:none;position:absolute;top:66px;left:0;right:0;padding:18px 22px;background:var(--cream);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:15px}.navlinks.open{display:flex}.nav-actions .btn-light{display:none}.hero{padding:53px 0 40px}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:330px;margin-top:5px}.cat-card{width:245px}.cat-card img{width:145px;height:145px}.chip-one{right:2%}.chip-two{left:2%}.trust-row{grid-template-columns:1fr;gap:11px;padding:16px 0}.trust-item{justify-content:flex-start}.section{padding:57px 0}.steps{grid-template-columns:1fr}.step{min-height:0}.lab,.case-grid{grid-template-columns:1fr}.code-window{min-width:0}.area-grid{gap:10px}.area-card{min-height:145px;padding:14px}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}.footer-bottom{flex-direction:column}.hero-copy{font-size:15px}}
+@media(max-width:390px){.nav-actions .btn{font-size:11px;padding:9px 10px}.brand{font-size:14px}.area-grid{grid-template-columns:1fr 1fr}.area-card strong{font-size:12px}.area-card small{font-size:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-
-<header class="barra">
-  <div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="diagnostico.html">Diagnóstico</a>
-    <a href="plan.html">Mi plan</a>
-    <a href="suscripciones.html">Suscripciones</a>
-    <a href="login.html">Ingresar</a>
+<header class="topbar">
+ <div class="wrap nav">
+  <a class="brand" href="index.html"><img src="img/logo.webp" alt="">CAPRICORNIO</a>
+  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">☰ Menú</button>
+  <nav class="navlinks" id="navLinks" aria-label="Navegación principal">
+   <a href="#como-funciona">Cómo funciona</a><a href="#areas">Explorar áreas</a><a href="#practica">Practicar</a><a href="recursos.html">Recursos</a>
   </nav>
+  <div class="nav-actions"><a class="btn btn-light" href="login.html">Iniciar sesión</a><a class="btn" href="registro.html">Empezar gratis <span aria-hidden="true">→</span></a></div>
+ </div>
 </header>
 
-<main class="contenedor">
+<main>
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <span class="eyebrow"><i></i> Aprende tecnología a tu manera</span>
+   <h1>No te quedes mirando el código. <em>Construye algo.</em></h1>
+   <p class="hero-copy">Explora áreas tecnológicas, encuentra tu punto de partida y aprende resolviendo retos reales. Una ruta clara, recursos útiles y práctica para demostrar lo que sabes.</p>
+   <div class="hero-actions"><a class="btn" href="registro.html">Empezar a aprender <span aria-hidden="true">→</span></a><a class="btn btn-light" href="#como-funciona">Conocer Capricornio</a></div>
+   <div class="hero-note"><div class="avatars"><span>⌘</span><span>⌁</span><span>✦</span></div><span>Rutas guiadas · Recursos gratuitos · Aprendizaje práctico</span></div>
+  </div>
+  <div class="hero-art" aria-label="Mascota de Capricornio">
+   <div class="art-orbit"></div>
+   <div class="float-chip chip-one">✦ <b>Aprende</b> a tu ritmo</div>
+   <div class="cat-card"><img src="img/gato.webp" alt="Gato, compañero de aprendizaje de Capricornio"><h3>¡Hola! Soy tu compañero</h3><p>Vamos a aprender creando, paso a paso.</p></div>
+   <div class="float-chip chip-two">⌘ <b>Practica</b> con retos reales</div>
+  </div>
+ </div>
+</section>
 
-  <section class="hero">
-    <h1>Encuentra tu camino para aprender tecnología</h1>
-    <p>Capricornio conecta a estudiantes con documentación, proyectos abiertos, tutoriales y prácticas gratuitas. Elige un área, descubre tu punto de partida, organiza tu aprendizaje y guarda tu avance.</p>
-    <a class="boton" href="registro.html">Crear mi cuenta</a>
-    <a class="boton claro" href="login.html">Ya tengo cuenta</a>
-  </section>
+<section class="trust"><div class="wrap trust-row">
+ <div class="trust-item"><span class="trust-icon">⌘</span> Aprende haciendo, no memorizando</div>
+ <div class="trust-item"><span class="trust-icon">↗</span> Avanza con una ruta organizada</div>
+ <div class="trust-item"><span class="trust-icon">◇</span> Recursos para seguir explorando</div>
+</div></section>
 
-  <h2>¿Cómo funciona?</h2>
-  <section class="rejilla">
-    <div class="tarjeta">
-      <h3>1. Elige tu camino</h3>
-      <p>Selecciona una de ocho áreas, un lenguaje o pide orientación si aún no sabes qué aprender.</p>
-    </div>
-    <div class="tarjeta">
-      <h3>2. Conecta con recursos</h3>
-      <p>Encuentra documentación, repositorios, tutoriales y canales gratuitos de aprendizaje.</p>
-    </div>
-    <div class="tarjeta">
-      <h3>3. Practica y avanza</h3>
-      <p>Practica, revisa tus respuestas y conserva el progreso de tu cuenta.</p>
-    </div>
-  </section>
+<section class="section" id="como-funciona"><div class="wrap">
+ <div class="section-head"><span class="kicker">Tu camino empieza aquí</span><h2>Aprender tecnología puede sentirse más claro.</h2><p>Capricornio te ayuda a pasar de la curiosidad a la práctica, con pasos concretos y espacio para descubrir qué te gusta.</p></div>
+ <div class="steps">
+  <article class="step"><span class="step-num">01</span><h3>Encuentra tu área</h3><p>Explora disciplinas, conoce sus posibilidades y elige por dónde quieres comenzar.</p></article>
+  <article class="step"><span class="step-num">02</span><h3>Construye tu ruta</h3><p>Identifica tu punto de partida y organiza el aprendizaje en módulos y competencias.</p></article>
+  <article class="step"><span class="step-num">03</span><h3>Demuestra lo que sabes</h3><p>Resuelve ejercicios, crea proyectos y revisa tu avance con actividades verificables.</p></article>
+ </div>
+</div></section>
 
+<section class="section explore" id="areas"><div class="wrap">
+ <div class="section-head"><span class="kicker">Explora sin límites</span><h2>Hay más de un camino hacia la tecnología.</h2><p>Descubre las áreas de formación y encuentra nuevos retos. Puedes explorar antes de decidir.</p></div>
+ <div class="area-grid">
+  <a class="area-card" href="entorno.html"><span class="area-symbol">PY</span><strong>Programación</strong><small>Aprende a resolver problemas y construir software.</small><span class="arrow">Explorar área ↗</span></a>
+  <a class="area-card" href="diagnostico.html?area=Ciberseguridad"><span class="area-symbol">CY</span><strong>Ciberseguridad</strong><small>Investiga amenazas y protege sistemas de forma responsable.</small><span class="arrow">Explorar área ↗</span></a>
+  <a class="area-card" href="diagnostico.html?area=Desarrollo%20web"><span class="area-symbol">WEB</span><strong>Desarrollo web</strong><small>Diseña experiencias y crea sitios que funcionan.</small><span class="arrow">Explorar área ↗</span></a>
+  <a class="area-card" href="diagnostico.html?area=Datos"><span class="area-symbol">DB</span><strong>Datos e inteligencia artificial</strong><small>Explora datos, automatización y modelos inteligentes.</small><span class="arrow">Explorar área ↗</span></a>
+  <a class="area-card" href="diagnostico.html?area=Redes%20y%20sistemas"><span class="area-symbol">NET</span><strong>Redes y sistemas</strong><small>Comprende cómo se conectan y operan los sistemas.</small><span class="arrow">Explorar área ↗</span></a>
+  <a class="area-card" href="diagnostico.html?area=Desarrollo%20backend"><span class="area-symbol">API</span><strong>Backend</strong><small>Construye servicios, APIs y lógica de aplicaciones.</small><span class="arrow">Explorar área ↗</span></a>
+  <a class="area-card" href="diagnostico.html?area=Desarrollo%20de%20software"><span class="area-symbol">DEV</span><strong>Ingeniería de software</strong><small>Diseña, prueba y mejora soluciones de software.</small><span class="arrow">Explorar área ↗</span></a>
+  <a class="area-card" href="entorno.html"><span class="area-symbol">＋</span><strong>Ver todas las áreas</strong><small>Conoce el entorno completo de aprendizaje.</small><span class="arrow">Ver catálogo ↗</span></a>
+ </div>
+</div></section>
+
+<section class="section" id="practica"><div class="wrap lab">
+ <div class="lab-copy"><span class="kicker">Aprendizaje activo</span><h2>El código cobra sentido cuando lo pones a trabajar.</h2><p>En Capricornio la práctica debe acercarte a situaciones reales: crear, probar, encontrar errores y mejorar tu solución.</p>
+  <div class="lab-points"><div class="lab-point"><span class="check">✓</span><span>Retos progresivos para desarrollar lógica y criterio técnico.</span></div><div class="lab-point"><span class="check">✓</span><span>Ejemplos que puedes ejecutar y modificar.</span></div><div class="lab-point"><span class="check">✓</span><span>Casos prácticos que conectan el aprendizaje con el mundo real.</span></div></div>
+  <a class="btn" href="practica.html">Ir a practicar <span aria-hidden="true">→</span></a>
+ </div>
+ <div class="code-window">
+  <div class="window-top"><span>reto_inicial.py</span><span class="dots"><i></i><i></i><i></i></span></div>
+  <div class="code-body" aria-label="Ejemplo de código Python"><span class="code-line"><span class="ln">1</span><span class="comment"># Tu primera función</span></span><span class="code-line"><span class="ln">2</span><span class="kw">def</span> <span class="fn">saludar</span>(nombre):</span><span class="code-line"><span class="ln">3</span>    <span class="kw">return</span> <span class="str">f"¡Hola, {nombre}!"</span></span><span class="code-line"><span class="ln">4</span></span><span class="code-line"><span class="ln">5</span><span class="fn">print</span>(saludar(<span class="str">"Capricornio"</span>))</span></div>
+  <div class="code-output" id="demoOutput"><span class="output-label">Salida de ejemplo</span>Presiona ejecutar para ver qué hace este programa.</div>
+  <div class="run-row"><span>Demostración visual · Python</span><button class="run-btn" id="runDemo">▶ Ejecutar ejemplo</button></div>
+ </div>
+</div></section>
+
+<section class="section case"><div class="wrap case-grid">
+ <div><span class="kicker">Aprende resolviendo</span><h2>Los retos no siempre vienen en forma de pregunta.</h2><p>Imagina que un equipo recibe reportes de correos sospechosos. Tu misión es revisar el caso, encontrar señales de riesgo y proponer una respuesta segura. Así se conecta el conocimiento con el trabajo real.</p></div>
+ <div class="case-box"><span class="case-tag">Caso de muestra · Ciberseguridad</span><h3>Ticket #024 · Mensaje sospechoso</h3><p>Una persona recibió un correo urgente que solicita validar su cuenta desde un enlace desconocido.</p><p><strong>Tu misión:</strong> identifica tres señales de alerta y escribe una recomendación para el equipo.</p><div class="case-actions"><a class="btn" href="diagnostico.html?area=Ciberseguridad">Explorar ciberseguridad ↗</a><a class="btn btn-light" href="entorno.html">Ver rutas</a></div></div>
+</div></section>
+
+<section class="final-cta"><div class="wrap"><span class="kicker">Tu siguiente paso</span><h2>Empieza con curiosidad. Continúa con práctica.</h2><p>Elige un área, construye tu ruta y convierte cada avance en algo que puedas demostrar.</p><a class="btn" href="registro.html">Crear mi cuenta gratis <span aria-hidden="true">→</span></a></div></section>
 </main>
 
-<footer class="pie-pagina">Capricornio · Plataforma adaptativa de aprendizaje de programación</footer>
-
+<footer class="footer"><div class="wrap">
+ <div class="footer-grid">
+  <div><div class="footer-brand">CAPRICORNIO</div><p>Una plataforma para explorar tecnología, aprender con intención y desarrollar habilidades a través de la práctica.</p></div>
+  <div><h4>Explora</h4><div class="footer-links"><a href="index.html">Inicio</a><a href="entorno.html">Áreas de formación</a><a href="recursos.html">Biblioteca de recursos</a><a href="practica.html">Zona de práctica</a></div></div>
+  <div><h4>Tu espacio</h4><div class="footer-links"><a href="registro.html">Crear cuenta</a><a href="login.html">Iniciar sesión</a><a href="ayuda.html">Centro de ayuda</a><a href="PRIVACY.md">Política de privacidad</a></div></div>
+ </div>
+ <div class="footer-bottom"><span>© <span id="year"></span> Capricornio. Aprende, crea y avanza.</span><span>Hecho para aprender tecnología con propósito.</span></div>
+</div></footer>
+<script>
+const menuToggle=document.getElementById('menuToggle');
+const navLinks=document.getElementById('navLinks');
+menuToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');}));
+document.getElementById('runDemo').addEventListener('click',()=>{const out=document.getElementById('demoOutput');out.innerHTML='<span class="output-label">Programa ejecutado · salida</span>¡Hola, Capricornio!';});
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
