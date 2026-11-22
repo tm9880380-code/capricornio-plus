@@ -260,6 +260,26 @@
           "level": "Intermedio",
           "source": "OWASP",
           "language": "es"
+        },
+        {
+          "title": "PortSwigger TV",
+          "type": "YouTube",
+          "description": "Charlas y demostraciones sobre seguridad web.",
+          "url": "https://www.youtube.com/@PortSwiggerTV",
+          "topic": "Seguridad web",
+          "level": "Intermedio",
+          "source": "PortSwigger",
+          "language": "es"
+        },
+        {
+          "title": "OWASP Juice Shop",
+          "type": "GitHub",
+          "description": "Aplicación vulnerable para practicar seguridad web en un laboratorio autorizado.",
+          "url": "https://github.com/juice-shop/juice-shop",
+          "topic": "Seguridad web",
+          "level": "Intermedio",
+          "source": "OWASP",
+          "language": "es"
         }
       ]
     },
@@ -475,6 +495,26 @@
           "description": "Guía de JavaScript.",
           "url": "https://developer.mozilla.org/es/docs/Web/JavaScript/Guide",
           "topic": "JavaScript",
+          "level": "Principiante",
+          "source": "MDN",
+          "language": "es"
+        },
+        {
+          "title": "Kevin Powell",
+          "type": "YouTube",
+          "description": "Tutoriales de CSS, diseño adaptable y frontend.",
+          "url": "https://www.youtube.com/@KevinPowell",
+          "topic": "CSS",
+          "level": "Principiante",
+          "source": "Kevin Powell",
+          "language": "es"
+        },
+        {
+          "title": "MDN Learning Area",
+          "type": "GitHub",
+          "description": "Ejemplos de código que acompañan los materiales de MDN.",
+          "url": "https://github.com/mdn/learning-area",
+          "topic": "HTML, CSS y JavaScript",
           "level": "Principiante",
           "source": "MDN",
           "language": "es"
@@ -696,6 +736,16 @@
           "level": "Principiante",
           "source": "OpenJS",
           "language": "es"
+        },
+        {
+          "title": "FastAPI",
+          "type": "GitHub",
+          "description": "Framework y ejemplos para construir APIs con Python.",
+          "url": "https://github.com/fastapi/fastapi",
+          "topic": "Python",
+          "level": "Intermedio",
+          "source": "FastAPI",
+          "language": "es"
         }
       ]
     },
@@ -914,6 +964,26 @@
           "level": "Intermedio",
           "source": "pandas",
           "language": "es"
+        },
+        {
+          "title": "Alex The Analyst",
+          "type": "YouTube",
+          "description": "Tutoriales de SQL, análisis y proyectos de datos.",
+          "url": "https://www.youtube.com/@AlexTheAnalyst",
+          "topic": "SQL y análisis",
+          "level": "Principiante",
+          "source": "Alex The Analyst",
+          "language": "es"
+        },
+        {
+          "title": "Rob Mulla: pandas",
+          "type": "YouTube",
+          "description": "Tutoriales prácticos de pandas y análisis de datos.",
+          "url": "https://www.youtube.com/@RobMulla",
+          "topic": "Python y pandas",
+          "level": "Principiante",
+          "source": "Rob Mulla",
+          "language": "es"
         }
       ]
     },
@@ -1131,6 +1201,26 @@
           "topic": "Python",
           "level": "Avanzado",
           "source": "Hugging Face",
+          "language": "es"
+        },
+        {
+          "title": "Hugging Face",
+          "type": "YouTube",
+          "description": "Charlas y tutoriales sobre modelos y herramientas de IA.",
+          "url": "https://www.youtube.com/@HuggingFace",
+          "topic": "IA y NLP",
+          "level": "Intermedio",
+          "source": "Hugging Face",
+          "language": "es"
+        },
+        {
+          "title": "StatQuest",
+          "type": "YouTube",
+          "description": "Explicaciones visuales de estadística y machine learning.",
+          "url": "https://www.youtube.com/@statquest",
+          "topic": "Estadística y ML",
+          "level": "Principiante",
+          "source": "StatQuest",
           "language": "es"
         }
       ]
@@ -1568,6 +1658,16 @@
           "level": "Principiante",
           "source": "Cisco",
           "language": "es"
+        },
+        {
+          "title": "NetworkChuck",
+          "type": "YouTube",
+          "description": "Introducciones a redes, Linux y fundamentos de seguridad.",
+          "url": "https://www.youtube.com/@NetworkChuck",
+          "topic": "Redes y Linux",
+          "level": "Principiante",
+          "source": "NetworkChuck",
+          "language": "es"
         }
       ]
     },
@@ -1817,6 +1917,16 @@
           "topic": "C++",
           "level": "Principiante",
           "source": "Microsoft",
+          "language": "es"
+        },
+        {
+          "title": "The Algorithms",
+          "type": "GitHub",
+          "description": "Implementaciones educativas de algoritmos en varios lenguajes.",
+          "url": "https://github.com/TheAlgorithms",
+          "topic": "Algoritmos",
+          "level": "Intermedio",
+          "source": "The Algorithms",
           "language": "es"
         }
       ]
