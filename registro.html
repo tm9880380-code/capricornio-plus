@@ -1,115 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capricornio - Registro</title>
-<link rel="stylesheet" href="css/estilos.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2b1608"><meta name="description" content="Crea tu cuenta de Capricornio y comienza tu ruta de aprendizaje tecnológico.">
+<title>Crear cuenta | Capricornio</title>
+<style>
+:root{--ink:#2b1608;--coffee:#3b2314;--brown:#5a3a1e;--accent:#7a4a1c;--cream:#fffaf0;--sand:#f6ecd6;--gold:#e6d3a8;--muted:#806b55;--line:#e7d8bd;--white:#fffdf8}
+*{box-sizing:border-box;font-style:normal}body{margin:0;background:radial-gradient(ellipse at 90% 10%,#efe0c2 0,transparent 36%),var(--cream);color:var(--ink);font-family:Inter,system-ui,"Segoe UI",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.top{height:76px;border-bottom:1px solid #e7d8bd;background:rgba(255,250,240,.92);display:flex;align-items:center}.top-inner{width:min(1120px,calc(100% - 36px));margin:auto;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:var(--coffee);font-size:14px;font-weight:900;letter-spacing:.14em}.brand img{width:42px;height:42px;object-fit:contain}.top a:last-child{color:var(--accent);font-size:12px;font-weight:800;text-decoration:none}
+main{width:min(1120px,calc(100% - 36px));margin:45px auto 70px;display:grid;grid-template-columns:.85fr 1.15fr;gap:55px;align-items:start}.intro{position:sticky;top:35px;padding:28px 0}.eyebrow{color:#936b37;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.intro h1{margin:16px 0;font-size:clamp(34px,4vw,52px);font-weight:850;line-height:1.08;letter-spacing:-.055em}.intro p{max-width:420px;color:var(--muted);font-size:14px;line-height:1.85}.benefits{display:grid;gap:13px;margin-top:27px}.benefit{display:flex;gap:11px;align-items:center;color:#5f4b35;font-size:12px;font-weight:650}.check{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;border-radius:50%;background:#efe2c9;color:#76532d;font-weight:900}
+.card{padding:34px;border:1px solid var(--line);border-radius:20px;background:var(--white);box-shadow:0 22px 65px rgba(43,22,8,.09)}.card h2{margin:0 0 5px;font-size:25px;font-weight:850;letter-spacing:-.04em}.sub{margin:0 0 23px;color:var(--muted);font-size:12px}.field{display:grid;gap:7px;margin:0 0 16px}.field label{color:var(--coffee);font-size:12px;font-weight:800}.field input,.field select{width:100%;min-height:47px;padding:11px 13px;border:1px solid #d9c8aa;border-radius:9px;background:#fffdf8;color:var(--ink);font:inherit;font-size:13px}.field input:focus,.field select:focus{outline:3px solid rgba(122,74,28,.14);border-color:#98764a}.field input::placeholder{color:#a18e75}.consents{display:grid;gap:13px;margin:22px 0;padding:18px;border:1px solid #e7d8bd;border-radius:12px;background:#fcf7ec}.consent{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;color:#5f4b35;font-size:11px;line-height:1.7}.consent input{width:16px;height:16px;margin:2px 0 0;accent-color:#5a3a1e}.consent a{color:#805729;font-weight:800;text-underline-offset:3px}.privacy-note{margin:0 0 16px;color:#806b55;font-size:10px;line-height:1.7}.submit{width:100%;min-height:49px;border:0;border-radius:10px;background:var(--coffee);color:#fff8e9;font-size:13px;font-weight:850;cursor:pointer;box-shadow:0 7px 18px rgba(43,22,8,.13);transition:transform .2s,background .2s}.submit:hover{background:var(--accent);transform:translateY(-2px)}.submit:disabled{opacity:.65;cursor:wait;transform:none}.submit:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #b69a70;outline-offset:3px}.message{min-height:20px;margin:10px 0;color:#9b2929;font-size:11px}.signin{margin:17px 0 0;text-align:center;color:var(--muted);font-size:12px}.signin a{color:#805729;font-weight:850;text-decoration:none}.footer{padding:25px 18px;background:#21170f;color:#b8a58a;text-align:center;font-size:10px}.footer a{margin:0 8px;color:#e8d9bd;text-decoration:none}
+@media(max-width:800px){main{grid-template-columns:1fr;gap:15px;margin-top:25px}.intro{position:static;padding:10px 0}.intro h1{max-width:600px}.intro p{max-width:650px}.benefits{grid-template-columns:repeat(3,1fr)}.card{padding:25px}}@media(max-width:520px){.benefits{grid-template-columns:1fr}.card{padding:21px}.top{height:66px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
 </head>
 <body>
-
-<header class="barra">
-  <div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="diagnostico.html">Diagnóstico</a>
-    <a href="plan.html">Mi plan</a>
-    <a href="suscripciones.html">Suscripciones</a>
-    <a href="login.html">Ingresar</a>
-  </nav>
-</header>
-
-<main class="contenedor">
-
-  <h1 style="text-align:center;">Crea tu cuenta</h1>
-  <p style="text-align:center;">Regístrate para hacer tu diagnóstico y recibir tu plan de estudio.</p>
-
-  <section class="formulario">
-    <form id="registro-form">
-      <label for="nombre">Nombre completo</label>
-      <input id="nombre" name="name" type="text" placeholder="Tu nombre" autocomplete="name" required>
-
-      <label for="correo">Correo electrónico</label>
-      <input id="correo" name="email" type="email" placeholder="correo@ejemplo.com" autocomplete="email" required>
-
-      <label for="contrasena">Contraseña</label>
-      <input id="contrasena" name="password" type="password" placeholder="Mínimo 8 caracteres" minlength="8" autocomplete="new-password" required>
-
-      <label for="objetivo">¿Qué quieres aprender?</label>
-      <select id="objetivo" name="learning_goal" required>
-        <option value="" disabled selected>Selecciona tu área o ruta</option>
-        <optgroup label="Áreas de aprendizaje">
-          <option value="Ciberseguridad">Ciberseguridad</option>
-          <option value="Desarrollo frontend">Desarrollo frontend</option>
-          <option value="Desarrollo backend">Desarrollo backend</option>
-          <option value="Análisis de datos">Análisis de datos</option>
-          <option value="Inteligencia artificial y modelos de lenguaje">Inteligencia artificial y modelos de lenguaje</option>
-          <option value="Bases de datos">Bases de datos</option>
-          <option value="Redes y sistemas">Redes y sistemas</option>
-          <option value="Programación y lenguajes">Programación y lenguajes</option>
-        </optgroup>
-        <optgroup label="Quiero aprender un lenguaje específico">
-          <option value="Python">Python</option><option value="JavaScript">JavaScript</option>
-          <option value="Go">Go</option><option value="Java">Java</option><option value="C++">C++</option>
-        </optgroup>
-        <option value="Aún no lo sé; necesito orientación">No sé qué elegir; necesito orientación</option>
-      </select>
-
-      <p id="registro-mensaje" role="status" aria-live="polite"></p>
-
-      <button class="boton" id="registro-boton" type="submit">Crear cuenta</button>
-    </form>
-
-    <p class="pie">¿Ya tienes cuenta? <a href="login.html"><strong>Ingresa aquí</strong></a></p>
-  </section>
-
+<header class="top"><div class="top-inner"><a class="brand" href="login.html"><img src="img/logo.webp" alt="">CAPRICORNIO</a><a href="login.html">Ya tengo cuenta →</a></div></header>
+<main>
+<section class="intro"><span class="eyebrow">Tu próximo capítulo empieza aquí</span><h1>Construye tu camino en tecnología.</h1><p>Crea tu espacio, elige qué quieres aprender y comienza con una ruta que puedas recorrer paso a paso. Tu progreso estará guardado para cuando regreses.</p><div class="benefits"><div class="benefit"><span class="check">✓</span>Rutas por áreas tecnológicas</div><div class="benefit"><span class="check">✓</span>Recursos y práctica guiada</div><div class="benefit"><span class="check">✓</span>Seguimiento de tu aprendizaje</div></div></section>
+<section class="card" aria-labelledby="form-title"><h2 id="form-title">Crea tu cuenta</h2><p class="sub">Completa tus datos para empezar tu experiencia en Capricornio.</p>
+<form id="registro-form">
+<div class="field"><label for="nombre">Nombre completo</label><input id="nombre" name="name" type="text" placeholder="Cómo te llamas" autocomplete="name" minlength="2" maxlength="100" required></div>
+<div class="field"><label for="correo">Correo electrónico</label><input id="correo" name="email" type="email" placeholder="nombre@correo.com" autocomplete="email" maxlength="254" required></div>
+<div class="field"><label for="contrasena">Contraseña</label><input id="contrasena" name="password" type="password" placeholder="Al menos 8 caracteres" minlength="8" maxlength="128" autocomplete="new-password" required></div>
+<div class="field"><label for="objetivo">¿Qué quieres aprender?</label><select id="objetivo" name="learning_goal" required><option value="" disabled selected>Selecciona tu área o ruta</option><optgroup label="Áreas de aprendizaje"><option value="Ciberseguridad">Ciberseguridad</option><option value="Desarrollo frontend">Desarrollo frontend</option><option value="Desarrollo backend">Desarrollo backend</option><option value="Análisis de datos">Análisis de datos</option><option value="Inteligencia artificial y modelos de lenguaje">Inteligencia artificial y modelos de lenguaje</option><option value="Bases de datos">Bases de datos</option><option value="Redes y sistemas">Redes y sistemas</option><option value="Programación y lenguajes">Programación y lenguajes</option></optgroup><optgroup label="Lenguajes"><option value="Python">Python</option><option value="JavaScript">JavaScript</option><option value="Go">Go</option><option value="Java">Java</option><option value="C++">C++</option></optgroup><option value="Aún no lo sé; necesito orientación">Necesito orientación para elegir</option></select></div>
+<div class="consents">
+<label class="consent"><input type="checkbox" id="privacy-consent" name="privacy_consent" required><span>He leído el <a href="privacidad.html" target="_blank" rel="noopener">aviso y la política de tratamiento de datos personales</a> y <strong>autorizo expresamente</strong> el tratamiento de mis datos para crear y administrar mi cuenta, orientar mi ruta y guardar mi progreso, conforme a dicha política.</span></label>
+<label class="consent"><input type="checkbox" id="terms-accepted" name="terms_accepted" required><span>He leído y acepto los <a href="terminos.html" target="_blank" rel="noopener">términos y condiciones de uso</a> de Capricornio Plus.</span></label>
+</div>
+<p class="privacy-note">Puedes consultar también la <a href="cookies.html">política de cookies</a> y la <a href="uso-responsable.html">política de uso responsable</a>. La autorización de datos y la aceptación de términos se registran con la versión de los documentos y la fecha de creación de la cuenta.</p>
+<p id="registro-mensaje" class="message" role="alert" aria-live="assertive"></p>
+<button class="submit" id="registro-boton" type="submit">Crear mi cuenta <span aria-hidden="true">→</span></button>
+</form><p class="signin">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p></section>
 </main>
-
-<footer class="pie-pagina">Capricornio · Plataforma adaptativa de aprendizaje de programación</footer>
-
+<footer class="footer">© 2026 Capricornio Plus · <a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a><a href="cookies.html">Cookies</a><a href="accesibilidad.html">Accesibilidad</a><a href="seguridad.html">Seguridad</a></footer>
 <script>
-const formulario = document.getElementById("registro-form");
-const mensaje = document.getElementById("registro-mensaje");
-const boton = document.getElementById("registro-boton");
-
-formulario.addEventListener("submit", async (evento) => {
-  evento.preventDefault();
-  mensaje.textContent = "";
-  boton.disabled = true;
-  boton.textContent = "Creando cuenta...";
-
-  const campos = new FormData(formulario);
-  const datos = {
-    name: campos.get("name").trim(),
-    email: campos.get("email").trim(),
-    password: campos.get("password"),
-    learning_goal: campos.get("learning_goal")
-  };
-
-  try {
-    const respuesta = await fetch("/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "same-origin",
-      body: JSON.stringify(datos)
-    });
-
-    const resultado = await respuesta.json();
-
-    if (!respuesta.ok) {
-      throw new Error(resultado.detail || "No se pudo crear la cuenta.");
-    }
-
-    mensaje.textContent = "Cuenta creada correctamente. Abriendo diagnóstico...";
-    window.location.href = "diagnostico.html";
-
-  } catch (error) {
-    mensaje.textContent = error.message || "No se pudo conectar con el servidor.";
-    boton.disabled = false;
-    boton.textContent = "Crear cuenta";
-  }
-});
+const formulario=document.getElementById("registro-form"),mensaje=document.getElementById("registro-mensaje"),boton=document.getElementById("registro-boton");
+formulario.addEventListener("submit",async evento=>{evento.preventDefault();mensaje.textContent="";if(!formulario.reportValidity())return;boton.disabled=true;boton.textContent="Creando cuenta...";const campos=new FormData(formulario);const datos={name:campos.get("name").trim(),email:campos.get("email").trim(),password:campos.get("password"),learning_goal:campos.get("learning_goal"),privacy_consent:document.getElementById("privacy-consent").checked,terms_accepted:document.getElementById("terms-accepted").checked};try{const respuesta=await fetch("/api/register",{method:"POST",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:JSON.stringify(datos)});const resultado=await respuesta.json().catch(()=>({}));if(!respuesta.ok)throw new Error(resultado.detail||"No se pudo crear la cuenta.");mensaje.textContent="Cuenta creada. Preparando tu diagnóstico...";window.location.href="diagnostico.html";}catch(error){mensaje.textContent=error.message||"No se pudo conectar con el servidor.";boton.disabled=false;boton.textContent="Crear mi cuenta →";}});
 </script>
-
-</body>
-</html>
+</body></html>
