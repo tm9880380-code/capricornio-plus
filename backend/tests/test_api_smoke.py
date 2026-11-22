@@ -55,6 +55,7 @@ def test_register_login_and_lesson_progress(client):
     assert adaptive.status_code == 200
     exercise = adaptive.json()
     assert exercise["item_id"].startswith("cur_")
+    assert exercise["prompt"] == main.CURRICULUM_LESSON_BY_QUESTION[exercise["item_id"]]["question"]
     lesson = main.CURRICULUM_LESSON_BY_QUESTION[exercise["item_id"]]
     answer_value = chr(97 + lesson["options"].index(lesson["answer"]))
     submitted = client.post("/api/learning/answer", json={
