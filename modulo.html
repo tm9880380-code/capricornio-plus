@@ -1,7 +1,24 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Capricornio - Módulos</title><link rel="stylesheet" href="css/estilos.css"></head>
-<body><header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi plan</a><a href="diagnostico.html">Diagnóstico</a><a href="login.html">Ingresar</a></nav></header>
-<main class="contenedor"><p><a href="plan.html"><strong>← Volver a mi plan</strong></a></p><h1>Ruta de programación</h1><p>Cuatro lecciones introductorias. Tu avance se guarda al completar cada ejercicio.</p>
-<section class="tarjeta"><h2>Módulo 1: Fundamentos</h2><p>Aprende cómo se representan y procesan los datos.</p><p><a class="boton" href="leccion.html?id=fundamentos-variables">Variables y tipos de datos</a></p><p><a class="boton" href="leccion.html?id=fundamentos-condiciones">Condiciones if y else</a></p></section>
-<section class="tarjeta"><h2>Módulo 2: Estructuras de control</h2><p>Controla el flujo de ejecución de un programa.</p><p><a class="boton" href="leccion.html?id=estructuras-for">Ciclo for</a></p><p><a class="boton" href="leccion.html?id=estructuras-while">Ciclo while</a></p></section>
-</main><footer class="pie-pagina">Capricornio · Plataforma adaptativa de aprendizaje</footer></body></html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Tu itinerario de aprendizaje en Capricornio."><title>Capricornio · Mi ruta</title><link rel="stylesheet" href="css/estilos.css"><style>
+.modulo{background:#f3e6c8;border:2px solid #5a3a1e;border-radius:10px;padding:20px;margin:18px 0}.leccion{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:13px 0;border-bottom:1px solid #b69a70}.leccion:last-child{border-bottom:0}.leccion p{margin:3px 0;font-size:13px}.tag{font-size:12px;border:1px solid #8f6b3e;padding:3px 8px;border-radius:20px}.modulo h2{margin-bottom:4px}.cabecera-ruta{padding:20px;background:#fbf4e2;border:2px solid #5a3a1e;border-radius:10px}
+</style></head><body><header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi inicio</a><a href="recursos.html">Recursos</a><a href="practica.html">Práctica</a><a href="login.html" id="salir">Salir</a></nav></header>
+<main class="contenedor"><p><a href="plan.html">← Mi inicio</a></p><h1>Mi ruta de aprendizaje</h1><section id="cabecera" class="cabecera-ruta">Cargando tu itinerario…</section><div id="itinerario"></div><p id="estado" role="status" aria-live="polite"></p></main><footer class="pie-pagina">Capricornio · Avanza paso a paso</footer>
+<script>
+(async()=>{const $=id=>document.getElementById(id);try{
+const [meR,diagR,currR,progressR]=await Promise.all([fetch("/api/me",{credentials:"same-origin"}),fetch("/api/diagnostic/latest",{credentials:"same-origin"}),fetch("/api/curriculum"),fetch("/api/progress",{credentials:"same-origin"})]);
+if(!meR.ok||!diagR.ok||!currR.ok||!progressR.ok)throw new Error("Inicia sesión para consultar tu ruta.");
+const me=(await meR.json()).user,diag=(await diagR.json()).diagnostic,curr=await currR.json(),progress=await progressR.json();
+let chosen=diag?.learning_area||me.learning_goal;
+const aliases={"Desarrollo frontend":"frontend","Desarrollo backend":"backend","Python":"programacion","JavaScript":"programacion","Go":"programacion","Java":"programacion","C++":"programacion","Programación y lenguajes":"programacion"};
+let area=curr.areas.find(a=>a.name===chosen)||curr.areas.find(a=>a.id===aliases[chosen]);
+if(!area)area=curr.areas.find(a=>a.id==="programacion");
+$("cabecera").innerHTML="";
+const h=document.createElement("h2");h.textContent=area.name;const p=document.createElement("p");p.textContent=area.description;const o=document.createElement("p");o.textContent=area.objective;$("cabecera").append(h,p,o);
+for(const [index,module] of area.modules.entries()){
+const section=document.createElement("section");section.className="modulo";const mh=document.createElement("h2");mh.textContent="Módulo "+(index+1)+": "+module.title;section.append(mh);
+for(const lesson of module.lessons){const row=document.createElement("div");row.className="leccion";const info=document.createElement("div");const title=document.createElement("strong");title.textContent=lesson.title;const desc=document.createElement("p");desc.textContent=lesson.concept||lesson.explanation||"";info.append(title,desc);const action=document.createElement("a");action.className="boton";action.href="leccion.html?id="+encodeURIComponent(lesson.id);action.textContent=progress.completed_lessons.includes(lesson.id)?"Repasar lección":"Comenzar lección";const tag=document.createElement("span");tag.className="tag";tag.textContent=progress.completed_lessons.includes(lesson.id)?"Completada":lesson.type==="code"?"Práctica de código":"Concepto y evaluación";const right=document.createElement("div");right.append(tag,action);row.append(info,right);section.append(row);}
+$("itinerario").append(section);
+}
+}catch(e){$("estado").textContent=e.message;}})();
+$("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
+</script></body></html>
