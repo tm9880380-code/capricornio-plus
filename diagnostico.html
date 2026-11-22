@@ -174,10 +174,28 @@
       mensajeNana.textContent =
         `¡Terminamos esta primera evaluación! Tu punto de partida es ${resultado.detected_level}. Ahora podremos preparar tu ruta de aprendizaje.`;
 
+      const curriculum = await solicitar("/api/curriculum");
+      const aliases = {
+        "Desarrollo frontend": "frontend",
+        "Desarrollo backend": "backend",
+        "Python": "programacion",
+        "JavaScript": "programacion",
+        "Go": "programacion",
+        "Java": "programacion",
+        "C++": "programacion",
+        "Programación y lenguajes": "programacion"
+      };
+      const ruta = curriculum.areas.find(item => item.name === resultado.area)
+        || curriculum.areas.find(item => item.id === aliases[resultado.area]);
+      const primera = ruta?.modules?.[0]?.lessons?.[0];
       const botonPlan = document.createElement("a");
-      botonPlan.href = "modulo.html";
+      botonPlan.href = primera
+        ? "leccion.html?id=" + encodeURIComponent(primera.id)
+        : "modulo.html";
       botonPlan.className = "boton";
-      botonPlan.textContent = "Ir a mi primera lección";
+      botonPlan.textContent = primera
+        ? "Comenzar mi primera lección: " + primera.title
+        : "Abrir mi ruta de aprendizaje";
       estado.appendChild(document.createElement("br"));
       estado.appendChild(botonPlan);
       const nivelNota = document.createElement("small");
