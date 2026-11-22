@@ -67,18 +67,18 @@
 <main class="contenedor dash">
 <div class="dash-heading"><div><span class="dash-kicker">TU ESPACIO PERSONAL</span><h1 id="saludo">Hola, bienvenida</h1><p>Tu aprendizaje, tus cursos y cada avance en un solo lugar.</p></div><div class="dash-date" id="fecha">CAPRICORNIO PLUS · MI ESPACIO</div></div>
 <section class="dash-hero" aria-labelledby="hero-title">
-<div class="dash-hero-copy"><span class="kicker">TU SIGUIENTE PASO EMPIEZA AQUÍ</span><h2 id="hero-title">Cada avance construye tu camino.</h2><p id="hero-copy">Retoma una lección, practica una habilidad o explora una nueva especialidad. Tu progreso se actualiza con las actividades que completas.</p><div class="dash-actions"><a class="dash-btn" id="siguiente-leccion" href="modulo.html">Continuar mi ruta →</a><a class="dash-btn ghost" href="practica.html">Practicar ahora</a></div></div>
+<div class="dash-hero-copy"><span class="kicker">TU SIGUIENTE PASO EMPIEZA AQUÍ</span><h2 id="hero-title">Cada avance construye tu camino.</h2><p id="hero-copy">Retoma una lección, practica una habilidad o explora una nueva especialidad. Tu progreso se actualiza con las actividades que completas.</p><div class="dash-actions"><a class="dash-btn" id="siguiente-leccion" href="modulo.html">Continuar con mis clases →</a><a class="dash-btn ghost" href="practica.html">Prácticas · Resolver ejercicios</a></div></div>
 <div class="dash-ring-card"><div class="dash-ring" id="ring" role="img" aria-label="Progreso general"><strong id="ring-value">0%</strong></div><p id="resumen-avance">Tu avance en el curso principal</p></div>
 </section>
 <section class="dash-stats" aria-label="Resumen de aprendizaje">
 <div class="dash-stat"><small>Cursos activos</small><strong id="stat-courses">—</strong><span>Rutas en tu espacio</span></div>
-<div class="dash-stat"><small>Lecciones listas</small><strong id="stat-completed">—</strong><span>Actividades completadas</span></div>
-<div class="dash-stat"><small>Por avanzar</small><strong id="stat-pending">—</strong><span>Lecciones en tus rutas</span></div>
-<div class="dash-stat"><small>Competencias</small><strong id="stat-skills">—</strong><span>Con práctica registrada</span></div>
+<div class="dash-stat"><small>Repasar mi ruta</small><strong id="stat-completed">—</strong><span>Temas ya trabajados</span></div>
+<div class="dash-stat"><small>Nivel de competencia</small><strong id="stat-level">Principiante</strong><span id="stat-level-detail">Se demuestra con práctica</span></div>
+<div class="dash-stat"><small>Prácticas registradas</small><strong id="stat-skills">—</strong><span>Intentos evaluados</span></div>
 </section>
-<div class="dash-section-head"><div><h2>Mis cursos</h2><p>Consulta el avance de cada ruta que tienes activa.</p></div><a class="dash-text-link" href="modulo.html">Ver mi ruta completa →</a></div>
+<div class="dash-section-head"><div><h2>Mis cursos</h2><p id="courses-caption">Actualmente cursando: Ciberseguridad.</p></div><a class="dash-text-link" href="modulo.html">Ver mi ruta completa →</a></div>
 <section id="avance" class="course-grid" aria-live="polite"><div class="dash-empty">Cargando tus cursos y progreso…</div></section>
-<div class="dash-section-head"><div><h2>Explora nuevas áreas</h2><p>Amplía tus conocimientos cuando quieras.</p></div><a class="dash-text-link" href="diagnostico.html">Encontrar mi siguiente ruta →</a></div>
+<div class="dash-section-head"><div><h2>Explora nuevas áreas</h2><p>Amplía tus conocimientos cuando quieras.</p></div><a class="dash-text-link" href="diagnostico.html">Explorar otra especialidad →</a></div>
 <section class="dash-explore" id="explore"></section><p class="dash-status" id="estado" role="status" aria-live="polite"></p>
 </main>
 <footer class="pie-pagina">Capricornio Plus · Aprender con dirección, avanzar con propósito.</footer>
@@ -107,15 +107,18 @@ function renderCourse(course){
   const done=active.reduce((n,c)=>n+(c.completed_count||0),0),total=active.reduce((n,c)=>n+(c.total_lessons||0),0),avg=total?Math.round(done/total*100):0;
   document.getElementById("stat-courses").textContent=String(active.length);
   document.getElementById("stat-completed").textContent=String(done);
-  document.getElementById("stat-pending").textContent=String(Math.max(0,total-done));
-  document.getElementById("stat-skills").textContent=String((d.mastery||[]).filter(x=>x.observations>0).length);
+  const mastery=(d.mastery||[]).filter(x=>x.observations>0),meanMastery=mastery.length?mastery.reduce((n,x)=>n+(x.prob_mastery||0),0)/mastery.length:0;
+  const level=meanMastery>=.85?"Avanzado":meanMastery>=.68?"Intermedio":meanMastery>=.4?"Básico":"Principiante";
+  document.getElementById("stat-level").textContent=level;
+  document.getElementById("stat-level-detail").textContent=mastery.length?Math.round(meanMastery*100)+"% de dominio estimado":"Aún sin práctica suficiente";
+  document.getElementById("stat-skills").textContent=String(mastery.reduce((n,x)=>n+(x.observations||0),0));
   document.getElementById("ring-value").textContent=avg+"%";document.getElementById("ring").style.setProperty("--ring",avg+"%");
   document.getElementById("resumen-avance").textContent=active.length>1?"Promedio de tus cursos activos":"Tu avance en el curso principal";
   coursesEl.replaceChildren(...active.map(renderCourse));
   const next=active.find(c=>c.next_lesson_id),button=document.getElementById("siguiente-leccion");
-  if(next){button.href="leccion.html?id="+encodeURIComponent(next.next_lesson_id);button.textContent="Continuar: "+(next.next_lesson_title||"siguiente lección")+" →"}
+  if(next){button.href="leccion.html?id="+encodeURIComponent(next.next_lesson_id);button.textContent="Continuar con mis clases →"}
   else if(d.diagnostic){button.href="modulo.html";button.textContent="Repasar mi ruta →"}
-  else{button.href="diagnostico.html";button.textContent="Comenzar diagnóstico →"}
+  else{button.href="diagnostico.html";button.textContent="Comenzar orientación →"}
   document.getElementById("fecha").textContent="TU ESPACIO · "+new Intl.DateTimeFormat("es-CO",{day:"2-digit",month:"long",year:"numeric"}).format(new Date()).toUpperCase();
  }catch(error){coursesEl.replaceChildren(el("div","dash-empty",error.message||"No fue posible cargar el progreso."));status.textContent="Si el problema continúa, vuelve a iniciar sesión."}
 })();
