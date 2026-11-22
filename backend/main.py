@@ -71,22 +71,38 @@ app = FastAPI(title="Capricornio API", version="1.0.0", lifespan=lifespan)
 
 @app.middleware("http")
 async def security_headers_and_origin_check(request: Request, call_next):
+    # Defensa CSRF en operaciones que modifican estado. Los navegadores modernos
+    # informan Sec-Fetch-Site y Origin; Referer cubre clientes que omiten Origin.
     if request.method in {"POST", "PUT", "PATCH", "DELETE"}:
+        fetch_site = request.headers.get("sec-fetch-site", "").lower()
+        if fetch_site == "cross-site":
+            return JSONResponse(status_code=403, content={"detail": "Solicitud entre sitios no permitida."})
         origin = request.headers.get("origin")
-        host = request.headers.get("host", "")
-        if origin and urlsplit(origin).netloc.lower() != host.lower():
-            return JSONResponse(status_code=403, content={"detail": "Origen de solicitud no permitido."})
+        referer = request.headers.get("referer")
+        host = request.headers.get("host", "").lower()
+        source = origin or referer
+        if source:
+            try:
+                source_host = urlsplit(source).netloc.lower()
+            except ValueError:
+                source_host = ""
+            if not source_host or source_host != host:
+                return JSONResponse(status_code=403, content={"detail": "Origen de solicitud no permitido."})
+
     response = await call_next(request)
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["Cross-Origin-Opener-Policy"] = "same-origin"
+    response.headers["Cross-Origin-Resource-Policy"] = "same-origin"
+    response.headers["X-Permitted-Cross-Domain-Policies"] = "none"
     if os.getenv("CAPRICORNIO_DISABLE_CSP") != "1":
         is_worker = request.url.path == "/js/python-runner.js"
         response.headers["Content-Security-Policy"] = CSP_WORKER if is_worker else CSP_PAGE
     if os.getenv("CAPRICORNIO_HTTPS") == "1":
         response.headers["Strict-Transport-Security"] = "max-age=31536000"
-    if request.url.path.startswith("/api/"):
+    if request.url.path.startswith("/api/") or request.url.path.endswith(".html"):
         response.headers["Cache-Control"] = "no-store"
     return response
 
