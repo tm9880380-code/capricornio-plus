@@ -57,6 +57,6 @@ try{
  const resourceData=await api("/api/resources/"+lessonData.area_id);$("recursos-leccion").replaceChildren();for(const r of resourceData.resources.slice(0,8)){const a=document.createElement("a");a.className="recurso-link";a.href=r.url;a.target="_blank";a.rel="noopener noreferrer";a.textContent=r.title+" · "+r.type+" ↗";$("recursos-leccion").append(a);}
 }catch(e){$("titulo").textContent="No se pudo cargar la lección";$("estado").textContent=e.message;}
 $("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
-})();
 window.addEventListener("beforeunload",()=>{if(worker)worker.terminate();});
+})();
 </script></body></html>
