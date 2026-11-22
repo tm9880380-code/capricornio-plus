@@ -1,62 +1,39 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capricornio - Lección</title>
-<link rel="stylesheet" href="css/estilos.css">
-</head>
-<body>
-
-<header class="barra">
-  <div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="diagnostico.html">Diagnóstico</a>
-    <a href="plan.html">Mi plan</a>
-    <a href="suscripciones.html">Suscripciones</a>
-    <a href="login.html">Ingresar</a>
-  </nav>
-</header>
-
-<main class="contenedor">
-
-  <p><a href="modulo.html"><strong>&larr; Volver al módulo</strong></a></p>
-
-  <h1>Lección 3: Ciclo for</h1>
-  <p>Módulo 2: Estructuras de control</p>
-
-  <section class="dos-columnas">
-
-    <div class="tarjeta">
-      <h2>Explicación</h2>
-      <p>El ciclo for permite repetir una acción un número definido de veces, sin escribir el mismo código muchas veces.</p>
-      <p>Ejemplo: imprimir los números del 1 al 3.</p>
-      <div class="codigo">for i in range(1, 4):
-    print(i)</div>
-      <p>Resultado: 1, 2 y 3, cada uno en una línea.</p>
-    </div>
-
-    <div class="tarjeta">
-      <h2>Ejercicio</h2>
-      <p>Escribe un programa que imprima los números del 1 al 5 usando un ciclo for.</p>
-      <div class="formulario" style="border:2px solid #111; padding:16px; max-width:none;">
-        <label>Tu código</label>
-        <textarea style="width:100%; height:110px; padding:10px; border:2px solid #111; font-family:monospace; font-size:14px;" placeholder="Escribe aquí tu código"></textarea>
-        <a class="boton" href="leccion.html">Enviar respuesta</a>
-      </div>
-    </div>
-
-  </section>
-
-  <p style="margin-top:18px;">
-    <a class="boton claro" href="modulo.html">Volver al módulo</a>
-    <a class="boton" href="evaluacion.html">Ir a la evaluación</a>
-  </p>
-
-</main>
-
-<footer class="pie-pagina">Capricornio · Plataforma adaptativa de aprendizaje de programación</footer>
-
-</body>
-</html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Capricornio - Lección</title><link rel="stylesheet" href="css/estilos.css"><style>
+.ejercicio textarea{width:100%;min-height:130px;padding:12px;font:15px monospace;border:2px solid #5a3a1e;border-radius:8px}
+#resultado{min-height:1.5em} pre{white-space:pre-wrap;background:#f4ead7;padding:14px;border-radius:8px;overflow:auto}
+</style></head><body><header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi plan</a><a href="modulo.html">Módulos</a></nav></header>
+<main class="contenedor"><p><a href="plan.html"><strong>← Volver a mi plan</strong></a></p><h1 id="titulo">Lección</h1><p id="modulo"></p><section class="tarjeta"><h2>Aprende</h2><div id="explicacion"></div><h3>Ejemplo</h3><pre id="ejemplo"></pre><h3>¿Qué debes recordar?</h3><p id="recordatorio"></p></section>
+<section class="tarjeta ejercicio"><h2>Practica</h2><p id="consigna"></p><label for="respuesta">Escribe tu solución en Python</label><textarea id="respuesta" placeholder="Escribe tu código aquí..."></textarea><p><button class="boton" id="comprobar" type="button">Comprobar ejercicio</button></p><p id="resultado" role="status" aria-live="polite"></p></section>
+</main><footer class="pie-pagina">Capricornio · Aprender haciendo</footer>
+<script>
+const lessons={
+"fundamentos-variables":{title:"Variables y tipos de datos",module:"Módulo 1 · Fundamentos",explain:"Una variable es un nombre que usamos para guardar un dato y reutilizarlo. En Python no necesitas declarar el tipo antes de asignarlo. Los tipos básicos incluyen int (enteros), float (decimales), str (texto) y bool (verdadero o falso).",example:"nombre = \"Ana\"\nedad = 20\naltura = 1.65\nestudia = True\nprint(nombre, edad)",remember:"El signo = asigna un valor a una variable; no significa igualdad matemática.",task:"Crea una variable llamada edad con el valor 24 y muestra su contenido.",check:c=>/edad\s*=\s*24/.test(c)&&/print\s*\(\s*edad\s*\)/.test(c)},
+"fundamentos-condiciones":{title:"Condiciones if y else",module:"Módulo 1 · Fundamentos",explain:"Una condición permite ejecutar instrucciones diferentes según se cumpla o no una expresión lógica. Python usa if, elif y else. Después de la condición se escribe dos puntos y el bloque se indenta.",example:"edad = 18\nif edad >= 18:\n    print(\"Mayor de edad\")\nelse:\n    print(\"Menor de edad\")",remember:"La indentación define qué instrucciones pertenecen a cada bloque.",task:"Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado dentro del if.",check:c=>/if\s+nota\s*>=\s*3\s*:/.test(c)&&/print\s*\(\s*[\"']Aprobado[\"']\s*\)/i.test(c)},
+"estructuras-for":{title:"Ciclo for",module:"Módulo 2 · Estructuras de control",explain:"El ciclo for recorre los elementos de una secuencia. La función range genera una secuencia de números. range(1, 6) produce 1, 2, 3, 4 y 5: el límite final no se incluye.",example:"for numero in range(1, 6):\n    print(numero)",remember:"El límite superior de range no se incluye. La indentación marca el cuerpo del ciclo.",task:"Escribe un programa que imprima los números del 1 al 5 usando for y range.",check:c=>/for\s+\w+\s+in\s+range\s*\(\s*1\s*,\s*6\s*\)\s*:/.test(c)&&/print\s*\(/.test(c)},
+"estructuras-while":{title:"Ciclo while",module:"Módulo 2 · Estructuras de control",explain:"El ciclo while repite un bloque mientras una condición sea verdadera. Debes actualizar la variable que controla la condición para evitar un ciclo infinito.",example:"contador = 1\nwhile contador <= 5:\n    print(contador)\n    contador += 1",remember:"Comprueba que la condición pueda volverse falsa; de lo contrario el ciclo puede no terminar.",task:"Crea contador = 1 y usa while para repetir mientras contador sea menor o igual a 3. Incrementa contador dentro del ciclo.",check:c=>/contador\s*=\s*1/.test(c)&&/while\s+contador\s*<=\s*3\s*:/.test(c)&&/contador\s*(\+=\s*1|=\s*contador\s*\+\s*1)/.test(c)}
+};
+const id=new URLSearchParams(location.search).get("id")||"estructuras-for";
+const lesson=lessons[id];
+const title=document.getElementById("titulo"), result=document.getElementById("resultado"), button=document.getElementById("comprobar");
+if(!lesson){title.textContent="Lección no encontrada";button.disabled=true;}
+else{
+ document.title="Capricornio - "+lesson.title;title.textContent=lesson.title;
+ document.getElementById("modulo").textContent=lesson.module;
+ document.getElementById("explicacion").textContent=lesson.explain;
+ document.getElementById("ejemplo").textContent=lesson.example;
+ document.getElementById("recordatorio").textContent=lesson.remember;
+ document.getElementById("consigna").textContent=lesson.task;
+}
+button.addEventListener("click",async()=>{
+ if(!lesson)return;
+ const code=document.getElementById("respuesta").value;
+ if(!lesson.check(code)){result.textContent="Todavía no está completo. Revisa la explicación y comprueba que tu código cumpla todos los requisitos.";return;}
+ button.disabled=true;result.textContent="Respuesta correcta. Guardando tu avance...";
+ try{
+  const r=await fetch("/api/lessons/complete",{method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify({lesson_id:id})});
+  const d=await r.json();if(!r.ok)throw new Error(d.detail||"No se pudo guardar el progreso.");
+  result.textContent="¡Muy bien! Lección completada y guardada. Tu progreso es "+d.progress_percent+"%.";
+ }catch(e){result.textContent=e.message;button.disabled=false;}
+});
+</script></body></html>
