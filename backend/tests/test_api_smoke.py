@@ -576,3 +576,51 @@ def test_legal_pages_are_public_without_an_account(client):
         response = client.get(f"/{page}.html")
         assert response.status_code == 200
         assert "<title>" in response.text
+
+
+def test_progress_lists_each_course_in_the_student_account(client):
+    registered = client.post("/api/register", json={
+        "name": "Estudiante Multirruta", "email": "multirruta@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "privacy_consent": True, "terms_accepted": True,
+    })
+    assert registered.status_code == 201
+
+    questions = client.get("/api/diagnostic/questions", params={"area": "Desarrollo frontend"})
+    assert questions.status_code == 200
+    diagnostic = questions.json()
+    answers = {
+        question["id"]: question["options"][0]["value"]
+        for question in diagnostic["questions"]
+    }
+    submitted = client.post("/api/diagnostic/submit", json={
+        "area": "Desarrollo frontend", "answers": answers,
+    })
+    assert submitted.status_code == 200
+
+    progress = client.get("/api/progress")
+    assert progress.status_code == 200
+    courses = {course["learning_area"] for course in progress.json()["courses"]}
+    assert "Ciberseguridad" in courses
+    assert "Desarrollo frontend" in courses
+
+
+def test_cross_site_state_changing_request_is_rejected(client):
+    response = client.post(
+        "/api/logout",
+        headers={"origin": "https://attacker.example", "sec-fetch-site": "cross-site"},
+    )
+    assert response.status_code == 403
+
+
+def test_security_headers_are_present_on_private_pages(client):
+    client.post("/api/register", json={
+        "name": "Estudiante Headers", "email": "headers@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Python",
+        "privacy_consent": True, "terms_accepted": True,
+    })
+    response = client.get("/plan.html")
+    assert response.status_code == 200
+    assert response.headers["cross-origin-opener-policy"] == "same-origin"
+    assert response.headers["cross-origin-resource-policy"] == "same-origin"
+    assert response.headers["cache-control"] == "no-store"
