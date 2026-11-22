@@ -44,7 +44,7 @@ def test_private_plan_page_redirects_anonymous_users_and_has_one_progress_target
     assert anonymous.status_code == 303
     client.post("/api/register", json={
         "name": "Estudiante Plan", "email": "plan@example.com",
-        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad", "privacy_consent": True, "terms_accepted": True,
     })
     page = client.get("/plan.html")
     assert page.status_code == 200
@@ -59,7 +59,7 @@ def test_register_login_and_lesson_progress(client):
         "name": "Estudiante Demo",
         "email": "demo@example.com",
         "password": "ClaveSegura123",
-        "learning_goal": "Fundamentos de programación",
+        "learning_goal": "Fundamentos de programación", "privacy_consent": True, "terms_accepted": True,
         "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
@@ -135,7 +135,7 @@ def test_learning_routes_have_area_specific_diagnostic_bank(client, area):
         "name": "Estudiante Ruta",
         "email": f"{area.lower().replace(' ', '').replace('/', '')}@example.com",
         "password": "ClaveSegura123",
-        "learning_goal": area,
+        "learning_goal": area, "privacy_consent": True, "terms_accepted": True,
         "privacy_consent": True, "terms_accepted": True,
     })
     assert response.status_code == 201
@@ -155,7 +155,7 @@ def test_resource_library_page_requires_login(client):
     assert anonymous.headers["location"] == "/login.html?motivo=sesion"
     registered = client.post("/api/register", json={
         "name": "Estudiante Recursos", "email": "recursos@example.com",
-        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad", "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
     page = client.get("/recursos.html")
@@ -167,7 +167,7 @@ def test_orientation_recommends_new_area_and_starts_its_diagnostic(client):
         "name": "Estudiante Orientación",
         "email": "orientacion@example.com",
         "password": "ClaveSegura123",
-        "learning_goal": "Aún no lo sé; necesito orientación",
+        "learning_goal": "Aún no lo sé; necesito orientación", "privacy_consent": True, "terms_accepted": True,
         "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
@@ -204,7 +204,7 @@ def test_curriculum_lesson_and_resources_are_available_after_login(client):
         "name": "Estudiante Currículo",
         "email": "curriculum@example.com",
         "password": "ClaveSegura123",
-        "learning_goal": "Desarrollo frontend",
+        "learning_goal": "Desarrollo frontend", "privacy_consent": True, "terms_accepted": True,
         "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
@@ -223,7 +223,7 @@ def test_curriculum_diagnostic_records_area_specific_competencies(client):
         "name": "Estudiante Datos",
         "email": "datos@example.com",
         "password": "ClaveSegura123",
-        "learning_goal": "Análisis de datos",
+        "learning_goal": "Análisis de datos", "privacy_consent": True, "terms_accepted": True,
         "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
@@ -291,7 +291,7 @@ def test_python_code_attempt_is_graded_by_the_server(client):
         "name": "Estudiante Python",
         "email": "python@example.com",
         "password": "ClaveSegura123",
-        "learning_goal": "Python",
+        "learning_goal": "Python", "privacy_consent": True, "terms_accepted": True,
         "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
@@ -316,7 +316,7 @@ def test_python_code_attempt_is_graded_by_the_server(client):
 def register_user(client, email="seguro@example.com", goal="Python"):
     response = client.post("/api/register", json={
         "name": "Estudiante Seguro", "email": email,
-        "password": "ClaveSegura123", "learning_goal": goal,
+        "password": "ClaveSegura123", "learning_goal": goal, "privacy_consent": True, "terms_accepted": True,
     })
     assert response.status_code == 201
     return response
@@ -402,11 +402,11 @@ def test_registration_is_rate_limited_per_ip(client):
     for index in range(main.MAX_REGISTRATIONS_PER_IP):
         assert client.post("/api/register", json={
             "name": "Usuario Masivo", "email": f"masivo{index}@example.com",
-            "password": "ClaveSegura123", "learning_goal": "Python",
+            "password": "ClaveSegura123", "learning_goal": "Python", "privacy_consent": True, "terms_accepted": True,
         }).status_code == 201
     extra = client.post("/api/register", json={
         "name": "Usuario Masivo", "email": "masivo-extra@example.com",
-        "password": "ClaveSegura123", "learning_goal": "Python",
+        "password": "ClaveSegura123", "learning_goal": "Python", "privacy_consent": True, "terms_accepted": True,
     })
     assert extra.status_code == 429
 
@@ -466,7 +466,7 @@ def test_learning_environment_page_requires_login(client):
     assert anonymous.status_code == 303
     client.post("/api/register", json={
         "name": "Estudiante Entorno", "email": "entorno@example.com",
-        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad", "privacy_consent": True, "terms_accepted": True,
     })
     response = client.get("/entorno.html")
     assert response.status_code == 200
@@ -479,7 +479,7 @@ def test_lesson_page_has_guided_resource_and_return_flow(client):
     assert anonymous.status_code == 303
     client.post("/api/register", json={
         "name": "Estudiante Lección", "email": "leccion@example.com",
-        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad", "privacy_consent": True, "terms_accepted": True,
     })
     page = client.get("/leccion.html")
     assert page.status_code == 200
