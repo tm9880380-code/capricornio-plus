@@ -37,17 +37,22 @@
 
       <label for="objetivo">¿Qué quieres aprender?</label>
       <select id="objetivo" name="learning_goal" required>
-        <option value="" disabled selected>Selecciona qué quieres aprender</option>
-        <option value="Ciberseguridad">Ciberseguridad</option>
-        <option value="Desarrollo de software y programación">Desarrollo de software y programación</option>
-        <option value="Desarrollo web">Desarrollo web</option>
-        <option value="Análisis de datos">Análisis de datos</option>
-        <option value="Bases de datos">Bases de datos</option>
-        <option value="Inteligencia artificial">Inteligencia artificial</option>
-        <option value="Redes y sistemas">Redes y sistemas</option>
-        <option value="Fundamentos de programación">Fundamentos de programación</option>
-        <option value="Programación orientada a objetos">Programación orientada a objetos</option>
-        <option value="Aún no lo sé; necesito orientación">Aún no lo sé; quiero que Capricornio me oriente</option>
+        <option value="" disabled selected>Selecciona tu área o ruta</option>
+        <optgroup label="Áreas de aprendizaje">
+          <option value="Ciberseguridad">Ciberseguridad</option>
+          <option value="Desarrollo frontend">Desarrollo frontend</option>
+          <option value="Desarrollo backend">Desarrollo backend</option>
+          <option value="Análisis de datos">Análisis de datos</option>
+          <option value="Inteligencia artificial y modelos de lenguaje">Inteligencia artificial y modelos de lenguaje</option>
+          <option value="Bases de datos">Bases de datos</option>
+          <option value="Redes y sistemas">Redes y sistemas</option>
+          <option value="Programación y lenguajes">Programación y lenguajes</option>
+        </optgroup>
+        <optgroup label="Quiero aprender un lenguaje específico">
+          <option value="Python">Python</option><option value="JavaScript">JavaScript</option>
+          <option value="Go">Go</option><option value="Java">Java</option><option value="C++">C++</option>
+        </optgroup>
+        <option value="Aún no lo sé; necesito orientación">No sé qué elegir; necesito orientación</option>
       </select>
 
       <p id="registro-mensaje" role="status" aria-live="polite"></p>
