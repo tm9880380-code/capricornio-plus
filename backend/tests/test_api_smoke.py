@@ -124,3 +124,27 @@ def test_resource_library_page_is_served(client):
     assert page.status_code == 200
     assert "Biblioteca de recursos gratuitos" in page.text
 
+def test_orientation_recommends_new_area_and_starts_its_diagnostic(client):
+    registered = client.post("/api/register", json={
+        "name": "Estudiante Orientación",
+        "email": "orientacion@example.com",
+        "password": "ClaveSegura123",
+        "learning_goal": "Aún no lo sé; necesito orientación",
+    })
+    assert registered.status_code == 201
+
+    orientation = client.get("/api/diagnostic/questions").json()
+    assert orientation["mode"] == "orientation"
+    answers = {question["id"]: "Desarrollo frontend" for question in orientation["questions"]}
+    result = client.post("/api/diagnostic/submit", json={
+        "area": orientation["area"],
+        "answers": answers,
+    })
+    assert result.status_code == 200
+    assert result.json()["recommended_area"] == "Desarrollo frontend"
+
+    assessment = client.get("/api/diagnostic/questions").json()
+    assert assessment["mode"] == "assessment"
+    assert assessment["area"] == "Desarrollo frontend"
+    assert len(assessment["questions"]) == 3
+
