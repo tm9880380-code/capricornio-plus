@@ -99,7 +99,7 @@ try{
   const desc=document.createElement("p");desc.textContent=selected.description||"Fuente complementaria para esta competencia.";
   const objective=document.createElement("p");objective.textContent="Objetivo: "+(l.learning_objective||("Comprender "+l.title+"."));
   const why=document.createElement("p");why.textContent=l.why_it_matters||"Esta idea conecta con las competencias de la ruta.";
-  const topic=document.createElement("p");topic.textContent="Tema que debes localizar: "+(selected.topic||l.title)+".";
+  const topic=document.createElement("p");topic.textContent="Sección o tema que debes localizar: "+(l.resource_focus||selected.topic||l.title)+".";
   const meta=document.createElement("small");meta.textContent=[selected.type,selected.level,selected.language==="es"?"Español":selected.language==="en"?"Inglés — te prepararé antes de abrirlo":"Idioma no verificado"].filter(Boolean).join(" · ");
   const guide=document.createElement("p");
   guide.textContent=selected.language==="en"?"Antes de abrir: esta fuente está en inglés. No necesitas traducirla completa. Busca el término indicado, lee su definición y observa el ejemplo. Si te bloqueas, vuelve y te lo explico en español.":"Antes de abrir: no leas toda la página. Localiza el apartado que define «"+(l.title||l.concept)+"», lee la definición y revisa el primer ejemplo relacionado.";
