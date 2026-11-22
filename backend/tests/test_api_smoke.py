@@ -115,7 +115,7 @@ def test_learning_routes_have_area_specific_diagnostic_bank(client, area):
     data = diagnostic.json()
     assert data["mode"] == "assessment"
     assert data["area"] == area
-    assert len(data["questions"]) >= 3
+    assert len(data["questions"]) >= 6
     assert all(question["options"] for question in data["questions"])
 
 
@@ -147,4 +147,54 @@ def test_orientation_recommends_new_area_and_starts_its_diagnostic(client):
     assert assessment["mode"] == "assessment"
     assert assessment["area"] == "Desarrollo frontend"
     assert len(assessment["questions"]) == 3
+
+def test_curriculum_contains_eight_areas_and_real_lesson_content(client):
+    response = client.get("/api/curriculum")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data["areas"]) == 8
+    assert {area["id"] for area in data["areas"]} == {
+        "ciberseguridad", "frontend", "backend", "datos",
+        "ia", "bases-datos", "redes-sistemas", "programacion",
+    }
+    assert all(area["modules"] and area["description"] for area in data["areas"])
+
+
+def test_curriculum_lesson_and_resources_are_available_after_login(client):
+    registered = client.post("/api/register", json={
+        "name": "Estudiante Currículo",
+        "email": "curriculum@example.com",
+        "password": "ClaveSegura123",
+        "learning_goal": "Desarrollo frontend",
+    })
+    assert registered.status_code == 201
+
+    lesson = client.get("/api/lessons/frontend-html")
+    assert lesson.status_code == 200
+    assert lesson.json()["lesson"]["title"] == "HTML semántico"
+
+    resources = client.get("/api/resources/frontend")
+    assert resources.status_code == 200
+    assert any(item["title"] == "MDN HTML" for item in resources.json()["resources"])
+
+
+def test_curriculum_diagnostic_records_area_specific_competencies(client):
+    registered = client.post("/api/register", json={
+        "name": "Estudiante Datos",
+        "email": "datos@example.com",
+        "password": "ClaveSegura123",
+        "learning_goal": "Análisis de datos",
+    })
+    assert registered.status_code == 201
+    diagnostic = client.get("/api/diagnostic/questions").json()
+    assert diagnostic["area"] == "Análisis de datos"
+    assert len(diagnostic["questions"]) == 6
+    answers = {q["id"]: "a" for q in diagnostic["questions"]}
+    submitted = client.post("/api/diagnostic/submit", json={
+        "area": diagnostic["area"], "answers": answers
+    })
+    assert submitted.status_code == 200
+    assert submitted.json()["total_questions"] == 6
+    progress = client.get("/api/progress").json()
+    assert progress["total_lessons"] == 6
 
