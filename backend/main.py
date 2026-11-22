@@ -396,11 +396,11 @@ def record_learning_response(
     bank = ItemBank([
         Item(
             id=q[0],
-            difficulty=0.0,
+            difficulty=float(index - 1),
             discrimination=1.0,
             tags=(learning_area, SKILL_BY_QUESTION[q[0]]),
         )
-        for q in questions
+        for index, q in enumerate(questions)
     ])
     engine = AdaptiveEngine(bank)
 
@@ -745,6 +745,80 @@ def complete_lesson(data: LessonCompletionData, user=Depends(current_user)):
         )
         db.commit()
     return {"message": "Progreso guardado.", "completed_lessons": count, "progress_percent": round(count / len(LESSON_CATALOG) * 100)}
+
+
+class LearningAnswerData(BaseModel):
+    area: str
+    item_id: str
+    answer: str
+
+
+def learning_item_bank(area):
+    questions = QUESTION_BANK[area]
+    return ItemBank([
+        Item(
+            id=q[0],
+            difficulty=float(index - 1),
+            discrimination=1.0,
+            tags=(area, SKILL_BY_QUESTION[q[0]]),
+        )
+        for index, q in enumerate(questions)
+    ])
+
+
+@app.get("/api/learning/next")
+def next_learning_item(area: str, user=Depends(current_user)):
+    if area not in AREAS:
+        raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
+    with closing(connect()) as db:
+        row = db.execute(
+            "SELECT state_json FROM student_irt_state WHERE user_id = ? AND learning_area = ?",
+            (user["id"], area),
+        ).fetchone()
+    state = LearnerState.from_dict(json.loads(row["state_json"])) if row else LearnerState()
+    engine = AdaptiveEngine(learning_item_bank(area), seed=None)
+    item = engine.next_item(state)
+    if item is None:
+        return {"complete": True, "message": "Ya respondiste todos los ejercicios disponibles de esta área."}
+    question = next(q for q in QUESTION_BANK[area] if q[0] == item.id)
+    return {
+        "complete": False,
+        "area": area,
+        "item_id": item.id,
+        "prompt": question[1],
+        "options": [{"value": option[0], "label": option[1]} for option in question[2]],
+        "ability_estimate": round(state.ability, 4),
+        "ability_uncertainty": round(state.ability_se, 4),
+    }
+
+
+@app.post("/api/learning/answer")
+def answer_learning_item(data: LearningAnswerData, user=Depends(current_user)):
+    if data.area not in AREAS:
+        raise HTTPException(status_code=422, detail="Área de aprendizaje no válida.")
+    question = next((q for q in QUESTION_BANK[data.area] if q[0] == data.item_id), None)
+    if question is None:
+        raise HTTPException(status_code=404, detail="El ejercicio no existe en esta área.")
+    allowed = {option[0] for option in question[2]}
+    if data.answer not in allowed:
+        raise HTTPException(status_code=422, detail="La respuesta seleccionada no es válida.")
+    correct = data.answer == question[3]
+    with closing(connect()) as db:
+        update = record_learning_response(
+            db=db,
+            user_id=user["id"],
+            source="practice",
+            item_id=data.item_id,
+            skill_id=SKILL_BY_QUESTION[data.item_id],
+            learning_area=data.area,
+            correct=correct,
+        )
+        db.commit()
+    return {
+        "correct": correct,
+        "feedback": "¡Respuesta correcta!" if correct else "Aún no es correcta. Revisa el concepto e inténtalo en el repaso.",
+        "competency_update": update,
+    }
 
 
 @app.get("/api/health")
