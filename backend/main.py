@@ -988,7 +988,7 @@ def next_learning_item(area: str, user=Depends(current_user)):
         memory={key: value for key, value in full_state.memory.items() if key in practiced_ids},
     )
     engine = AdaptiveEngine(learning_item_bank(area), seed=None)
-    item = engine.next_item(state)
+    item = engine.next_item(state, now=time.time())
     if item is None:
         return {"complete": True, "message": "Ya respondiste todos los ejercicios disponibles de esta área."}
     question = next(q for q in QUESTION_BANK[bank_area] if q[0] == item.id)
