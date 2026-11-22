@@ -129,3 +129,8 @@ a{color:var(--cp-blue)}
 .cp-mobile-brand{display:none}
 @media(max-width:850px){.cp-sidebar{position:sticky;top:0;width:100%;height:auto;inset:auto;padding:10px 12px;gap:8px}.cp-brand{padding:0 4px 8px}.cp-brand img{width:32px;height:32px}.cp-nav-label,.cp-profile{display:none}.cp-nav{display:flex;overflow-x:auto;gap:4px;padding-bottom:2px}.cp-nav a{white-space:nowrap;padding:8px 10px;font-size:12px}.cp-nav .cp-ico{display:none}.cp-layout{display:block}.cp-main{margin-left:0}.cp-top{height:48px;padding:0 18px}.cp-main .contenedor{padding:22px 16px}.barra{display:none}}
 @media(prefers-reduced-motion:no-preference){.cp-nav a,.boton{transition:background .15s ease,color .15s ease}}
+
+.cp-large{font-size:18px}.cp-large p,.cp-large label{font-size:1.1em}
+.cp-contrast p{color:#102b46!important}.cp-contrast .panel{border:2px solid #155b91}
+.cp-sidebar a:focus-visible,.boton:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #f0b84b;outline-offset:3px}
+@media print{.cp-sidebar,.cp-top,.barra,.pie-pagina{display:none!important}.cp-main{margin:0}.contenedor{max-width:none}}
