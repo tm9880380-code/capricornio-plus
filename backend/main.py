@@ -775,7 +775,19 @@ def next_learning_item(area: str, user=Depends(current_user)):
             "SELECT state_json FROM student_irt_state WHERE user_id = ? AND learning_area = ?",
             (user["id"], area),
         ).fetchone()
-    state = LearnerState.from_dict(json.loads(row["state_json"])) if row else LearnerState()
+        practice_rows = db.execute(
+            "SELECT item_id FROM learning_events WHERE user_id = ? AND source = 'practice'",
+            (user["id"],),
+        ).fetchall()
+    full_state = LearnerState.from_dict(json.loads(row["state_json"])) if row else LearnerState()
+    # Diagnostic responses inform ability, but must not mark practice items as already practiced.
+    practiced_ids = {item["item_id"] for item in practice_rows}
+    state = LearnerState(
+        ability=full_state.ability,
+        ability_se=full_state.ability_se,
+        responses=[response for response in full_state.responses if response.item_id in practiced_ids],
+        memory={key: value for key, value in full_state.memory.items() if key in practiced_ids},
+    )
     engine = AdaptiveEngine(learning_item_bank(area), seed=None)
     item = engine.next_item(state)
     if item is None:
