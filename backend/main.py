@@ -748,8 +748,17 @@ def get_progress(user=Depends(current_user)):
             "SELECT skill_id, prob_mastery, observations FROM student_skill_mastery WHERE user_id = ? ORDER BY skill_id",
             (user["id"],),
         ).fetchall()
-    completed_ids = [row["lesson_id"] for row in completed]
-    total = sum(1 for item in LESSON_CATALOG.values() if item["area_id"] == (diagnostic["learning_area"] if diagnostic else user["learning_goal"])) or len(LESSON_CATALOG)
+    selected_area = diagnostic["learning_area"] if diagnostic else user["learning_goal"]
+    selected_bank = AREA_BANK_KEY.get(selected_area, selected_area)
+    selected_area_id = selected_bank.split(":", 1)[1] if selected_bank.startswith("curriculum:") else None
+    route_lessons = {
+        lesson_id: item for lesson_id, item in LESSON_CATALOG.items()
+        if selected_area_id and item["area_id"] == selected_area_id
+    }
+    if not route_lessons:
+        route_lessons = LESSON_CATALOG
+    completed_ids = [row["lesson_id"] for row in completed if row["lesson_id"] in route_lessons]
+    total = len(route_lessons)
     return {
         "completed_lessons": completed_ids,
         "completed_count": len(completed_ids),
@@ -757,8 +766,18 @@ def get_progress(user=Depends(current_user)):
         "progress_percent": round(len(completed_ids) / total * 100) if total else 0,
         "diagnostic": dict(diagnostic) if diagnostic else None,
         "mastery": [dict(row) for row in mastery],
-        "catalog": LESSON_CATALOG,
+        "catalog": route_lessons,
     }
+
+
+@app.get("/api/lessons/{lesson_id}")
+def get_lesson(lesson_id: str, user=Depends(current_user)):
+    for area in CURRICULUM["areas"]:
+        for module in area["modules"]:
+            for lesson in module["lessons"]:
+                if lesson["id"] == lesson_id:
+                    return {"area": area["name"], "area_id": area["id"], "module": module["title"], "lesson": lesson}
+    raise HTTPException(status_code=404, detail="Lección no encontrada.")
 
 
 class LessonCompletionData(BaseModel):
@@ -915,6 +934,8 @@ def register(data: RegisterData, response: FastAPIResponse):
     if len(name) < 2:
         raise HTTPException(status_code=422, detail="Escribe tu nombre completo.")
 
+    if data.learning_goal.strip() not in VALID_LEARNING_AREAS and data.learning_goal.strip() != ORIENTATION_ID:
+        raise HTTPException(status_code=422, detail="Selecciona una ruta de aprendizaje válida.")
     email = normalize_email(data.email)
     hashed_password = password_hash.hash(data.password)
 
