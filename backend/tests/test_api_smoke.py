@@ -39,6 +39,21 @@ def test_health_and_root(client):
     assert response.headers["x-content-type-options"] == "nosniff"
 
 
+def test_private_plan_page_redirects_anonymous_users_and_has_one_progress_target(client):
+    anonymous = client.get("/plan.html", follow_redirects=False)
+    assert anonymous.status_code == 303
+    client.post("/api/register", json={
+        "name": "Estudiante Plan", "email": "plan@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+    })
+    page = client.get("/plan.html")
+    assert page.status_code == 200
+    assert 'id="contenido-privado" hidden' in page.text
+    assert page.text.count('id="avance"') == 1
+    assert 'id="resumen-avance"' in page.text
+    assert 'id="siguiente-leccion"' in page.text
+
+
 def test_register_login_and_lesson_progress(client):
     registered = client.post("/api/register", json={
         "name": "Estudiante Demo",
@@ -132,7 +147,15 @@ def test_learning_routes_have_area_specific_diagnostic_bank(client, area):
     assert all(question["options"] for question in data["questions"])
 
 
-def test_resource_library_page_is_served(client):
+def test_resource_library_page_requires_login(client):
+    anonymous = client.get("/recursos.html", follow_redirects=False)
+    assert anonymous.status_code == 303
+    assert anonymous.headers["location"] == "/login.html?motivo=sesion"
+    registered = client.post("/api/register", json={
+        "name": "Estudiante Recursos", "email": "recursos@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+    })
+    assert registered.status_code == 201
     page = client.get("/recursos.html")
     assert page.status_code == 200
     assert "Biblioteca de recursos gratuitos" in page.text
@@ -432,7 +455,13 @@ def test_curriculum_resources_competencies_and_projects_are_consistent():
                 assert lesson.get("reinforcement")
 
 
-def test_learning_environment_page_is_served(client):
+def test_learning_environment_page_requires_login(client):
+    anonymous = client.get("/entorno.html", follow_redirects=False)
+    assert anonymous.status_code == 303
+    client.post("/api/register", json={
+        "name": "Estudiante Entorno", "email": "entorno@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+    })
     response = client.get("/entorno.html")
     assert response.status_code == 200
     assert "Mi entorno de aprendizaje" in response.text
@@ -440,6 +469,12 @@ def test_learning_environment_page_is_served(client):
 
  
 def test_lesson_page_has_guided_resource_and_return_flow(client):
+    anonymous = client.get("/leccion.html", follow_redirects=False)
+    assert anonymous.status_code == 303
+    client.post("/api/register", json={
+        "name": "Estudiante Lección", "email": "leccion@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+    })
     page = client.get("/leccion.html")
     assert page.status_code == 200
     assert "Prepárate para aprender en la fuente" in page.text
