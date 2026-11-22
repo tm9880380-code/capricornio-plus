@@ -403,7 +403,7 @@ for curriculum_area in CURRICULUM["areas"]:
             CURRICULUM_LESSON_BY_QUESTION[question_id] = lesson
             options = [(chr(97 + i), option) for i, option in enumerate(lesson["options"])]
             answer_index = lesson["options"].index(lesson["answer"])
-            generated_questions.append((question_id, lesson["title"], options, chr(97 + answer_index)))
+            generated_questions.append((question_id, lesson.get("question") or lesson["title"], options, chr(97 + answer_index)))
             SKILL_BY_QUESTION[question_id] = curriculum_area["id"] + "." + lesson["id"]
     if generated_questions:
         QUESTION_BANK[bank_key] = generated_questions
