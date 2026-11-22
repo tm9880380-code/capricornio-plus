@@ -98,7 +98,7 @@
               "feedback": "Las claves únicas evitan que una filtración abra otras cuentas.",
               "type": "quiz",
               "resource_ids": [
-                "INCIBE · Guía de ciberseguridad para todos"
+                "INCIBE · Guía de ciberataques"
               ],
               "reinforcement": "Una contraseña es una llave. Si usas la misma llave para todas tus puertas y alguien la copia, todas quedan expuestas. Una segunda verificación añade otra cerradura."
             },
@@ -120,7 +120,7 @@
               "feedback": "La verificación independiente evita confiar en un canal posiblemente comprometido.",
               "type": "quiz",
               "resource_ids": [
-                "INCIBE · Guía de ciberseguridad para todos"
+                "INCIBE · Guía de ciberataques"
               ],
               "reinforcement": "El atacante se disfraza de alguien conocido para que actúes rápido. No confíes solo en el nombre o logotipo: verifica por otro canal antes de entregar datos o dinero."
             }
