@@ -1315,7 +1315,7 @@ def serve_page(page: str, capricornio_session: str | None = Cookie(default=None)
         "plan", "modulo", "leccion", "practica", "suscripciones", "recursos",
         "ayuda", "ajustes", "perfil", "entorno",
         "privacidad", "aviso-privacidad", "terminos", "cookies", "accesibilidad",
-        "uso-responsable", "seguridad", "mapa-sitio", "creditos"
+        "uso-responsable", "seguridad", "mapa-sitio", "creditos", "politica-comercial"
     }
     if page not in allowed:
         raise HTTPException(status_code=404, detail="Página no encontrada.")
