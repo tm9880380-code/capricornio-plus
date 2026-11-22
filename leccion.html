@@ -14,7 +14,26 @@ const $=id=>document.getElementById(id),params=new URLSearchParams(location.sear
 let lessonData,worker,timeout;
 async function api(url,options={}){const r=await fetch(url,{credentials:"same-origin",...options,headers:{"Content-Type":"application/json",...(options.headers||{})}});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||"No se pudo completar la solicitud.");return d;}
 function normalize(s){return String(s??"").replace(/\r/g,"").trim();}
-async function complete(){await api("/api/lessons/complete",{method:"POST",body:JSON.stringify({lesson_id:lessonId})});$("estado").textContent="¡Excelente! Tu respuesta es correcta y la lección quedó guardada en tu progreso.";$("estado").className="respuesta ok";$("continuar").hidden=false;}
+async function complete(){
+ await api("/api/lessons/complete",{method:"POST",body:JSON.stringify({lesson_id:lessonId})});
+ $("estado").textContent="¡Bien hecho! Has demostrado este objetivo y la lección quedó guardada en tu progreso.";
+ $("estado").className="respuesta ok";$("continuar").hidden=false;
+ try{
+  const curriculum=await api("/api/curriculum");
+  const area=curriculum.areas.find(a=>a.id===lessonData.area_id);
+  const lessons=(area?.modules||[]).flatMap(m=>m.lessons||[]);
+  const index=lessons.findIndex(x=>x.id===lessonId),next=lessons[index+1];
+  if(next){
+   let link=document.getElementById("siguiente-paso");
+   if(!link){link=document.createElement("a");link.id="siguiente-paso";link.className="boton";$("practica").querySelector(".acciones").append(link);}
+   link.href="leccion.html?id="+encodeURIComponent(next.id);link.textContent="Siguiente lección: "+next.title;
+  }else{
+   let link=document.getElementById("siguiente-paso");
+   if(!link){link=document.createElement("a");link.id="siguiente-paso";link.className="boton";$("practica").querySelector(".acciones").append(link);}
+   link.href="modulo.html";link.textContent="Has terminado esta ruta de muestra · Revisar ruta";
+  }
+ }catch(e){/* El progreso ya quedó guardado; la navegación de respaldo sigue disponible. */}
+}
 function showPythonError(message){
  const match=String(message).match(/line (\d+)/i);
  const line=match?Number(match[1]):0;
