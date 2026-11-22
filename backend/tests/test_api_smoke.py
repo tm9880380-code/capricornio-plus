@@ -85,3 +85,42 @@ def test_register_login_and_lesson_progress(client):
 def test_lesson_requires_authentication(client):
     response = client.post("/api/lessons/complete", json={"lesson_id": "estructuras-for"})
     assert response.status_code == 401
+
+@pytest.mark.parametrize("area", [
+    "Ciberseguridad",
+    "Desarrollo frontend",
+    "Desarrollo backend",
+    "Análisis de datos",
+    "Inteligencia artificial y modelos de lenguaje",
+    "Bases de datos",
+    "Redes y sistemas",
+    "Programación y lenguajes",
+    "Python",
+    "JavaScript",
+    "Go",
+    "Java",
+    "C++",
+])
+def test_learning_routes_have_area_specific_diagnostic_bank(client, area):
+    response = client.post("/api/register", json={
+        "name": "Estudiante Ruta",
+        "email": f"{area.lower().replace(' ', '').replace('/', '')}@example.com",
+        "password": "ClaveSegura123",
+        "learning_goal": area,
+    })
+    assert response.status_code == 201
+
+    diagnostic = client.get("/api/diagnostic/questions")
+    assert diagnostic.status_code == 200
+    data = diagnostic.json()
+    assert data["mode"] == "assessment"
+    assert data["area"] == area
+    assert len(data["questions"]) >= 3
+    assert all(question["options"] for question in data["questions"])
+
+
+def test_resource_library_page_is_served(client):
+    page = client.get("/recursos.html")
+    assert page.status_code == 200
+    assert "Biblioteca de recursos gratuitos" in page.text
+
