@@ -8,7 +8,7 @@ import time
 from contextlib import closing
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Response, Cookie, Depends
+from fastapi import FastAPI, HTTPException, Response as FastAPIResponse, Cookie, Depends
 from pydantic import BaseModel, Field
 from pwdlib import PasswordHash
 
@@ -17,9 +17,10 @@ from backend.adaptive.adaptive_engine import (
     Item,
     ItemBank,
     LearnerState,
-    Response,
+    Response as AdaptiveResponse,
 )
 from backend.adaptive.bkt import BKTParameters, update_mastery
+from backend.curriculum import LESSONS, LESSONS_BY_ID, AREAS as CURRICULUM_AREAS
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
@@ -125,6 +126,25 @@ def initialize_database():
                 ability_se REAL NOT NULL DEFAULT 1.0,
                 updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY(user_id, learning_area),
+                FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            );
+
+
+            CREATE TABLE IF NOT EXISTS lesson_attempts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                lesson_id TEXT NOT NULL,
+                answer_value TEXT NOT NULL,
+                is_correct INTEGER NOT NULL CHECK(is_correct IN (0, 1)),
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            );
+
+            CREATE TABLE IF NOT EXISTS lesson_progress (
+                user_id INTEGER NOT NULL,
+                lesson_id TEXT NOT NULL,
+                completed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY(user_id, lesson_id),
                 FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
             );
 
@@ -406,7 +426,7 @@ def record_learning_response(
 
     state = LearnerState.from_dict(json.loads(saved["state_json"])) if saved else LearnerState()
     state = engine.record_response(
-        state, Response(item_id=item_id, correct=bool(correct), timestamp=timestamp)
+        state, AdaptiveResponse(item_id=item_id, correct=bool(correct), timestamp=timestamp)
     )
 
     db.execute(
@@ -487,6 +507,10 @@ ORIENTATION_QUESTIONS = [
 class DiagnosticSubmitData(BaseModel):
     area: str = Field(min_length=2, max_length=100)
     answers: dict[str, str]
+
+
+class LessonAnswerData(BaseModel):
+    answer: str = Field(min_length=1, max_length=20)
 
 
 @app.get("/api/diagnostic/questions")
@@ -677,13 +701,157 @@ def latest_diagnostic(user=Depends(current_user)):
     return {"diagnostic": dict(row) if row else None}
 
 
+
+@app.get("/api/learning/catalog")
+def learning_catalog(user=Depends(current_user)):
+    """Devuelve las rutas y el progreso real del estudiante."""
+    with closing(connect()) as db:
+        completed_rows = db.execute(
+            "SELECT lesson_id FROM lesson_progress WHERE user_id = ?",
+            (user["id"],),
+        ).fetchall()
+        mastery_rows = db.execute(
+            "SELECT skill_id, prob_mastery FROM student_skill_mastery WHERE user_id = ?",
+            (user["id"],),
+        ).fetchall()
+
+    completed = {row["lesson_id"] for row in completed_rows}
+    mastery = {row["skill_id"]: row["prob_mastery"] for row in mastery_rows}
+    grouped = []
+    for area in CURRICULUM_AREAS:
+        lessons = []
+        area_lessons = [lesson for lesson in LESSONS if lesson["area"] == area]
+        for lesson in area_lessons:
+            lessons.append({
+                "id": lesson["id"],
+                "title": lesson["title"],
+                "module": lesson["module"],
+                "level": lesson["level"],
+                "completed": lesson["id"] in completed,
+                "mastery": round(mastery.get(lesson["skill"], 0.1), 3),
+            })
+        count = len(lessons)
+        done = sum(1 for lesson in lessons if lesson["completed"])
+        grouped.append({
+            "area": area,
+            "lessons": lessons,
+            "completed": done,
+            "total": count,
+            "progress_percent": round(done / count * 100) if count else 0,
+        })
+
+    recommended_area = user["learning_goal"]
+    if recommended_area not in CURRICULUM_AREAS:
+        with closing(connect()) as db:
+            latest = db.execute(
+                "SELECT learning_area FROM diagnostic_attempts WHERE user_id = ? AND status = 'completed' ORDER BY id DESC LIMIT 1",
+                (user["id"],),
+            ).fetchone()
+        if latest and latest["learning_area"] in CURRICULUM_AREAS:
+            recommended_area = latest["learning_area"]
+        else:
+            recommended_area = "Fundamentos de programación"
+
+    total = len(LESSONS)
+    done_total = len(completed.intersection(LESSONS_BY_ID))
+    return {
+        "recommended_area": recommended_area,
+        "completed_lessons": done_total,
+        "total_lessons": total,
+        "progress_percent": round(done_total / total * 100) if total else 0,
+        "tracks": grouped,
+    }
+
+
+@app.get("/api/learning/lesson/{lesson_id}")
+def get_learning_lesson(lesson_id: str, user=Depends(current_user)):
+    lesson = LESSONS_BY_ID.get(lesson_id)
+    if lesson is None:
+        raise HTTPException(status_code=404, detail="Lección no encontrada.")
+    with closing(connect()) as db:
+        completed = db.execute(
+            "SELECT 1 FROM lesson_progress WHERE user_id = ? AND lesson_id = ?",
+            (user["id"], lesson_id),
+        ).fetchone() is not None
+    return {
+        **{key: value for key, value in lesson.items() if key not in {"correct", "options", "feedback"}},
+        "options": lesson["options"],
+        "completed": completed,
+    }
+
+
+@app.post("/api/learning/lesson/{lesson_id}/answer")
+def answer_learning_lesson(lesson_id: str, data: LessonAnswerData, user=Depends(current_user)):
+    lesson = LESSONS_BY_ID.get(lesson_id)
+    if lesson is None:
+        raise HTTPException(status_code=404, detail="Lección no encontrada.")
+    allowed = {option["value"] for option in lesson["options"]}
+    if data.answer not in allowed:
+        raise HTTPException(status_code=422, detail="La respuesta seleccionada no es válida.")
+
+    correct = data.answer == lesson["correct"]
+    with closing(connect()) as db:
+        db.execute(
+            "INSERT INTO lesson_attempts (user_id, lesson_id, answer_value, is_correct) VALUES (?, ?, ?, ?)",
+            (user["id"], lesson_id, data.answer, int(correct)),
+        )
+        mastery_row = db.execute(
+            "SELECT prob_mastery, prob_slip, prob_guess, prob_transit, observations FROM student_skill_mastery WHERE user_id = ? AND skill_id = ?",
+            (user["id"], lesson["skill"]),
+        ).fetchone()
+        if mastery_row:
+            mastery = mastery_row["prob_mastery"]
+            observations = mastery_row["observations"]
+            params = BKTParameters(
+                initial_mastery=mastery,
+                learning_transition=mastery_row["prob_transit"],
+                guess=mastery_row["prob_guess"],
+                slip=mastery_row["prob_slip"],
+            )
+        else:
+            params = BKTParameters()
+            mastery = params.initial_mastery
+            observations = 0
+        updated = update_mastery(mastery, correct, params)
+        db.execute(
+            """
+            INSERT INTO student_skill_mastery
+                (user_id, skill_id, prob_mastery, prob_slip, prob_guess, prob_transit, observations, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+            ON CONFLICT(user_id, skill_id) DO UPDATE SET
+                prob_mastery = excluded.prob_mastery,
+                observations = excluded.observations,
+                updated_at = CURRENT_TIMESTAMP
+            """,
+            (user["id"], lesson["skill"], updated, params.slip, params.guess, params.learning_transition, observations + 1),
+        )
+        db.execute(
+            "INSERT INTO learning_events (user_id, source, item_id, skill_id, is_correct, created_at) VALUES (?, 'lesson', ?, ?, ?, ?)",
+            (user["id"], lesson_id, lesson["skill"], int(correct), time.time()),
+        )
+        if correct:
+            db.execute(
+                "INSERT OR IGNORE INTO lesson_progress (user_id, lesson_id) VALUES (?, ?)",
+                (user["id"], lesson_id),
+            )
+        db.commit()
+
+    return {
+        "correct": correct,
+        "completed": correct,
+        "feedback": lesson["feedback"] if correct else "Todavía no es correcto. Revisa la explicación y vuelve a intentarlo.",
+        "mastery": round(updated, 4),
+        "observations": observations + 1,
+    }
+
+
 @app.get("/api/health")
 def health():
     return {"status": "ok", "service": "Capricornio API"}
 
 
 @app.post("/api/register", status_code=201)
-def register(data: RegisterData, response: Response):
+def register(data: RegisterData, response: FastAPIResponse):
     name = data.name.strip()
     if len(name) < 2:
         raise HTTPException(status_code=422, detail="Escribe tu nombre completo.")
@@ -723,7 +891,7 @@ def register(data: RegisterData, response: Response):
 
 
 @app.post("/api/login")
-def login(data: LoginData, response: Response):
+def login(data: LoginData, response: FastAPIResponse):
     email = normalize_email(data.email)
 
     with closing(connect()) as db:
