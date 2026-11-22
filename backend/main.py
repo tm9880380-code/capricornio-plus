@@ -864,9 +864,16 @@ LESSON_CATALOG = {
 def get_progress(user=Depends(current_user)):
     with closing(connect()) as db:
         completed = db.execute(
-            "SELECT lesson_id, completed_at FROM lesson_completions WHERE user_id = ? ORDER BY completed_at",
+            "SELECT lesson_id FROM lesson_completions WHERE user_id = ?",
             (user["id"],),
         ).fetchall()
+        diagnostics = db.execute("""
+            SELECT learning_area, detected_level, score, MAX(id) AS latest_id
+            FROM diagnostic_attempts
+            WHERE user_id = ? AND status = 'completed' AND learning_area != ?
+            GROUP BY learning_area
+            ORDER BY latest_id DESC
+        """, (user["id"], ORIENTATION_ID)).fetchall()
         diagnostic = db.execute(
             "SELECT learning_area, detected_level, score FROM diagnostic_attempts WHERE user_id = ? AND status = 'completed' AND learning_area != ? ORDER BY id DESC LIMIT 1",
             (user["id"], ORIENTATION_ID),
@@ -875,16 +882,44 @@ def get_progress(user=Depends(current_user)):
             "SELECT skill_id, prob_mastery, observations FROM student_skill_mastery WHERE user_id = ? ORDER BY skill_id",
             (user["id"],),
         ).fetchall()
+
+    completed_all = {row["lesson_id"] for row in completed}
+    active_names = [row["learning_area"] for row in diagnostics]
+    if user["learning_goal"] and user["learning_goal"] != ORIENTATION_ID and user["learning_goal"] not in active_names:
+        active_names.append(user["learning_goal"])
+
+    courses = []
+    for area_name in active_names:
+        bank = CURRICULUM_BANK_KEY.get(area_name, AREA_BANK_KEY.get(area_name, area_name))
+        area_id = bank.split(":", 1)[1] if bank.startswith("curriculum:") else None
+        route = {key: value for key, value in LESSON_CATALOG.items() if area_id and value["area_id"] == area_id}
+        if not route:
+            continue
+        done = [key for key in route if key in completed_all]
+        next_item = next(((key, value) for key, value in route.items() if key not in completed_all), (None, None))
+        diag = next((dict(row) for row in diagnostics if row["learning_area"] == area_name), None)
+        courses.append({
+            "learning_area": area_name,
+            "area_id": area_id,
+            "completed_count": len(done),
+            "total_lessons": len(route),
+            "progress_percent": round(len(done) / len(route) * 100),
+            "level": diag["detected_level"] if diag else None,
+            "score": diag["score"] if diag else None,
+            "next_lesson_id": next_item[0],
+            "next_lesson_title": next_item[1]["title"] if next_item[1] else None,
+        })
+
     selected_area = diagnostic["learning_area"] if diagnostic else user["learning_goal"]
     selected_bank = CURRICULUM_BANK_KEY.get(selected_area, AREA_BANK_KEY.get(selected_area, selected_area))
     selected_area_id = selected_bank.split(":", 1)[1] if selected_bank.startswith("curriculum:") else None
     route_lessons = {
-        lesson_id: item for lesson_id, item in LESSON_CATALOG.items()
+        key: item for key, item in LESSON_CATALOG.items()
         if selected_area_id and item["area_id"] == selected_area_id
     }
     if not route_lessons:
         route_lessons = LESSON_CATALOG
-    completed_ids = [row["lesson_id"] for row in completed if row["lesson_id"] in route_lessons]
+    completed_ids = [key for key in route_lessons if key in completed_all]
     total = len(route_lessons)
     return {
         "completed_lessons": completed_ids,
@@ -894,8 +929,8 @@ def get_progress(user=Depends(current_user)):
         "diagnostic": dict(diagnostic) if diagnostic else None,
         "mastery": [dict(row) for row in mastery],
         "catalog": route_lessons,
+        "courses": courses,
     }
-
 
 @app.get("/api/lessons/{lesson_id}")
 def get_lesson(lesson_id: str, user=Depends(current_user)):
