@@ -10,7 +10,7 @@
 - Protección de claves foráneas en SQLite.
 - Comprobación de origen en solicitudes mutables cuando el navegador envía Origin.
 - Cabeceras X-Content-Type-Options, X-Frame-Options, Referrer-Policy y Permissions-Policy.
-- Código Python educativo ejecutado en Web Worker del navegador, nunca mediante `exec` en el servidor.
+- Código Python educativo ejecutado en Web Worker del navegador, nunca mediante `exec` en el servidor. Se bloquea el acceso de red del worker y se limita el tiempo de ejecución y la salida capturada.
 
 ## Antes de desplegar públicamente
 
