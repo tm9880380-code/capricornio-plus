@@ -174,6 +174,61 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+
+/* Mascota interactiva: conserva la imagen original del gato */
+#gato-guia {
+  --gato-ancho: 104px;
+  position: fixed; z-index: 60; left: 0; bottom: 16px;
+  display: grid; place-items: center;
+  width: var(--gato-ancho); height: var(--gato-ancho);
+  padding: 4px; border: 0; border-radius: 50%;
+  background: transparent; cursor: pointer;
+  filter: drop-shadow(0 8px 12px rgba(43,22,8,.18));
+  animation: gato-recorrido 26s ease-in-out infinite alternate;
+  -webkit-tap-highlight-color: transparent;
+}
+#gato-guia img {
+  display: block; width: 100%; height: 100%; object-fit: contain;
+  user-select: none; pointer-events: none;
+}
+#gato-guia:hover { animation-play-state: paused; transform: scale(1.08); }
+#gato-guia:focus-visible { outline: 3px solid var(--cafe-hover); outline-offset: 3px; }
+@keyframes gato-recorrido {
+  from { transform: translateX(8px); }
+  to { transform: translateX(calc(100vw - var(--gato-ancho) - 16px)); }
+}
+#gato-mensaje {
+  position: fixed; z-index: 61; bottom: 126px;
+  display: none; width: min(250px, calc(100vw - 24px));
+  padding: 13px 16px; border: 1px solid var(--dorado);
+  border-radius: 14px; background: #fffdf8; color: var(--cafe);
+  box-shadow: 0 12px 32px rgba(43,22,8,.16);
+  font-size: 13px; font-weight: 700; line-height: 1.5;
+}
+#gato-mensaje.visible { display: block; }
+#gato-mensaje::after {
+  position: absolute; bottom: -7px; left: 50%;
+  width: 12px; height: 12px; content: "";
+  background: #fffdf8; border-right: 1px solid var(--dorado);
+  border-bottom: 1px solid var(--dorado); transform: translateX(-50%) rotate(45deg);
+}
+a.boton.secundario.gato-destacado {
+  outline: 3px solid rgba(182,154,112,.55); outline-offset: 4px;
+  box-shadow: 0 0 0 8px rgba(230,211,168,.28);
+  animation: gato-llamada 1.15s ease-in-out 3;
+}
+@keyframes gato-llamada {
+  50% { transform: translateY(-3px); box-shadow: 0 0 0 12px rgba(230,211,168,.18); }
+}
+@media (max-width: 760px) {
+  #gato-guia { --gato-ancho: 82px; bottom: 10px; }
+  #gato-mensaje { bottom: 100px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #gato-guia { animation: none; left: 12px; }
+  a.boton.secundario.gato-destacado { animation: none; }
+}
+
 </style>
 </head>
 <body>
@@ -299,6 +354,37 @@ formulario.addEventListener("submit", async (evento) => {
     boton.textContent = "Iniciar sesión";
   }
 });
+</script>
+
+
+<button id="gato-guia" type="button" aria-label="Toca al gato para que te guíe a crear tu cuenta" aria-controls="gato-mensaje">
+  <img src="img/gato.webp" alt="" draggable="false">
+</button>
+<div id="gato-mensaje" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  const gato = document.getElementById("gato-guia");
+  const mensajeGato = document.getElementById("gato-mensaje");
+  const crearCuenta = document.querySelector('a.boton.secundario[href="registro.html"]');
+
+  if (!gato || !mensajeGato || !crearCuenta) return;
+
+  gato.addEventListener("click", () => {
+    mensajeGato.textContent = "¡Vamos! Toca «Crear cuenta» y empezamos juntos. 🐾";
+    mensajeGato.classList.add("visible");
+    gato.setAttribute("aria-expanded", "true");
+
+    const ancho = Math.min(250, window.innerWidth - 24);
+    const centro = gato.getBoundingClientRect().left + gato.offsetWidth / 2;
+    const izquierda = Math.max(12, Math.min(window.innerWidth - ancho - 12, centro - ancho / 2));
+    mensajeGato.style.left = izquierda + "px";
+
+    crearCuenta.classList.remove("gato-destacado");
+    void crearCuenta.offsetWidth;
+    crearCuenta.classList.add("gato-destacado");
+    crearCuenta.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+})();
 </script>
 
 </body>
