@@ -12,7 +12,6 @@ self.onmessage=async event=>{
   const {id,code}=event.data||{};
   try{
     const py=await start();
-    await py.runPythonAsync("_cap_out = _CapricornioLimitedWriter(10000)\\n_cap_err = _CapricornioLimitedWriter(4000)");
     await py.runPythonAsync(`
 import sys
 class _CapricornioLimitedWriter:
