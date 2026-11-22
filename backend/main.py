@@ -375,7 +375,8 @@ CURRICULUM_PATH = BASE_DIR / "curriculum.json"
 CURRICULUM = json.loads(CURRICULUM_PATH.read_text(encoding="utf-8"))
 CURRICULUM_AREA_BY_NAME = {area["name"]: area for area in CURRICULUM["areas"]}
 CURRICULUM_AREA_BY_ID = {area["id"]: area for area in CURRICULUM["areas"]}
-CURRICULUM_BANK_KEY = {area["name"]: "curriculum:" + area["id"] for area in CURRICULUM["areas"]}\nCURRICULUM_LESSON_BY_QUESTION = {}
+CURRICULUM_BANK_KEY = {area["name"]: "curriculum:" + area["id"] for area in CURRICULUM["areas"]}
+CURRICULUM_LESSON_BY_QUESTION = {}
 for alias in ("Python", "JavaScript", "Go", "Java", "C++", "Programación y lenguajes"):
     CURRICULUM_BANK_KEY[alias] = "curriculum:programacion"
 for alias in ("Desarrollo frontend",):
@@ -391,6 +392,7 @@ for curriculum_area in CURRICULUM["areas"]:
             if not lesson.get("question") or not lesson.get("options") or not lesson.get("answer"):
                 continue
             question_id = "cur_" + lesson["id"].replace("-", "_")
+            CURRICULUM_LESSON_BY_QUESTION[question_id] = lesson
             options = [(chr(97 + i), option) for i, option in enumerate(lesson["options"])]
             answer_index = lesson["options"].index(lesson["answer"])
             generated_questions.append((question_id, lesson["title"], options, chr(97 + answer_index)))
@@ -925,12 +927,17 @@ def answer_learning_item(data: LearningAnswerData, user=Depends(current_user)):
             correct=correct,
         )
         db.commit()
+    lesson = CURRICULUM_LESSON_BY_QUESTION.get(data.item_id, {})
+    explanation = lesson.get("feedback") or "Revisa el concepto y compara tu razonamiento con la respuesta esperada."
+    feedback = ("¡Respuesta correcta! " if correct else "Todavía no es correcto. La respuesta es: " + str(lesson.get("answer", "consulta la explicación")) + ". ") + explanation
     return {
         "correct": correct,
-        "feedback": "¡Respuesta correcta!" if correct else "Aún no es correcta. Revisa el concepto e inténtalo en el repaso.",
+        "feedback": feedback,
+        "correct_answer": lesson.get("answer"),
+        "explanation": explanation,
+        "reinforcement": lesson.get("reinforcement"),
         "competency_update": update,
     }
-
 
 
 @app.get("/api/curriculum")
