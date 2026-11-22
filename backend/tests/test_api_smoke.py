@@ -34,7 +34,7 @@ def test_health_and_root(client):
     assert response.status_code == 200
     assert "Trabajar, persistir y avanzar." in response.text
     assert "Aprender tecnología, con dirección." in response.text
-    assert "Ya tengo cuenta" in response.text
+    assert "Ya tengo una cuenta" in response.text
     assert response.headers["x-frame-options"] == "DENY"
     assert response.headers["x-content-type-options"] == "nosniff"
 
