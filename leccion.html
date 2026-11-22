@@ -96,4 +96,4 @@ try{
 $("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
 window.addEventListener("beforeunload",()=>{if(worker)worker.terminate();});
 })();
-</script></body></html>
+</script><script src="js/app-shell.js" defer></script></body></html>
