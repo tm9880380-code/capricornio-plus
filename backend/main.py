@@ -1285,7 +1285,7 @@ from fastapi.staticfiles import StaticFiles
 
 @app.get("/", include_in_schema=False)
 def home():
-    return FileResponse(BASE_DIR / "index.html")
+    return FileResponse(BASE_DIR / "login.html")
 
 
 @app.get("/{page}.html", include_in_schema=False)
@@ -1297,7 +1297,7 @@ def serve_page(page: str):
     }
     if page not in allowed:
         raise HTTPException(status_code=404, detail="Página no encontrada.")
-    return FileResponse(BASE_DIR / f"{page}.html")
+    return FileResponse(BASE_DIR / ("login.html" if page == "index" else f"{page}.html"))
 
 
 app.mount("/css", StaticFiles(directory=BASE_DIR / "css"), name="css")
