@@ -375,7 +375,7 @@ CURRICULUM_PATH = BASE_DIR / "curriculum.json"
 CURRICULUM = json.loads(CURRICULUM_PATH.read_text(encoding="utf-8"))
 CURRICULUM_AREA_BY_NAME = {area["name"]: area for area in CURRICULUM["areas"]}
 CURRICULUM_AREA_BY_ID = {area["id"]: area for area in CURRICULUM["areas"]}
-CURRICULUM_BANK_KEY = {area["name"]: "curriculum:" + area["id"] for area in CURRICULUM["areas"]}
+CURRICULUM_BANK_KEY = {area["name"]: "curriculum:" + area["id"] for area in CURRICULUM["areas"]}\nCURRICULUM_LESSON_BY_QUESTION = {}
 for alias in ("Python", "JavaScript", "Go", "Java", "C++", "Programación y lenguajes"):
     CURRICULUM_BANK_KEY[alias] = "curriculum:programacion"
 for alias in ("Desarrollo frontend",):
