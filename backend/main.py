@@ -943,7 +943,7 @@ def home():
 def serve_page(page: str):
     allowed = {
         "index", "registro", "login", "diagnostico",
-        "plan", "modulo", "leccion", "suscripciones"
+        "plan", "modulo", "leccion", "practica", "suscripciones"
     }
     if page not in allowed:
         raise HTTPException(status_code=404, detail="Página no encontrada.")
