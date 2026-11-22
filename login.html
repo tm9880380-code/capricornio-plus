@@ -2,176 +2,158 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capricornio - Iniciar sesión</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Capricornio: trabaja, persiste y avanza con rutas de aprendizaje, recursos y práctica tecnológica.">
+<meta name="theme-color" content="#2b1608">
+<title>Capricornio | Trabajar, persistir y avanzar</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Trebuchet MS', Arial, sans-serif; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: minmax(100vh, auto) auto; color: #2b1608; }
-a { text-decoration: none; color: inherit; }
-.izquierda { background: radial-gradient(ellipse at center, #f6ecd6 0%, #e6d3a8 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
-.izquierda img { width: 230px; height: auto; mix-blend-mode: multiply; }
-.izquierda h2 { font-family: Georgia, 'Palatino Linotype', serif; font-size: 30px; font-weight: normal; color: #2b1608; margin-top: 24px; max-width: 340px; line-height: 1.3; }
-.derecha { background: #fffaf0; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
-.caja { width: 100%; max-width: 380px; }
-.caja h1 { font-family: Georgia, 'Palatino Linotype', serif; font-size: 38px; font-weight: normal; color: #3b2314; text-align: center; margin-bottom: 30px; }
-.caja input { width: 100%; padding: 15px 14px; border: 2px solid #5a3a1e; border-radius: 8px; background: #fffaf0; font-size: 16px; color: #2b1608; margin-bottom: 14px; }
-.caja input::placeholder { color: #8a735c; }
-.boton { display: block; width: 100%; text-align: center; padding: 15px; border: 2px solid #3b2314; border-radius: 8px; font-size: 17px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-.boton.principal { background: #3b2314; color: #f3e6c8; }
-.boton.principal:hover { background: #7a4a1c; border-color: #7a4a1c; }
-.boton.secundario { background: #fffaf0; color: #3b2314; }
-.boton.secundario:hover { background: #3b2314; color: #f3e6c8; }
-#mensaje { color: #9b2525; text-align: center; margin: 12px 0; min-height: 20px; }
-@media (max-width: 760px) {
-  body { grid-template-columns: 1fr; }
-  .izquierda { padding: 28px 24px; }
-  .izquierda img { width: 130px; }
-  .izquierda h2 { font-size: 22px; margin-top: 14px; }
-}
-
-.presentacion{grid-column:1/-1;background:#f6ecd6;color:#2b1608;padding:64px clamp(20px,7vw,100px);border-top:1px solid #b69a70}
-.presentacion .contenido{max-width:1120px;margin:0 auto}
-.presentacion h2,.presentacion h3{font-family:Georgia,'Palatino Linotype',serif;color:#3b2314;line-height:1.25}
-.presentacion h2{text-align:center;font-size:clamp(1.8rem,3vw,2.5rem);margin-bottom:14px}
-.presentacion .intro{max-width:800px;text-align:center;margin:0 auto 34px;color:#4a3322;line-height:1.7}
-.presentacion .pasos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.presentacion .paso{background:#fffaf0;border:1px solid #b69a70;border-radius:10px;padding:22px;box-shadow:0 3px 8px #2b16081c}
-.presentacion .paso h3{font-size:20px;margin-bottom:9px}
-.presentacion .paso p{color:#4a3322;line-height:1.65}
-.presentacion .numero{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#8f6b3e;color:#fff6e0;font-weight:bold;margin-bottom:13px}
-.presentacion .areas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}
-.presentacion .area{background:#f3e6c8;border:1px solid #b69a70;border-radius:8px;padding:15px;text-align:center;font-weight:bold;color:#3b2314}
-.presentacion .nota{margin:34px auto 0;max-width:900px;text-align:center;background:#e6d3a8;border:1px solid #b69a70;border-radius:10px;padding:24px}
-.presentacion .nota h3{font-size:21px;margin-bottom:8px}
-.presentacion .nota p{color:#4a3322;line-height:1.65}
-@media(max-width:760px){.presentacion{padding:44px 20px}.presentacion .pasos{grid-template-columns:1fr}.presentacion .areas{grid-template-columns:repeat(2,minmax(0,1fr))}}
-
-
-/* Asistente pequeño: conserva intacta la ilustración y composición originales */
-#gato-asistente{position:fixed;right:20px;bottom:18px;z-index:1000;width:66px;height:66px;padding:3px;border:1px solid rgba(166,126,75,.35);border-radius:50%;background:#fffaf1;box-shadow:0 5px 18px rgba(43,22,8,.18);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
-#gato-asistente:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 9px 22px rgba(43,22,8,.22)}
-#gato-asistente img{width:100%;height:100%;object-fit:contain;display:block}
-#gato-ayuda{position:fixed;right:96px;bottom:28px;z-index:1000;width:min(250px,calc(100vw - 125px));padding:12px 15px;border:1px solid #c9a66b;border-radius:13px;background:#fffaf1;color:#2b1608;box-shadow:0 6px 20px rgba(43,22,8,.14);font:14px/1.45 'Trebuchet MS',Arial,sans-serif;display:none}
-#gato-ayuda.visible{display:block}
-#gato-crear-cuenta{outline:3px solid rgba(201,166,107,.65);outline-offset:4px}
-@media(max-width:600px){#gato-asistente{width:56px;height:56px;right:12px;bottom:12px}#gato-ayuda{right:78px;bottom:19px}}
-@media(prefers-reduced-motion:reduce){#gato-asistente{transition:none}}
-
+:root{--ink:#2b1608;--coffee:#3b2314;--brown:#5a3a1e;--accent:#7a4a1c;--cream:#fffaf0;--sand:#f6ecd6;--gold:#e6d3a8;--muted:#806b55;--line:#e7d8bd;--white:#fffdf8;--shadow:0 24px 70px rgba(43,22,8,.11)}
+*{box-sizing:border-box;font-style:normal}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,system-ui,"Segoe UI",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}a{color:inherit;text-decoration:none}button,input{font:inherit}.wrap{width:min(1160px,calc(100% - 44px));margin:auto}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,250,240,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(90,58,30,.12)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:11px;font-size:16px;font-weight:900;letter-spacing:.13em;color:var(--coffee)}.brand img{width:43px;height:43px;object-fit:contain}.navlinks{display:flex;align-items:center;gap:27px;color:#6d5740;font-size:13px;font-weight:700}.navlinks a{transition:color .2s}.navlinks a:hover{color:var(--accent)}.nav-actions{display:flex;align-items:center;gap:10px}.menu-toggle{display:none;border:1px solid var(--line);background:var(--white);border-radius:11px;padding:9px 12px;color:var(--coffee);cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:12px 19px;border:1px solid transparent;border-radius:11px;background:var(--coffee);color:#fff8e9;font-size:13px;font-weight:800;box-shadow:0 7px 18px rgba(43,22,8,.13);transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}.btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(43,22,8,.17);background:var(--accent)}.btn-light{background:var(--white);color:var(--coffee);border-color:#dfcfb0;box-shadow:none}.btn-light:hover{background:var(--sand);color:var(--coffee)}.btn:focus-visible,.menu-toggle:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #b69a70;outline-offset:3px}
+.hero{position:relative;overflow:hidden;padding:76px 0 66px;background:radial-gradient(ellipse at 80% 20%,rgba(230,211,168,.5),transparent 35%),linear-gradient(135deg,#fffaf0 0%,#f7eedc 56%,#efe0c2 100%)}.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(90,58,30,.11);border-radius:50%;pointer-events:none}.hero:before{width:620px;height:620px;right:-210px;top:-300px}.hero:after{width:470px;height:470px;right:-135px;top:-225px}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:54px}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid #e2d1af;border-radius:99px;background:rgba(255,253,248,.75);color:#74542d;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:#8f6b3e;box-shadow:0 0 0 4px rgba(143,107,62,.13)}h1,h2,h3,p{margin-top:0}h1{max-width:650px;margin:22px 0 19px;font-size:clamp(43px,5.5vw,68px);line-height:1.03;letter-spacing:-.065em;font-weight:850;color:var(--ink)}h1 span{display:block;color:#805729}.hero-copy{max-width:570px;color:#705b43;font-size:16px;line-height:1.85}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}.hero-note{display:flex;align-items:center;gap:10px;margin-top:27px;color:var(--muted);font-size:11px}.note-mark{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:#e9dfc8;color:#76532d;font-weight:900}
+.hero-visual{position:relative;min-height:440px;display:grid;place-items:center}.halo{position:absolute;width:min(410px,95%);aspect-ratio:1;border:1px solid rgba(90,58,30,.18);border-radius:50%;background:radial-gradient(circle,#fffaf0 0%,rgba(243,230,200,.65) 58%,rgba(230,211,168,.2) 72%,transparent 73%);animation:halo 8s ease-in-out infinite}.halo:before,.halo:after{content:"";position:absolute;inset:22px;border:1px dashed rgba(122,74,28,.2);border-radius:50%}.halo:after{inset:52px;border-style:solid;opacity:.5}.cat-stage{position:relative;z-index:2;width:min(340px,82%);display:grid;place-items:center;cursor:pointer;touch-action:manipulation}.cat-image{display:block;width:100%;height:auto;max-height:350px;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 22px 25px rgba(43,22,8,.16));transform:translate3d(var(--cat-x,0),var(--cat-y,0),0);animation:catFloat 3.8s ease-in-out infinite;transition:filter .25s}.cat-stage:hover .cat-image{filter:drop-shadow(0 27px 30px rgba(43,22,8,.22))}.cat-stage.pounce .cat-image{animation:catPounce .75s cubic-bezier(.2,.8,.2,1)}.cat-hint{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);padding:7px 12px;border:1px solid #e5d5b8;border-radius:99px;background:rgba(255,253,248,.9);color:#72532f;font-size:10px;font-weight:800;white-space:nowrap;box-shadow:0 6px 20px #2b16080d}.speech{position:absolute;z-index:4;top:8%;right:-1%;max-width:205px;padding:13px 16px;border:1px solid #e1cfad;border-radius:17px 17px 17px 4px;background:#fffdf8;color:#654725;font-size:12px;font-weight:700;box-shadow:0 12px 28px rgba(43,22,8,.09);animation:speechFloat 4.5s ease-in-out infinite}.float-chip{position:absolute;z-index:3;padding:10px 13px;border:1px solid #e4d4b7;border-radius:12px;background:rgba(255,253,248,.94);color:#624827;font-size:10px;font-weight:800;box-shadow:0 9px 25px rgba(43,22,8,.08);animation:chipFloat 5s ease-in-out infinite}.chip-a{left:-2%;top:23%}.chip-b{right:1%;bottom:15%;animation-delay:-2s}.chip-c{left:3%;bottom:10%;animation-delay:-1s}
+@keyframes catFloat{0%,100%{transform:translate3d(var(--cat-x,0),0,0) rotate(-1deg)}50%{transform:translate3d(var(--cat-x,0),-13px,0) rotate(1deg)}}@keyframes catPounce{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-34px) scale(1.06) rotate(-4deg)}65%{transform:translateY(4px) scale(.97) rotate(3deg)}100%{transform:translateY(0) scale(1)}}@keyframes halo{50%{transform:scale(1.035);opacity:.72}}@keyframes speechFloat{50%{transform:translateY(-7px) rotate(1deg)}}@keyframes chipFloat{50%{transform:translateY(-9px)}}
+.trust{border-bottom:1px solid var(--line);background:#fffdf8}.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:21px 0}.trust-item{display:flex;align-items:center;justify-content:center;gap:10px;color:#6f5a42;font-size:12px;font-weight:750}.trust-item b{color:#3b2314;font-size:14px}
+.section{padding:82px 0}.section-head{max-width:680px;margin:0 auto 36px;text-align:center}.kicker{display:block;margin-bottom:11px;color:#936b37;font-size:10px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}.section h2{margin:0 0 13px;color:var(--ink);font-size:clamp(30px,4vw,43px);font-weight:850;line-height:1.12;letter-spacing:-.05em}.section-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.8}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.step{position:relative;min-height:205px;padding:25px;border:1px solid #e7dac3;border-radius:17px;background:var(--white);box-shadow:0 8px 26px rgba(43,22,8,.035);transition:transform .22s,border-color .22s,box-shadow .22s}.step:hover{transform:translateY(-6px);border-color:#c6a979;box-shadow:0 17px 38px rgba(43,22,8,.09)}.step-num{display:grid;place-items:center;width:43px;height:43px;margin-bottom:19px;border-radius:13px;background:var(--sand);color:#76532d;font-size:13px;font-weight:900}.step h3{margin:0 0 8px;font-size:16px;font-weight:800}.step p{margin:0;color:var(--muted);font-size:12px;line-height:1.8}
+.areas{background:#f7f0e3}.area-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.area-card{position:relative;display:flex;min-height:165px;flex-direction:column;align-items:flex-start;padding:19px;border:1px solid #e3d4b9;border-radius:16px;background:rgba(255,253,248,.94);transition:transform .22s,box-shadow .22s,border-color .22s;overflow:hidden}.area-card:after{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,#8f6b3e,#e6d3a8);transform:scaleX(0);transform-origin:left;transition:transform .25s}.area-card:hover{transform:translateY(-5px);border-color:#bd9d6b;box-shadow:0 14px 30px rgba(43,22,8,.08)}.area-card:hover:after{transform:scaleX(1)}.area-symbol{display:grid;place-items:center;width:39px;height:39px;margin-bottom:13px;border-radius:12px;background:#f1e4ca;color:#76532d;font-weight:900;font-size:11px}.area-card strong{font-size:13px;font-weight:800}.area-card small{margin-top:5px;color:var(--muted);font-size:10px;line-height:1.55}.area-card .arrow{margin-top:auto;padding-top:12px;color:#8b6334;font-size:11px;font-weight:900}
+.practice{display:grid;grid-template-columns:.9fr 1.1fr;gap:45px;align-items:center}.practice-copy p{color:var(--muted);font-size:14px;line-height:1.85}.feature-list{display:grid;gap:12px;margin:23px 0}.feature{display:flex;align-items:flex-start;gap:11px;color:#5f4b35;font-size:12px}.check{flex:0 0 22px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#e9dfc8;color:#76532d;font-size:11px;font-weight:900}
+.editor{overflow:hidden;border:1px solid #513d2a;border-radius:17px;background:#211a14;box-shadow:0 22px 50px rgba(43,22,8,.18)}.editor-top{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;border-bottom:1px solid rgba(255,255,255,.09);color:#e8d9bd;font-size:10px}.dots{display:flex;gap:5px}.dots i{width:7px;height:7px;border-radius:50%;background:#9e8060}.editor-code{padding:22px;color:#eadcc4;font:12px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap}.editor-code .kw{color:#d6b77e}.editor-code .fn{color:#a9c69b}.editor-code .str{color:#e2bd8e}.editor-output{margin:0 15px 15px;padding:12px 14px;border:1px solid rgba(230,211,168,.18);border-radius:10px;background:#2d241b;color:#d9c7a8;font:11px/1.6 ui-monospace,monospace}.editor-output b{display:block;margin-bottom:4px;color:#bba17a;font:9px Inter,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.editor-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 15px;color:#bba17a;font-size:8px;font-weight:900;letter-spacing:.1em}
+.run-demo{border:0;border-radius:7px;padding:8px 12px;background:#e6d3a8;color:#352313;font-size:10px;font-weight:900;cursor:pointer}.run-demo:disabled{opacity:.6;cursor:wait}
+.demo-code{display:block;width:calc(100% - 30px);min-height:145px;margin:0 15px;padding:14px;border:1px solid rgba(230,211,168,.16);border-radius:9px;resize:vertical;background:#19140f;color:#e9d9bc;font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:4;white-space:pre;outline:none}.demo-code:focus{border-color:#b69a70;box-shadow:0 0 0 2px rgba(230,211,168,.12)}
+.demo-output{margin:12px 15px 0;border:1px solid rgba(230,211,168,.16);border-radius:9px;background:#2b2118;overflow:hidden}.demo-output-head{display:flex;justify-content:space-between;padding:9px 12px;border-bottom:1px solid rgba(230,211,168,.1);color:#bba17a;font-size:8px;font-weight:900;letter-spacing:.12em}.demo-output-head span:last-child{letter-spacing:0;font-weight:600;color:#d6c4a5}.demo-output pre{min-height:55px;margin:0;padding:12px;color:#e6d3a8;font:11px/1.7 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}.demo-tests{display:flex;justify-content:space-between;gap:12px;margin:10px 15px 15px;padding-top:11px;border-top:1px solid rgba(230,211,168,.12);color:#bba17a;font-size:8px;font-weight:900;letter-spacing:.1em}.test-pending{color:#d6c4a5;letter-spacing:0}.test-pass{color:#a9c69b;letter-spacing:0}.test-fail{color:#e6a49b;letter-spacing:0}
+.path-banner{padding:68px 0;background:linear-gradient(130deg,#3b2314,#2b1608);color:#fff8e9}.path-grid{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.path-banner h2{max-width:690px;margin:0 0 12px;color:#fff8e9;font-size:clamp(28px,4vw,42px);font-weight:850;line-height:1.1;letter-spacing:-.045em}.path-banner p{max-width:660px;margin:0;color:#d9c7a8;font-size:13px;line-height:1.8}.path-banner .btn{background:#e6d3a8;color:#352313;white-space:nowrap}
+.footer{padding:43px 0 22px;background:#21170f;color:#e8d9bd}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:35px;padding-bottom:30px}.footer-brand{font-weight:900;letter-spacing:.13em}.footer p{max-width:350px;margin:12px 0 0;color:#b8a58a;font-size:11px;line-height:1.8}.footer h4{margin:0 0 12px;color:#f1dfbd;font-size:11px}.footer-links{display:grid;gap:9px;color:#c4b397;font-size:11px}.footer-links a:hover{color:#fff}.footer-bottom{display:flex;justify-content:space-between;gap:15px;padding-top:18px;border-top:1px solid rgba(230,211,168,.16);color:#a99578;font-size:10px}
+.projects{background:#fffdf8}.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.project-card{padding:23px;border:1px solid #e7dac3;border-radius:16px;background:#fffaf0;transition:transform .22s,border-color .22s,box-shadow .22s}.project-card:hover{transform:translateY(-4px);border-color:#c6a979;box-shadow:0 15px 30px rgba(43,22,8,.07)}.project-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.project-tag{color:#936b37;font-size:9px;font-weight:900;letter-spacing:.14em}.project-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:#f0e3c9;color:#76532d;font-size:10px;font-weight:900}.project-card h3{margin:0 0 8px;font-size:17px;font-weight:850;letter-spacing:-.025em}.project-card p{min-height:44px;margin:0 0 13px;color:var(--muted);font-size:12px;line-height:1.75}.project-card details{padding-top:12px;border-top:1px solid var(--line)}.project-card summary,.faq-item summary{color:#76532d;font-size:11px;font-weight:850;cursor:pointer}.project-card ul{margin:10px 0 0;padding-left:18px;color:#6b5740;font-size:11px;line-height:1.9}.faq{background:#f7f0e3}.faq-list{max-width:820px;margin:auto;display:grid;gap:10px}.faq-item{padding:17px 20px;border:1px solid #e4d7c0;border-radius:12px;background:#fffdf8}.faq-item summary{font-size:13px}.faq-item p{margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.8}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
+.login-overlay{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(24,16,10,.62);backdrop-filter:blur(8px)}.login-overlay.open{display:grid}.login-card{position:relative;width:min(100%,450px);padding:34px;border:1px solid #e4d4b7;border-radius:20px;background:var(--cream);box-shadow:var(--shadow);animation:modalIn .24s ease}.login-card h2{margin:0 0 8px;font-size:29px;letter-spacing:-.04em}.login-card>p{margin:0 0 22px;color:var(--muted);font-size:12px}.close-login{position:absolute;top:14px;right:15px;border:0;background:transparent;color:#6d5740;font-size:24px;cursor:pointer}.field{display:grid;gap:7px;margin-bottom:15px}.field label{font-size:12px;font-weight:800;color:var(--coffee)}.field input{width:100%;min-height:48px;padding:12px 14px;border:1px solid #d8c5a5;border-radius:9px;background:#fffdf8;color:var(--ink);font-size:14px}.field input:focus{border-color:var(--accent);outline:3px solid rgba(122,74,28,.12)}.password-wrap{position:relative}.password-wrap input{padding-right:82px}.toggle-password{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--brown);font-size:11px;font-weight:800;cursor:pointer}.login-card .btn{width:100%;margin-top:7px}.login-error{min-height:20px;margin:5px 0;color:#9b2525;font-size:11px}.login-card .signup{display:block;margin-top:15px;text-align:center;color:#74542d;font-size:12px;font-weight:750}.login-card .signup:hover{text-decoration:underline}
+@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:950px){.hero-grid{gap:20px}.area-grid{grid-template-columns:repeat(2,1fr)}.navlinks{gap:15px}.navlinks a{font-size:12px}.practice{gap:25px}}
+@media(max-width:700px){.wrap{width:min(100% - 30px,560px)}.nav{height:66px}.menu-toggle{display:block}.navlinks{display:none;position:absolute;top:66px;left:0;right:0;padding:18px 22px;background:var(--cream);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:15px}.navlinks.open{display:flex}.nav-actions .btn-light{display:none}.hero{padding:48px 0 36px}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:330px;margin-top:8px}.cat-stage{width:255px}.cat-image{max-height:265px}.halo{width:290px}.speech{right:0;top:0;max-width:170px}.chip-a{left:0;top:20%}.chip-b{right:0;bottom:10%}.chip-c{left:0;bottom:6%}.trust-grid{grid-template-columns:1fr;gap:12px;padding:17px 0}.trust-item{justify-content:flex-start}.section{padding:59px 0}.steps{grid-template-columns:1fr}.step{min-height:0}.practice{grid-template-columns:1fr}.project-grid{grid-template-columns:1fr}.project-card p{min-height:0}.editor{min-width:0}.path-grid{grid-template-columns:1fr}.path-banner .btn{justify-self:start}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}.footer-bottom{flex-direction:column}.login-card{padding:28px 23px}}
+@media(max-width:390px){.nav-actions .btn{font-size:11px;padding:9px 10px}.brand{font-size:13px}.area-grid{gap:9px}.area-card{padding:14px;min-height:155px}.area-card strong{font-size:11px}.area-card small{font-size:9px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<header class="topbar"><div class="wrap nav">
+<a class="brand" href="login.html"><img src="img/logo.webp" alt="">CAPRICORNIO</a>
+<button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks">Menú</button>
+<nav class="navlinks" id="navLinks"><a href="#como-funciona">Cómo funciona</a><a href="#areas">Áreas</a><a href="#proyectos">Proyectos</a><a href="#practica">Aprender haciendo</a></nav>
+<div class="nav-actions"><button class="btn btn-light" type="button" data-open-login>Iniciar sesión</button><a class="btn" href="registro.html">Crear cuenta <span aria-hidden="true">→</span></a></div>
+</div></header>
 
-<section class="izquierda">
-  <img src="img/logo_grande.webp" alt="Logo de Capricornio">
-  <h2>Capricornio: Trabajar, persistir y avanzar</h2>
-</section>
+<main>
+<section class="hero"><div class="wrap hero-grid">
+<div class="hero-copy-block">
+<span class="eyebrow">Tu espacio para aprender tecnología</span>
+<h1>Capricornio:<span>trabajar, persistir y avanzar.</span></h1>
+<p class="hero-copy">No se trata de memorizar respuestas. Se trata de entender, practicar y construir habilidades paso a paso. Encuentra una ruta, explora recursos y convierte tu curiosidad en progreso.</p>
+<div class="hero-actions"><a class="btn" href="registro.html">Comenzar mi camino <span aria-hidden="true">→</span></a><button class="btn btn-light" type="button" data-open-login>Ya tengo una cuenta</button></div>
+<div class="hero-note"><span class="note-mark">✓</span><span>Rutas de aprendizaje · recursos seleccionados · progreso personal</span></div>
+</div>
+<div class="hero-visual" aria-label="Mascota interactiva de Capricornio">
+<div class="halo"></div><div class="speech" id="catSpeech" aria-live="polite">¡Hola! Soy tu compañero de ruta. Toca mi patita.</div>
+<div class="float-chip chip-a">Aprende a tu ritmo</div><div class="float-chip chip-b">Un paso a la vez ✦</div><div class="float-chip chip-c">Curiosidad + práctica</div>
+<button class="cat-stage" id="catMascot" type="button" aria-label="Interactuar con el gato de Capricornio"><img class="cat-image" src="img/gato.webp" alt="Gato, mascota de Capricornio"><span class="cat-hint">Tócame para saludarme ✦</span></button>
+</div>
+</div></section>
 
-<section class="derecha">
-  <div class="caja">
-    <h1>Iniciar sesión</h1>
+<section class="trust"><div class="wrap trust-grid"><div class="trust-item"><b>01</b><span>Elige entre distintas áreas tecnológicas</span></div><div class="trust-item"><b>02</b><span>Conecta con documentación y recursos</span></div><div class="trust-item"><b>03</b><span>Practica y consulta tu avance</span></div></div></section>
 
-    <form id="login-form">
-      <input type="email" name="email" placeholder="Correo electrónico" autocomplete="email" required>
-      <input type="password" name="password" placeholder="Contraseña" autocomplete="current-password" required>
-      <p id="mensaje" role="alert" aria-live="polite"></p>
-      <button class="boton principal" id="ingresar" type="submit">Iniciar sesión</button>
-    </form>
+<section class="section" id="como-funciona"><div class="wrap">
+<div class="section-head reveal"><span class="kicker">Una ruta con propósito</span><h2>Aprender tecnología, con dirección.</h2><p>Capricornio reúne orientación, contenidos y herramientas para que sepas qué estudiar y puedas avanzar con criterio.</p></div>
+<div class="steps">
+<article class="step reveal"><span class="step-num">01</span><h3>Encuentra tu punto de partida</h3><p>Explora las áreas y realiza un diagnóstico inicial para orientar tu ruta según tus conocimientos e intereses.</p></article>
+<article class="step reveal"><span class="step-num">02</span><h3>Aprende con recursos</h3><p>Consulta documentación, tutoriales, repositorios y materiales gratuitos organizados para acompañar tu aprendizaje.</p></article>
+<article class="step reveal"><span class="step-num">03</span><h3>Practica y revisa tu avance</h3><p>Trabaja las lecciones, realiza actividades y conserva en tu cuenta el progreso que vas construyendo.</p></article>
+</div>
+</div></section>
 
-    <a class="boton secundario" href="registro.html">Crear cuenta</a>
-  </div>
-</section>
+<section class="section areas" id="areas"><div class="wrap">
+<div class="section-head reveal"><span class="kicker">Explora posibilidades</span><h2>Un mundo de tecnología por descubrir.</h2><p>Ocho áreas para empezar a explorar. Puedes cambiar de dirección mientras descubres qué te apasiona.</p></div>
+<div class="area-grid">
+<a class="area-card reveal" href="diagnostico.html?area=Ciberseguridad"><span class="area-symbol">CS</span><strong>Ciberseguridad</strong><small>Protección de sistemas, aplicaciones, redes y datos.</small><span class="arrow">Explorar área ↗</span></a>
+<a class="area-card reveal" href="diagnostico.html?area=Desarrollo%20frontend"><span class="area-symbol">FE</span><strong>Desarrollo frontend</strong><small>Interfaces web accesibles, atractivas y funcionales.</small><span class="arrow">Explorar área ↗</span></a>
+<a class="area-card reveal" href="diagnostico.html?area=Desarrollo%20backend"><span class="area-symbol">BE</span><strong>Desarrollo backend</strong><small>APIs, servicios y lógica de aplicaciones.</small><span class="arrow">Explorar área ↗</span></a>
+<a class="area-card reveal" href="diagnostico.html?area=Análisis%20de%20datos"><span class="area-symbol">DA</span><strong>Análisis de datos</strong><small>Consultas, análisis y lectura de información.</small><span class="arrow">Explorar área ↗</span></a>
+<a class="area-card reveal" href="diagnostico.html?area=Inteligencia%20artificial"><span class="area-symbol">IA</span><strong>Inteligencia artificial</strong><small>Modelos, automatización y soluciones inteligentes.</small><span class="arrow">Explorar área ↗</span></a>
+<a class="area-card reveal" href="diagnostico.html?area=Bases%20de%20datos"><span class="area-symbol">BD</span><strong>Bases de datos</strong><small>Organización, consulta y gestión de información.</small><span class="arrow">Explorar área ↗</span></a>
+<a class="area-card reveal" href="diagnostico.html?area=Redes%20y%20sistemas"><span class="area-symbol">RS</span><strong>Redes y sistemas</strong><small>Linux, redes, servidores y sistemas operativos.</small><span class="arrow">Explorar área ↗</span></a>
+<a class="area-card reveal" href="diagnostico.html?area=Programación"><span class="area-symbol">PG</span><strong>Programación</strong><small>Lógica, algoritmos y lenguajes para crear soluciones.</small><span class="arrow">Explorar área ↗</span></a>
+</div>
+</div></section>
 
 
-<section class="presentacion" aria-labelledby="que-es-capricornio">
- <div class="contenido">
-  <h2 id="que-es-capricornio">¿Qué es Capricornio?</h2>
-  <p class="intro">Capricornio es un espacio de aprendizaje tecnológico que organiza tu recorrido y te acompaña a estudiar con recursos educativos gratuitos que ya existen en Internet. No reemplaza a sus autores ni guarda copias de sus cursos: te orienta para aprender directamente de las fuentes originales y convertir ese estudio en práctica.</p>
-  <h2>¿Cómo funciona?</h2>
-  <div class="pasos">
-   <article class="paso"><span class="numero">1</span><h3>Descubre tu punto de partida</h3><p>Respondes un diagnóstico y eliges el área que te interesa. Con esa información se propone una ruta inicial que puedes ajustar.</p></article>
-   <article class="paso"><span class="numero">2</span><h3>Estudia con una guía</h3><p>Cada lección te explica qué aprender y te dirige a documentación, tutoriales, cursos o proyectos gratuitos en sus sitios originales.</p></article>
-   <article class="paso"><span class="numero">3</span><h3>Regresa y practica</h3><p>Después de estudiar, vuelves para resolver actividades, revisar tus respuestas y reforzar los conceptos que necesitan más trabajo.</p></article>
-  </div>
-  <h2 style="margin-top:48px">Áreas de aprendizaje</h2>
-  <p class="intro">Puedes comenzar por una especialidad y ampliar tus conocimientos a otras disciplinas.</p>
-  <div class="areas">
-   <div class="area">Ciberseguridad</div><div class="area">Desarrollo frontend</div><div class="area">Desarrollo backend</div><div class="area">Análisis de datos</div>
-   <div class="area">Inteligencia artificial</div><div class="area">Bases de datos</div><div class="area">Redes y sistemas</div><div class="area">Programación y lenguajes</div>
-  </div>
-  <div class="nota"><h3>Tu aprendizaje, en tu propio espacio</h3><p>Capricornio está pensado para que cada estudiante pueda alojar su instalación en su propio computador. El progreso permanece en ese entorno; los materiales educativos continúan en las páginas de sus creadores. No necesitas pagar por una biblioteca central de contenidos.</p></div>
- </div>
-</section>
+<section class="section projects" id="proyectos"><div class="wrap">
+<div class="section-head reveal"><span class="kicker">Aprendizaje con propósito</span><h2>Aprende construyendo algo real.</h2><p>Las rutas de Capricornio incluyen proyectos integradores para aplicar conceptos, documentar decisiones y mostrar cómo resuelves problemas.</p></div>
+<div class="project-grid">
+<article class="project-card reveal"><div class="project-top"><span class="project-tag">CIBERSEGURIDAD</span><span class="project-icon">01</span></div><h3>Evalúa un laboratorio local</h3><p>Define un alcance autorizado, registra hallazgos reproducibles y plantea mitigaciones con criterio.</p><details><summary>Ver entregables del proyecto</summary><ul><li>Diagrama del laboratorio y alcance autorizado.</li><li>Registro de hallazgos y matriz de riesgo.</li><li>Plan de mitigación e informe técnico.</li></ul></details></article>
+<article class="project-card reveal"><div class="project-top"><span class="project-tag">BACKEND</span><span class="project-icon">02</span></div><h3>Construye una API de inventario</h3><p>Diseña endpoints, valida datos, organiza persistencia y documenta cómo probar el servicio.</p><details><summary>Ver entregables del proyecto</summary><ul><li>Código fuente y esquema de datos.</li><li>Contrato de endpoints y ejemplos.</li><li>Pruebas, documentación y guía de despliegue.</li></ul></details></article>
+<article class="project-card reveal"><div class="project-top"><span class="project-tag">FRONTEND</span><span class="project-icon">03</span></div><h3>Diseña una web accesible</h3><p>Crea un sitio responsive con navegación por teclado, formularios claros y contenido semántico.</p><details><summary>Ver entregables del proyecto</summary><ul><li>Repositorio e instrucciones de ejecución.</li><li>Páginas adaptables e interacciones.</li><li>Pruebas de teclado y documentación.</li></ul></details></article>
+<article class="project-card reveal"><div class="project-top"><span class="project-tag">DATOS</span><span class="project-icon">04</span></div><h3>Investiga un conjunto de datos</h3><p>Formula preguntas, limpia datos, analiza patrones y presenta conclusiones con sus límites.</p><details><summary>Ver entregables del proyecto</summary><ul><li>Fuente y diccionario de datos.</li><li>Análisis reproducible y visualizaciones.</li><li>Informe con conclusiones y limitaciones.</li></ul></details></article>
+</div></div></section>
+\n<section class="section" id="practica"><div class="wrap practice">
+<div class="practice-copy reveal"><span class="kicker">Aprender haciendo</span><h2>La práctica convierte ideas en habilidades.</h2><p>Explora las lecciones y actividades de Capricornio. Trabaja con ejemplos, interpreta resultados y fortalece tu forma de resolver problemas.</p>
+<div class="feature-list"><div class="feature"><span class="check">✓</span><span>Lecciones organizadas por áreas y módulos.</span></div><div class="feature"><span class="check">✓</span><span>Entorno de práctica con ejecución de Python en el navegador.</span></div><div class="feature"><span class="check">✓</span><span>Diagnóstico y seguimiento del progreso de aprendizaje.</span></div></div>
+<a class="btn" href="registro.html">Explorar Capricornio <span aria-hidden="true">→</span></a></div>
+<div class="editor reveal" aria-label="Editor interactivo de Python"><div class="editor-top"><span>capricornio.py · Python</span><span class="dots"><i></i><i></i><i></i></span></div><div class="editor-toolbar"><span>PRUEBA EL EDITOR · CAMBIA EL CÓDIGO Y EJECÚTALO</span><button class="run-demo" id="runDemo" type="button">▶ Ejecutar</button></div><textarea id="demoCode" class="demo-code" spellcheck="false" aria-label="Código Python editable">nombre = "Capricornio"
+print(f"Hola, {nombre}!")
+print("Hoy doy un paso más.")</textarea><div class="demo-output" aria-live="polite"><div class="demo-output-head"><span>CONSOLA</span><span id="demoState">Listo para ejecutar</span></div><pre id="demoResult">La salida de tu programa aparecerá aquí.</pre></div><div class="demo-tests"><span>CASO DE PRUEBA</span><span id="demoTest" class="test-pending">Pendiente · Ejecuta el código</span></div></div>
+</div></section>
+
+
+<section class="section faq"><div class="wrap"><div class="section-head reveal"><span class="kicker">Respuestas claras</span><h2>Antes de empezar.</h2><p>Lo que necesitas saber sobre la versión actual de Capricornio.</p></div><div class="faq-list">
+<details class="faq-item reveal"><summary>¿Necesito instalar programas?</summary><p>La plataforma funciona desde el navegador. Para los ejercicios de Python se descarga Pyodide al iniciar el motor; no tienes que instalar Python en tu equipo.</p></details>
+<details class="faq-item reveal"><summary>¿Qué puedo aprender?</summary><p>Hay ocho áreas: ciberseguridad, frontend, backend, análisis de datos, inteligencia artificial, bases de datos, redes y sistemas, y programación.</p></details>
+<details class="faq-item reveal"><summary>¿Capricornio entrega certificaciones oficiales?</summary><p>No. Los diagnósticos y niveles actuales son orientativos y no equivalen a títulos ni certificaciones oficiales. Capricornio no debe anunciar credenciales verificables que todavía no ofrece.</p></details>
+<details class="faq-item reveal"><summary>¿Todos los ejercicios ejecutan código?</summary><p>La versión actual incluye cuatro ejercicios iniciales de Python ejecutados en el navegador. Otras lecciones pueden contener actividades de comprensión; la ampliación a retos de código forma parte de la evolución del producto.</p></details>
+<details class="faq-item reveal"><summary>¿Qué pasa con mis datos y mi progreso?</summary><p>La cuenta y el progreso se guardan en la instalación de Capricornio que utilizas. Consulta la política de privacidad para conocer los datos, finalidades, derechos y canales del responsable de esa instalación.</p></details>
+</div></div></section>\n<section class="path-banner"><div class="wrap path-grid"><div><span class="kicker" style="color:#e6d3a8">Tu siguiente paso empieza hoy</span><h2>Trabaja con intención. Persiste en el proceso. Avanza con confianza.</h2><p>Abre tu espacio de aprendizaje, descubre las rutas y construye tu propio camino en tecnología.</p></div><a class="btn" href="registro.html">Crear mi cuenta <span aria-hidden="true">→</span></a></div></section>
+</main>
+
+<footer class="footer"><div class="wrap"><div class="footer-grid">
+<div><a class="footer-brand" href="login.html">CAPRICORNIO</a><p>Trabajar, persistir y avanzar. Un espacio de aprendizaje tecnológico que conecta rutas, recursos y práctica.</p></div>
+<div><h4>Explora</h4><div class="footer-links"><a href="#como-funciona">Cómo funciona</a><a href="#areas">Áreas de aprendizaje</a><a href="#practica">Aprender haciendo</a><a href="ayuda.html">Centro de ayuda</a></div></div>
+<div><h4>Tu cuenta y confianza</h4><div class="footer-links"><a href="registro.html">Crear cuenta</a><a href="#" data-open-login>Iniciar sesión</a><a href="privacidad.html">Privacidad y datos</a><a href="terminos.html">Términos y condiciones</a><a href="cookies.html">Cookies</a><a href="accesibilidad.html">Accesibilidad</a><a href="uso-responsable.html">Uso responsable</a><a href="seguridad.html">Seguridad</a><a href="mapa-sitio.html">Mapa del sitio</a><a href="creditos.html">Créditos y atribuciones</a></div></div>
+</div><div class="footer-bottom"><span>© <span id="year"></span> Capricornio Plus</span><span>Aprendizaje con propósito · Diseño accesible y adaptable</span></div></div></footer>
+
+<div class="login-overlay" id="loginOverlay" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+<div class="login-card"><button class="close-login" id="closeLogin" type="button" aria-label="Cerrar">×</button><h2 id="loginTitle">Qué bueno verte.</h2><p>Ingresa a tu espacio y continúa construyendo tu ruta.</p>
+<form id="login-form" novalidate>
+<div class="field"><label for="email">Correo electrónico</label><input id="email" type="email" name="email" inputmode="email" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="nombre@correo.com" required></div>
+<div class="field"><label for="password">Contraseña</label><div class="password-wrap"><input id="password" type="password" name="password" autocomplete="current-password" placeholder="Ingresa tu contraseña" required><button class="toggle-password" id="toggle-password" type="button" aria-controls="password" aria-pressed="false">Mostrar</button></div></div>
+<p class="login-error" id="mensaje" role="alert" aria-live="assertive"></p><button class="btn" id="ingresar" type="submit">Iniciar sesión</button>
+</form><a class="signup" href="registro.html">¿Aún no tienes cuenta? Crear cuenta</a>
+</div></div>
 
 <script>
-const formulario = document.getElementById("login-form");
-const mensaje = document.getElementById("mensaje");
-const boton = document.getElementById("ingresar");
+const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
+menuToggle.addEventListener("click",()=>{const open=navLinks.classList.toggle("open");menuToggle.setAttribute("aria-expanded",String(open));});
+navLinks.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{navLinks.classList.remove("open");menuToggle.setAttribute("aria-expanded","false");}));
+const cat=document.getElementById("catMascot"),speech=document.getElementById("catSpeech");
+const catLines=["¡Hola! Soy tu compañero de ruta. Toca mi patita.","¡Eso! Un paso pequeño también cuenta.","¿Un reto nuevo? Yo te acompaño.","Respira, observa y vuelve a intentarlo.","La curiosidad abre caminos. ¡Vamos!"];
+let catIndex=0;
+function greetCat(){catIndex=(catIndex+1)%catLines.length;speech.textContent=catLines[catIndex];cat.classList.remove("pounce");void cat.offsetWidth;cat.classList.add("pounce");}
+cat.addEventListener("click",greetCat);cat.addEventListener("animationend",e=>{if(e.animationName==="catPounce")cat.classList.remove("pounce");});
+if(matchMedia("(pointer:fine)").matches){document.querySelector(".hero-visual").addEventListener("pointermove",e=>{const r=cat.getBoundingClientRect(),x=(e.clientX-(r.left+r.width/2))/r.width,y=(e.clientY-(r.top+r.height/2))/r.height;cat.style.setProperty("--cat-x",Math.max(-7,Math.min(7,x*8))+"px");cat.style.setProperty("--cat-y",Math.max(-5,Math.min(5,y*5))+"px");});document.querySelector(".hero-visual").addEventListener("pointerleave",()=>{cat.style.setProperty("--cat-x","0px");cat.style.setProperty("--cat-y","0px");});}
+const overlay=document.getElementById("loginOverlay"),closeLogin=document.getElementById("closeLogin");
+function openLogin(){overlay.classList.add("open");document.body.style.overflow="hidden";setTimeout(()=>document.getElementById("email").focus(),50);}
+function hideLogin(){overlay.classList.remove("open");document.body.style.overflow="";}
+document.querySelectorAll("[data-open-login]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();openLogin();}));
+closeLogin.addEventListener("click",hideLogin);overlay.addEventListener("click",e=>{if(e.target===overlay)hideLogin();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")hideLogin();});
+const observer=("IntersectionObserver" in window)?new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target);}}),{threshold:.12}):null;
+document.querySelectorAll(".reveal").forEach(el=>{if(observer)observer.observe(el);else el.classList.add("visible");});
+document.getElementById("year").textContent=new Date().getFullYear();
+const runDemo=document.getElementById("runDemo"),demoCode=document.getElementById("demoCode"),demoResult=document.getElementById("demoResult"),demoState=document.getElementById("demoState"),demoTest=document.getElementById("demoTest");
+let demoWorker=null,demoRequest=0;
+runDemo.addEventListener("click",()=>{if(!demoWorker){demoWorker=new Worker("js/python-runner.js");demoWorker.onmessage=event=>{const data=event.data||{};if(data.id!==demoRequest)return;runDemo.disabled=false;runDemo.textContent="▶ Ejecutar";if(data.ok){demoResult.textContent=(data.stdout||"")+(data.stderr?"\n"+data.stderr:"")||"El programa terminó sin mostrar salida.";demoState.textContent="Ejecución completada";const expected="Hola, Capricornio!\nHoy doy un paso más.";const passed=(data.stdout||"").trim()===expected;demoTest.textContent=passed?"✓ Prueba superada":"Ejecución correcta · revisa el resultado";demoTest.className=passed?"test-pass":"test-pending";}else{demoResult.textContent=data.error||"No se pudo ejecutar el código.";demoState.textContent="Revisa tu código";demoTest.textContent="No superado · Corrige el error";demoTest.className="test-fail";}};demoWorker.onerror=()=>{runDemo.disabled=false;demoState.textContent="No se pudo iniciar Python";demoResult.textContent="No se pudo cargar el motor de Python. Revisa tu conexión e inténtalo de nuevo.";};}runDemo.disabled=true;runDemo.textContent="Preparando…";demoState.textContent="Iniciando Python en el navegador…";demoResult.textContent="Cargando el entorno de ejecución…";demoTest.textContent="En ejecución";demoTest.className="test-pending";demoRequest+=1;demoWorker.postMessage({id:demoRequest,code:demoCode.value});});
 
-formulario.addEventListener("submit", async (evento) => {
-  evento.preventDefault();
-  mensaje.textContent = "";
-  boton.disabled = true;
-  boton.textContent = "Verificando...";
-
-  const campos = new FormData(formulario);
-
-  try {
-    const respuesta = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "same-origin",
-      body: JSON.stringify({
-        email: campos.get("email").trim(),
-        password: campos.get("password")
-      })
-    });
-
-    const resultado = await respuesta.json();
-
-    if (!respuesta.ok) {
-      throw new Error(resultado.detail || "Correo o contraseña incorrectos.");
-    }
-
-    const estado = await fetch("/api/diagnostic/latest", {
-      method: "GET",
-      credentials: "same-origin"
-    });
-
-    if (!estado.ok) {
-      const detalle = await estado.json().catch(() => ({}));
-      throw new Error(
-        `Error consultando progreso (${estado.status}): ${detalle.detail || "Respuesta del servidor no válida."}`
-      );
-    }
-
-    const datos = await estado.json();
-
-    window.location.href = datos.diagnostic
-      ? "plan.html"
-      : "diagnostico.html";
-
-  } catch (error) {
-    mensaje.textContent = error.message || "No se pudo conectar con el servidor.";
-    boton.disabled = false;
-    boton.textContent = "Iniciar sesión";
-  }
-});
+const formulario=document.getElementById("login-form"),mensaje=document.getElementById("mensaje"),boton=document.getElementById("ingresar"),campoEmail=document.getElementById("email"),campoPassword=document.getElementById("password"),togglePassword=document.getElementById("toggle-password");
+togglePassword.addEventListener("click",()=>{const mostrar=campoPassword.type==="password";campoPassword.type=mostrar?"text":"password";togglePassword.textContent=mostrar?"Ocultar":"Mostrar";togglePassword.setAttribute("aria-pressed",String(mostrar));campoPassword.focus();});
+function mostrarError(texto,campo=null){mensaje.textContent=texto;campoEmail.removeAttribute("aria-invalid");campoPassword.removeAttribute("aria-invalid");if(campo){campo.setAttribute("aria-invalid","true");campo.focus();}}
+formulario.addEventListener("submit",async evento=>{evento.preventDefault();mensaje.textContent="";campoEmail.removeAttribute("aria-invalid");campoPassword.removeAttribute("aria-invalid");const email=campoEmail.value.trim(),password=campoPassword.value;if(!email||!campoEmail.validity.valid){mostrarError("Escribe un correo electrónico válido.",campoEmail);return;}if(!password){mostrarError("Escribe tu contraseña para continuar.",campoPassword);return;}boton.disabled=true;boton.setAttribute("aria-busy","true");boton.textContent="Verificando...";try{const respuesta=await fetch("/api/login",{method:"POST",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:JSON.stringify({email,password})});const resultado=await respuesta.json().catch(()=>({}));if(!respuesta.ok)throw new Error(resultado.detail||"Correo o contraseña incorrectos.");const estado=await fetch("/api/diagnostic/latest",{method:"GET",credentials:"same-origin"});if(!estado.ok){const detalle=await estado.json().catch(()=>({}));throw new Error(`Error consultando progreso (${estado.status}): ${detalle.detail||"Respuesta del servidor no válida."}`);}const datos=await estado.json();window.location.href=datos.diagnostic?"plan.html":"diagnostico.html";}catch(error){mensaje.textContent=error.message||"No se pudo conectar con el servidor.";boton.disabled=false;boton.removeAttribute("aria-busy");boton.textContent="Iniciar sesión";}});
 </script>
-
-
-<button id="gato-asistente" type="button" aria-label="Pedir ayuda al gato guía" aria-controls="gato-ayuda" aria-expanded="false"><img src="img/gato.webp" alt=""></button>
-<div id="gato-ayuda" role="status" aria-live="polite">¡Hola! 🐾 ¿Creamos tu cuenta? Te muestro dónde comenzar.</div>
-<script>
-(() => {
- const gato=document.getElementById("gato-asistente"), ayuda=document.getElementById("gato-ayuda");
- const crear=document.querySelector('a.boton.secundario[href="registro.html"]');
- if(!gato||!ayuda||!crear)return;
- gato.addEventListener("click",()=>{
-  const abierto=ayuda.classList.toggle("visible"); gato.setAttribute("aria-expanded",String(abierto));
-  if(abierto){crear.id="gato-crear-cuenta";crear.scrollIntoView({behavior:"smooth",block:"center"});window.setTimeout(()=>crear.removeAttribute("id"),5000)}
- });
-})();
-</script>
-
-</body>
-</html>
+</body></html>
