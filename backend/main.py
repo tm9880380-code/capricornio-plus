@@ -237,6 +237,11 @@ AREA_BANK_KEY = {
     "Bases de datos": "Bases de datos",
     "Redes y sistemas": "Redes y sistemas",
     "Programación y lenguajes": "Fundamentos de programación",
+    "Python": "Fundamentos de programación",
+    "JavaScript": "Fundamentos de programación",
+    "Go": "Fundamentos de programación",
+    "Java": "Fundamentos de programación",
+    "C++": "Fundamentos de programación",
 }
 VALID_LEARNING_AREAS = set(AREAS) | set(AREA_BANK_KEY)
 
@@ -953,7 +958,7 @@ def home():
 def serve_page(page: str):
     allowed = {
         "index", "registro", "login", "diagnostico",
-        "plan", "modulo", "leccion", "practica", "suscripciones"
+        "plan", "modulo", "leccion", "practica", "suscripciones", "recursos"
     }
     if page not in allowed:
         raise HTTPException(status_code=404, detail="Página no encontrada.")
