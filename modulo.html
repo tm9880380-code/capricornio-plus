@@ -9,7 +9,12 @@ const [meR,diagR,currR,progressR]=await Promise.all([fetch("/api/me",{credential
 if(!meR.ok||!diagR.ok||!currR.ok||!progressR.ok)throw new Error("Inicia sesión para consultar tu ruta.");
 const me=(await meR.json()).user,diag=(await diagR.json()).diagnostic,curr=await currR.json(),progress=await progressR.json();
 let chosen=diag?.learning_area||me.learning_goal;
-const aliases={"Desarrollo frontend":"frontend","Desarrollo backend":"backend","Python":"programacion","JavaScript":"programacion","Go":"programacion","Java":"programacion","C++":"programacion","Programación y lenguajes":"programacion"};
+const aliases={
+        "Desarrollo web":"frontend",
+        "Desarrollo de software y programación":"programacion",
+        "Fundamentos de programación":"programacion",
+        "Programación orientada a objetos":"programacion",
+        "Inteligencia artificial":"ia","Desarrollo frontend":"frontend","Desarrollo backend":"backend","Python":"programacion","JavaScript":"programacion","Go":"programacion","Java":"programacion","C++":"programacion","Programación y lenguajes":"programacion"};
 let area=curr.areas.find(a=>a.name===chosen)||curr.areas.find(a=>a.id===aliases[chosen]);
 if(!area)area=curr.areas.find(a=>a.id==="programacion");
 $("cabecera").innerHTML="";
