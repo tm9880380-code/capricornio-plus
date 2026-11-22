@@ -36,7 +36,7 @@ async function runPython(){
   await api("/api/lessons/attempt",{method:"POST",body:JSON.stringify({lesson_id:lessonId,correct:passed})});
   if(passed){$("salida").className="respuesta ok";$("estado").textContent="La salida coincide con el resultado esperado. ¡Muy bien!";await complete();}
   else{$("salida").className="respuesta error";$("estado").textContent="El código se ejecutó, pero el resultado no coincide con lo que pide el ejercicio. Compara tu salida con la consigna y vuelve a intentarlo. "+(lessonData.lesson.hint||"Revisa la consigna, el ejemplo y la salida esperada.");}
- }catch(error){clearTimeout(timeout);if(worker&&String(error.message).includes("8 segundos")){worker.terminate();worker=null;}$("estado").textContent=error.message||"No fue posible ejecutar Python."; }
+ }catch(error){clearTimeout(timeout);if(worker){worker.terminate();worker=null;} $("estado").textContent=error.message||"No fue posible ejecutar Python."; }
  finally{$("ejecutar").disabled=false;}
 }
 async function answerQuiz(value,button){
@@ -53,7 +53,7 @@ try{
  lessonData=await api("/api/lessons/"+encodeURIComponent(lessonId));
  const l=lessonData.lesson;$("titulo").textContent=l.title;$("resumen").textContent=l.concept||"";$("area").textContent=lessonData.area;$("modulo").textContent=lessonData.module;$("explicacion").textContent=l.explanation||l.concept||"";$("ejemplo").textContent=l.example||"Consulta los recursos recomendados para ver ejemplos."; $("recordatorio").textContent=l.remember||"";$("consigna").textContent=l.task||"Responde la pregunta para comprobar lo aprendido.";
  if(l.type==="code"){$("zona-codigo").hidden=false;$("codigo").value="";$("ejecutar").addEventListener("click",runPython);}
- else{$("zona-pregunta").hidden=false;$("pregunta").textContent=l.question;const bank=await api("/api/curriculum/"+lessonData.area_id);for(let i=0;i<l.options.length;i++){const b=document.createElement("button");b.type="button";b.className="opcion-leccion";b.textContent=l.options[i];b.addEventListener("click",()=>answerQuiz(String.fromCharCode(97+i),b));$("opciones").append(b);}}
+ else{$("zona-pregunta").hidden=false;$("pregunta").textContent=l.question;for(let i=0;i<l.options.length;i++){const b=document.createElement("button");b.type="button";b.className="opcion-leccion";b.textContent=l.options[i];b.addEventListener("click",()=>answerQuiz(String.fromCharCode(97+i),b));$("opciones").append(b);}}
  const resourceData=await api("/api/resources/"+lessonData.area_id);$("recursos-leccion").replaceChildren();for(const r of resourceData.resources.slice(0,8)){const a=document.createElement("a");a.className="recurso-link";a.href=r.url;a.target="_blank";a.rel="noopener noreferrer";a.textContent=r.title+" · "+r.type+" ↗";$("recursos-leccion").append(a);}
 }catch(e){$("titulo").textContent="No se pudo cargar la lección";$("estado").textContent=e.message;}
 $("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
