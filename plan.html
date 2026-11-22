@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Capricornio · Mi espacio</title><link rel="stylesheet" href="css/estilos.css"><style>
-.panel{background:#f3e6c8;border:2px solid #5a3a1e;border-radius:12px;padding:22px;margin:18px 0}.barra-progreso{height:12px;background:#eadfc8;border-radius:20px;overflow:hidden;margin:12px 0}.barra-progreso span{display:block;height:100%;background:#8f6b3e}.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.area{padding:16px;border:1px solid #b69a70;border-radius:10px;background:#fbf4e2}.area h3{margin-bottom:5px}.area p{font-size:14px}.area a{font-weight:bold;text-decoration:underline}.acciones{display:flex;gap:10px;flex-wrap:wrap}
+/* Paneles del espacio personal */
+.panel{background:rgba(255,250,240,.88);border:1px solid #d5c19d;border-radius:18px;padding:clamp(20px,3vw,30px);margin:22px 0;box-shadow:0 10px 30px rgba(43,22,8,.055)}
+.panel h2{font-family:"Trebuchet MS",Arial,sans-serif;font-size:clamp(21px,2vw,26px);font-weight:750;letter-spacing:-.035em;color:#3b2314;margin-bottom:9px}
+.panel>p{color:#70583f;line-height:1.7}
+.barra-progreso{height:10px;background:#eadfc8;border-radius:20px;overflow:hidden;margin:14px 0}
+.barra-progreso span{display:block;height:100%;background:linear-gradient(90deg,#8f6b3e,#b69a70);border-radius:20px;transition:width .45s ease}
+.acciones{display:flex;gap:11px;flex-wrap:wrap}
+#explorador-areas{background:linear-gradient(145deg,#fffaf0,#f8f0df)}
+#explorador-areas>p{max-width:680px}
+.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:16px;margin-top:23px}
+.area{
+ position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:218px;
+ padding:21px;border:1px solid #d7c29e;border-radius:15px;background:#fffdf8;
+ color:#2b1608;text-decoration:none;overflow:hidden;
+ box-shadow:0 4px 13px rgba(43,22,8,.045);
+ transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.area::after{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,#8f6b3e,#e6d3a8);opacity:.72}
+.area:hover{transform:translateY(-5px);border-color:#a98a5e;background:#fffaf0;box-shadow:0 14px 28px rgba(43,22,8,.11)}
+.area:focus-visible{outline:3px solid #8f6b3e;outline-offset:3px}
+.area-icon{display:grid;place-items:center;width:43px;height:43px;margin-bottom:17px;border:1px solid #e1d0b1;border-radius:13px;background:#f6ecd6;color:#5a3a1e;font-size:12px;font-weight:800;letter-spacing:.04em}
+.area h3{margin:0 0 8px;color:#3b2314;font-family:"Trebuchet MS",Arial,sans-serif;font-size:16px;font-weight:750;line-height:1.35;letter-spacing:-.02em}
+.area p{margin:0 0 19px;color:#806b55;font-size:13px;line-height:1.6}
+.area-action{display:flex;align-items:center;gap:8px;margin-top:auto;color:#69451f;font-size:13px;font-weight:750}
+.area-arrow{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#f3e6c8;transition:transform .2s ease,background .2s ease}
+.area:hover .area-arrow{transform:translateX(4px);background:#e6d3a8}
+#estado{color:#8a3c2b}
+@media(max-width:600px){.panel{padding:19px;border-radius:15px}.area-grid{grid-template-columns:1fr;gap:12px}.area{min-height:190px;padding:19px}}
+@media(prefers-reduced-motion:reduce){.area,.area-arrow,.barra-progreso span{transition:none}}
 </style></head><body>
 <header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi inicio</a><a href="recursos.html">Explorar recursos</a><a href="practica.html">Practicar</a><a href="login.html" id="salir">Cerrar sesión</a></nav></header>
 <main class="contenedor"><p>Tu espacio de aprendizaje</p><h1 id="saludo">¡Hola!</h1><p>Tu espacio de estudio: continúa tu ruta, consulta recursos y revisa lo que ya puedes demostrar.</p>
@@ -10,17 +38,29 @@
 <p id="estado" role="status" aria-live="polite"></p></main><footer class="pie-pagina">Capricornio · Conectar para aprender</footer>
 <script>
 const areas=[
-["Ciberseguridad","Proteger sistemas, aplicaciones y datos."],
-["Desarrollo frontend","Construir interfaces, páginas y experiencias web."],
-["Desarrollo backend","Crear APIs, servicios y lógica de aplicaciones."],
-["Análisis de datos","Explorar datos y obtener conclusiones."],
-["Inteligencia artificial y modelos de lenguaje","Comprender y construir soluciones con IA."],
-["Bases de datos","Guardar, consultar y administrar información."],
-["Redes y sistemas","Aprender Linux, redes, servidores y sistemas operativos."],
-["Programación y lenguajes","Aprender Python, JavaScript, Go, Java, C++ y más."]
+["CY","Ciberseguridad","Aprende a proteger sistemas, aplicaciones, redes y datos."],
+["FE","Desarrollo frontend","Diseña interfaces web accesibles, atractivas y fáciles de usar."],
+["BE","Desarrollo backend","Construye APIs, servicios y la lógica que impulsa aplicaciones."],
+["DA","Análisis de datos","Transforma información en consultas, hallazgos y decisiones."],
+["IA","Inteligencia artificial y modelos de lenguaje","Explora modelos, automatización y soluciones inteligentes."],
+["BD","Bases de datos","Organiza, consulta y administra información de forma segura."],
+["RS","Redes y sistemas","Domina Linux, redes, servidores y sistemas operativos."],
+["PG","Programación y lenguajes","Desarrolla pensamiento lógico con Python, JavaScript, Go y más."]
 ];
 const grid=document.getElementById("areas");
-for(const [name,desc] of areas){const card=document.createElement("article");card.className="area";const h=document.createElement("h3");h.textContent=name;const p=document.createElement("p");p.textContent=desc;const a=document.createElement("a");a.href="diagnostico.html?area="+encodeURIComponent(name);a.textContent="Explorar esta ruta →";card.append(h,p,a);grid.append(card);}
+for(const [code,name,desc] of areas){
+ const card=document.createElement("a");
+ card.className="area";
+ card.href="diagnostico.html?area="+encodeURIComponent(name);
+ card.setAttribute("aria-label","Explorar el área de "+name);
+ const icon=document.createElement("span");icon.className="area-icon";icon.setAttribute("aria-hidden","true");icon.textContent=code;
+ const h=document.createElement("h3");h.textContent=name;
+ const p=document.createElement("p");p.textContent=desc;
+ const action=document.createElement("span");action.className="area-action";
+ const label=document.createElement("span");label.textContent="Explorar área";
+ const arrow=document.createElement("span");arrow.className="area-arrow";arrow.setAttribute("aria-hidden","true");arrow.textContent="→";
+ action.append(label,arrow);card.append(icon,h,p,action);grid.append(card);
+}
 (async()=>{
 const status=document.getElementById("estado");
 try{
