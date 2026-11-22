@@ -1314,14 +1314,14 @@ def serve_page(page: str, capricornio_session: str | None = Cookie(default=None)
         "index", "registro", "login", "diagnostico",
         "plan", "modulo", "leccion", "practica", "suscripciones", "recursos",
         "ayuda", "ajustes", "perfil", "entorno",
-        "privacidad", "terminos", "cookies", "accesibilidad",
+        "privacidad", "aviso-privacidad", "terminos", "cookies", "accesibilidad",
         "uso-responsable", "seguridad", "mapa-sitio", "creditos"
     }
     if page not in allowed:
         raise HTTPException(status_code=404, detail="Página no encontrada.")
 
     # Las páginas legales son públicas; las páginas de aprendizaje requieren sesión.
-    if page not in {"index", "registro", "login", "privacidad", "terminos", "cookies",
+    if page not in {"index", "registro", "login", "privacidad", "aviso-privacidad", "terminos", "cookies",
                     "accesibilidad", "uso-responsable", "seguridad", "mapa-sitio", "creditos"}:
         try:
             current_user(capricornio_session)
