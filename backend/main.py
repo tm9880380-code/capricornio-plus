@@ -624,12 +624,19 @@ def submit_diagnostic(data: DiagnosticSubmitData, user=Depends(current_user)):
     correct_count = sum(data.answers[qid] == correct for qid, correct in expected.items())
     score = round(correct_count / len(expected) * 100, 2)
 
-    if score <= 33.34:
-        level = "Principiante"
+    if score <= 16.67:
+        level = "A1 · Principiante absoluto"
+    elif score <= 33.34:
+        level = "A2 · Principiante con fundamentos"
+    elif score <= 50:
+        level = "B1 · Básico funcional"
     elif score <= 66.67:
-        level = "Básico en desarrollo"
+        level = "B2 · Intermedio"
+    elif score <= 83.33:
+        level = "C1 · Avanzado"
     else:
-        level = "Intermedio inicial"
+        level = "C2 · Especialización"
+    level += " (estimación inicial no certificada)"
 
     with closing(connect()) as db:
         attempt = db.execute(
