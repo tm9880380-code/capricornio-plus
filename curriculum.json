@@ -318,7 +318,7 @@
               "feedback": "main identifica el contenido principal.",
               "type": "quiz",
               "resource_ids": [
-                "MDN · Estructurando la web con HTML"
+                "MDN HTML"
               ],
               "reinforcement": "HTML es el plano y la estructura de una casa: define qué es una puerta, una habitación o una entrada. No decide el color de las paredes."
             },
@@ -452,9 +452,9 @@
           "language": "es"
         },
         {
-          "title": "MDN · Estructurando la web con HTML",
+          "title": "MDN HTML",
           "type": "Documentación guiada",
-          "description": "Aprende a organizar contenido con elementos semánticos, enlaces, listas, imágenes y formularios. No exige experiencia previa en HTML.",
+          "description": "Tutorial en español para estructurar contenido con elementos semánticos, enlaces, listas, imágenes y formularios.",
           "url": "https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content",
           "topic": "HTML semántico",
           "level": "Principiante",
