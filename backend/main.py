@@ -22,6 +22,7 @@ from backend.adaptive.adaptive_engine import (
     Response as AdaptiveResponse,
 )
 from backend.adaptive.bkt import BKTParameters, update_mastery
+from backend.adaptive.practical_curriculum import build_catalog, build_area
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = Path(os.getenv("CAPRICORNIO_DATA_DIR") or BASE_DIR / "data")
@@ -1106,6 +1107,20 @@ def answer_learning_item(data: LearningAnswerData, user=Depends(current_user)):
         "reinforcement": lesson.get("reinforcement"),
         "competency_update": update,
     }
+
+
+@app.get("/api/practical/catalog")
+def get_practical_catalog(user=Depends(current_user)):
+    """Currículo estructurado: 15 módulos y 10 retos por módulo en cada área."""
+    return build_catalog()
+
+
+@app.get("/api/practical/area/{area_id}")
+def get_practical_area(area_id: str, user=Depends(current_user)):
+    try:
+        return build_area(area_id)
+    except KeyError:
+        raise HTTPException(status_code=404, detail="Área práctica no encontrada.")
 
 
 @app.get("/api/curriculum")
