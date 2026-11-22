@@ -277,3 +277,10 @@ def test_mutating_requests_reject_foreign_origins(client):
     response = client.post("/api/logout", headers={"Origin": "https://malicious.example"})
     assert response.status_code == 403
 
+def test_login_does_not_disclose_whether_email_exists(client):
+    unknown = client.post("/api/login", json={
+        "email": "missing@example.com", "password": "ClaveSegura123"
+    })
+    assert unknown.status_code == 401
+    assert unknown.json()["detail"] == "Correo electrónico o contraseña incorrectos."
+
