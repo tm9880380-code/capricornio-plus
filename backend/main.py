@@ -8,7 +8,7 @@ import time
 from contextlib import closing
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Response, Cookie, Depends
+from fastapi import FastAPI, HTTPException, Response as FastAPIResponse, Cookie, Depends
 from pydantic import BaseModel, Field
 from pwdlib import PasswordHash
 
@@ -17,7 +17,7 @@ from backend.adaptive.adaptive_engine import (
     Item,
     ItemBank,
     LearnerState,
-    Response,
+    Response as AdaptiveResponse,
 )
 from backend.adaptive.bkt import BKTParameters, update_mastery
 
@@ -162,7 +162,7 @@ def normalize_email(email):
     return email
 
 
-def create_session(db, user_id, response):
+def create_session(db, user_id, response: FastAPIResponse):
     token = secrets.token_urlsafe(48)
     token_hash = hashlib.sha256(token.encode()).hexdigest()
     expires = time.time() + SESSION_DAYS * 86400
@@ -406,7 +406,7 @@ def record_learning_response(
 
     state = LearnerState.from_dict(json.loads(saved["state_json"])) if saved else LearnerState()
     state = engine.record_response(
-        state, Response(item_id=item_id, correct=bool(correct), timestamp=timestamp)
+        state, AdaptiveResponse(item_id=item_id, correct=bool(correct), timestamp=timestamp)
     )
 
     db.execute(
@@ -683,7 +683,7 @@ def health():
 
 
 @app.post("/api/register", status_code=201)
-def register(data: RegisterData, response: Response):
+def register(data: RegisterData, response: FastAPIResponse):
     name = data.name.strip()
     if len(name) < 2:
         raise HTTPException(status_code=422, detail="Escribe tu nombre completo.")
@@ -723,7 +723,7 @@ def register(data: RegisterData, response: Response):
 
 
 @app.post("/api/login")
-def login(data: LoginData, response: Response):
+def login(data: LoginData, response: FastAPIResponse):
     email = normalize_email(data.email)
 
     with closing(connect()) as db:
@@ -764,7 +764,7 @@ def me(user=Depends(current_user)):
 
 @app.post("/api/logout")
 def logout(
-    response: Response,
+    response: FastAPIResponse,
     capricornio_session: str | None = Cookie(default=None)
 ):
     if capricornio_session:
