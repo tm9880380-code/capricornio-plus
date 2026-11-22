@@ -60,7 +60,6 @@ def test_register_login_and_lesson_progress(client):
         "email": "demo@example.com",
         "password": "ClaveSegura123",
         "learning_goal": "Fundamentos de programación", "privacy_consent": True, "terms_accepted": True,
-        "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
     assert "capricornio_session" in registered.cookies
@@ -136,7 +135,6 @@ def test_learning_routes_have_area_specific_diagnostic_bank(client, area):
         "email": f"{area.lower().replace(' ', '').replace('/', '')}@example.com",
         "password": "ClaveSegura123",
         "learning_goal": area, "privacy_consent": True, "terms_accepted": True,
-        "privacy_consent": True, "terms_accepted": True,
     })
     assert response.status_code == 201
 
@@ -168,7 +166,6 @@ def test_orientation_recommends_new_area_and_starts_its_diagnostic(client):
         "email": "orientacion@example.com",
         "password": "ClaveSegura123",
         "learning_goal": "Aún no lo sé; necesito orientación", "privacy_consent": True, "terms_accepted": True,
-        "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
 
@@ -205,7 +202,6 @@ def test_curriculum_lesson_and_resources_are_available_after_login(client):
         "email": "curriculum@example.com",
         "password": "ClaveSegura123",
         "learning_goal": "Desarrollo frontend", "privacy_consent": True, "terms_accepted": True,
-        "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
 
@@ -224,7 +220,6 @@ def test_curriculum_diagnostic_records_area_specific_competencies(client):
         "email": "datos@example.com",
         "password": "ClaveSegura123",
         "learning_goal": "Análisis de datos", "privacy_consent": True, "terms_accepted": True,
-        "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
     diagnostic = client.get("/api/diagnostic/questions").json()
@@ -292,7 +287,6 @@ def test_python_code_attempt_is_graded_by_the_server(client):
         "email": "python@example.com",
         "password": "ClaveSegura123",
         "learning_goal": "Python", "privacy_consent": True, "terms_accepted": True,
-        "privacy_consent": True, "terms_accepted": True,
     })
     assert registered.status_code == 201
     expected = main.CURRICULUM_LESSON_BY_QUESTION["cur_fundamentos_variables"]["expected_output"]
@@ -542,3 +536,45 @@ def test_adaptive_practice_passes_current_time_to_spaced_review_engine(client, m
     assert response.status_code == 200
     assert observed["now"] is not None
     assert observed["now"] > 0
+
+
+def test_registration_requires_explicit_privacy_consent_and_terms(client):
+    payload = {
+        "name": "Estudiante Sin Consentimiento",
+        "email": "sin-consentimiento@example.com",
+        "password": "ClaveSegura123",
+        "learning_goal": "Python",
+        "terms_accepted": True,
+    }
+    response = client.post("/api/register", json=payload)
+    assert response.status_code == 422
+    assert "autorizar expresamente" in response.json()["detail"]
+
+    payload["privacy_consent"] = True
+    payload["terms_accepted"] = False
+    response = client.post("/api/register", json=payload)
+    assert response.status_code == 422
+    assert "aceptar los términos" in response.json()["detail"]
+
+    payload["terms_accepted"] = True
+    response = client.post("/api/register", json=payload)
+    assert response.status_code == 201
+    row = client.app.state  # La evidencia de versión se valida en la base de datos de prueba.
+    from backend import main as app_main
+    with app_main.closing(app_main.connect()) as db:
+        consent = db.execute(
+            "SELECT privacy_policy_version, terms_version, consented_at FROM privacy_consents"
+        ).fetchone()
+    assert consent["privacy_policy_version"] == app_main.PRIVACY_POLICY_VERSION
+    assert consent["terms_version"] == app_main.TERMS_VERSION
+    assert consent["consented_at"].endswith("Z")
+
+
+def test_legal_pages_are_public_without_an_account(client):
+    for page in (
+        "privacidad", "terminos", "cookies", "accesibilidad",
+        "uso-responsable", "seguridad", "mapa-sitio", "creditos",
+    ):
+        response = client.get(f"/{page}.html")
+        assert response.status_code == 200
+        assert "<title>" in response.text
