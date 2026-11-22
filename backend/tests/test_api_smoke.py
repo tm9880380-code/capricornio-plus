@@ -33,6 +33,8 @@ def test_health_and_root(client):
     response = client.get("/")
     assert response.status_code == 200
     assert "Encuentra tu camino para aprender tecnología" in response.text
+    assert response.headers["x-frame-options"] == "DENY"
+    assert response.headers["x-content-type-options"] == "nosniff"
 
 
 def test_register_login_and_lesson_progress(client):
@@ -270,4 +272,8 @@ def test_python_code_attempt_updates_competency_and_saves_lesson(client):
     })
     assert completed.status_code == 200
     assert completed.json()["progress_percent"] > 0
+
+def test_mutating_requests_reject_foreign_origins(client):
+    response = client.post("/api/logout", headers={"Origin": "https://malicious.example"})
+    assert response.status_code == 403
 
