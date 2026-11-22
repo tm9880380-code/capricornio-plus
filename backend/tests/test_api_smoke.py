@@ -41,6 +41,22 @@ def test_register_login_and_lesson_progress(client):
     assert progress.status_code == 200
     assert progress.json()["completed_count"] == 0
 
+    adaptive = client.get("/api/learning/next", params={"area": "Fundamentos de programación"})
+    assert adaptive.status_code == 200
+    exercise = adaptive.json()
+    assert exercise["item_id"] in {"fund_1", "fund_2", "fund_3"}
+    answer_key = {"fund_1": "a", "fund_2": "b", "fund_3": "c"}
+    submitted = client.post("/api/learning/answer", json={
+        "area": "Fundamentos de programación",
+        "item_id": exercise["item_id"],
+        "answer": answer_key[exercise["item_id"]],
+    })
+    assert submitted.status_code == 200
+    assert submitted.json()["correct"] is True
+    next_exercise = client.get("/api/learning/next", params={"area": "Fundamentos de programación"})
+    assert next_exercise.status_code == 200
+    assert next_exercise.json()["item_id"] != exercise["item_id"]
+
     first = client.post("/api/lessons/complete", json={"lesson_id": "estructuras-for"})
     assert first.status_code == 200
     assert first.json()["completed_lessons"] == 1
