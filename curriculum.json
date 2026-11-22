@@ -1597,18 +1597,19 @@
               "feedback": "WHERE aplica condiciones a filas.",
               "type": "quiz",
               "resource_ids": [
-                "MongoDB · Comenzando con la base de datos"
+                "SQLBolt · Aprende SQL con ejercicios"
               ],
               "reinforcement": "SELECT elige qué columnas mirar, FROM indica de qué tabla vienen y WHERE filtra las filas que cumplen una condición.",
               "learning_objective": "Al terminar, podrás explicar consultar con select y reconocer cómo se aplica en una situación práctica.",
               "why_it_matters": "Este conocimiento forma parte de bases de datos. Te ayudará a interpretar problemas reales y a justificar tus decisiones técnicas.",
               "reading_guide": [
-                "Localiza en la fuente la definición de «Consultar con SELECT» o del concepto «SELECT elige columnas; FROM indica tabla; WHERE filtra filas; ORDER BY ordena.».",
-                "Lee el párrafo que presenta la idea y revisa un ejemplo; no necesitas leer todo el sitio.",
-                "Anota una idea principal y relaciónala con esta situación: SELECT nombre FROM estudiantes WHERE activo = TRUE;.",
-                "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
+                "Abre la lección interactiva inicial de SQLBolt y observa cómo se seleccionan columnas de una tabla.",
+                "Prueba SELECT y FROM con los ejemplos; cambia una columna y predice qué resultado aparecerá.",
+                "Continúa con la lección de filtros WHERE y compara el resultado antes y después de aplicar una condición.",
+                "Relaciona la consulta con una tabla real: qué columnas necesitas y qué filas quieres recuperar."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Consultar con SELECT» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "¿Qué diferencia hay entre elegir columnas con SELECT y filtrar filas con WHERE? Explica con un ejemplo sencillo.",
+              "resource_focus": "SQL Lesson 1: SELECT queries 101 y SQL Lesson 2: Queries with constraints (Pt. 1)"
             },
             {
               "id": "db-joins",
