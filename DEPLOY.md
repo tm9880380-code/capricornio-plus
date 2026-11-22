@@ -1,19 +1,60 @@
-# Publicación de Capricornio Plus
+# Despliegue de Capricornio Plus
 
-## Despliegue en un servidor Python
-1. Sube el contenido completo del repositorio.
-2. Instala dependencias: `pip install -r requirements.txt`.
-3. Configura el comando de inicio: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT` (si el proveedor define `PORT`).
-4. Usa un volumen persistente para la carpeta `data/`; allí vive la base SQLite.
-5. En HTTPS configura `CAPRICORNIO_HTTPS=1` para que la cookie de sesión use Secure.
+## Requisitos
+- Python 3.10 o superior.
+- Un sistema Linux/macOS o Windows con Python.
+- Disco persistente para la base de datos.
+- HTTPS cuando el servicio sea accesible por internet.
 
-## Prueba local
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-dev.txt
-pytest -q
-uvicorn backend.main:app --reload
-```
+## Instalación local
 
-La raíz `/` sirve `login.html`. El servidor debe ejecutar FastAPI; abrir los HTML como archivos estáticos no conecta la autenticación ni la base de datos.
+    git clone https://github.com/tm9880380-code/capricornio-plus.git
+    cd capricornio-plus
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    uvicorn backend.main:app --reload
+
+Abre http://127.0.0.1:8000.
+
+En Windows PowerShell, activa el entorno con:
+
+    .venv\Scripts\Activate.ps1
+
+## Servidor Linux
+
+1. Descarga el repositorio y crea un entorno virtual.
+2. Instala requirements.txt.
+3. Ejecuta el servicio con un usuario del sistema sin privilegios administrativos.
+4. Configura un proxy inverso con HTTPS (por ejemplo, Caddy o Nginx).
+5. Define CAPRICORNIO_HTTPS=1 para que la cookie de sesión use Secure.
+6. Conserva data/ en un volumen persistente con permisos restrictivos.
+7. Configura copias de seguridad, actualizaciones y supervisión del servicio.
+
+Comando de ejecución básico:
+
+    uvicorn backend.main:app --host 127.0.0.1 --port 8000
+
+En un proveedor que defina PORT:
+
+    uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+
+No expongas SQLite, archivos .env, copias ni el puerto interno de la aplicación directamente a internet.
+
+## Persistencia y escalabilidad
+
+SQLite es adecuado para desarrollo, demostración y una instancia pequeña. No compartas el mismo archivo SQLite entre varias instancias de aplicación ni lo ubiques en un sistema de archivos de red sin comprobar sus garantías de bloqueo.
+
+Para una universidad con múltiples grupos y concurrencia, planifica migración a PostgreSQL, migraciones de esquema, roles institucionales, copias probadas y monitoreo.
+
+## Actualizaciones
+
+Antes de actualizar:
+- Haz copia de seguridad de data/.
+- Lee cambios de esquema y dependencias.
+- Ejecuta compileall y pytest.
+- Prueba restauración de la copia en un entorno separado.
+
+## Costos
+
+El software no requiere una API de IA de pago ni alojamiento de los cursos externos. Sin embargo, un servidor público, dominio, almacenamiento, copias y soporte pueden generar costos. Ningún plan gratuito de proveedor debe considerarse permanente o ilimitado.
