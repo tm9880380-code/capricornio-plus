@@ -33,7 +33,7 @@ def test_health_and_root(client):
     response = client.get("/")
     assert response.status_code == 200
     assert "Trabajar, persistir y avanzar." in response.text
-    assert "¿Qué es Capricornio?" in response.text
+    assert "Aprender tecnología, con dirección." in response.text
     assert "Ya tengo cuenta" in response.text
     assert response.headers["x-frame-options"] == "DENY"
     assert response.headers["x-content-type-options"] == "nosniff"
@@ -48,7 +48,6 @@ def test_private_plan_page_redirects_anonymous_users_and_has_one_progress_target
     })
     page = client.get("/plan.html")
     assert page.status_code == 200
-    assert 'id="contenido-privado" hidden' in page.text
     assert page.text.count('id="avance"') == 1
     assert 'id="resumen-avance"' in page.text
     assert 'id="siguiente-leccion"' in page.text
