@@ -175,9 +175,9 @@
         `¡Terminamos esta primera evaluación! Tu punto de partida es ${resultado.detected_level}. Ahora podremos preparar tu ruta de aprendizaje.`;
 
       const botonPlan = document.createElement("a");
-      botonPlan.href = "plan.html";
+      botonPlan.href = "recursos.html";
       botonPlan.className = "boton";
-      botonPlan.textContent = "Ir a mi plan de estudio";
+      botonPlan.textContent = "Abrir mis recursos y comenzar";
       estado.appendChild(document.createElement("br"));
       estado.appendChild(botonPlan);
 
@@ -209,7 +209,8 @@
     }
   });
 
-  cargarEtapa().catch(error => {
+  const areaInicial = new URLSearchParams(window.location.search).get("area") || "";
+  cargarEtapa(areaInicial).catch(error => {
     contador.textContent = "No se pudo iniciar el diagnóstico.";
     estado.textContent = error.message;
     mensajeNana.textContent = "Para comenzar, inicia sesión en Capricornio.";
