@@ -96,7 +96,7 @@ function renderCourse(course){
  link.href=course.next_lesson_id?"leccion.html?id="+encodeURIComponent(course.next_lesson_id):"modulo.html";footer.append(note,link);card.append(top,title,desc,label,bar,footer);return card;
 }
 (async()=>{
- const status=document.getElementById("estado"),coursesEl=document.getElementById("courses");
+ const status=document.getElementById("estado"),coursesEl=document.getElementById("avance");
  try{
   const [meR,progressR]=await Promise.all([fetch("/api/me",{credentials:"same-origin",cache:"no-store"}),fetch("/api/progress",{credentials:"same-origin",cache:"no-store"})]);
   if(meR.status===401||progressR.status===401){location.replace("login.html?motivo=sesion");return}
