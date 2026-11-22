@@ -800,17 +800,31 @@ def complete_lesson(data: LessonCompletionData, user=Depends(current_user)):
             "INSERT OR IGNORE INTO lesson_completions (user_id, lesson_id) VALUES (?, ?)",
             (user["id"], data.lesson_id),
         )
-        count = db.execute(
+        all_count = db.execute(
             "SELECT COUNT(*) AS total FROM lesson_completions WHERE user_id = ?",
             (user["id"],),
         ).fetchone()["total"]
         db.execute(
             "INSERT INTO student_progress (user_id, completed_lessons) VALUES (?, ?) "
             "ON CONFLICT(user_id) DO UPDATE SET completed_lessons = excluded.completed_lessons, updated_at = CURRENT_TIMESTAMP",
-            (user["id"], count),
+            (user["id"], all_count),
         )
+        latest = db.execute(
+            "SELECT learning_area FROM diagnostic_attempts WHERE user_id = ? AND status = 'completed' AND learning_area != ? ORDER BY id DESC LIMIT 1",
+            (user["id"], ORIENTATION_ID),
+        ).fetchone()
+        selected_area = latest["learning_area"] if latest else user["learning_goal"]
+        selected_bank = AREA_BANK_KEY.get(selected_area, selected_area)
+        selected_area_id = selected_bank.split(":", 1)[1] if selected_bank.startswith("curriculum:") else None
+        route_ids = [key for key, value in LESSON_CATALOG.items() if value["area_id"] == selected_area_id] if selected_area_id else list(LESSON_CATALOG)
+        route_count = len(route_ids) or len(LESSON_CATALOG)
+        placeholders = ",".join("?" for _ in route_ids) if route_ids else ""
+        route_completed = db.execute(
+            f"SELECT COUNT(*) AS total FROM lesson_completions WHERE user_id = ? AND lesson_id IN ({placeholders})",
+            (user["id"], *route_ids),
+        ).fetchone()["total"] if route_ids else all_count
         db.commit()
-    return {"message": "Progreso guardado.", "completed_lessons": count, "progress_percent": round(count / len(LESSON_CATALOG) * 100)}
+    return {"message": "Progreso guardado.", "completed_lessons": route_completed, "progress_percent": round(route_completed / route_count * 100)}
 
 
 class LearningAnswerData(BaseModel):
