@@ -54,15 +54,19 @@ def test_register_login_and_lesson_progress(client):
     adaptive = client.get("/api/learning/next", params={"area": "Fundamentos de programación"})
     assert adaptive.status_code == 200
     exercise = adaptive.json()
-    assert exercise["item_id"] in {"fund_1", "fund_2", "fund_3"}
-    answer_key = {"fund_1": "a", "fund_2": "b", "fund_3": "c"}
+    assert exercise["item_id"].startswith("cur_")
+    lesson = main.CURRICULUM_LESSON_BY_QUESTION[exercise["item_id"]]
+    answer_value = chr(97 + lesson["options"].index(lesson["answer"]))
     submitted = client.post("/api/learning/answer", json={
         "area": "Fundamentos de programación",
         "item_id": exercise["item_id"],
-        "answer": answer_key[exercise["item_id"]],
+        "answer": answer_value,
     })
     assert submitted.status_code == 200
     assert submitted.json()["correct"] is True
+    assert submitted.json()["correct_answer"] == lesson["answer"]
+    assert submitted.json()["explanation"] == lesson["feedback"]
+    assert submitted.json()["reinforcement"]
     next_exercise = client.get("/api/learning/next", params={"area": "Fundamentos de programación"})
     assert next_exercise.status_code == 200
     assert next_exercise.json()["item_id"] != exercise["item_id"]
