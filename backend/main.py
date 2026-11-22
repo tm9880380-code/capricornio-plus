@@ -1,4 +1,5 @@
 import os
+import json
 import re
 import sqlite3
 import hashlib
@@ -10,6 +11,15 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Response, Cookie, Depends
 from pydantic import BaseModel, Field
 from pwdlib import PasswordHash
+
+from backend.adaptive.adaptive_engine import (
+    AdaptiveEngine,
+    Item,
+    ItemBank,
+    LearnerState,
+    Response,
+)
+from backend.adaptive.bkt import BKTParameters, update_mastery
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
@@ -82,6 +92,47 @@ def initialize_database():
                 FOREIGN KEY(attempt_id) REFERENCES diagnostic_attempts(id) ON DELETE CASCADE,
                 UNIQUE(attempt_id, question_id)
             );
+
+            CREATE TABLE IF NOT EXISTS learning_events (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                source TEXT NOT NULL,
+                item_id TEXT NOT NULL,
+                skill_id TEXT NOT NULL,
+                is_correct INTEGER NOT NULL CHECK(is_correct IN (0, 1)),
+                created_at REAL NOT NULL,
+                FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            );
+
+            CREATE TABLE IF NOT EXISTS student_skill_mastery (
+                user_id INTEGER NOT NULL,
+                skill_id TEXT NOT NULL,
+                prob_mastery REAL NOT NULL DEFAULT 0.10,
+                prob_slip REAL NOT NULL DEFAULT 0.10,
+                prob_guess REAL NOT NULL DEFAULT 0.20,
+                prob_transit REAL NOT NULL DEFAULT 0.10,
+                observations INTEGER NOT NULL DEFAULT 0,
+                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY(user_id, skill_id),
+                FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            );
+
+            CREATE TABLE IF NOT EXISTS student_irt_state (
+                user_id INTEGER NOT NULL,
+                learning_area TEXT NOT NULL,
+                state_json TEXT NOT NULL,
+                ability REAL NOT NULL DEFAULT 0.0,
+                ability_se REAL NOT NULL DEFAULT 1.0,
+                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY(user_id, learning_area),
+                FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_learning_events_user
+            ON learning_events(user_id, created_at);
+
+            CREATE INDEX IF NOT EXISTS idx_learning_events_skill
+            ON learning_events(user_id, skill_id, created_at);
         """)
 
         db.commit()
@@ -242,6 +293,147 @@ QUESTION_BANK = {
          [("a", "Repetir instrucciones sin límite"), ("b", "Convertir código en imágenes"), ("c", "Agrupar datos y controlar el acceso a ellos"), ("d", "No lo sé todavía")], "c"),
     ],
 }
+
+
+SKILL_BY_QUESTION = {
+    "cyber_1": "ciberseguridad.proteccion",
+    "cyber_2": "ciberseguridad.contrasenas",
+    "cyber_3": "ciberseguridad.phishing",
+    "software_1": "software.algoritmos",
+    "software_2": "software.variables",
+    "software_3": "software.condiciones",
+    "web_1": "web.html",
+    "web_2": "web.css",
+    "web_3": "web.javascript",
+    "data_1": "datos.analisis",
+    "data_2": "datos.organizacion",
+    "data_3": "datos.estadistica",
+    "db_1": "bases_datos.almacenamiento",
+    "db_2": "bases_datos.registros",
+    "db_3": "bases_datos.sql",
+    "ai_1": "ia.conceptos",
+    "ai_2": "ia.aprendizaje_supervisado",
+    "ai_3": "ia.entrenamiento",
+    "net_1": "redes.conectividad",
+    "net_2": "redes.direccionamiento_ip",
+    "net_3": "sistemas.sistema_operativo",
+    "fund_1": "programacion.instrucciones",
+    "fund_2": "programacion.datos",
+    "fund_3": "programacion.ciclos",
+    "oop_1": "poo.clases",
+    "oop_2": "poo.objetos",
+    "oop_3": "poo.encapsulacion",
+}
+
+
+def record_learning_response(
+    db, user_id, source, item_id, skill_id, learning_area, correct
+):
+    """Registra una respuesta y actualiza BKT e IRT para el estudiante."""
+    timestamp = time.time()
+
+    mastery_row = db.execute(
+        """
+        SELECT prob_mastery, prob_slip, prob_guess, prob_transit, observations
+        FROM student_skill_mastery
+        WHERE user_id = ? AND skill_id = ?
+        """,
+        (user_id, skill_id),
+    ).fetchone()
+
+    if mastery_row:
+        mastery = mastery_row["prob_mastery"]
+        observations = mastery_row["observations"]
+        params = BKTParameters(
+            initial_mastery=mastery,
+            learning_transition=mastery_row["prob_transit"],
+            guess=mastery_row["prob_guess"],
+            slip=mastery_row["prob_slip"],
+        )
+    else:
+        params = BKTParameters()
+        mastery = params.initial_mastery
+        observations = 0
+
+    updated_mastery = update_mastery(mastery, bool(correct), params)
+
+    db.execute(
+        """
+        INSERT INTO student_skill_mastery
+            (user_id, skill_id, prob_mastery, prob_slip, prob_guess,
+             prob_transit, observations, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        ON CONFLICT(user_id, skill_id) DO UPDATE SET
+            prob_mastery = excluded.prob_mastery,
+            observations = excluded.observations,
+            updated_at = CURRENT_TIMESTAMP
+        """,
+        (
+            user_id, skill_id, updated_mastery, params.slip,
+            params.guess, params.learning_transition, observations + 1,
+        ),
+    )
+
+    db.execute(
+        """
+        INSERT INTO learning_events
+            (user_id, source, item_id, skill_id, is_correct, created_at)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (user_id, source, item_id, skill_id, int(bool(correct)), timestamp),
+    )
+
+    questions = QUESTION_BANK[learning_area]
+    bank = ItemBank([
+        Item(
+            id=q[0],
+            difficulty=0.0,
+            discrimination=1.0,
+            tags=(learning_area, SKILL_BY_QUESTION[q[0]]),
+        )
+        for q in questions
+    ])
+    engine = AdaptiveEngine(bank)
+
+    saved = db.execute(
+        """
+        SELECT state_json
+        FROM student_irt_state
+        WHERE user_id = ? AND learning_area = ?
+        """,
+        (user_id, learning_area),
+    ).fetchone()
+
+    state = LearnerState.from_dict(json.loads(saved["state_json"])) if saved else LearnerState()
+    state = engine.record_response(
+        state, Response(item_id=item_id, correct=bool(correct), timestamp=timestamp)
+    )
+
+    db.execute(
+        """
+        INSERT INTO student_irt_state
+            (user_id, learning_area, state_json, ability, ability_se, updated_at)
+        VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        ON CONFLICT(user_id, learning_area) DO UPDATE SET
+            state_json = excluded.state_json,
+            ability = excluded.ability,
+            ability_se = excluded.ability_se,
+            updated_at = CURRENT_TIMESTAMP
+        """,
+        (
+            user_id, learning_area, json.dumps(state.to_dict()),
+            state.ability, state.ability_se,
+        ),
+    )
+
+    return {
+        "skill_id": skill_id,
+        "mastery": round(updated_mastery, 4),
+        "observations": observations + 1,
+        "ability": round(state.ability, 4),
+        "ability_se": round(state.ability_se, 4),
+    }
+
 
 ORIENTATION_QUESTIONS = [
     {
@@ -432,11 +624,28 @@ def submit_diagnostic(data: DiagnosticSubmitData, user=Depends(current_user)):
             )
             attempt_id = cursor.lastrowid
 
+        learning_updates = []
+
         for qid, answer in data.answers.items():
+            is_correct = answer == expected[qid]
+
             db.execute(
                 "INSERT INTO diagnostic_answers (attempt_id, question_id, answer_value, is_correct) VALUES (?, ?, ?, ?)",
-                (attempt_id, qid, answer, int(answer == expected[qid])),
+                (attempt_id, qid, answer, int(is_correct)),
             )
+
+            learning_updates.append(
+                record_learning_response(
+                    db=db,
+                    user_id=user["id"],
+                    source="diagnostic",
+                    item_id=qid,
+                    skill_id=SKILL_BY_QUESTION[qid],
+                    learning_area=data.area,
+                    correct=is_correct,
+                )
+            )
+
         db.commit()
 
     return {
@@ -447,6 +656,7 @@ def submit_diagnostic(data: DiagnosticSubmitData, user=Depends(current_user)):
         "detected_level": level,
         "correct_answers": correct_count,
         "total_questions": len(expected),
+        "competency_updates": learning_updates,
     }
 
 
