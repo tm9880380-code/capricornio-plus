@@ -571,7 +571,7 @@ def test_registration_requires_explicit_privacy_consent_and_terms(client):
 
 def test_legal_pages_are_public_without_an_account(client):
     for page in (
-        "privacidad", "terminos", "cookies", "accesibilidad",
+        "privacidad", "aviso-privacidad", "terminos", "cookies", "accesibilidad",
         "uso-responsable", "seguridad", "mapa-sitio", "creditos",
     ):
         response = client.get(f"/{page}.html")
