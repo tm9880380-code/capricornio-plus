@@ -41,4 +41,4 @@ try{
 }catch(e){status.textContent=e.message;const a=document.createElement("a");a.href="login.html";a.textContent=" Iniciar sesión";status.append(a);}
 })();
 document.getElementById("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
-</script></body></html>
+</script><script src="js/app-shell.js" defer></script></body></html>
