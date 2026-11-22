@@ -1,56 +1,40 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capricornio - Mi plan</title><link rel="stylesheet" href="css/estilos.css">
-<style>
-.barra-progreso{height:12px;background:#eadfc8;border-radius:20px;overflow:hidden;margin:12px 0}
-.barra-progreso>span{display:block;height:100%;background:#6b8e5a;transition:width .25s}
-.tarjeta-leccion{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
-.estado-leccion{font-size:.9rem;color:#55734a;font-weight:700}
-#estado-plan{min-height:1.5em}
-</style>
-</head>
-<body>
-<header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div>
-<nav><a href="plan.html">Mi plan</a><a href="diagnostico.html">Diagnóstico</a><a href="login.html" id="salir">Cerrar sesión</a></nav></header>
-<main class="contenedor">
-<p><a href="plan.html"><strong>Mi espacio de aprendizaje</strong></a></p>
-<h1>Mi plan de estudio</h1>
-<p id="bienvenida">Tu ruta de aprendizaje se construye con tus avances reales.</p>
-<section class="tarjeta" style="margin:22px 0">
-<h2>Tu progreso</h2><div class="barra-progreso"><span id="barra" style="width:0%"></span></div>
-<p><strong id="porcentaje">0%</strong> completado · <span id="conteo">0 de 4 lecciones</span></p>
-<p id="diagnostico">Aún no hay un diagnóstico registrado.</p>
-</section>
-<h2>Ruta inicial de programación</h2>
-<p>Empieza por los fundamentos y avanza a tu ritmo. Las lecciones completadas se guardan en tu cuenta.</p>
-<section class="lista-modulos">
-<div class="item tarjeta-leccion"><div><h3>Módulo 1 · Fundamentos</h3><p>Variables y tipos de datos.</p></div><div><span class="estado-leccion" id="estado-fundamentos-variables"></span><a class="boton" href="leccion.html?id=fundamentos-variables">Abrir lección</a></div></div>
-<div class="item tarjeta-leccion"><div><h3>Módulo 1 · Fundamentos</h3><p>Condiciones if y else.</p></div><div><span class="estado-leccion" id="estado-fundamentos-condiciones"></span><a class="boton" href="leccion.html?id=fundamentos-condiciones">Abrir lección</a></div></div>
-<div class="item tarjeta-leccion"><div><h3>Módulo 2 · Estructuras de control</h3><p>Ciclo for.</p></div><div><span class="estado-leccion" id="estado-estructuras-for"></span><a class="boton" href="leccion.html?id=estructuras-for">Abrir lección</a></div></div>
-<div class="item tarjeta-leccion"><div><h3>Módulo 2 · Estructuras de control</h3><p>Ciclo while.</p></div><div><span class="estado-leccion" id="estado-estructuras-while"></span><a class="boton" href="leccion.html?id=estructuras-while">Abrir lección</a></div></div>
-</section>
-<p id="estado-plan" role="status" aria-live="polite"></p>
-<p style="margin-top:20px"><a class="boton claro" href="diagnostico.html">Realizar diagnóstico</a> <a class="boton" href="practica.html">Iniciar práctica adaptativa</a></p>
-</main>
-<footer class="pie-pagina">Capricornio · Plataforma adaptativa de aprendizaje</footer>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Capricornio · Mi espacio</title><link rel="stylesheet" href="css/estilos.css"><style>
+.panel{background:#f3e6c8;border:2px solid #5a3a1e;border-radius:12px;padding:22px;margin:18px 0}.barra-progreso{height:12px;background:#eadfc8;border-radius:20px;overflow:hidden;margin:12px 0}.barra-progreso span{display:block;height:100%;background:#66865b}.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.area{padding:16px;border:1px solid #b69a70;border-radius:10px;background:#fbf4e2}.area h3{margin-bottom:5px}.area p{font-size:14px}.area a{font-weight:bold;text-decoration:underline}.acciones{display:flex;gap:10px;flex-wrap:wrap}
+</style></head><body>
+<header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi inicio</a><a href="recursos.html">Explorar recursos</a><a href="practica.html">Practicar</a><a href="login.html" id="salir">Cerrar sesión</a></nav></header>
+<main class="contenedor"><p>Tu espacio de aprendizaje</p><h1 id="saludo">¡Hola!</h1><p>Un lugar para encontrar buenos recursos, practicar y avanzar a tu ritmo.</p>
+<section class="panel"><h2>Tu ruta actual</h2><p id="ruta">Cargando tu ruta...</p><p id="nivel"></p><div class="barra-progreso"><span id="barra" style="width:0%"></span></div><strong id="avance">Consultando tu avance...</strong><p id="ultima"></p><div class="acciones" style="margin-top:14px"><a class="boton" href="recursos.html">Continuar aprendiendo</a><a class="boton claro" href="practica.html">Practicar ahora</a></div></section>
+<section class="panel"><h2>¿Qué quieres aprender?</h2><p>Explora las ocho áreas. Puedes cambiar de ruta cuando lo necesites.</p><div class="area-grid" id="areas"></div></section>
+<section class="panel"><h2>¿Todavía no sabes por dónde empezar?</h2><p>Responde unas preguntas sobre lo que te interesa y Capricornio te propone una ruta inicial.</p><a class="boton" href="diagnostico.html">Descubrir mi camino</a></section>
+<p id="estado" role="status" aria-live="polite"></p></main><footer class="pie-pagina">Capricornio · Conectar para aprender</footer>
 <script>
+const areas=[
+["Ciberseguridad","Proteger sistemas, aplicaciones y datos."],
+["Desarrollo frontend","Construir interfaces, páginas y experiencias web."],
+["Desarrollo backend","Crear APIs, servicios y lógica de aplicaciones."],
+["Análisis de datos","Explorar datos y obtener conclusiones."],
+["Inteligencia artificial y modelos de lenguaje","Comprender y construir soluciones con IA."],
+["Bases de datos","Guardar, consultar y administrar información."],
+["Redes y sistemas","Aprender Linux, redes, servidores y sistemas operativos."],
+["Programación y lenguajes","Aprender Python, JavaScript, Go, Java, C++ y más."]
+];
+const grid=document.getElementById("areas");
+for(const [name,desc] of areas){const card=document.createElement("article");card.className="area";const h=document.createElement("h3");h.textContent=name;const p=document.createElement("p");p.textContent=desc;const a=document.createElement("a");a.href="diagnostico.html?area="+encodeURIComponent(name);a.textContent="Explorar esta ruta →";card.append(h,p,a);grid.append(card);}
 (async()=>{
-const status=document.getElementById("estado-plan");
+const status=document.getElementById("estado");
 try{
- const r=await fetch("/api/progress",{credentials:"same-origin"});
- const d=await r.json();
- if(!r.ok) throw new Error(d.detail||"Inicia sesión para consultar tu progreso.");
- document.getElementById("porcentaje").textContent=d.progress_percent+"%";
+ const [meR,progressR]=await Promise.all([fetch("/api/me",{credentials:"same-origin"}),fetch("/api/progress",{credentials:"same-origin"})]);
+ if(!meR.ok||!progressR.ok)throw new Error("Tu sesión terminó. Inicia sesión para recuperar tu avance.");
+ const me=await meR.json(),d=await progressR.json();
+ document.getElementById("saludo").textContent="¡Hola, "+me.user.name+"!";
+ document.getElementById("ruta").textContent="Estás aprendiendo: "+me.user.learning_goal;
  document.getElementById("barra").style.width=d.progress_percent+"%";
- document.getElementById("conteo").textContent=d.completed_count+" de "+d.total_lessons+" lecciones";
- if(d.diagnostic) document.getElementById("diagnostico").textContent="Diagnóstico: "+d.diagnostic.learning_area+" · Nivel inicial: "+d.diagnostic.detected_level+" · "+d.diagnostic.score+"%";
- for(const id of Object.keys(d.catalog)){
-  document.getElementById("estado-"+id).textContent=d.completed_lessons.includes(id)?"✓ Completada":"Pendiente";
- }
-}catch(e){status.textContent=e.message; if(e.message.toLowerCase().includes("sesión")||e.message.toLowerCase().includes("inicia")) status.innerHTML=e.message+' <a href="login.html">Iniciar sesión</a>';}
+ document.getElementById("avance").textContent=d.progress_percent+"% del itinerario de lecciones de muestra completado · "+d.completed_count+" de "+d.total_lessons;
+ if(d.diagnostic)document.getElementById("nivel").textContent="Diagnóstico inicial: "+d.diagnostic.detected_level+" · "+d.diagnostic.score+"% · "+d.diagnostic.learning_area;
+ else document.getElementById("nivel").textContent="Todavía no has realizado tu diagnóstico de conocimientos.";
+ document.getElementById("ultima").textContent=d.completed_count?"Tus lecciones completadas se guardan en esta cuenta.":"Cuando completes una actividad, tu avance aparecerá aquí.";
+}catch(e){status.textContent=e.message;const a=document.createElement("a");a.href="login.html";a.textContent=" Iniciar sesión";status.append(a);}
 })();
 document.getElementById("salir").addEventListener("click",async e=>{e.preventDefault();await fetch("/api/logout",{method:"POST",credentials:"same-origin"});location.href="login.html";});
-</script>
-</body></html>
+</script></body></html>
