@@ -288,3 +288,17 @@ def test_login_does_not_disclose_whether_email_exists(client):
     assert unknown.status_code == 401
     assert unknown.json()["detail"] == "Correo electrónico o contraseña incorrectos."
 
+
+
+def test_curriculum_resources_competencies_and_projects_are_consistent():
+    assert len(main.CURRICULUM["areas"]) == 8
+    for area in main.CURRICULUM["areas"]:
+        resource_titles = {resource["title"] for resource in area["resources"]}
+        assert 4 <= len(resource_titles) <= 8
+        assert area["competencies"]
+        assert area["capstone_project"]["deliverables"]
+        assert area["capstone_project"]["rubric"]
+        for module in area["modules"]:
+            for lesson in module["lessons"]:
+                assert set(lesson.get("resource_ids", [])) <= resource_titles
+                assert lesson.get("reinforcement")
