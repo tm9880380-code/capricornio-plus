@@ -40,8 +40,8 @@
               "id": "cyber-fundamentos",
               "title": "La tríada de seguridad",
               "concept": "La ciberseguridad protege la confidencialidad, integridad y disponibilidad de información y servicios.",
-              "explanation": "La ciberseguridad protege la confidencialidad, integridad y disponibilidad de información y servicios.",
-              "example": "Confidencialidad: solo accede quien debe. Integridad: los datos no se alteran indebidamente. Disponibilidad: el servicio está accesible cuando se necesita.",
+              "explanation": "La ciberseguridad busca que la información y los servicios sigan siendo confiables. Para analizar si algo está protegido usamos tres propiedades: confidencialidad, integridad y disponibilidad (la tríada CIA). No son herramientas, sino objetivos que los controles de seguridad intentan preservar. Un mismo incidente puede afectar varias propiedades a la vez: un atacante puede leer datos privados, modificarlos y además dejar un servicio fuera de línea.",
+              "example": "En una clínica, la confidencialidad impide que personas no autorizadas lean historias médicas; la integridad evita que alguien cambie un diagnóstico sin permiso; y la disponibilidad procura que el personal autorizado pueda consultar el sistema cuando lo necesita. Un control puede ayudar a más de una propiedad, pero conviene identificar cuál riesgo reduce.",
               "task": "Una clínica evita que extraños lean historias médicas, que alguien las modifique y que el sistema quede fuera de servicio.",
               "question": "¿Qué propiedad evita modificaciones no autorizadas?",
               "options": [
@@ -65,14 +65,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Una clínica evita que extraños lean historias médicas, que alguien las modifique y que el sistema quede fuera de servicio..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «La tríada de seguridad» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «La tríada de seguridad» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "pensar que seguridad significa únicamente impedir accesos. Un sistema inaccesible también puede representar un fallo grave, aunque nadie haya robado información.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "cyber-risk",
               "title": "Amenazas, vulnerabilidades y riesgos",
               "concept": "Una amenaza puede causar daño; una vulnerabilidad es una debilidad; el riesgo combina probabilidad e impacto.",
-              "explanation": "Una amenaza puede causar daño; una vulnerabilidad es una debilidad; el riesgo combina probabilidad e impacto.",
-              "example": "Un servidor sin parches puede tener una vulnerabilidad. Un atacante que intenta explotarla representa una amenaza. El riesgo depende también de la probabilidad y el impacto.",
+              "explanation": "Una amenaza es algo que podría causar daño: una persona maliciosa, un error humano, un incendio o un fallo eléctrico. Una vulnerabilidad es una debilidad que podría aprovecharse, como software sin actualizar o permisos excesivos. El riesgo relaciona la posibilidad de que ocurra un escenario con las consecuencias que tendría. No son sinónimos: identificar una amenaza no demuestra que exista una vulnerabilidad, y una vulnerabilidad no indica por sí sola cuánto daño ocurrirá.",
+              "example": "Un servidor sin parches tiene una vulnerabilidad. Un atacante que intenta aprovecharla es una amenaza. Si el servidor almacena información crítica y está expuesto a internet, la probabilidad y el impacto pueden hacer que el riesgo sea alto.",
               "task": "Un servicio expuesto con software antiguo requiere priorizar actualizaciones y controles.",
               "question": "Un servidor tiene software desactualizado. ¿Qué describe esa condición?",
               "options": [
@@ -96,14 +103,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Un servicio expuesto con software antiguo requiere priorizar actualizaciones y controles..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Amenazas, vulnerabilidades y riesgos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Amenazas, vulnerabilidades y riesgos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "llamar amenaza a cualquier debilidad. Pregunta siempre: ¿qué podría causar el daño?, ¿qué debilidad lo permite? y ¿qué consecuencia tendría?",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "cyber-passwords",
               "title": "Contraseñas y autenticación",
               "concept": "Usa contraseñas largas, únicas y autenticación multifactor.",
-              "explanation": "Usa contraseñas largas, únicas y autenticación multifactor.",
-              "example": "Un gestor ayuda a crear y guardar contraseñas distintas. MFA añade una segunda prueba de identidad. Nunca compartas códigos de un solo uso.",
+              "explanation": "Una contraseña larga y única reduce la posibilidad de que alguien la adivine o reutilice una clave filtrada en otros servicios. La autenticación multifactor (MFA) agrega una prueba adicional, por ejemplo una aplicación autenticadora o una llave física. Un gestor de contraseñas ayuda a crear y guardar claves distintas sin tener que memorizarlas todas. MFA reduce riesgos, pero no convierte en seguro compartir códigos ni aprobar solicitudes inesperadas.",
+              "example": "Si una tienda en línea sufre una filtración y reutilizaste esa misma contraseña en tu correo, alguien podría intentar entrar al correo con la clave robada. Con claves únicas, el incidente queda más limitado. Con MFA, además, se necesita otro factor.",
               "task": "Una contraseña única limita el daño si otro servicio sufre una filtración.",
               "question": "¿Qué medida reduce el impacto de una filtración en otro sitio?",
               "options": [
@@ -127,14 +141,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Una contraseña única limita el daño si otro servicio sufre una filtración..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Contraseñas y autenticación» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Contraseñas y autenticación» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "creer que un código MFA se puede compartir con soporte técnico. Los códigos de un solo uso son secretos: nadie legítimo debería pedírtelos.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "cyber-phishing",
               "title": "Phishing e ingeniería social",
               "concept": "El phishing suplanta entidades confiables para inducir clics, pagos o entrega de credenciales.",
-              "explanation": "El phishing suplanta entidades confiables para inducir clics, pagos o entrega de credenciales.",
-              "example": "Revisa el dominio, el contexto y la urgencia. Verifica solicitudes por un canal independiente. No uses el enlace sospechoso para comprobar si es real.",
+              "explanation": "El phishing es una forma de ingeniería social: el atacante se hace pasar por una entidad confiable para que la persona entregue credenciales, abra un archivo, instale algo o realice un pago. El mensaje suele buscar una reacción rápida mediante urgencia, miedo, premios o una supuesta sanción. No todos los mensajes mal escritos son phishing ni todos los ataques tienen errores ortográficos; hay que revisar el contexto y verificar por un canal independiente.",
+              "example": "Un mensaje dice que tu cuenta bancaria será bloqueada en diez minutos y ofrece un enlace para iniciar sesión. En lugar de abrirlo, entra escribiendo tú misma la dirección oficial o llama al número que aparece en la tarjeta o sitio legítimo.",
               "task": "Un correo que exige pagar en diez minutos y usa un dominio extraño tiene señales de phishing.",
               "question": "¿Qué haces ante un enlace inesperado que solicita tu contraseña?",
               "options": [
@@ -158,7 +179,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Un correo que exige pagar en diez minutos y usa un dominio extraño tiene señales de phishing..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Phishing e ingeniería social» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Phishing e ingeniería social» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "confiar en el nombre visible del remitente. Comprueba el dominio real y no introduzcas contraseñas desde enlaces inesperados.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         },
@@ -169,8 +197,8 @@
               "id": "cyber-firewall",
               "title": "Firewall y mínimo privilegio",
               "concept": "Un firewall aplica reglas al tráfico. El mínimo privilegio permite solo lo necesario.",
-              "explanation": "Un firewall aplica reglas al tráfico. El mínimo privilegio permite solo lo necesario.",
-              "example": "Los puertos identifican servicios de comunicación. La segmentación separa sistemas y reduce movimientos laterales. Las reglas deben ser específicas y revisadas.",
+              "explanation": "Un firewall aplica reglas para permitir o bloquear tráfico de red según criterios como origen, destino, puerto y protocolo. No sustituye actualizaciones, autenticación ni monitoreo. El principio de mínimo privilegio complementa esa defensa: cada usuario, proceso o servicio debe recibir solo los permisos necesarios para su tarea y durante el tiempo necesario. Si una cuenta no necesita administrar el sistema, no debería tener privilegios de administrador.",
+              "example": "Una aplicación web solo necesita recibir conexiones HTTPS desde internet. Una regla de firewall puede permitir ese tráfico y bloquear conexiones administrativas desde redes públicas. Dentro del sistema, una cuenta de servicio debe poder leer únicamente los archivos que necesita.",
               "task": "Una base de datos interna no necesita aceptar conexiones desde todo internet.",
               "question": "¿Qué principio sigue una regla que permite únicamente tráfico necesario?",
               "options": [
@@ -194,14 +222,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Una base de datos interna no necesita aceptar conexiones desde todo internet..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Firewall y mínimo privilegio» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Firewall y mínimo privilegio» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "abrir todos los puertos para evitar problemas de conexión. Primero identifica qué servicio requiere acceso y limita el origen y el alcance.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "cyber-web",
               "title": "Seguridad de aplicaciones web",
               "concept": "OWASP publica guías para reconocer riesgos frecuentes en aplicaciones.",
-              "explanation": "OWASP publica guías para reconocer riesgos frecuentes en aplicaciones.",
-              "example": "Los controles incluyen autorización del lado servidor, validación de entradas, consultas parametrizadas y configuración segura. Ocultar un botón en el navegador no protege una API.",
+              "explanation": "La seguridad web considera cómo una aplicación recibe datos, autentica personas, administra sesiones y responde a solicitudes. Riesgos como inyección, control de acceso roto, fallos criptográficos o configuraciones inseguras aparecen cuando el diseño y la implementación no controlan adecuadamente esas superficies. OWASP mantiene guías y categorías para que los equipos puedan reconocer, priorizar y prevenir riesgos; no es una herramienta que proteja automáticamente una aplicación.",
+              "example": "Un formulario recibe un nombre de usuario. Si el servidor concatena ese texto directamente en una consulta SQL, una entrada manipulada podría cambiar la consulta. Las consultas parametrizadas separan los datos de las instrucciones y reducen ese riesgo.",
               "task": "El servidor debe comprobar permisos incluso si la interfaz oculta una acción.",
               "question": "¿Dónde debe verificarse el permiso para acceder a un recurso?",
               "options": [
@@ -225,14 +260,21 @@
                 "Anota una idea principal y relaciónala con esta situación: El servidor debe comprobar permisos incluso si la interfaz oculta una acción..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Seguridad de aplicaciones web» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Seguridad de aplicaciones web» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "confiar solo en validaciones del navegador. La validación importante debe repetirse en el servidor, porque quien envía la solicitud puede modificarla.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "cyber-lab",
               "title": "Práctica responsable y laboratorios",
               "concept": "Aprende seguridad únicamente en sistemas propios o con autorización explícita.",
-              "explanation": "Aprende seguridad únicamente en sistemas propios o con autorización explícita.",
-              "example": "Define alcance, permiso y reglas antes de probar. Usa laboratorios deliberadamente vulnerables, máquinas virtuales y entornos educativos. Nunca escanees o ataques sistemas ajenos sin autorización.",
+              "explanation": "Aprender seguridad requiere practicar, pero las pruebas deben realizarse únicamente en equipos propios, laboratorios diseñados para ello o sistemas donde exista autorización explícita. Un laboratorio aislado permite observar vulnerabilidades sin afectar a terceros. Antes de ejecutar una prueba, define el alcance, las reglas, los sistemas permitidos y cómo detener la actividad. La curiosidad técnica nunca sustituye el permiso.",
+              "example": "Puedes practicar en un laboratorio educativo como Web Security Academy siguiendo sus instrucciones y objetivos. No debes trasladar automáticamente esas pruebas a páginas reales ni escanear direcciones públicas sin autorización.",
               "task": "Un laboratorio local permite experimentar sin afectar servicios de terceros.",
               "question": "¿Dónde es apropiado practicar técnicas de explotación?",
               "options": [
@@ -256,7 +298,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Un laboratorio local permite experimentar sin afectar servicios de terceros..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Práctica responsable y laboratorios» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Práctica responsable y laboratorios» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "pensar que una prueba es legal porque no se modificaron datos. El escaneo y los intentos de acceso también pueden afectar servicios y requieren autorización.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         }
@@ -367,8 +416,8 @@
               "id": "frontend-html",
               "title": "HTML semántico",
               "concept": "HTML describe la estructura y el significado del contenido de una página.",
-              "explanation": "HTML describe la estructura y el significado del contenido de una página.",
-              "example": "Usa header, nav, main, article y footer. Los encabezados organizan el documento. Los formularios requieren etiquetas asociadas a sus controles.",
+              "explanation": "HTML es un lenguaje de marcado: organiza el contenido mediante elementos que indican qué representa cada parte de una página. Un encabezado, un párrafo, una lista, una navegación y el contenido principal no son intercambiables; la semántica comunica estructura a navegadores, tecnologías de asistencia y buscadores. Los elementos semánticos ofrecen significado incorporado y suelen aportar comportamientos accesibles sin tener que recrearlos con código adicional.",
+              "example": "Usa <header> para la cabecera de una página o sección, <nav> para un conjunto de enlaces de navegación, <main> para el contenido principal y <article> para una pieza independiente. Un <div> sirve como contenedor genérico cuando no existe un elemento más significativo.",
               "task": "Un documento HTML incluye doctype, html, head y body.",
               "question": "¿Qué elemento contiene el contenido principal único de una página?",
               "options": [
@@ -392,14 +441,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Un documento HTML incluye doctype, html, head y body..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «HTML semántico» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «HTML semántico» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "escoger etiquetas solo por su apariencia. El aspecto visual corresponde principalmente a CSS; HTML debe describir el significado y la estructura.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "frontend-css",
               "title": "CSS y modelo de caja",
               "concept": "CSS controla colores, tipografía, espacios y distribución visual.",
-              "explanation": "CSS controla colores, tipografía, espacios y distribución visual.",
-              "example": "El modelo de caja incluye contenido, padding, borde y margen. Flexbox y Grid ayudan a organizar componentes. box-sizing:border-box facilita calcular dimensiones.",
+              "explanation": "CSS describe cómo se presenta un documento HTML: colores, tipografía, tamaños, espacios y distribución. El modelo de caja explica que cada elemento ocupa un rectángulo formado por contenido, padding, borde y margen. Entender esas capas ayuda a calcular dimensiones y resolver desbordamientos. La cascada y la especificidad determinan qué reglas se aplican cuando varias declaraciones afectan al mismo elemento.",
+              "example": "Si una tarjeta tiene 300 píxeles de contenido, 20 de padding a cada lado y un borde de 2 píxeles, su ancho total puede superar 300. Con box-sizing: border-box, el ancho declarado incluye contenido, padding y borde, lo que facilita diseñar interfaces previsibles.",
               "task": "Una tarjeta con padding tiene espacio interior alrededor de su contenido.",
               "question": "¿Qué tecnología define principalmente la presentación visual?",
               "options": [
@@ -423,14 +479,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Una tarjeta con padding tiene espacio interior alrededor de su contenido..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «CSS y modelo de caja» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «CSS y modelo de caja» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "usar márgenes para resolver cualquier problema de espacio. Distingue el espacio interior (padding) del exterior (margin) y comprueba el modelo de caja.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "frontend-responsive",
               "title": "Diseño adaptable",
               "concept": "El diseño responsive adapta la interfaz a móviles, tabletas y pantallas grandes.",
-              "explanation": "El diseño responsive adapta la interfaz a móviles, tabletas y pantallas grandes.",
-              "example": "Usa unidades flexibles, imágenes adaptables y media queries. Diseña para pantallas pequeñas y evita anchos rígidos. Prueba zoom y navegación por teclado.",
+              "explanation": "El diseño adaptable permite que una interfaz siga siendo legible y usable en distintos tamaños de pantalla. En vez de diseñar para un único teléfono o monitor, se combinan diseños fluidos, unidades relativas, imágenes flexibles y media queries cuando el contenido necesita cambiar de distribución. El viewport debe configurarse correctamente para que el navegador móvil use el ancho real del dispositivo.",
+              "example": "Una cuadrícula puede mostrar tres columnas en una pantalla amplia, dos en una tableta y una en un celular. El cambio debe responder al espacio disponible y no a una lista rígida de modelos de teléfono.",
               "task": "Una cuadrícula con auto-fit y minmax puede ajustar columnas automáticamente.",
               "question": "¿Qué recurso CSS aplica estilos según el ancho de pantalla?",
               "options": [
@@ -454,7 +517,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Una cuadrícula con auto-fit y minmax puede ajustar columnas automáticamente..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diseño adaptable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diseño adaptable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "reducir toda la página con zoom. Una interfaz responsive reorganiza el contenido, mantiene tamaños legibles y evita desplazamiento horizontal innecesario.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         },
@@ -465,8 +535,8 @@
               "id": "frontend-js",
               "title": "JavaScript y DOM",
               "concept": "JavaScript agrega comportamiento e interacción a la página.",
-              "explanation": "JavaScript agrega comportamiento e interacción a la página.",
-              "example": "Selecciona elementos del DOM, escucha eventos y actualiza contenido. Usa addEventListener. Para mostrar texto no confiable, prefiere textContent a innerHTML.",
+              "explanation": "JavaScript permite que una página responda a acciones y trabaje con datos. El DOM es la representación estructurada del documento que el navegador expone al código: JavaScript puede localizar elementos, cambiar texto, crear nodos y escuchar eventos. Un evento, como un clic o el envío de un formulario, permite reaccionar sin recargar toda la página. Conviene separar la estructura HTML, los estilos CSS y el comportamiento JavaScript.",
+              "example": "Un botón puede escuchar el evento click y cambiar el texto de un párrafo. El código busca el elemento por su id, registra una función y ejecuta esa función cuando la persona pulsa el botón.",
               "task": "Un botón puede escuchar click y actualizar un mensaje.",
               "question": "¿Qué método registra un evento de clic?",
               "options": [
@@ -490,14 +560,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Un botón puede escuchar click y actualizar un mensaje..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «JavaScript y DOM» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «JavaScript y DOM» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "modificar el HTML con cadenas sin validar su contenido. Para texto proporcionado por usuarios, usa textContent en lugar de insertar HTML arbitrario.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "frontend-accessibility",
               "title": "Accesibilidad web",
               "concept": "Una interfaz accesible puede utilizarse con teclado, lector de pantalla y distintas capacidades.",
-              "explanation": "Una interfaz accesible puede utilizarse con teclado, lector de pantalla y distintas capacidades.",
-              "example": "Asocia label e input, añade textos alternativos útiles, mantén foco visible y usa HTML semántico. ARIA complementa HTML nativo; no lo sustituye.",
+              "explanation": "La accesibilidad busca que personas con distintas capacidades puedan percibir, comprender y operar una interfaz. Incluye navegación completa con teclado, foco visible, contraste suficiente, etiquetas asociadas a controles, estructura semántica y mensajes que puedan anunciar lectores de pantalla. No es una capa que se añade al final: debe considerarse desde el diseño de cada componente.",
+              "example": "Un campo de correo necesita una etiqueta visible y asociada mediante for/id. Los botones deben poder activarse con teclado y mostrar claramente cuándo tienen el foco. Las imágenes informativas necesitan texto alternativo útil.",
               "task": "Una imagen informativa necesita texto alternativo que comunique su propósito.",
               "question": "¿Qué atributo ofrece texto alternativo a una imagen?",
               "options": [
@@ -521,14 +598,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Una imagen informativa necesita texto alternativo que comunique su propósito..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Accesibilidad web» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Accesibilidad web» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "usar solo color para comunicar error o éxito. Añade texto o un símbolo accesible y comprueba la interfaz sin ratón.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "frontend-api",
               "title": "Consumir APIs",
               "concept": "fetch permite que la interfaz consulte servicios web.",
-              "explanation": "fetch permite que la interfaz consulte servicios web.",
-              "example": "Comprueba response.ok, interpreta el formato esperado y maneja errores de red. No guardes secretos de servidor en JavaScript público.",
+              "explanation": "Una API permite que programas intercambien datos mediante un contrato: qué solicitud enviar, qué parámetros admite y qué respuesta devuelve. En el navegador, fetch realiza solicitudes HTTP y devuelve una promesa con la respuesta. Debes comprobar response.ok, interpretar el formato recibido y manejar fallos de red o errores del servidor. Los datos remotos no deben tratarse como confiables solo porque llegaron en JSON.",
+              "example": "Una página solicita una lista de productos con fetch('/api/productos'). Si el servidor responde correctamente, el código convierte la respuesta a JSON y muestra los productos; si devuelve un error o la red falla, presenta un mensaje útil.",
               "task": "Una clave privada incluida en el frontend deja de ser secreta.",
               "question": "¿Qué propiedad indica que la respuesta HTTP fue exitosa?",
               "options": [
@@ -552,7 +636,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Una clave privada incluida en el frontend deja de ser secreta..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Consumir APIs» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Consumir APIs» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "asumir que fetch rechaza la promesa cuando el servidor responde 404. La solicitud puede resolverse normalmente; revisa response.ok.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         }
@@ -663,8 +754,8 @@
               "id": "backend-http",
               "title": "HTTP y solicitudes",
               "concept": "HTTP conecta clientes y servidores mediante solicitudes y respuestas.",
-              "explanation": "HTTP conecta clientes y servidores mediante solicitudes y respuestas.",
-              "example": "GET consulta, POST crea o procesa, PUT reemplaza, PATCH modifica parcialmente y DELETE elimina. Los códigos 2xx indican éxito, 4xx errores del cliente y 5xx errores del servidor.",
+              "explanation": "HTTP es el protocolo que permite que un cliente y un servidor intercambien solicitudes y respuestas. Una solicitud incluye método, ruta, encabezados y, a veces, un cuerpo. La respuesta incluye un código de estado, encabezados y, a veces, datos. GET suele recuperar información; POST suele enviar o crear; PUT/PATCH actualizan; DELETE solicita eliminar. Los códigos 2xx indican éxito, 4xx errores asociados a la solicitud y 5xx problemas del servidor.",
+              "example": "Cuando un navegador pide GET /productos, el servidor puede responder 200 y una lista JSON. Si el producto solicitado no existe, puede responder 404. Si la persona no tiene sesión, puede responder 401.",
               "task": "No uses GET para operaciones que cambian estado.",
               "question": "¿Qué método HTTP se utiliza normalmente para recuperar un recurso?",
               "options": [
@@ -688,14 +779,21 @@
                 "Anota una idea principal y relaciónala con esta situación: No uses GET para operaciones que cambian estado..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «HTTP y solicitudes» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «HTTP y solicitudes» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "usar siempre 200 aunque la operación haya fallado. Los códigos correctos ayudan al cliente y a quien mantiene el servicio a entender qué ocurrió.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "backend-rest",
               "title": "Diseño de APIs",
               "concept": "Una API define rutas, métodos, formatos, validaciones y errores consistentes.",
-              "explanation": "Una API define rutas, métodos, formatos, validaciones y errores consistentes.",
-              "example": "Organiza rutas alrededor de recursos. Documenta contratos, usa paginación y evita filtrar detalles internos sensibles en errores.",
+              "explanation": "Una API REST organiza recursos mediante rutas y métodos HTTP coherentes. El diseño debe ofrecer nombres comprensibles, formatos consistentes, validación, códigos de estado útiles y errores previsibles. REST no significa simplemente devolver JSON: importa el contrato entre cliente y servidor y la forma en que se representan los recursos. La documentación permite que otros equipos utilicen la API sin adivinar su comportamiento.",
+              "example": "Una API de tareas podría ofrecer GET /tareas para listar, POST /tareas para crear, GET /tareas/42 para consultar una y PATCH /tareas/42 para modificarla. La respuesta de creación debería indicar si se creó correctamente y devolver la representación del recurso.",
               "task": "GET /api/users/42 consulta un recurso con identificador 42.",
               "question": "¿Qué describe un endpoint?",
               "options": [
@@ -719,14 +817,21 @@
                 "Anota una idea principal y relaciónala con esta situación: GET /api/users/42 consulta un recurso con identificador 42..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diseño de APIs» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diseño de APIs» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "crear rutas como /hacerCrearTarea y /hacerBorrarTarea sin un criterio común. Modela recursos y usa métodos HTTP de forma consistente.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "backend-validation",
               "title": "Validación en servidor",
               "concept": "Toda entrada externa debe validarse antes de procesarse.",
-              "explanation": "Toda entrada externa debe validarse antes de procesarse.",
-              "example": "Valida tipo, longitud, formato, rangos y reglas de negocio en el servidor. La validación del navegador mejora la experiencia, pero no es una frontera de seguridad.",
+              "explanation": "Todo dato que llega desde fuera del servidor debe considerarse no confiable, incluso si la interfaz ya lo validó. La validación comprueba tipo, longitud, formato, rango y reglas de negocio antes de procesar o guardar la entrada. También debes normalizar datos cuando corresponda y rechazar valores inesperados con errores claros. Validar no reemplaza la parametrización de consultas ni la codificación de salida.",
+              "example": "Si una API recibe una edad, puede exigir un entero dentro de un rango razonable. Si recibe un correo, puede comprobar su formato. Si un campo no debe aceptar HTML, no basta con ocultarlo en el formulario: el servidor debe aplicar la regla.",
               "task": "Un campo edad debe ser entero y estar dentro del rango permitido.",
               "question": "¿Dónde debe aplicarse la validación que protege la lógica de negocio?",
               "options": [
@@ -750,7 +855,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Un campo edad debe ser entero y estar dentro del rango permitido..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Validación en servidor» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Validación en servidor» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "confiar en que el usuario nunca enviará valores manipulados. Cualquier cliente puede llamar a la API directamente.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         },
@@ -761,8 +873,8 @@
               "id": "backend-sql",
               "title": "Consultas y persistencia",
               "concept": "Las bases relacionales organizan información en tablas relacionadas.",
-              "explanation": "Las bases relacionales organizan información en tablas relacionadas.",
-              "example": "Usa consultas parametrizadas para evitar inyección SQL y transacciones para mantener consistencia. No construyas SQL concatenando texto del usuario.",
+              "explanation": "Una base de datos relacional organiza información en tablas con filas y columnas. Las claves primarias identifican registros y las claves foráneas relacionan tablas. El servidor utiliza consultas para leer y modificar datos, y debe usar parámetros en lugar de concatenar entradas del usuario. La persistencia permite que la información sobreviva al cierre de una solicitud o de la aplicación.",
+              "example": "Una tabla usuarios puede tener id, nombre y correo. Una tabla pedidos puede tener usuario_id como clave foránea. Así puedes consultar qué pedidos pertenecen a cada usuario sin repetir todos sus datos en cada fila.",
               "task": "Los parámetros separan instrucciones SQL de los valores.",
               "question": "¿Qué técnica ayuda a prevenir inyección SQL?",
               "options": [
@@ -786,14 +898,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Los parámetros separan instrucciones SQL de los valores..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Consultas y persistencia» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Consultas y persistencia» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "guardar listas enteras de datos relacionados en una sola columna de texto cuando necesitas consultarlos y mantener relaciones.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "backend-auth",
               "title": "Autenticación y autorización",
               "concept": "Autenticación verifica quién eres; autorización determina qué puedes hacer.",
-              "explanation": "Autenticación verifica quién eres; autorización determina qué puedes hacer.",
-              "example": "Almacena contraseñas con algoritmos de hash diseñados para contraseñas. Las sesiones deben expirar y poder revocarse. Aplica permisos en cada operación protegida.",
+              "explanation": "La autenticación responde «¿quién eres?» y la autorización responde «¿qué puedes hacer?». Una sesión permite que el servidor reconozca solicitudes posteriores después del inicio de sesión. Las contraseñas deben almacenarse mediante funciones de hash diseñadas para contraseñas, nunca como texto plano. Las cookies de sesión necesitan atributos adecuados y las acciones sensibles deben comprobar los permisos en el servidor.",
+              "example": "Una persona puede autenticarse correctamente y tener permiso para consultar sus propios pedidos, pero no los pedidos de otra cuenta. La autenticación identifica a la persona; la autorización aplica la regla de acceso al recurso.",
               "task": "Una cookie HttpOnly reduce el acceso directo de JavaScript a la cookie.",
               "question": "¿Qué proceso decide si una persona puede borrar un recurso?",
               "options": [
@@ -817,14 +936,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Una cookie HttpOnly reduce el acceso directo de JavaScript a la cookie..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Autenticación y autorización» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Autenticación y autorización» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "ocultar un botón en la interfaz y asumir que eso impide la acción. El backend debe verificar el permiso en cada operación.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "backend-tests",
               "title": "Pruebas unitarias y de integración",
               "concept": "Las pruebas verifican comportamiento esperado y fallos previsibles.",
-              "explanation": "Las pruebas verifican comportamiento esperado y fallos previsibles.",
-              "example": "Las unitarias prueban unidades pequeñas; las de integración prueban componentes conectados. Incluye entradas inválidas, autenticación, persistencia y límites.",
+              "explanation": "Las pruebas automatizadas verifican que una parte del sistema se comporte como se espera. Una prueba unitaria se concentra en una unidad pequeña; una prueba de integración comprueba la interacción entre componentes; una prueba de extremo a extremo recorre un flujo completo como lo haría una persona. Los casos importantes incluyen resultados correctos, entradas inválidas, límites y fallos previsibles.",
+              "example": "Para una función que calcula descuentos, prueba un precio normal, un precio cero, un porcentaje inválido y valores límite. Para una API, prueba tanto una solicitud válida como una sin autenticación.",
               "task": "Un endpoint de registro debe probar correo duplicado y contraseña corta.",
               "question": "¿Qué prueba verifica que varios componentes funcionen juntos?",
               "options": [
@@ -848,7 +974,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Un endpoint de registro debe probar correo duplicado y contraseña corta..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Pruebas unitarias y de integración» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Pruebas unitarias y de integración» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "probar solo el camino feliz. Los fallos y los límites suelen revelar defectos que una demostración manual no detecta.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         }
@@ -959,8 +1092,8 @@
               "id": "data-questions",
               "title": "Preguntas y tipos de datos",
               "concept": "Una pregunta analítica concreta determina qué datos y métodos necesitas.",
-              "explanation": "Una pregunta analítica concreta determina qué datos y métodos necesitas.",
-              "example": "Distingue datos numéricos, categóricos, fechas y texto. Revisa origen, cobertura, calidad y posibles sesgos antes de sacar conclusiones.",
+              "explanation": "El análisis de datos empieza por una pregunta concreta, no por abrir una herramienta y generar gráficos al azar. Define qué decisión quieres apoyar, qué población o periodo te interesa y qué resultado sería útil. La pregunta determina qué datos necesitas, qué variables representan el fenómeno y qué limitaciones debes reconocer. Una pregunta demasiado amplia produce análisis confusos o conclusiones que no responden a ninguna necesidad real.",
+              "example": "En vez de preguntar «¿cómo están las ventas?», pregunta «¿qué categoría tuvo mayor variación mensual en las ventas durante el último semestre?». La segunda pregunta define periodo, métrica y comparación.",
               "task": "Para estudiar retrasos de entregas define periodo, unidad de análisis y qué significa retraso.",
               "question": "¿Qué conviene definir antes de iniciar un análisis?",
               "options": [
@@ -984,14 +1117,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Para estudiar retrasos de entregas define periodo, unidad de análisis y qué significa retraso..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Preguntas y tipos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Preguntas y tipos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "confundir correlación con causalidad o escoger datos porque están disponibles, aunque no respondan la pregunta.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "data-cleaning",
               "title": "Limpieza de datos",
               "concept": "La limpieza revisa nulos, duplicados, tipos, unidades y valores imposibles.",
-              "explanation": "La limpieza revisa nulos, duplicados, tipos, unidades y valores imposibles.",
-              "example": "Un valor faltante no siempre equivale a cero. Documenta las transformaciones y no elimines registros sin comprender su significado.",
+              "explanation": "Los datos del mundo real suelen contener valores ausentes, duplicados, formatos inconsistentes, errores de digitación y unidades mezcladas. Limpiar no significa borrar todo lo extraño: primero debes entender qué representa cada campo y documentar las decisiones. Un valor ausente puede significar que no se midió, que no aplica o que se perdió; cada caso requiere un tratamiento distinto.",
+              "example": "Si una columna de fechas mezcla 03/04/2026 y 2026-04-03, primero confirma el formato regional antes de convertirla. Si aparecen registros duplicados, comprueba si son copias exactas o eventos legítimos repetidos.",
               "task": "Si una columna mezcla formatos de fecha, primero aclara cuál se está usando.",
               "question": "¿Qué significa normalmente un valor nulo?",
               "options": [
@@ -1015,14 +1155,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Si una columna mezcla formatos de fecha, primero aclara cuál se está usando..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Limpieza de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Limpieza de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "reemplazar todos los nulos por cero. Cero es un valor real y puede distorsionar promedios y conclusiones.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "data-stats",
               "title": "Estadística descriptiva",
               "concept": "Media, mediana, moda, rango y percentiles resumen una distribución.",
-              "explanation": "Media, mediana, moda, rango y percentiles resumen una distribución.",
-              "example": "La mediana suele resistir mejor valores extremos que la media. Mira la distribución antes de resumir con una sola cifra.",
+              "explanation": "La estadística descriptiva resume un conjunto de datos sin intentar explicar por sí sola por qué ocurrió algo. La media es sensible a valores extremos; la mediana representa el punto central ordenado; la moda identifica el valor más frecuente. El rango y los percentiles describen dispersión y posición. Conviene observar varias medidas y la forma de la distribución antes de sacar conclusiones.",
+              "example": "En salarios, unas pocas cifras muy altas pueden elevar la media. La mediana puede describir mejor el salario típico. Un histograma ayuda a ver si hay asimetría o grupos distintos.",
               "task": "En salarios con valores extremos, la mediana puede representar mejor el centro.",
               "question": "¿Qué medida suele ser menos sensible a valores extremos?",
               "options": [
@@ -1046,7 +1193,14 @@
                 "Anota una idea principal y relaciónala con esta situación: En salarios con valores extremos, la mediana puede representar mejor el centro..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Estadística descriptiva» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Estadística descriptiva» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "presentar la media como si describiera a todas las personas. Siempre indica el tamaño, el periodo y las limitaciones de los datos.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         },
@@ -1057,8 +1211,8 @@
               "id": "data-pandas",
               "title": "Primeros pasos con pandas",
               "concept": "pandas permite leer, limpiar, agrupar y resumir datos tabulares en Python.",
-              "explanation": "pandas permite leer, limpiar, agrupar y resumir datos tabulares en Python.",
-              "example": "DataFrame representa datos en filas y columnas. Inspecciona shape, dtypes, info y describe antes de analizar.",
+              "explanation": "pandas es una biblioteca de Python para trabajar con datos tabulares. Su estructura principal, DataFrame, organiza valores en filas y columnas con etiquetas. Puedes cargar archivos, seleccionar columnas, filtrar filas, tratar valores ausentes, agrupar y calcular resúmenes. Antes de aplicar operaciones, revisa los tipos de datos y una muestra de los registros para comprender qué contiene el conjunto.",
+              "example": "Al leer un CSV, puedes inspeccionar las primeras filas, revisar los nombres de columnas y contar valores ausentes. Después filtras las filas que cumplen una condición y agrupas por categoría para calcular totales.",
               "task": "df.groupby('region')['ventas'].sum() resume ventas por región.",
               "question": "¿Qué estructura de pandas representa datos tabulares?",
               "options": [
@@ -1083,14 +1237,21 @@
                 "Anota una idea principal y relaciónala con esta situación: df.groupby('region')['ventas'].sum() resume ventas por región..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Primeros pasos con pandas» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Primeros pasos con pandas» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "ejecutar transformaciones sin revisar tipos y valores. Una columna numérica leída como texto puede producir resultados incorrectos.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "data-viz",
               "title": "Visualización responsable",
               "concept": "Elige gráficos según la pregunta que quieres responder.",
-              "explanation": "Elige gráficos según la pregunta que quieres responder.",
-              "example": "Barras comparan categorías; líneas muestran evolución temporal; histogramas muestran distribuciones; dispersión explora relaciones. Etiqueta ejes y evita escalas engañosas.",
+              "explanation": "Una visualización debe responder una pregunta y facilitar una comparación. Las barras sirven para comparar categorías; las líneas muestran cambios a lo largo del tiempo; los histogramas muestran distribuciones; los diagramas de dispersión ayudan a explorar relaciones entre dos variables. El título, las unidades, la escala y la fuente son parte de la explicación, no decoración.",
+              "example": "Para comparar ventas por categoría, usa barras ordenadas. Para observar ventas mes a mes, usa una línea temporal. No uses un gráfico circular con decenas de categorías difíciles de distinguir.",
               "task": "Para ventas mensuales a lo largo del año, una línea suele mostrar bien la tendencia.",
               "question": "¿Qué gráfico suele servir para una serie mensual?",
               "options": [
@@ -1114,14 +1275,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Para ventas mensuales a lo largo del año, una línea suele mostrar bien la tendencia..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Visualización responsable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Visualización responsable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "truncar ejes o elegir escalas que exageran diferencias. La visualización debe ser legible y no inducir una conclusión engañosa.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "data-ethics",
               "title": "Privacidad y ética de datos",
               "concept": "Un análisis responsable protege datos personales y comunica incertidumbre.",
-              "explanation": "Un análisis responsable protege datos personales y comunica incertidumbre.",
-              "example": "Minimiza datos personales, controla accesos y comunica muestra, periodo y limitaciones. Correlación no demuestra causalidad.",
+              "explanation": "Los datos pueden describir personas y decisiones que les afectan. Un análisis responsable minimiza la recolección, protege información identificable, limita el acceso y comunica cómo se obtuvieron los resultados. También debe considerar sesgos de selección, datos incompletos, errores de medición y el impacto de las conclusiones. Tener acceso a un conjunto de datos no significa tener permiso para usarlo de cualquier manera.",
+              "example": "Antes de compartir un informe, elimina identificadores que no sean necesarios, verifica permisos y explica de dónde proceden los datos. Si una muestra excluye a un grupo, aclara que los resultados quizá no representen a toda la población.",
               "task": "Una encuesta voluntaria puede no representar a toda la población.",
               "question": "¿Qué debe acompañar una conclusión basada en una muestra limitada?",
               "options": [
@@ -1145,7 +1313,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Una encuesta voluntaria puede no representar a toda la población..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Privacidad y ética de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Privacidad y ética de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "creer que quitar el nombre vuelve anónimos los datos. Varias columnas pueden permitir reidentificar a alguien.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         }
@@ -1256,8 +1431,8 @@
               "id": "ai-ml",
               "title": "Qué es aprendizaje automático",
               "concept": "Machine learning aprende patrones a partir de datos para realizar tareas como clasificación o predicción.",
-              "explanation": "Machine learning aprende patrones a partir de datos para realizar tareas como clasificación o predicción.",
-              "example": "Los modelos ajustan parámetros usando ejemplos o señales. No implica conciencia humana ni garantiza respuestas correctas.",
+              "explanation": "El aprendizaje automático es un campo de la inteligencia artificial en el que un sistema ajusta parámetros a partir de ejemplos para realizar una tarea. En aprendizaje supervisado, los datos incluyen ejemplos con una respuesta conocida; el modelo aprende patrones que después aplica a casos nuevos. El modelo no «entiende» automáticamente el problema: su calidad depende de los datos, la formulación de la tarea y la evaluación.",
+              "example": "Para clasificar correos como spam o legítimos, se entrena un modelo con ejemplos etiquetados. Luego se evalúa con mensajes que no participaron en el entrenamiento para comprobar si generaliza.",
               "task": "Un filtro de spam puede aprender patrones a partir de mensajes etiquetados.",
               "question": "¿Qué caracteriza al aprendizaje automático?",
               "options": [
@@ -1281,14 +1456,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Un filtro de spam puede aprender patrones a partir de mensajes etiquetados..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Qué es aprendizaje automático» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Qué es aprendizaje automático» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "pensar que un modelo que memoriza los datos de entrenamiento necesariamente funcionará con datos nuevos. Eso puede ser sobreajuste.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "ai-datasets",
               "title": "Conjuntos de datos",
               "concept": "Los datos deben representar el problema y dividirse correctamente.",
-              "explanation": "Los datos deben representar el problema y dividirse correctamente.",
-              "example": "Separa entrenamiento, validación y prueba. La fuga de datos ocurre cuando información de prueba influye en entrenamiento o decisiones del modelo.",
+              "explanation": "Un conjunto de datos debe representar razonablemente el problema al que se aplicará el modelo. Las etiquetas deben ser consistentes, las variables relevantes y los datos deben revisarse en busca de duplicados, sesgos, filtraciones y valores ausentes. Separar entrenamiento, validación y prueba permite ajustar el modelo sin evaluar su desempeño con los mismos ejemplos que utilizó para aprender.",
+              "example": "Si quieres predecir el abandono de clientes, los datos deben reflejar a los clientes y condiciones donde se usará el modelo. Si una misma persona aparece en entrenamiento y prueba, la evaluación puede parecer mejor de lo que realmente es.",
               "task": "El conjunto de prueba se reserva para evaluar el modelo final.",
               "question": "¿Para qué se reserva el conjunto de prueba?",
               "options": [
@@ -1312,14 +1494,21 @@
                 "Anota una idea principal y relaciónala con esta situación: El conjunto de prueba se reserva para evaluar el modelo final..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Conjuntos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Conjuntos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "dividir los datos al azar cuando existe dependencia temporal o entre registros de una misma persona.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "ai-metrics",
               "title": "Métricas de evaluación",
               "concept": "Accuracy puede ocultar problemas en clases desbalanceadas.",
-              "explanation": "Accuracy puede ocultar problemas en clases desbalanceadas.",
-              "example": "Precision mide qué proporción de positivos predichos era correcta; recall mide qué proporción de positivos reales se detectó. Elige métricas según el coste de errores.",
+              "explanation": "Una métrica resume un aspecto del desempeño, pero ninguna métrica aislada cuenta toda la historia. Accuracy es la proporción total de predicciones correctas; puede ser engañosa cuando una clase es mucho más frecuente que otra. Precision indica qué proporción de positivos predichos era correcta; recall mide cuántos positivos reales encontró el modelo. La métrica adecuada depende del coste de cada tipo de error.",
+              "example": "Si solo 1 de cada 100 transacciones es fraudulenta, un modelo que siempre predice «no fraude» logra 99 % de accuracy y no detecta ningún fraude. Precision, recall y la matriz de confusión muestran mejor el problema.",
               "task": "En detección médica, los falsos negativos pueden tener un coste alto.",
               "question": "¿Qué métrica mide qué proporción de positivos reales fue detectada?",
               "options": [
@@ -1343,7 +1532,14 @@
                 "Anota una idea principal y relaciónala con esta situación: En detección médica, los falsos negativos pueden tener un coste alto..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Métricas de evaluación» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Métricas de evaluación» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "elegir el modelo solo porque tiene el accuracy más alto sin pensar qué errores son más costosos.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         },
@@ -1354,8 +1550,8 @@
               "id": "ai-llm",
               "title": "Cómo funcionan los modelos de lenguaje",
               "concept": "Un modelo de lenguaje procesa tokens y estima probabilidades para generar el siguiente token.",
-              "explanation": "Un modelo de lenguaje procesa tokens y estima probabilidades para generar el siguiente token.",
-              "example": "El contexto condiciona la generación. La salida puede ser convincente y aun así contener errores o invenciones. Un LLM no es una base de datos infalible.",
+              "explanation": "Un modelo de lenguaje grande procesa texto convertido en tokens, unidades que pueden ser palabras o fragmentos de palabras. Durante el entrenamiento aprende patrones estadísticos a partir de grandes cantidades de texto. Al generar una respuesta, estima distribuciones de probabilidad para el siguiente token y repite el proceso. Esto puede producir texto útil, pero no garantiza que cada afirmación sea verdadera ni que el modelo tenga comprensión humana.",
+              "example": "Ante una instrucción, el modelo convierte el contexto en tokens, calcula qué continuaciones son probables y genera una secuencia. Cambiar el contexto o la instrucción puede cambiar la salida.",
               "task": "La generación autorregresiva predice el siguiente token dado el contexto.",
               "question": "¿Qué predice un modelo de lenguaje autorregresivo típico?",
               "options": [
@@ -1379,14 +1575,21 @@
                 "Anota una idea principal y relaciónala con esta situación: La generación autorregresiva predice el siguiente token dado el contexto..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Cómo funcionan los modelos de lenguaje» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Cómo funcionan los modelos de lenguaje» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "tratar una respuesta fluida como prueba de exactitud. Verifica hechos, cálculos y fuentes cuando el resultado importe.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "ai-prompts",
               "title": "Instrucciones y evaluación de prompts",
               "concept": "Un prompt útil especifica tarea, contexto, restricciones y formato esperado.",
-              "explanation": "Un prompt útil especifica tarea, contexto, restricciones y formato esperado.",
-              "example": "Evalúa con casos representativos, no solo un ejemplo exitoso. Valida salidas estructuradas y no introduzcas secretos o datos personales en servicios externos sin autorización.",
+              "explanation": "Un prompt es una instrucción y un contexto que orientan la respuesta de un modelo. Una solicitud clara especifica la tarea, la información relevante, las restricciones y el formato esperado. Los ejemplos pueden ayudar a mostrar el tipo de salida deseado. Un prompt bien escrito reduce ambigüedades, pero no elimina errores, sesgos ni invenciones del modelo.",
+              "example": "En lugar de «háblame de bases de datos», puedes pedir «explica claves primarias y foráneas para alguien principiante, usa un ejemplo de biblioteca y termina con dos preguntas de práctica».",
               "task": "Un prompt claro no elimina errores del modelo.",
               "question": "¿Qué mejora la evaluación de un prompt?",
               "options": [
@@ -1410,14 +1613,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Un prompt claro no elimina errores del modelo..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Instrucciones y evaluación de prompts» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Instrucciones y evaluación de prompts» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "creer que añadir «sé preciso» garantiza precisión. Comprueba la respuesta y proporciona fuentes cuando sea necesario.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "ai-responsible",
               "title": "Sesgos y uso responsable",
               "concept": "Evalúa privacidad, sesgo, robustez, explicabilidad y supervisión humana.",
-              "explanation": "Evalúa privacidad, sesgo, robustez, explicabilidad y supervisión humana.",
-              "example": "Mide el rendimiento por subgrupos, protege datos y establece revisión humana cuando las decisiones afectan personas. Automatizar no elimina la responsabilidad.",
+              "explanation": "El uso responsable de IA considera a quién afecta el sistema y qué riesgos introduce. Debes examinar la calidad y representatividad de los datos, la privacidad, la seguridad, la posibilidad de explicar decisiones y la supervisión humana. Los modelos pueden fallar de forma desigual entre grupos o en situaciones distintas a las de entrenamiento. La revisión debe continuar después del despliegue, porque los datos y el contexto cambian.",
+              "example": "Antes de usar un modelo para filtrar solicitudes de empleo, pregunta si los datos históricos contienen sesgos, si la decisión puede revisarse y cómo se protege la información de las personas.",
               "task": "Antes de desplegar un modelo, define cómo corregir decisiones injustas.",
               "question": "¿Qué acción ayuda a detectar diferencias de rendimiento entre grupos?",
               "options": [
@@ -1441,7 +1651,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Antes de desplegar un modelo, define cómo corregir decisiones injustas..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Sesgos y uso responsable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Sesgos y uso responsable» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "asumir que una métrica promedio buena significa que el sistema es justo para todos los grupos.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         }
@@ -1552,8 +1769,8 @@
               "id": "db-relational",
               "title": "Tablas y claves",
               "concept": "Las tablas organizan registros y atributos. Una clave primaria identifica cada fila.",
-              "explanation": "Las tablas organizan registros y atributos. Una clave primaria identifica cada fila.",
-              "example": "Una clave foránea relaciona tablas. El diseño debe reflejar entidades y relaciones del problema.",
+              "explanation": "Una base de datos relacional organiza la información en tablas. Cada fila representa un registro y cada columna una propiedad. Una clave primaria identifica una fila de manera única; una clave foránea conecta un registro con otro en una tabla relacionada. Este diseño evita repetir información innecesariamente y permite consultar relaciones de forma consistente.",
+              "example": "En una biblioteca, la tabla libros guarda cada libro y la tabla préstamos guarda cada préstamo. El préstamo puede incluir el id del libro como clave foránea para indicar qué ejemplar se prestó.",
               "task": "En estudiantes, id_estudiante puede identificar cada registro.",
               "question": "¿Qué función cumple una clave primaria?",
               "options": [
@@ -1577,14 +1794,21 @@
                 "Anota una idea principal y relaciónala con esta situación: En estudiantes, id_estudiante puede identificar cada registro..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Tablas y claves» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Tablas y claves» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "usar el nombre de una persona como identificador. Los nombres pueden repetirse o cambiar; usa una clave estable.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "db-select",
               "title": "Consultar con SELECT",
               "concept": "SELECT elige columnas; FROM indica tabla; WHERE filtra filas; ORDER BY ordena.",
-              "explanation": "SELECT elige columnas; FROM indica tabla; WHERE filtra filas; ORDER BY ordena.",
-              "example": "Empieza seleccionando solo columnas necesarias. WHERE aplica condiciones antes de agrupar; HAVING filtra grupos agregados.",
+              "explanation": "SQL permite consultar y modificar datos en bases relacionales. SELECT indica qué columnas quieres recuperar y FROM señala la tabla. WHERE filtra filas según una condición; ORDER BY organiza el resultado. Estas cláusulas cumplen funciones diferentes: seleccionar columnas no es lo mismo que seleccionar registros. Aprende primero a leer una consulta pequeña antes de combinar varias condiciones.",
+              "example": "SELECT nombre, ciudad FROM clientes WHERE ciudad = 'Bogotá' ORDER BY nombre; devuelve solo el nombre y la ciudad de clientes de Bogotá, ordenados por nombre.",
               "task": "SELECT nombre FROM estudiantes WHERE activo = TRUE;",
               "question": "¿Qué cláusula filtra filas?",
               "options": [
@@ -1609,14 +1833,21 @@
                 "Relaciona la consulta con una tabla real: qué columnas necesitas y qué filas quieres recuperar."
               ],
               "reflection_prompt": "¿Qué diferencia hay entre elegir columnas con SELECT y filtrar filas con WHERE? Explica con un ejemplo sencillo.",
-              "resource_focus": "SQL Lesson 1: SELECT queries 101 y SQL Lesson 2: Queries with constraints (Pt. 1)"
+              "resource_focus": "SQL Lesson 1: SELECT queries 101 y SQL Lesson 2: Queries with constraints (Pt. 1)",
+              "common_mistake": "olvidar que WHERE filtra filas y que SELECT decide qué columnas aparecen en el resultado.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "db-joins",
               "title": "Relaciones y JOIN",
               "concept": "JOIN combina filas relacionadas entre tablas.",
-              "explanation": "JOIN combina filas relacionadas entre tablas.",
-              "example": "INNER JOIN devuelve coincidencias; LEFT JOIN conserva todas las filas de la tabla izquierda y agrega coincidencias cuando existen.",
+              "explanation": "JOIN combina filas de dos o más tablas usando una relación entre ellas. INNER JOIN devuelve las coincidencias; LEFT JOIN conserva todas las filas de la tabla izquierda y añade datos coincidentes de la derecha cuando existen. La condición ON indica cómo se relacionan los registros. Antes de unir tablas, identifica las claves y piensa si una relación uno-a-uno o uno-a-muchos puede duplicar filas.",
+              "example": "Para mostrar cada pedido con el nombre de su cliente, une pedidos.cliente_id con clientes.id. Si un cliente tiene varios pedidos, aparecerá una fila por pedido.",
               "task": "Pedidos puede relacionarse con clientes mediante cliente_id.",
               "question": "¿Qué JOIN conserva todas las filas de la tabla izquierda?",
               "options": [
@@ -1641,7 +1872,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Pedidos puede relacionarse con clientes mediante cliente_id..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Relaciones y JOIN» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Relaciones y JOIN» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "unir tablas sin una condición correcta. El resultado puede multiplicar filas y producir totales inflados.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         },
@@ -1652,8 +1890,8 @@
               "id": "db-normalization",
               "title": "Normalización",
               "concept": "La normalización reduce redundancia y anomalías de inserción, actualización y eliminación.",
-              "explanation": "La normalización reduce redundancia y anomalías de inserción, actualización y eliminación.",
-              "example": "Organiza atributos y relaciones para evitar duplicaciones. El diseño debe equilibrar integridad y necesidades reales de consulta.",
+              "explanation": "La normalización organiza tablas para reducir duplicación y evitar anomalías. Si el mismo dato se repite en muchas filas, actualizarlo puede dejar versiones contradictorias. Separar entidades y relacionarlas mediante claves ayuda a mantener consistencia. No se trata de dividir todo sin criterio: el diseño debe responder a las dependencias reales de los datos y a las consultas que necesita la aplicación.",
+              "example": "En vez de repetir la dirección de un cliente en cada pedido, guarda los datos del cliente una vez y relaciona cada pedido mediante cliente_id.",
               "task": "Separar clientes y pedidos representa que un cliente puede tener muchos pedidos.",
               "question": "¿Qué problema busca reducir la normalización?",
               "options": [
@@ -1677,14 +1915,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Separar clientes y pedidos representa que un cliente puede tener muchos pedidos..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Normalización» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Normalización» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "eliminar redundancia sin entender las relaciones y terminar con consultas imposibles o datos sin integridad.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "db-acid",
               "title": "Transacciones y ACID",
               "concept": "ACID significa atomicidad, consistencia, aislamiento y durabilidad.",
-              "explanation": "ACID significa atomicidad, consistencia, aislamiento y durabilidad.",
-              "example": "Una transacción agrupa operaciones para confirmarlas juntas o revertirlas ante un fallo. COMMIT confirma y ROLLBACK revierte cambios no confirmados.",
+              "explanation": "ACID describe propiedades importantes de las transacciones. Atomicidad significa que la operación se completa o no se aplica; consistencia mantiene las reglas de integridad; aislamiento controla cómo interactúan transacciones simultáneas; durabilidad procura que los cambios confirmados sobrevivan a fallos. Estas propiedades ayudan a que una base de datos no quede en un estado incoherente cuando varias operaciones ocurren juntas.",
+              "example": "Transferir dinero entre dos cuentas requiere descontar de una y sumar a la otra. Si una parte falla, la transacción debe revertirse para no perder dinero ni crearlo por accidente.",
               "task": "Una transferencia no debe descontar dinero y fallar antes de acreditarlo.",
               "question": "¿Qué propiedad significa que la operación ocurre completa o no ocurre?",
               "options": [
@@ -1708,14 +1953,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Una transferencia no debe descontar dinero y fallar antes de acreditarlo..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Transacciones y ACID» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Transacciones y ACID» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "pensar que atomicidad significa que una consulta es rápida. Se refiere a que una transacción se aplica completa o no se aplica.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "db-backup",
               "title": "Seguridad y copias de respaldo",
               "concept": "Protege datos con permisos mínimos, consultas seguras y respaldos probados.",
-              "explanation": "Protege datos con permisos mínimos, consultas seguras y respaldos probados.",
-              "example": "Una copia no sirve si nunca se verifica su restauración. Define quién puede leer, modificar y administrar los datos.",
+              "explanation": "Una copia de respaldo permite recuperar información después de errores, borrados, fallos de hardware o incidentes de seguridad. Una estrategia útil define qué se copia, con qué frecuencia, cuánto tiempo se conserva y dónde se almacena. Las copias deben protegerse contra accesos no autorizados y, cuando sea posible, mantenerse separadas del sistema principal. Una copia que nunca se ha restaurado no demuestra que la recuperación funcione.",
+              "example": "Una aplicación puede hacer respaldos diarios y conservar varias versiones. Periódicamente se restaura una copia en un entorno de prueba para verificar que los archivos y la base de datos son utilizables.",
               "task": "Prueba la restauración de una copia en un entorno controlado.",
               "question": "¿Qué demuestra que un respaldo es útil?",
               "options": [
@@ -1739,7 +1991,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Prueba la restauración de una copia en un entorno controlado..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Seguridad y copias de respaldo» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Seguridad y copias de respaldo» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "confundir sincronización con respaldo. Si un archivo se elimina o cifra y la sincronización replica el cambio, quizá no tengas una versión recuperable.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         }
@@ -1850,8 +2109,8 @@
               "id": "sys-os",
               "title": "Funciones del sistema operativo",
               "concept": "El sistema operativo administra hardware y ofrece servicios a programas.",
-              "explanation": "El sistema operativo administra hardware y ofrece servicios a programas.",
-              "example": "Gestiona procesos, memoria, archivos, dispositivos y permisos. Un proceso es una instancia de un programa en ejecución.",
+              "explanation": "El sistema operativo administra los recursos del equipo y ofrece servicios a las aplicaciones. Coordina procesos, memoria, archivos, dispositivos y usuarios, y proporciona mecanismos para que los programas se comuniquen con el hardware sin controlarlo todo directamente. Comprender estos componentes ayuda a diagnosticar por qué un programa no inicia, consume recursos o no puede acceder a un archivo.",
+              "example": "Cuando abres un navegador, el sistema crea procesos, asigna memoria, lee archivos y utiliza interfaces de red. El sistema operativo coordina esas operaciones y aplica permisos.",
               "task": "El sistema operativo programa procesos y controla acceso a archivos.",
               "question": "¿Cuál es una función central del sistema operativo?",
               "options": [
@@ -1875,14 +2134,21 @@
                 "Anota una idea principal y relaciónala con esta situación: El sistema operativo programa procesos y controla acceso a archivos..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Funciones del sistema operativo» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Funciones del sistema operativo» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "pensar que el sistema operativo es solo la interfaz gráfica. También incluye servicios y mecanismos que funcionan sin ventanas visibles.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "sys-linux",
               "title": "Primeros pasos en Linux",
               "concept": "La terminal permite consultar y administrar el sistema mediante comandos.",
-              "explanation": "La terminal permite consultar y administrar el sistema mediante comandos.",
-              "example": "pwd muestra el directorio actual; ls lista contenido; cd cambia de directorio; mkdir crea carpetas; cp copia y mv mueve. Consulta man o --help.",
+              "explanation": "Linux es un sistema operativo tipo Unix muy usado en servidores, desarrollo y administración de infraestructura. La terminal permite interactuar con el sistema mediante comandos y rutas. Un comando suele recibir opciones y argumentos; su salida puede mostrarse en pantalla o enviarse a otro comando. Aprende primero a orientarte, listar archivos, leer ayuda y distinguir rutas absolutas y relativas antes de modificar el sistema.",
+              "example": "pwd muestra la ruta actual; ls lista el contenido; cd cambia de directorio; mkdir crea una carpeta. Puedes consultar la ayuda con man o con la opción --help cuando esté disponible.",
               "task": "pwd muestra dónde estás ubicado.",
               "question": "¿Qué comando muestra el directorio actual?",
               "options": [
@@ -1906,14 +2172,21 @@
                 "Anota una idea principal y relaciónala con esta situación: pwd muestra dónde estás ubicado..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Primeros pasos en Linux» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Primeros pasos en Linux» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "copiar comandos de internet sin comprenderlos. Antes de ejecutarlos, identifica qué archivos modifican y si requieren privilegios.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "sys-permissions",
               "title": "Usuarios y permisos",
               "concept": "Linux asocia archivos con propietario, grupo y permisos.",
-              "explanation": "Linux asocia archivos con propietario, grupo y permisos.",
-              "example": "Los permisos básicos son lectura, escritura y ejecución. Aplica privilegios mínimos y evita usar sudo como solución automática.",
+              "explanation": "Linux controla el acceso a archivos y directorios mediante propietario, grupo y otros usuarios. Para cada categoría pueden definirse permisos de lectura (r), escritura (w) y ejecución (x). En archivos, ejecutar permite iniciar un programa; en directorios, ejecutar permite atravesarlo y acceder a su contenido. Los permisos deben conceder solo lo necesario y se pueden revisar con ls -l.",
+              "example": "En una salida como -rwxr-x---, el propietario puede leer, escribir y ejecutar; el grupo puede leer y ejecutar; otros no tienen permisos. chmod modifica estos permisos, por lo que conviene comprender el efecto antes de usarlo.",
               "task": "chmod modifica permisos; chown cambia propietario.",
               "question": "¿Qué permiso permite ejecutar un archivo?",
               "options": [
@@ -1937,7 +2210,14 @@
                 "Anota una idea principal y relaciónala con esta situación: chmod modifica permisos; chown cambia propietario..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Usuarios y permisos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Usuarios y permisos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "aplicar chmod 777 para resolver cualquier problema. Eso concede permisos excesivos y puede exponer archivos.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         },
@@ -1948,8 +2228,8 @@
               "id": "net-ip",
               "title": "Direcciones IP",
               "concept": "Una IP identifica una interfaz dentro de una red.",
-              "explanation": "Una IP identifica una interfaz dentro de una red.",
-              "example": "IPv4 usa 32 bits e IPv6 usa 128. El prefijo indica qué parte corresponde a la red. Una IP privada no es enrutable directamente en internet público.",
+              "explanation": "Una dirección IP identifica una interfaz dentro de una red para que los paquetes puedan dirigirse al destino correcto. IPv4 utiliza direcciones de 32 bits representadas en cuatro números decimales; IPv6 utiliza direcciones de 128 bits. La máscara o prefijo indica qué parte corresponde a la red y cuál al dispositivo. Una IP no identifica necesariamente a una persona ni es siempre permanente.",
+              "example": "En una red doméstica, el router puede tener una dirección privada y asignar direcciones a los equipos. El prefijo /24 indica que los primeros 24 bits identifican la red en esa subred.",
               "task": "192.168.1.10 suele pertenecer a un rango privado IPv4.",
               "question": "¿Cuántos bits tiene una dirección IPv4?",
               "options": [
@@ -1973,14 +2253,21 @@
                 "Anota una idea principal y relaciónala con esta situación: 192.168.1.10 suele pertenecer a un rango privado IPv4..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Direcciones IP» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Direcciones IP» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "confundir IP privada con pública. La privada se usa dentro de redes locales; la pública permite enrutar tráfico en internet.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "net-dns",
               "title": "DNS y nombres",
               "concept": "DNS distribuye información para resolver nombres de dominio.",
-              "explanation": "DNS distribuye información para resolver nombres de dominio.",
-              "example": "A y AAAA relacionan nombres con direcciones IPv4 e IPv6; MX identifica servidores de correo. La caché puede influir en la resolución.",
+              "explanation": "DNS es un sistema distribuido que permite encontrar información asociada a nombres de dominio. Lo más conocido es traducir nombres como ejemplo.com a direcciones IP, pero también publica otros registros, como MX para correo y TXT para verificaciones. El equipo consulta un resolver, que puede usar caché y consultar servidores DNS jerárquicos para obtener la respuesta.",
+              "example": "Cuando escribes un dominio, el sistema consulta DNS para encontrar la dirección correspondiente. Si el registro cambió recientemente, una caché puede conservar la respuesta anterior hasta que expire su tiempo de vida.",
               "task": "dig y nslookup permiten consultar DNS.",
               "question": "¿Qué registro asocia un nombre con una dirección IPv4?",
               "options": [
@@ -2004,14 +2291,21 @@
                 "Anota una idea principal y relaciónala con esta situación: dig y nslookup permiten consultar DNS..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «DNS y nombres» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «DNS y nombres» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "pensar que DNS es internet. Si DNS falla, una dirección IP aún puede responder; eso ayuda a separar un problema de nombres de uno de conectividad.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "net-debug",
               "title": "Diagnóstico de conectividad",
               "concept": "Sigue un proceso ordenado: interfaz, IP, puerta de enlace, DNS y servicio.",
-              "explanation": "Sigue un proceso ordenado: interfaz, IP, puerta de enlace, DNS y servicio.",
-              "example": "ip, ping, traceroute y ss muestran partes distintas del problema. Un ping fallido no demuestra por sí solo que todo el servidor esté caído.",
+              "explanation": "El diagnóstico de red funciona mejor si se realiza por capas y en un orden reproducible. Comprueba primero si la interfaz está activa y tiene una dirección IP; después revisa la puerta de enlace, la resolución DNS y finalmente el servicio remoto. Cada prueba debe responder una pregunta concreta. Registrar comandos, resultados y hora facilita comparar y evita cambiar muchas cosas a la vez.",
+              "example": "Si un sitio no abre, comprueba si otros sitios funcionan, consulta la configuración IP, prueba la puerta de enlace y verifica la resolución del dominio. Si DNS falla pero la IP responde, investiga el resolver antes de cambiar el router.",
               "task": "Compara acceso por IP y por nombre para detectar problemas DNS.",
               "question": "Si una web responde por IP pero no por nombre, ¿qué revisarías primero?",
               "options": [
@@ -2036,7 +2330,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Compara acceso por IP y por nombre para detectar problemas DNS..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diagnóstico de conectividad» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Diagnóstico de conectividad» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "reiniciar todo sin observar síntomas. Puedes perder pistas útiles y no saber qué cambio resolvió el problema.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         }
@@ -2147,8 +2448,8 @@
               "id": "fundamentos-variables",
               "title": "Variables y tipos de datos",
               "concept": "Una variable es un nombre que permite guardar y reutilizar un dato. Python incluye tipos como int, float, str y bool.",
-              "explanation": "Asigna valores con =. Usa nombres claros y muestra resultados con print(). El tipo de dato determina qué operaciones tienen sentido.",
-              "example": "nombre = 'Ana'\nedad = 24\nprint(edad)",
+              "explanation": "Una variable es un nombre asociado a un valor que un programa puede utilizar. En Python, el signo = asigna un valor; no significa igualdad matemática. El tipo del valor influye en las operaciones disponibles: int representa enteros, float números con decimales, str texto y bool valores verdadero/falso. Elegir nombres claros hace que el código sea más fácil de leer y mantener.",
+              "example": "nombre = 'Ana' guarda texto; edad = 24 guarda un entero; activo = True guarda un booleano. print(nombre, edad, activo) muestra los valores. Si intentas sumar texto y un entero sin convertirlos, Python produce un error de tipo.",
               "task": "Crea una variable edad con el valor 24 y muestra su contenido.",
               "question": "¿Qué operador asigna un valor a una variable?",
               "options": [
@@ -2176,14 +2477,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Crea una variable edad con el valor 24 y muestra su contenido..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Variables y tipos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Variables y tipos de datos» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "poner un número entre comillas y luego tratarlo como número. '24' es texto; 24 es un entero.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "fundamentos-condiciones",
               "title": "Condiciones if y else",
               "concept": "Una condición permite ejecutar instrucciones diferentes según se cumpla o no una expresión lógica.",
-              "explanation": "if ejecuta un bloque cuando una expresión es verdadera; else ofrece una alternativa. Los dos puntos y la indentación son obligatorios.",
-              "example": "nota = 4\nif nota >= 3:\n    print('Aprobado')\nelse:\n    print('Revisar')",
+              "explanation": "Una condición permite que el programa elija qué instrucciones ejecutar. if evalúa una expresión booleana; si es verdadera, ejecuta su bloque. else ofrece una alternativa cuando no se cumple. Puedes añadir elif para comprobar otras condiciones. En Python, los dos puntos y la indentación delimitan los bloques; los operadores ==, !=, <, >, <= y >= comparan valores.",
+              "example": "edad = 18; if edad >= 18: print('Mayor de edad'); else: print('Menor de edad'). La comparación produce True o False y determina cuál bloque se ejecuta.",
               "task": "Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado.",
               "question": "¿Qué palabra inicia una condición en Python?",
               "options": [
@@ -2210,14 +2518,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Escribe una condición que compruebe si nota es mayor o igual a 3 e imprima Aprobado..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Condiciones if y else» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Condiciones if y else» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "escribir = cuando necesitas ==. El primero asigna; el segundo compara.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "estructuras-for",
               "title": "Ciclo for",
               "concept": "El ciclo for recorre los elementos de una secuencia. range(1, 6) genera los números 1, 2, 3, 4 y 5.",
-              "explanation": "for ejecuta un bloque por cada elemento de una secuencia. range genera números y no incluye el límite final.",
-              "example": "for numero in range(1, 6):\n    print(numero)",
+              "explanation": "Un ciclo for repite un bloque para cada elemento de una secuencia, como una lista, una cadena o un rango. En Python, range(inicio, fin) genera números desde inicio hasta antes de fin. La variable del ciclo recibe cada elemento en cada vuelta. Usa for cuando sabes qué colección o secuencia quieres recorrer; así evitas repetir instrucciones manualmente.",
+              "example": "for numero in range(1, 6): print(numero) muestra 1, 2, 3, 4 y 5. El valor 6 no aparece porque el límite final de range no se incluye.",
               "task": "Imprime los números del 1 al 5 usando for y range.",
               "question": "¿Qué produce range(1, 4)?",
               "options": [
@@ -2244,14 +2559,21 @@
                 "Anota una idea principal y relaciónala con esta situación: Imprime los números del 1 al 5 usando for y range..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Ciclo for» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Ciclo for» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "esperar que range(1, 6) incluya el 6. Comprueba siempre si el límite final es exclusivo.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "estructuras-while",
               "title": "Ciclo while",
               "concept": "El ciclo while repite un bloque mientras una condición sea verdadera.",
-              "explanation": "while comprueba la condición antes de cada iteración. Actualiza la variable de control para que el ciclo pueda terminar.",
-              "example": "contador = 1\nwhile contador <= 3:\n    print(contador)\n    contador += 1",
+              "explanation": "Un ciclo while repite instrucciones mientras una condición sea verdadera. Primero evalúa la condición; si es True, ejecuta el bloque y vuelve a comprobarla. Por eso el cuerpo suele modificar alguna variable que participa en la condición. Si nunca puede volverse falsa, el programa queda en un ciclo infinito. while es útil cuando no sabes de antemano cuántas repeticiones serán necesarias.",
+              "example": "intentos = 0; while intentos < 3: print(intentos); intentos += 1. La variable aumenta en cada vuelta y el ciclo termina cuando llega a 3.",
               "task": "Usa while para imprimir 1, 2 y 3 e incrementa el contador.",
               "question": "¿Cuándo termina un ciclo while?",
               "options": [
@@ -2278,7 +2600,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Usa while para imprimir 1, 2 y 3 e incrementa el contador..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Ciclo while» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Ciclo while» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "olvidar actualizar la variable de control. Antes de ejecutar, comprueba qué hará que la condición deje de cumplirse.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         },
@@ -2289,8 +2618,8 @@
               "id": "prog-functions",
               "title": "Funciones",
               "concept": "Una función agrupa instrucciones para realizar una tarea y puede recibir parámetros y devolver resultados.",
-              "explanation": "Una función agrupa instrucciones para realizar una tarea y puede recibir parámetros y devolver resultados.",
-              "example": "Define funciones con def. Los parámetros reciben valores; return devuelve un resultado. Funciones pequeñas facilitan pruebas y reutilización.",
+              "explanation": "Una función agrupa instrucciones que realizan una tarea y permite reutilizarlas. Se define con def, puede recibir parámetros y puede devolver un resultado mediante return. Un parámetro es el nombre que aparece en la definición; un argumento es el valor que se entrega al llamar la función. Las funciones pequeñas y con una responsabilidad clara facilitan probar, depurar y modificar el programa.",
+              "example": "def sumar(a, b): return a + b. Después, resultado = sumar(3, 4) guarda 7. La función no necesita conocer de dónde vienen los valores; solo recibe dos argumentos y devuelve la suma.",
               "task": "def doble(numero): return numero * 2",
               "question": "¿Qué palabra devuelve un valor desde una función?",
               "options": [
@@ -2314,14 +2643,21 @@
                 "Anota una idea principal y relaciónala con esta situación: def doble(numero): return numero * 2.",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Funciones» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Funciones» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "confundir print con return. print muestra información; return entrega un valor al código que llamó la función.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "prog-collections",
               "title": "Listas y colecciones",
               "concept": "Las listas guardan secuencias ordenadas que pueden cambiar.",
-              "explanation": "Las listas guardan secuencias ordenadas que pueden cambiar.",
-              "example": "Los índices empiezan en cero. append agrega elementos y len devuelve la longitud.",
+              "explanation": "Una lista de Python almacena una secuencia ordenada de elementos y puede modificarse después de crearla. Los índices comienzan en cero, por lo que la primera posición es lista[0]. Puedes añadir elementos, eliminar, recorrer y consultar su longitud. Las listas pueden contener valores repetidos y tipos distintos, aunque en muchos programas mantener un tipo consistente facilita el trabajo.",
+              "example": "frutas = ['pera', 'mango', 'uva']; frutas.append('kiwi') añade un elemento al final. frutas[0] devuelve 'pera' y len(frutas) indica cuántos elementos contiene.",
               "task": "frutas = ['pera', 'mango']\nfrutas.append('uva')",
               "question": "¿Qué método agrega un elemento al final de una lista Python?",
               "options": [
@@ -2345,14 +2681,21 @@
                 "Anota una idea principal y relaciónala con esta situación: frutas = ['pera', 'mango']\nfrutas.append('uva').",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Listas y colecciones» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Listas y colecciones» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "intentar acceder a una posición que no existe o asumir que el primer índice es 1.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             },
             {
               "id": "prog-debug",
               "title": "Depuración y pruebas",
               "concept": "Los errores comunican qué falló; leerlos sistemáticamente acelera la corrección.",
-              "explanation": "Los errores comunican qué falló; leerlos sistemáticamente acelera la corrección.",
-              "example": "SyntaxError indica estructura inválida; NameError un nombre no definido; TypeError una operación incompatible. Reproduce, observa, formula hipótesis y vuelve a probar.",
+              "explanation": "Depurar es investigar por qué el comportamiento real de un programa difiere del esperado. Primero reproduce el problema; luego lee el mensaje de error, identifica la línea o condición relevante y formula una hipótesis. Cambia una cosa cada vez y vuelve a probar. Las pruebas pequeñas y los casos límite ayudan a localizar el origen en lugar de ocultar el síntoma.",
+              "example": "Si una variable produce un TypeError, revisa su valor y tipo justo antes de la operación. Prueba con una entrada pequeña, confirma qué esperabas y compara con lo que ocurrió.",
               "task": "Un test pequeño comprueba que una función devuelve el resultado esperado.",
               "question": "¿Qué indica normalmente un NameError?",
               "options": [
@@ -2376,7 +2719,14 @@
                 "Anota una idea principal y relaciónala con esta situación: Un test pequeño comprueba que una función devuelve el resultado esperado..",
                 "Si aparecen términos nuevos en inglés, apunta solo los más importantes y vuelve para revisarlos en español."
               ],
-              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Depuración y pruebas» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?"
+              "reflection_prompt": "Sin copiar la definición, ¿cómo explicarías «Depuración y pruebas» a alguien que empieza? ¿Qué ejemplo de la lectura te ayudó?",
+              "common_mistake": "cambiar varias líneas al azar hasta que el error desaparezca. Sin una hipótesis, puedes introducir otros defectos.",
+              "guided_steps": [
+                "Lee la explicación y subraya las palabras técnicas que todavía no reconoces.",
+                "Reproduce el ejemplo paso a paso y predice qué ocurrirá antes de leer el resultado.",
+                "Modifica un dato o condición y observa cómo cambia el resultado.",
+                "Relaciona lo aprendido con la situación práctica de la consigna y explica por qué tu decisión tiene sentido."
+              ]
             }
           ]
         }
