@@ -8,7 +8,7 @@ import time
 from contextlib import closing
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Response, Cookie, Depends
+from fastapi import FastAPI, HTTPException, Response as FastAPIResponse, Cookie, Depends
 from pydantic import BaseModel, Field
 from pwdlib import PasswordHash
 
@@ -17,7 +17,7 @@ from backend.adaptive.adaptive_engine import (
     Item,
     ItemBank,
     LearnerState,
-    Response,
+    Response as AdaptiveResponse,
 )
 from backend.adaptive.bkt import BKTParameters, update_mastery
 
@@ -65,6 +65,15 @@ def initialize_database():
                 user_id INTEGER NOT NULL UNIQUE,
                 completed_lessons INTEGER NOT NULL DEFAULT 0,
                 updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            );
+
+            CREATE TABLE IF NOT EXISTS lesson_completions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                lesson_id TEXT NOT NULL,
+                completed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(user_id, lesson_id),
                 FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
             );
         """)
@@ -162,7 +171,7 @@ def normalize_email(email):
     return email
 
 
-def create_session(db, user_id, response):
+def create_session(db, user_id, response: FastAPIResponse):
     token = secrets.token_urlsafe(48)
     token_hash = hashlib.sha256(token.encode()).hexdigest()
     expires = time.time() + SESSION_DAYS * 86400
@@ -406,7 +415,7 @@ def record_learning_response(
 
     state = LearnerState.from_dict(json.loads(saved["state_json"])) if saved else LearnerState()
     state = engine.record_response(
-        state, Response(item_id=item_id, correct=bool(correct), timestamp=timestamp)
+        state, AdaptiveResponse(item_id=item_id, correct=bool(correct), timestamp=timestamp)
     )
 
     db.execute(
@@ -677,13 +686,74 @@ def latest_diagnostic(user=Depends(current_user)):
     return {"diagnostic": dict(row) if row else None}
 
 
+LESSON_CATALOG = {
+    "fundamentos-variables": {"title": "Variables y tipos de datos", "module": "Fundamentos de programación"},
+    "fundamentos-condiciones": {"title": "Condiciones if y else", "module": "Fundamentos de programación"},
+    "estructuras-for": {"title": "Ciclo for", "module": "Estructuras de control"},
+    "estructuras-while": {"title": "Ciclo while", "module": "Estructuras de control"},
+}
+
+@app.get("/api/progress")
+def get_progress(user=Depends(current_user)):
+    with closing(connect()) as db:
+        completed = db.execute(
+            "SELECT lesson_id, completed_at FROM lesson_completions WHERE user_id = ? ORDER BY completed_at",
+            (user["id"],),
+        ).fetchall()
+        diagnostic = db.execute(
+            "SELECT learning_area, detected_level, score FROM diagnostic_attempts WHERE user_id = ? AND status = 'completed' AND learning_area != ? ORDER BY id DESC LIMIT 1",
+            (user["id"], ORIENTATION_ID),
+        ).fetchone()
+        mastery = db.execute(
+            "SELECT skill_id, prob_mastery, observations FROM student_skill_mastery WHERE user_id = ? ORDER BY skill_id",
+            (user["id"],),
+        ).fetchall()
+    completed_ids = [row["lesson_id"] for row in completed]
+    total = len(LESSON_CATALOG)
+    return {
+        "completed_lessons": completed_ids,
+        "completed_count": len(completed_ids),
+        "total_lessons": total,
+        "progress_percent": round(len(completed_ids) / total * 100) if total else 0,
+        "diagnostic": dict(diagnostic) if diagnostic else None,
+        "mastery": [dict(row) for row in mastery],
+        "catalog": LESSON_CATALOG,
+    }
+
+
+class LessonCompletionData(BaseModel):
+    lesson_id: str = Field(min_length=1, max_length=100)
+
+
+@app.post("/api/lessons/complete")
+def complete_lesson(data: LessonCompletionData, user=Depends(current_user)):
+    if data.lesson_id not in LESSON_CATALOG:
+        raise HTTPException(status_code=404, detail="La lección no existe.")
+    with closing(connect()) as db:
+        db.execute(
+            "INSERT OR IGNORE INTO lesson_completions (user_id, lesson_id) VALUES (?, ?)",
+            (user["id"], data.lesson_id),
+        )
+        count = db.execute(
+            "SELECT COUNT(*) AS total FROM lesson_completions WHERE user_id = ?",
+            (user["id"],),
+        ).fetchone()["total"]
+        db.execute(
+            "INSERT INTO student_progress (user_id, completed_lessons) VALUES (?, ?) "
+            "ON CONFLICT(user_id) DO UPDATE SET completed_lessons = excluded.completed_lessons, updated_at = CURRENT_TIMESTAMP",
+            (user["id"], count),
+        )
+        db.commit()
+    return {"message": "Progreso guardado.", "completed_lessons": count, "progress_percent": round(count / len(LESSON_CATALOG) * 100)}
+
+
 @app.get("/api/health")
 def health():
     return {"status": "ok", "service": "Capricornio API"}
 
 
 @app.post("/api/register", status_code=201)
-def register(data: RegisterData, response: Response):
+def register(data: RegisterData, response: FastAPIResponse):
     name = data.name.strip()
     if len(name) < 2:
         raise HTTPException(status_code=422, detail="Escribe tu nombre completo.")
@@ -723,7 +793,7 @@ def register(data: RegisterData, response: Response):
 
 
 @app.post("/api/login")
-def login(data: LoginData, response: Response):
+def login(data: LoginData, response: FastAPIResponse):
     email = normalize_email(data.email)
 
     with closing(connect()) as db:
@@ -764,7 +834,7 @@ def me(user=Depends(current_user)):
 
 @app.post("/api/logout")
 def logout(
-    response: Response,
+    response: FastAPIResponse,
     capricornio_session: str | None = Cookie(default=None)
 ):
     if capricornio_session:
