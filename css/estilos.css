@@ -108,7 +108,7 @@ p { margin-bottom: 12px; color: #4a3322; }
 .cp-profile strong{display:block;color:#fff6e0;font-size:13px}.cp-profile small{color:#d1b98b;font-size:11px}
 .cp-main{margin-left:252px;min-height:100vh}
 .cp-top{height:66px;background:#f3e6c8;border-bottom:2px solid #5a3a1e;display:flex;align-items:center;justify-content:space-between;padding:0 34px}
-.cp-top small{color:#6b4b2b}.cp-top a{font-weight:650;text-decoration:none;color:#7a4a1c}
+.cp-top small{color:#6b4b2b}.cp-top-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.cp-top a{font-weight:650;text-decoration:none;color:#14232a;padding:8px 10px;border-radius:7px;transition:background .16s ease,color .16s ease}.cp-top a:hover{background:#14232a;color:#f3e6c8}
 .cp-main .barra{display:none}
 .cp-main .contenedor{max-width:1180px}
 .cp-large{font-size:18px}.cp-large p,.cp-large label{font-size:1.1em}
