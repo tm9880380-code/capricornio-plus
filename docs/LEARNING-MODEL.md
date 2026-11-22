@@ -1,81 +1,46 @@
-# Capricornio Plus
+# Modelo pedagógico de Capricornio Plus
 
-**Capricornio es una plataforma educativa de conectividad y práctica.** Ayuda a descubrir rutas de aprendizaje, encontrar recursos gratuitos que ya existen en internet, practicar conceptos y conservar el progreso. No pretende reemplazar docentes ni alojar o copiar cursos de terceros.
+## Propósito
+Capricornio conecta a cada estudiante con conocimiento de calidad que ya existe en internet. No busca copiar cursos, competir con sus autores ni medir el aprendizaje por cantidad de enlaces o cuestionarios completados. Su trabajo es orientar, contextualizar, adaptar la práctica y recoger señales honestas de dominio.
 
-## Principios
-- Acceso abierto y autoalojable.
-- Enseñanza guiada y adaptativa, con fuentes externas seleccionadas y aprendizaje comprobable.
-- Prioridad a recursos gratuitos y fuentes originales.
-- Una ruta adecuada al objetivo y nivel inicial de cada estudiante.
-- Aprender, practicar, recibir retroalimentación y volver a intentarlo.
-- Privacidad, accesibilidad y costos operativos transparentes.
-- Mantener la identidad visual y la paleta del proyecto.
+## Principios no negociables
+1. **Principiante no significa formación mediocre.** La explicación inicial debe ser accesible, pero los conceptos, hábitos y criterios técnicos deben ser correctos y progresivos.
+2. **Una fuente útil vale más que una lista extensa.** Seleccionar pocas fuentes primarias o educativas reconocidas, relevantes para el objetivo y nivel de la lección.
+3. **El enlace debe llevar al contenido concreto.** Priorizar capítulos, secciones, ejercicios o laboratorios específicos. No enviar a una portada genérica si existe una sección directa. No inventar anclas o páginas profundas que no se hayan verificado.
+4. **Español primero, inglés progresivo.** Empezar con material comprensible en español cuando exista una fuente adecuada. Introducir vocabulario y lectura técnica en inglés gradualmente; declarar el idioma antes de abrir una fuente.
+5. **La persona aprende activamente.** Explicar, preparar la lectura, indicar qué observar, dejar que consulte la fuente, invitarla a volver con dudas y comprobar comprensión antes de avanzar.
+6. **Adaptar significa cambiar la estrategia.** Ante errores repetidos, variar la explicación, el ejemplo, la representación o la práctica; no repetir la misma pregunta ni limitarse a bajar una puntuación.
+7. **Medir desempeño, no clics.** Distinguir lectura, intento, comprensión, práctica guiada y competencia demostrada. Una respuesta correcta aislada no acredita dominio profesional.
+8. **Proyectos con propósito.** Cada ruta debe conducir progresivamente a tareas integradoras, proyectos revisables y evidencias que el estudiante pueda documentar en su portafolio.
+9. **Acceso realista.** Priorizar recursos gratuitos, ligeros y utilizables con conexiones limitadas. Señalar requisitos de cuenta, software o conectividad cuando sean relevantes.
+10. **Honestidad pedagógica.** No prometer empleo, certificación ni preparación junior por completar una ruta. Los criterios y límites de las evaluaciones deben ser visibles.
 
-## Ocho áreas
-1. Ciberseguridad.
-2. Desarrollo frontend.
-3. Desarrollo backend.
-4. Análisis de datos.
-5. Inteligencia artificial y modelos de lenguaje.
-6. Bases de datos.
-7. Redes y sistemas.
-8. Programación y lenguajes.
+## Ciclo recomendado de una lección
+1. Presentar el objetivo observable y explicar por qué importa.
+2. Enseñar el concepto con lenguaje claro, definiciones, contexto y ejemplo.
+3. Preparar al estudiante para una única lectura o recurso principal: qué abrir, qué término buscar, qué párrafo leer y qué ejemplo observar.
+4. Informar el idioma y el nivel del material antes de abrirlo. Si está en inglés, advertirlo explícitamente, explicar por qué se recomienda y ofrecer apoyo en español.
+5. Dar espacio para volver, explicar con palabras propias y preguntar.
+6. Aclarar dudas con una explicación alternativa, analogía o ejemplo distinto. La versión actual ofrece refuerzo contextual determinista basado en el contenido de la lección; no debe anunciarse como tutor de IA ni como evaluación automática de texto libre.
+7. Proponer una actividad que compruebe aplicación, no solo memoria.
+8. Si falla, explicar la respuesta y el razonamiento, ofrecer refuerzo y permitir reintento.
+9. Avanzar cuando existan señales suficientes de comprensión; si no, recomendar refuerzo específico.
+10. Guardar el resultado con una etiqueta honesta: visto, practicado, en refuerzo o demostrado.
 
-El estudiante puede elegir una de estas áreas, seleccionar un lenguaje (Python, JavaScript, Go, Java o C++) o solicitar orientación. Las rutas de lenguajes conducen al itinerario general de programación en esta versión.
+## Curación de recursos por área
+El catálogo inicial debe tener una selección pequeña y mantenible por área, no una cuota artificial de enlaces. Como objetivo operativo, mantener entre 4 y 8 fuentes de alta calidad por área cuando la oferta lo permita, cubriendo:
+- una referencia o documentación primaria;
+- una explicación guiada adecuada al nivel;
+- una práctica o laboratorio seguro;
+- un proyecto, repositorio o comunidad para etapas posteriores.
 
-## Qué incluye el prototipo actual
-- Registro, inicio de sesión y sesiones con cookies HttpOnly.
-- Orientación inicial para quien no sabe qué área elegir.
-- Diagnóstico específico por ruta: seis o siete preguntas por ruta.
-- Niveles internos provisionales A1–C2, sin valor de certificación.
-- Currículo declarativo con ocho áreas, dos módulos por área y aproximadamente 50 lecciones de muestra.
-- Explicaciones, ejemplos, preguntas de comprensión y retroalimentación.
-- Cuatro ejercicios iniciales de Python que se ejecutan en un Web Worker del navegador mediante Pyodide. El código no se envía al backend.
-- Seguimiento de lecciones y estimaciones experimentales de competencias.
-- Biblioteca filtrable de documentación, cursos, repositorios GitHub y canales educativos de YouTube.
-- Pruebas automatizadas de API y comprobación sintáctica de JavaScript.
+Cada recurso debería registrar: título, autor o institución, URL profunda, tema/competencia, nivel recomendado, idioma verificado, coste/requisitos, tipo de actividad, fecha de última revisión y motivo pedagógico de selección. No marcar un recurso como español sin comprobarlo. No recomendar laboratorios avanzados a estudiantes sin prerrequisitos. Las páginas y anclas externas deben revisarse periódicamente; si no hay URL profunda verificada, dar instrucciones concretas para localizar el concepto sin inventar un enlace.
 
-## Alcance y límites conocidos
-Esta versión es un prototipo funcional para revisión y pruebas, no una plataforma certificada ni lista para desplegar a gran escala en colegios.
-- Los diagnósticos son breves y sus niveles son orientativos. No han sido validados psicométricamente ni equivalen a certificaciones.
-- El motor BKT/IRT es experimental y requiere calibración con datos de aprendizaje y revisión pedagógica.
-- Los cuatro ejercicios ejecutables son de Python. Las demás lecciones utilizan preguntas de comprensión; todavía no hay sandbox de ejecución para JavaScript, Go, Java o C++.
-- La evaluación de Python compara la salida esperada y muestra errores del intérprete; no es un depurador profesional ni un corrector general de código.
-- La gestión de progreso se realiza por cuenta y ruta; faltan funciones institucionales como panel docente, cohortes, roles, SSO, exportación académica y multi-tenancy.
-- El catálogo de recursos se mantiene manualmente. Los enlaces y condiciones de terceros pueden cambiar.
-- La plataforma no incorpora todavía un proceso completo de recuperación/eliminación de cuenta, limitación de intentos de acceso ni auditoría de seguridad independiente.
-- Para uso con menores se requiere revisión jurídica, de privacidad, seguridad y protección institucional antes de cualquier piloto real.
+## Adaptación y evaluación
+El motor adaptativo debe utilizar resultados por competencia y patrones de error para elegir el siguiente paso. Las recomendaciones iniciales pueden ser reglas explícitas y transparentes; no se deben llamar inteligencia artificial ni tutor inteligente si no existe un modelo que las sustente. Las estimaciones experimentales de dominio requieren calibración y validación antes de presentarse como mediciones fiables.
 
-## Instalación local
-Requiere Python 3.10 o superior.
+## Progresión hacia preparación profesional
+Una ruta orientada a nivel inicial de empleo debe contemplar fundamentos, herramientas habituales, lectura de documentación, depuración, seguridad, comunicación técnica, tareas realistas y proyectos integradores. La preparación debe evaluarse mediante rúbricas visibles y evidencias revisables. Completar el contenido no garantiza empleo ni equivale a experiencia laboral.
 
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
-    uvicorn backend.main:app --reload
-
-Abre http://127.0.0.1:8000. La página pública de bienvenida es la raíz; desde allí puedes crear una cuenta.
-
-Para pruebas:
-
-    pip install -r requirements-dev.txt
-    python -m compileall -q backend
-    pytest -q
-
-## Datos y despliegue
-SQLite se crea en data/capricornio.db. Conserva la carpeta data/ en un volumen persistente. Consulta DEPLOY.md, PRIVACY.md y docs/SECURITY.md.
-
-No se garantiza que un proveedor externo mantenga un plan gratuito permanente. Para una instalación sin pagos de hosting, se puede ejecutar en un equipo o servidor propio; el equipo debe permanecer disponible y administrado.
-
-## Documentación para revisión
-- Modelo pedagógico y criterios de curación: docs/LEARNING-MODEL.md
-- Arquitectura: docs/ARCHITECTURE.md
-- Seguridad: docs/SECURITY.md
-- Accesibilidad: docs/ACCESSIBILITY.md
-- Privacidad: PRIVACY.md
-- Plan de piloto institucional: docs/INSTITUTIONAL-PILOT.md
-- Cómo contribuir: CONTRIBUTING.md
-- Código de conducta: CODE_OF_CONDUCT.md
-
-## Licencia
-El código propio de Capricornio Plus se distribuye bajo MIT. Los componentes adaptativos y materiales de terceros conservan sus licencias y avisos. Los recursos enlazados pertenecen a sus autores y plataformas; consulta sus condiciones antes de reutilizarlos.
+## Límites actuales conocidos
+La versión actual contiene 50 lecciones de muestra en ocho áreas y guías de lectura estructuradas que deben seguir sometiéndose a revisión pedagógica. El motor BKT/IRT es experimental. El refuerzo contextual no es un tutor generativo y no califica automáticamente respuestas abiertas. Los ejercicios ejecutables se concentran en Python; las demás áreas requieren más prácticas técnicas, revisión de recursos y validación con estudiantes reales. Esta versión no debe describirse todavía como una formación completa de nivel junior.

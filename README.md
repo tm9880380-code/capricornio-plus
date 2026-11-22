@@ -29,7 +29,11 @@ El estudiante puede elegir una de estas áreas, seleccionar un lenguaje (Python,
 - Diagnóstico específico por ruta: seis o siete preguntas por ruta.
 - Niveles internos provisionales A1–C2, sin valor de certificación.
 - Currículo declarativo con ocho áreas, dos módulos por área y aproximadamente 50 lecciones de muestra.
-- Explicaciones, ejemplos, objetivos de aprendizaje y guías de lectura por lección.\n- Recorrido de una fuente por vez, español primero, aviso explícito si el recurso está en inglés, instrucciones para localizar conceptos y retorno guiado antes de practicar.\n- Explicación contextual de refuerzo basada en la lección; no es todavía un tutor de IA ni califica automáticamente respuestas abiertas.
+- Explicaciones, ejemplos, objetivos de aprendizaje y guías de lectura por lección.
+- Recorrido de una fuente por vez, español primero, aviso explícito si el recurso está en inglés, instrucciones para localizar conceptos y retorno guiado antes de practicar.
+- Explicación contextual de refuerzo basada en la lección; no es todavía un tutor de IA ni califica automáticamente respuestas abiertas.
+- Recorrido de una fuente por vez, español primero, aviso explícito si el recurso está en inglés, instrucciones para localizar conceptos y retorno guiado antes de practicar.
+- Explicación contextual de refuerzo basada en la lección; no es todavía un tutor de IA ni califica automáticamente respuestas abiertas.
 - Cuatro ejercicios iniciales de Python que se ejecutan en un Web Worker del navegador mediante Pyodide. El código no se envía al backend.
 - Seguimiento de lecciones y estimaciones experimentales de competencias.
 - Biblioteca filtrable de documentación, cursos, repositorios GitHub y canales educativos de YouTube.
@@ -42,7 +46,9 @@ Esta versión es un prototipo funcional para revisión y pruebas, no una platafo
 - Los cuatro ejercicios ejecutables son de Python. Las demás lecciones utilizan preguntas de comprensión; todavía no hay sandbox de ejecución para JavaScript, Go, Java o C++.
 - La evaluación de Python compara la salida esperada y muestra errores del intérprete; no es un depurador profesional ni un corrector general de código.
 - La gestión de progreso se realiza por cuenta y ruta; faltan funciones institucionales como panel docente, cohortes, roles, SSO, exportación académica y multi-tenancy.
-- El catálogo de recursos se mantiene manualmente. Los enlaces y condiciones de terceros pueden cambiar; las páginas profundas y sus anclas deben verificarse periódicamente.\n- La guía de lectura ayuda a localizar conceptos, pero no garantiza que cada proveedor mantenga la misma estructura o traducción.
+- El catálogo de recursos se mantiene manualmente. Los enlaces y condiciones de terceros pueden cambiar; las páginas profundas y sus anclas deben verificarse periódicamente.
+- La guía de lectura ayuda a localizar conceptos, pero no garantiza que cada proveedor mantenga la misma estructura o traducción.
+- La guía de lectura ayuda a localizar conceptos, pero no garantiza que cada proveedor mantenga la misma estructura o traducción.
 - La plataforma no incorpora todavía un proceso completo de recuperación/eliminación de cuenta, limitación de intentos de acceso ni auditoría de seguridad independiente.
 - Para uso con menores se requiere revisión jurídica, de privacidad, seguridad y protección institucional antes de cualquier piloto real.
 
