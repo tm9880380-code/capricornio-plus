@@ -7,8 +7,9 @@ import secrets
 import time
 from contextlib import closing
 from pathlib import Path
+from urllib.parse import urlsplit
 
-from fastapi import FastAPI, HTTPException, Response as FastAPIResponse, Cookie, Depends
+from fastapi import FastAPI, HTTPException, Response as FastAPIResponse, Cookie, Depends, Request
 from pydantic import BaseModel, Field
 from pwdlib import PasswordHash
 
@@ -31,6 +32,21 @@ COOKIE_NAME = "capricornio_session"
 password_hash = PasswordHash.recommended()
 
 app = FastAPI(title="Capricornio API", version="1.0.0")
+
+
+@app.middleware("http")
+async def security_headers_and_origin_check(request: Request, call_next):
+    if request.method in {"POST", "PUT", "PATCH", "DELETE"}:
+        origin = request.headers.get("origin")
+        host = request.headers.get("host", "")
+        if origin and urlsplit(origin).netloc.lower() != host.lower():
+            return JSONResponse(status_code=403, content={"detail": "Origen de solicitud no permitido."})
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    return response
 
 
 def connect():
@@ -1095,12 +1111,12 @@ def logout(
     )
     return {"message": "Sesión cerrada."}
 
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 @app.get("/", include_in_schema=False)
 def home():
-    return FileResponse(BASE_DIR / "login.html")
+    return FileResponse(BASE_DIR / "index.html")
 
 
 @app.get("/{page}.html", include_in_schema=False)
