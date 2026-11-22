@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Capricornio - Práctica adaptativa</title><link rel="stylesheet" href="css/estilos.css"><style>
+#respuestas button{display:block;width:100%;text-align:left;margin:10px 0;padding:14px;border:2px solid #5a3a1e;border-radius:8px;background:#fbf4e2;color:#2b1608;cursor:pointer}
+#respuestas button:hover,#respuestas button[aria-pressed="true"]{background:#3b2314;color:#f3e6c8}
+#estado{min-height:2em}
+</style></head><body>
+<header class="barra"><div class="logo"><span class="insignia"><img src="img/logo.webp" alt=""></span>CAPRICORNIO</div><nav><a href="plan.html">Mi plan</a><a href="modulo.html">Módulos</a></nav></header>
+<main class="contenedor"><p><a href="plan.html"><strong>← Volver a mi plan</strong></a></p><h1>Práctica adaptativa</h1><p>Capricornio selecciona ejercicios disponibles según tu historial de respuestas. Cada respuesta actualiza tus estimaciones de aprendizaje.</p>
+<section class="tarjeta"><p id="area"></p><h2 id="pregunta">Preparando tu ejercicio...</h2><div id="respuestas"></div><p id="estado" role="status" aria-live="polite"></p><button class="boton" id="continuar" hidden type="button">Siguiente ejercicio</button></section>
+<p style="margin-top:18px"><small>Las estimaciones BKT/IRT de esta versión son experimentales; los parámetros de dificultad aún no están calibrados con una muestra de estudiantes.</small></p>
+</main><footer class="pie-pagina">Capricornio · Aprendizaje adaptativo</footer>
+<script>
+(async()=>{
+const areaEl=document.getElementById("area"),questionEl=document.getElementById("pregunta"),answersEl=document.getElementById("respuestas"),statusEl=document.getElementById("estado"),nextBtn=document.getElementById("continuar");
+let area="",itemId="",selected="";
+async function api(url,options={}){
+ const r=await fetch(url,{credentials:"same-origin",...options,headers:{"Content-Type":"application/json",...(options.headers||{})}});
+ const d=await r.json().catch(()=>({}));
+ if(!r.ok)throw new Error(d.detail||"No se pudo completar la solicitud.");
+ return d;
+}
+async function load(){
+ nextBtn.hidden=true;answersEl.replaceChildren();selected="";statusEl.textContent="Buscando el siguiente ejercicio...";
+ const d=await api("/api/learning/next?area="+encodeURIComponent(area));
+ if(d.complete){questionEl.textContent="Has respondido todos los ejercicios disponibles de esta área.";statusEl.textContent="Puedes volver a tu plan o reforzar las lecciones.";return;}
+ itemId=d.item_id;questionEl.textContent=d.prompt;
+ areaEl.textContent=area+" · Estimación de habilidad: "+d.ability_estimate+" (incertidumbre "+d.ability_uncertainty+")";
+ for(const option of d.options){
+  const b=document.createElement("button");b.type="button";b.textContent=option.label;b.setAttribute("aria-pressed","false");
+  b.addEventListener("click",()=>{selected=option.value;answersEl.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");submit();});
+  answersEl.appendChild(b);
+ }
+ statusEl.textContent="Selecciona una respuesta para registrarla.";
+}
+async function submit(){
+ answersEl.querySelectorAll("button").forEach(x=>x.disabled=true);
+ try{
+  const d=await api("/api/learning/answer",{method:"POST",body:JSON.stringify({area,item_id:itemId,answer:selected})});
+  statusEl.textContent=d.feedback+" Dominio estimado de esta competencia: "+d.competency_update.mastery+".";
+  nextBtn.hidden=false;
+ }catch(e){statusEl.textContent=e.message;answersEl.querySelectorAll("button").forEach(x=>x.disabled=false);}
+}
+nextBtn.addEventListener("click",()=>load().catch(e=>statusEl.textContent=e.message));
+try{
+ const me=await api("/api/me");
+ const latest=await api("/api/diagnostic/latest");
+ area=latest.diagnostic?.learning_area||me.user.learning_goal;
+ if(!area||area==="Aún no lo sé; necesito orientación"){questionEl.textContent="Primero realiza tu diagnóstico.";statusEl.textContent="Necesitamos identificar un área de aprendizaje para seleccionar ejercicios.";return;}
+ await load();
+}catch(e){questionEl.textContent="No se pudo iniciar la práctica.";statusEl.textContent=e.message+" Inicia sesión y realiza tu diagnóstico.";}
+})();
+</script></body></html>
