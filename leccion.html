@@ -21,17 +21,21 @@ async function runPython(){
  $("ejecutar").disabled=true;$("estado").textContent="Preparando Python en tu navegador…";$("salida").hidden=true;$("linea-error").textContent="";
  worker=new Worker("/js/python-runner.js");
  const runId=String(Date.now());
- const result=new Promise((resolve,reject)=>{worker.onmessage=e=>e.data.id===runId&&resolve(e.data);worker.onerror=e=>reject(new Error(e.message||"El motor Python no pudo iniciarse."));});
+ const result=new Promise((resolve,reject)=>{
+  worker.onmessage=e=>{if(e.data.id===runId)resolve(e.data);};
+  worker.onerror=e=>reject(new Error(e.message||"El motor Python no pudo iniciarse."));
+  timeout=setTimeout(()=>{worker.terminate();worker=null;reject(new Error("El programa superó el límite de 8 segundos y se detuvo para proteger el navegador. Revisa si hay un ciclo infinito."));},8000);
+ });
  worker.postMessage({id:runId,code});
- timeout=setTimeout(()=>{worker.terminate();rejectTimeout();},8000);
- function rejectTimeout(){ $("estado").textContent="El programa superó el límite de 8 segundos y se detuvo para proteger el navegador. Revisa si hay un ciclo infinito."; $("ejecutar").disabled=false; }
  try{
   const out=await result;clearTimeout(timeout);worker.terminate();worker=null;$("salida").hidden=false;
   if(!out.ok){$("salida").textContent=out.error;$("salida").className="respuesta error";showPythonError(out.error);$("estado").textContent="El programa encontró un error. Lee el mensaje y vuelve a intentarlo.";return;}
   const actual=normalize(out.stdout),expected=normalize(lessonData.lesson.expected_output);
   $("salida").textContent="Salida del programa:\n"+(actual||"(sin salida)");
-  if(actual===expected){$("salida").className="respuesta ok";$("estado").textContent="La salida coincide con el resultado esperado. ¡Muy bien!";await complete();}
-  else{$("salida").className="respuesta error";$("estado").textContent="El código se ejecutó, pero el resultado no coincide con lo que pide el ejercicio. Compara tu salida con la consigna y vuelve a intentarlo.";}
+  const passed=actual===expected;
+  await api("/api/lessons/attempt",{method:"POST",body:JSON.stringify({lesson_id:lessonId,correct:passed})});
+  if(passed){$("salida").className="respuesta ok";$("estado").textContent="La salida coincide con el resultado esperado. ¡Muy bien!";await complete();}
+  else{$("salida").className="respuesta error";$("estado").textContent="El código se ejecutó, pero el resultado no coincide con lo que pide el ejercicio. Compara tu salida con la consigna y vuelve a intentarlo. "+(lessonData.lesson.feedback||"");}
  }catch(error){clearTimeout(timeout);if(worker)worker.terminate();worker=null;$("estado").textContent=error.message||"No fue posible ejecutar Python.";}
  finally{$("ejecutar").disabled=false;}
 }
