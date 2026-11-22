@@ -56,7 +56,7 @@
               "resource_ids": [
                 "OWASP Developer Guide · Fundamentos de seguridad"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve la tríada de seguridad. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Imagina una historia clínica: confidencialidad significa que solo la ve el personal autorizado; integridad, que nadie cambia un diagnóstico sin permiso; disponibilidad, que el sistema funciona cuando el médico lo necesita."
             },
             {
               "id": "cyber-risk",
@@ -78,7 +78,7 @@
               "resource_ids": [
                 "OWASP Developer Guide · Fundamentos de seguridad"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve amenazas, vulnerabilidades y riesgos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Piensa en una casa: la amenaza es un ladrón, la vulnerabilidad es una ventana sin seguro y el riesgo depende de qué tan probable sea que entre y cuánto daño pueda causar."
             },
             {
               "id": "cyber-passwords",
@@ -100,7 +100,7 @@
               "resource_ids": [
                 "INCIBE · Guía de ciberseguridad para todos"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve contraseñas y autenticación. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una contraseña es una llave. Si usas la misma llave para todas tus puertas y alguien la copia, todas quedan expuestas. Una segunda verificación añade otra cerradura."
             },
             {
               "id": "cyber-phishing",
@@ -122,7 +122,7 @@
               "resource_ids": [
                 "INCIBE · Guía de ciberseguridad para todos"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve phishing e ingeniería social. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "El atacante se disfraza de alguien conocido para que actúes rápido. No confíes solo en el nombre o logotipo: verifica por otro canal antes de entregar datos o dinero."
             }
           ]
         },
@@ -149,7 +149,7 @@
               "resource_ids": [
                 "OWASP Developer Guide · Desarrollo seguro"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve firewall y mínimo privilegio. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "El firewall es como un portero que aplica reglas a las conexiones. El mínimo privilegio es entregar a cada persona solo las llaves de las habitaciones que necesita."
             },
             {
               "id": "cyber-web",
@@ -171,7 +171,7 @@
               "resource_ids": [
                 "OWASP Developer Guide · Desarrollo seguro"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve seguridad de aplicaciones web. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una aplicación web recibe datos que no controla. Debe validar en el servidor y comprobar permisos en cada operación, no confiar en que el botón esté oculto en la pantalla."
             },
             {
               "id": "cyber-lab",
@@ -193,7 +193,7 @@
               "resource_ids": [
                 "PortSwigger Web Security Academy"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve práctica responsable y laboratorios. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Practicar sin autorización es como entrar a una casa ajena para probar una cerradura. Un laboratorio propio o autorizado define límites seguros para aprender."
             }
           ]
         }
@@ -320,7 +320,7 @@
               "resource_ids": [
                 "MDN · Estructurando la web con HTML"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve html semántico. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "HTML es el plano y la estructura de una casa: define qué es una puerta, una habitación o una entrada. No decide el color de las paredes."
             },
             {
               "id": "frontend-css",
@@ -342,7 +342,7 @@
               "resource_ids": [
                 "MDN · Primeros pasos con CSS"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve css y modelo de caja. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "CSS es la decoración y distribución: cambia colores, espacios y tamaños, pero no debería reemplazar el significado del contenido."
             },
             {
               "id": "frontend-responsive",
@@ -364,7 +364,7 @@
               "resource_ids": [
                 "MDN · Aprende desarrollo web"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve diseño adaptable. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una interfaz responsive es como un mueble modular: se reorganiza para caber en una habitación pequeña sin perder su función."
             }
           ]
         },
@@ -391,7 +391,7 @@
               "resource_ids": [
                 "MDN · Primeros pasos con JavaScript"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve javascript y dom. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "HTML construye la página; JavaScript permite que reaccione cuando una persona hace clic, escribe o recibe datos."
             },
             {
               "id": "frontend-accessibility",
@@ -413,7 +413,7 @@
               "resource_ids": [
                 "MDN · Accesibilidad"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve accesibilidad web. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Accesibilidad significa que la puerta de entrada no tenga un único modo de abrirse: una persona puede navegar con ratón, teclado o lector de pantalla."
             },
             {
               "id": "frontend-api",
@@ -435,7 +435,7 @@
               "resource_ids": [
                 "MDN · Aprende desarrollo web"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve consumir apis. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una API es como una ventanilla de atención: la interfaz hace una solicitud, el servidor responde y la aplicación debe comprobar si la respuesta fue exitosa."
             }
           ]
         }
@@ -562,7 +562,7 @@
               "resource_ids": [
                 "MDN · Introducción a HTTP"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve http y solicitudes. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "HTTP es el protocolo de conversación entre cliente y servidor: uno solicita algo con un método y el otro responde con datos y un código de estado."
             },
             {
               "id": "backend-rest",
@@ -584,7 +584,7 @@
               "resource_ids": [
                 "FastAPI · Primeros pasos"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve diseño de apis. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una API bien diseñada es como un catálogo organizado: cada ruta identifica un recurso y cada método expresa qué operación se solicita."
             },
             {
               "id": "backend-validation",
@@ -606,7 +606,7 @@
               "resource_ids": [
                 "FastAPI · Tutorial completo"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve validación en servidor. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Nunca aceptes una caja cerrada sin revisar su contenido. El servidor valida tipo, formato, tamaño y reglas antes de guardar o procesar una entrada."
             }
           ]
         },
@@ -633,7 +633,7 @@
               "resource_ids": [
                 "Django · Tutorial oficial, parte 1"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve consultas y persistencia. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una base relacional es como varias hojas de cálculo conectadas por identificadores. Las consultas deben usar parámetros para no mezclar datos con instrucciones."
             },
             {
               "id": "backend-auth",
@@ -655,7 +655,7 @@
               "resource_ids": [
                 "FastAPI · Tutorial completo"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve autenticación y autorización. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Autenticación pregunta quién eres; autorización pregunta qué tienes permitido hacer. Mostrar una identificación no significa tener acceso a todas las oficinas."
             },
             {
               "id": "backend-tests",
@@ -677,7 +677,7 @@
               "resource_ids": [
                 "FastAPI · Tutorial completo"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve pruebas unitarias y de integración. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una prueba unitaria revisa una pieza por separado; una prueba de integración comprueba que varias piezas trabajen juntas."
             }
           ]
         }
@@ -804,7 +804,7 @@
               "resource_ids": [
                 "datos.gob.es · Guía de análisis exploratorio de datos con Python"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve preguntas y tipos de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Antes de buscar una respuesta, formula la pregunta. Si preguntas cuántas entregas llegaron tarde, necesitas definir qué significa tarde y qué periodo observarás."
             },
             {
               "id": "data-cleaning",
@@ -826,7 +826,7 @@
               "resource_ids": [
                 "datos.gob.es · Guía de análisis exploratorio de datos con Python"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve limpieza de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Limpiar datos es revisar una despensa antes de cocinar: retirar duplicados, identificar faltantes y comprobar que las medidas estén expresadas en la misma unidad."
             },
             {
               "id": "data-stats",
@@ -848,7 +848,7 @@
               "resource_ids": [
                 "datos.gob.es · Guía de análisis exploratorio de datos con Python"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve estadística descriptiva. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "La media reparte el total; la mediana busca el valor central al ordenar; la moda identifica el valor más frecuente. No responden exactamente la misma pregunta."
             }
           ]
         },
@@ -876,7 +876,7 @@
                 "UNAM · Python para análisis de datos",
                 "pandas · Getting started"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve primeros pasos con pandas. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Un DataFrame es una tabla con filas y columnas. pandas ofrece herramientas para leerla, filtrar registros, crear columnas y resumir grupos."
             },
             {
               "id": "data-viz",
@@ -898,7 +898,7 @@
               "resource_ids": [
                 "UNAM · Python para análisis de datos"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve visualización responsable. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Un gráfico es una explicación visual. Elige líneas para cambios en el tiempo, barras para comparar categorías y evita escalas que exageren diferencias."
             },
             {
               "id": "data-ethics",
@@ -920,7 +920,7 @@
               "resource_ids": [
                 "datos.gob.es · Guía de análisis exploratorio de datos con Python"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve privacidad y ética de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Un resultado no cuenta toda la historia si los datos dejan por fuera a un grupo o exponen información privada. Explica de dónde vienen y qué no permiten concluir."
             }
           ]
         }
@@ -1047,7 +1047,7 @@
               "resource_ids": [
                 "Google · Curso intensivo de aprendizaje automático"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve qué es aprendizaje automático. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "En vez de escribir cada regla a mano, un modelo ajusta parámetros a partir de ejemplos. Luego se prueba con datos que no usó para aprender."
             },
             {
               "id": "ai-datasets",
@@ -1069,7 +1069,7 @@
               "resource_ids": [
                 "Google · Curso intensivo de aprendizaje automático"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve conjuntos de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Si enseñas a reconocer frutas usando solo manzanas rojas, el modelo no aprenderá a reconocer bien otras frutas. Los datos deben representar el problema real."
             },
             {
               "id": "ai-metrics",
@@ -1091,7 +1091,7 @@
               "resource_ids": [
                 "Google · Curso intensivo de aprendizaje automático"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve métricas de evaluación. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Si una enfermedad es rara, un modelo que diga siempre 'sano' puede tener accuracy alta y aun así fallar en lo importante. Por eso se revisan varias métricas."
             }
           ]
         },
@@ -1118,7 +1118,7 @@
               "resource_ids": [
                 "Google · Introducción a los modelos de lenguaje grandes"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve cómo funcionan los modelos de lenguaje. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Un modelo de lenguaje divide el texto en tokens y estima qué token podría venir después según los patrones aprendidos. Una respuesta convincente no garantiza que sea cierta."
             },
             {
               "id": "ai-prompts",
@@ -1140,7 +1140,7 @@
               "resource_ids": [
                 "Google · Introducción a los modelos de lenguaje grandes"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve instrucciones y evaluación de prompts. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una buena instrucción se parece a una tarea bien asignada: dice qué hacer, con qué contexto, qué límites respetar y cómo entregar el resultado."
             },
             {
               "id": "ai-responsible",
@@ -1162,7 +1162,7 @@
               "resource_ids": [
                 "Microsoft · IA para principiantes"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve sesgos y uso responsable. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Un modelo debe revisarse como cualquier sistema importante: quién sale perjudicado, qué datos usa, cómo falla y quién supervisa sus decisiones."
             }
           ]
         }
@@ -1289,7 +1289,7 @@
               "resource_ids": [
                 "PostgreSQL Wiki · Material en español"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve tablas y claves. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "La clave primaria funciona como el número único de una persona en un registro: permite distinguir una fila de todas las demás."
             },
             {
               "id": "db-select",
@@ -1311,7 +1311,7 @@
               "resource_ids": [
                 "MongoDB · Comenzando con la base de datos"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve consultar con select. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "SELECT elige qué columnas mirar, FROM indica de qué tabla vienen y WHERE filtra las filas que cumplen una condición."
             },
             {
               "id": "db-joins",
@@ -1334,7 +1334,7 @@
                 "PostgreSQL Wiki · Material en español",
                 "SQLBolt · Aprende SQL con ejercicios"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve relaciones y join. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "JOIN combina información relacionada. Es como unir la lista de estudiantes con la lista de matrículas usando el identificador común."
             }
           ]
         },
@@ -1361,7 +1361,7 @@
               "resource_ids": [
                 "PostgreSQL · Tutorial oficial"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve normalización. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "La normalización evita escribir la misma información en muchos lugares. Así reduces contradicciones cuando un dato cambia."
             },
             {
               "id": "db-acid",
@@ -1383,7 +1383,7 @@
               "resource_ids": [
                 "PostgreSQL · Tutorial oficial"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve transacciones y acid. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una transacción bancaria no debería descontar dinero de una cuenta y fallar al abonarlo a la otra. ACID ayuda a mantener operaciones consistentes."
             },
             {
               "id": "db-backup",
@@ -1405,7 +1405,7 @@
               "resource_ids": [
                 "MongoDB · Desarrollo y operaciones CRUD"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve seguridad y copias de respaldo. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una copia de seguridad solo es útil si puedes restaurarla. Practica recuperar datos y verifica que la copia esté completa y protegida."
             }
           ]
         }
@@ -1532,7 +1532,7 @@
               "resource_ids": [
                 "Red Hat · Introducción a Linux"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve funciones del sistema operativo. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "El sistema operativo es el administrador del equipo: reparte memoria, organiza archivos y coordina programas para que compartan el hardware."
             },
             {
               "id": "sys-linux",
@@ -1554,7 +1554,7 @@
               "resource_ids": [
                 "Red Hat · Introducción a Linux"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve primeros pasos en linux. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "La terminal es una forma de conversar con el sistema mediante órdenes. pwd pregunta en qué carpeta estás; ls muestra su contenido."
             },
             {
               "id": "sys-permissions",
@@ -1576,7 +1576,7 @@
               "resource_ids": [
                 "Red Hat · Introducción a Linux"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve usuarios y permisos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Los permisos indican quién puede leer, modificar o ejecutar un archivo. No entregues permisos amplios si la tarea solo necesita lectura."
             }
           ]
         },
@@ -1603,7 +1603,7 @@
               "resource_ids": [
                 "Cisco Skills for All · Curso de redes"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve direcciones ip. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una dirección IP funciona como la dirección de una vivienda dentro de una red: permite que los paquetes sepan a qué interfaz llegar."
             },
             {
               "id": "net-dns",
@@ -1625,7 +1625,7 @@
               "resource_ids": [
                 "Cisco Skills for All · Curso de redes"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve dns y nombres. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "DNS es como una agenda telefónica: traduce un nombre fácil de recordar a la información de red necesaria para encontrar el servicio."
             },
             {
               "id": "net-debug",
@@ -1648,7 +1648,7 @@
                 "Cisco Skills for All · Dispositivos de red y configuración inicial",
                 "Wireshark · User Guide"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve diagnóstico de conectividad. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Diagnosticar es seguir pistas en orden: primero comprueba la conexión local, después la puerta de enlace, luego DNS y finalmente el servicio remoto."
             }
           ]
         }
@@ -1779,7 +1779,7 @@
                 "PSeInt · Pseudocódigo y algoritmos",
                 "Python · Tutorial oficial en español"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve variables y tipos de datos. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una variable es una etiqueta pegada a una caja. La etiqueta permite volver a usar el valor sin recordar dónde está guardado."
             },
             {
               "id": "fundamentos-condiciones",
@@ -1804,7 +1804,7 @@
               "resource_ids": [
                 "PSeInt · Pseudocódigo y algoritmos"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve condiciones if y else. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una condición es una bifurcación: si se cumple una regla tomas un camino; si no, puedes tomar otro."
             },
             {
               "id": "estructuras-for",
@@ -1829,7 +1829,7 @@
               "resource_ids": [
                 "PSeInt · Pseudocódigo y algoritmos"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve ciclo for. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "for es como revisar una lista de nombres uno por uno: el bloque se ejecuta una vez por cada elemento."
             },
             {
               "id": "estructuras-while",
@@ -1854,7 +1854,7 @@
               "resource_ids": [
                 "PSeInt · Pseudocódigo y algoritmos"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve ciclo while. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "while repite una acción mientras se cumpla una condición. Si nunca cambias esa condición, el ciclo puede no terminar."
             }
           ]
         },
@@ -1881,7 +1881,7 @@
               "resource_ids": [
                 "Python · Tutorial oficial en español"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve funciones. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una función es una receta reutilizable: recibe ingredientes (parámetros), realiza pasos y puede entregar un resultado."
             },
             {
               "id": "prog-collections",
@@ -1903,7 +1903,7 @@
               "resource_ids": [
                 "Python · Tutorial oficial en español"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve listas y colecciones. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Una lista es una fila ordenada de elementos. Puedes consultar una posición, recorrerla o añadir un elemento al final."
             },
             {
               "id": "prog-debug",
@@ -1925,7 +1925,7 @@
               "resource_ids": [
                 "freeCodeCamp Español"
               ],
-              "reinforcement": "Si este concepto todavía no está claro, vuelve al ejemplo y explica con tus palabras qué problema resuelve depuración y pruebas. Después intenta identificarlo en una situación cotidiana distinta a la del ejemplo."
+              "reinforcement": "Depurar es investigar: reproduce el error, lee el mensaje, localiza la línea, formula una hipótesis, cambia una cosa y vuelve a probar."
             }
           ]
         }
