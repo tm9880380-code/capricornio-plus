@@ -30,6 +30,8 @@ DB_PATH = DATA_DIR / "capricornio.db"
 
 SESSION_DAYS = 30
 COOKIE_NAME = "capricornio_session"
+PRIVACY_POLICY_VERSION = "2026-11-22"
+TERMS_VERSION = "2026-11-22"
 password_hash = PasswordHash.recommended()
 # Hash de relleno: se verifica cuando el correo no existe para que login tarde igual.
 DUMMY_PASSWORD_HASH = password_hash.hash("capricornio-relleno-de-tiempo")
@@ -122,6 +124,14 @@ def initialize_database():
                 user_id INTEGER NOT NULL,
                 token_hash TEXT NOT NULL UNIQUE,
                 expires_at REAL NOT NULL,
+                FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            );
+
+            CREATE TABLE IF NOT EXISTS privacy_consents (
+                user_id INTEGER PRIMARY KEY,
+                privacy_policy_version TEXT NOT NULL,
+                terms_version TEXT NOT NULL,
+                consented_at TEXT NOT NULL,
                 FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
             );
 
@@ -227,6 +237,8 @@ class RegisterData(BaseModel):
     email: str = Field(min_length=5, max_length=254)
     password: str = Field(min_length=8, max_length=128)
     learning_goal: str = Field(default="Fundamentos de programación", max_length=100)
+    privacy_consent: bool = False
+    terms_accepted: bool = False
 
 
 class LoginData(BaseModel):
@@ -1144,6 +1156,10 @@ def too_many_attempts():
 
 @app.post("/api/register", status_code=201)
 def register(data: RegisterData, response: FastAPIResponse, request: Request):
+    if not data.privacy_consent:
+        raise HTTPException(status_code=422, detail="Debes autorizar expresamente el tratamiento de tus datos para crear la cuenta.")
+    if not data.terms_accepted:
+        raise HTTPException(status_code=422, detail="Debes aceptar los términos y condiciones para crear la cuenta.")
     name = data.name.strip()
     if len(name) < 2:
         raise HTTPException(status_code=422, detail="Escribe tu nombre completo.")
@@ -1169,6 +1185,10 @@ def register(data: RegisterData, response: FastAPIResponse, request: Request):
             db.execute(
                 "INSERT INTO student_progress (user_id) VALUES (?)",
                 (user_id,)
+            )
+            db.execute(
+                "INSERT INTO privacy_consents (user_id, privacy_policy_version, terms_version, consented_at) VALUES (?, ?, ?, ?)",
+                (user_id, PRIVACY_POLICY_VERSION, TERMS_VERSION, time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())),
             )
             create_session(db, user_id, response)
             db.commit()
@@ -1293,14 +1313,16 @@ def serve_page(page: str, capricornio_session: str | None = Cookie(default=None)
     allowed = {
         "index", "registro", "login", "diagnostico",
         "plan", "modulo", "leccion", "practica", "suscripciones", "recursos",
-        "ayuda", "ajustes", "perfil", "entorno"
+        "ayuda", "ajustes", "perfil", "entorno",
+        "privacidad", "terminos", "cookies", "accesibilidad",
+        "uso-responsable", "seguridad", "mapa-sitio", "creditos"
     }
     if page not in allowed:
         raise HTTPException(status_code=404, detail="Página no encontrada.")
 
-    # Solo la bienvenida, el registro y el formulario de acceso son públicos.
-    # Las páginas de estudio no deben entregar HTML privado a una sesión anónima.
-    if page not in {"index", "registro", "login"}:
+    # Las páginas legales son públicas; las páginas de aprendizaje requieren sesión.
+    if page not in {"index", "registro", "login", "privacidad", "terminos", "cookies",
+                    "accesibilidad", "uso-responsable", "seguridad", "mapa-sitio", "creditos"}:
         try:
             current_user(capricornio_session)
         except HTTPException:
