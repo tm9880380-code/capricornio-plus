@@ -35,7 +35,7 @@ async function runPython(){
   const passed=actual===expected;
   await api("/api/lessons/attempt",{method:"POST",body:JSON.stringify({lesson_id:lessonId,correct:passed})});
   if(passed){$("salida").className="respuesta ok";$("estado").textContent="La salida coincide con el resultado esperado. ¡Muy bien!";await complete();}
-  else{$("salida").className="respuesta error";$("estado").textContent="El código se ejecutó, pero el resultado no coincide con lo que pide el ejercicio. Compara tu salida con la consigna y vuelve a intentarlo. "+(lessonData.lesson.feedback||"");}
+  else{$("salida").className="respuesta error";$("estado").textContent="El código se ejecutó, pero el resultado no coincide con lo que pide el ejercicio. Compara tu salida con la consigna y vuelve a intentarlo. "+(lessonData.lesson.hint||"Revisa la consigna, el ejemplo y la salida esperada.");}
  }catch(error){clearTimeout(timeout);if(worker)worker.terminate();worker=null;$("estado").textContent=error.message||"No fue posible ejecutar Python.";}
  finally{$("ejecutar").disabled=false;}
 }
