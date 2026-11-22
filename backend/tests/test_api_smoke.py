@@ -559,7 +559,6 @@ def test_registration_requires_explicit_privacy_consent_and_terms(client):
     payload["terms_accepted"] = True
     response = client.post("/api/register", json=payload)
     assert response.status_code == 201
-    row = client.app.state  # La evidencia de versión se valida en la base de datos de prueba.
     from backend import main as app_main
     with app_main.closing(app_main.connect()) as db:
         consent = db.execute(
