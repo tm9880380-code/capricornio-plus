@@ -624,3 +624,58 @@ def test_security_headers_are_present_on_private_pages(client):
     assert response.headers["cross-origin-opener-policy"] == "same-origin"
     assert response.headers["cross-origin-resource-policy"] == "same-origin"
     assert response.headers["cache-control"] == "no-store"
+
+
+def test_dashboard_uses_class_continuation_and_competency_language(client):
+    client.post("/api/register", json={
+        "name": "Estudiante Panel", "email": "panel-adaptativo@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "privacy_consent": True, "terms_accepted": True,
+    })
+    response = client.get("/plan.html")
+    assert response.status_code == 200
+    assert "Continuar con mis clases" in response.text
+    assert "Prácticas · Resolver ejercicios" in response.text
+    assert "Repasar mi ruta" in response.text
+    assert "Nivel de competencia" in response.text
+    assert "Prácticas registradas" in response.text
+    assert "Lecciones listas" not in response.text
+    assert "Por avanzar" not in response.text
+
+
+def test_practical_curriculum_has_fifteen_modules_and_ten_progressive_exercises_per_module(client):
+    registered = client.post("/api/register", json={
+        "name": "Estudiante Retos", "email": "retos@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "privacy_consent": True, "terms_accepted": True,
+    })
+    assert registered.status_code == 201
+    response = client.get("/api/practical/catalog")
+    assert response.status_code == 200
+    catalog = response.json()
+    assert catalog["requirements"]["modules_per_area"] == 15
+    assert catalog["requirements"]["practical_exercises_per_module"] == 10
+    assert len(catalog["areas"]) == 8
+    for area in catalog["areas"]:
+        assert area["module_count"] == 15
+        assert area["exercise_count"] == 150
+        assert len(area["modules"]) == 15
+        for module in area["modules"]:
+            assert len(module["exercises"]) == 10
+            assert [exercise["difficulty"] for exercise in module["exercises"]] == list(range(1, 11))
+            assert [exercise["guided"] for exercise in module["exercises"]] == [True, True] + [False] * 8
+            assert module["weekly_evaluation"]["minimum_score"] == 80
+
+
+def test_practical_area_endpoint_rejects_unknown_area(client):
+    registered = client.post("/api/register", json={
+        "name": "Estudiante Ruta", "email": "ruta-practica@example.com",
+        "password": "ClaveSegura123", "learning_goal": "Ciberseguridad",
+        "privacy_consent": True, "terms_accepted": True,
+    })
+    assert registered.status_code == 201
+    assert client.get("/api/practical/area/not-an-area").status_code == 404
+    cyber = client.get("/api/practical/area/ciberseguridad")
+    assert cyber.status_code == 200
+    assert cyber.json()["modules"][0]["exercises"][0]["guided"] is True
+    assert cyber.json()["modules"][0]["exercises"][9]["difficulty_label"] == "Expert challenge"
